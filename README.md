@@ -1,4 +1,4 @@
-# MakeItMVP Launch Academy Starter Repository: Communti
+# MakeItMVP Launch Academy Starter Repository: Communiti
 
 Welcome to the MakeItMVP Launch Academy Starter Repository! This repository is designed to provide new junior developers with a structured starting point for their assigned projects. It's built using React and Sass to help you get up and running quickly.
 
@@ -17,7 +17,7 @@ To begin working on your project, follow these steps:
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/MakeItMVP/Communti.git
+   git clone https://github.com/MakeItMVP/Communiti.git
    ```
 
 ````
