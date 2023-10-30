@@ -4,9 +4,15 @@
     background: #0954B0;
     color: white;
     font-family: "Gilroy Bold", sans-serif;
+    font-weight: 700;
+    font-size: 25px;
     position: sticky;
+    height: 75px;
     top: 0;
     z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
   
   ul {
@@ -17,4 +23,7 @@
   
   li {
     margin: 0 10px;
+  }
+  .nav-links {
+    display: flex;
   }

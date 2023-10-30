@@ -4,7 +4,7 @@ export default function Navbar () {
     return(
         <>
             <nav className="navbar">
-                <ul>
+                <ul className="nav-links">
                     <li>Home</li>
                     <li>About</li>
                     <li>Log In </li>
