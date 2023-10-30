@@ -1,5 +1,5 @@
 import "./HomePage.scss";
-import Navbar from "../../components/Example/Navbar/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 
 const Home = () => {
   return (
