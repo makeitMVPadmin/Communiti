@@ -12,18 +12,23 @@
     z-index: 100;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    // justify-content: flex-end;
   }
   
   ul {
     list-style: none;
     padding: 0;
     display: flex;
+    margin-left: auto;
   }
   
   li {
-    margin: 0 10px;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    margin: 0 15px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+  li:last-child button {
+    margin-right: 10px;
   }
   .nav-links {
     display: flex;

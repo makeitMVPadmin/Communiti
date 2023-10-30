@@ -9,8 +9,8 @@ export default function Navbar () {
                 <ul className="nav-links">
                     <li>Home</li>
                     <li>About</li>
-                    <li><Button buttonText="Log In"/></li>
-                    <li><Button buttonText="Sign Up"/></li>
+                    <li><Button color="#FFFFFF" buttonText="Log In"/></li>
+                    <li><Button color="#FFD22F" buttonText="Sign Up"/></li>
                 </ul>
             </nav>
         </>
