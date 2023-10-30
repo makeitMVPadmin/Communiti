@@ -39,3 +39,23 @@
     width: 275px !important;
 
 }
+
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .icon-row {
+        margin: 20px 0;  /* Adjust this margin as needed */
+    }
+
+    .separator {
+        width: 80%;  /* Horizontal separator */
+        height: 5px;
+    }
+
+    .logo{
+        margin: 30px 0;
+    }
+}
