@@ -1,5 +1,10 @@
 @import "https://www.dafontfree.io/download/gilroytypefamily/";
 
+body{
+  margin: 0;
+  padding: 0;
+}
+
 .navbar {
     background: #0954B0;
     color: white;
@@ -14,14 +19,15 @@
     z-index: 100;
     display: flex;
     align-items: center;
-    // justify-content: flex-end;
+    justify-content: space-between;
   }
   
   ul {
     list-style: none;
     padding: 0;
     display: flex;
-    margin-left: auto;
+    // margin-left: auto;
+    margin: 0;
   }
   
   li {
