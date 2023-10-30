@@ -11,15 +11,6 @@
     justify-content: center;
     flex-direction: row;
   
-    &::before {
-      content: "";
-      width: 5px;
-      height: 45%;
-      background-color: #000;
-      margin: 0 150px;
-
-    }
-  
     .icon-row {
       display: flex;
       align-items: center;
@@ -35,3 +26,16 @@
       width: 50px;
     }
   }
+
+  .separator {
+    content: "";
+    width: 5px;
+    height: 45%;
+    background-color: #000;
+    margin: 0 150px;
+  }
+
+.logo {
+    width: 275px !important;
+
+}
