@@ -1,6 +1,36 @@
-.footer{
+.footer {
     background-color: #FF7070;
     height: 200px;
     position: absolute;
     bottom: 0;
-}
+    margin: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    &::before {
+      content: "";
+      width: 5px;
+      height: 45%;
+      background-color: #000;
+      margin: 0 150px;
+
+    }
+  
+    .icon-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-right: 20px;
+    }
+  
+    a {
+      margin: 0 10px;
+    }
+  
+    img {
+      width: 50px;
+    }
+  }
