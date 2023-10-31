@@ -1,11 +1,15 @@
-import "./Home.scss";
+import React from "react";
+// import "./Home.scss";
+// import Hero from "../components/Hero";
 
-const Home = () => {
+const HomePage = () => {
   return (
     <div className="home">
-      <h1 className="home__title"> Welcome !</h1>
+      <div className="home-hero"> 
+        {/* <Hero /> */} <h1>Testing HomePage</h1>
+      </div>
     </div>
   );
 };
 
-export default Home;
+export default HomePage;

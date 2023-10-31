@@ -1,0 +1,36 @@
+.CTA-button {
+  all: unset;
+  align-items: center;
+  background-color: #525354;
+  border-radius: 32px;
+  box-sizing: border-box;
+  display: inline-flex;
+  gap: 8px;
+  height: 47px;
+  justify-content: center;
+  padding: 8px 16px;
+  position: relative;
+}
+
+.CTA-button .text-wrapper {
+  color: var(--primary-mvp-white);
+  font-family: var(--desktop-buttons-font-family);
+  font-size: var(--desktop-buttons-font-size);
+  font-style: var(--desktop-buttons-font-style);
+  font-weight: var(--desktop-buttons-font-weight);
+  letter-spacing: var(--desktop-buttons-letter-spacing);
+  line-height: var(--desktop-buttons-line-height);
+  margin-top: -1px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.CTA-button.pressed-false {
+  box-shadow: 0px 4px 4px #00000040;
+}
+
+.CTA-button.pressed-true {
+  box-shadow: inset 0px 4px 4px #00000040;
+}
