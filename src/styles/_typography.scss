@@ -1,0 +1,51 @@
+/* Desktop and Tablet Text Styles */
+/* H1 - Page Header */
+h1 {
+  font-family: "Gilroy", sans-serif;
+  font-size: 58px;
+  font-weight: 700;
+}
+
+/* H2 - SubHeader */
+h2 {
+  font-family: "Corben", serif;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+/* H1 - Body */
+body {
+  font-family: "Gilroy", sans-serif;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+/* H1 - Buttons */
+.button {
+  font-family: "Gilroy", sans-serif;
+  font-size: 27px;
+  font-weight: 700;
+}
+
+/* Mobile Text Styles */
+@media screen and (max-width: 768px) {
+  /* H1 - Page Header */
+  h1 {
+    font-size: 48px;
+  }
+
+  /* H2 - SubHeader */
+  h2 {
+    font-size: 27px;
+  }
+
+  /* H1 - Body */
+  body {
+    font-size: 21px;
+  }
+
+  /* H1 - Buttons */
+  .button {
+    font-size: 20px;
+  }
+}

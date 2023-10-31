@@ -1,0 +1,25 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.home {
+  background-color: $MVP-Yellow;
+  padding: 20px;
+  text-align: center;
+  @include flexbox();
+    button {
+        background-color: pink;
+    }
+  h1 {
+    font-size: 24px;
+    color: #333;
+    margin: 10px 0;
+  }
+
+  &_container {
+    background-color: aqua;
+    button {
+        background-color: purple;
+    }
+  }
+
+}
