@@ -1,0 +1,41 @@
+
+@use "../styles/typography" as *;
+@import "../styles/variables";
+@import "../styles/mixins";
+
+
+
+
+.home {
+  background-color: $MVP-White;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center horizontally */
+  align-items: center; 
+
+  .home_content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .home_icon_container {
+      background-color: $MVP-Dark-Blue;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+
+      img {
+        padding-top: 15%;
+      }
+    }
+  h1 {
+    padding-top: 5%;
+    font-size: 24px;
+    color: $MVP-black;
+    margin: 10px 0;
+     font-family: "Corben", serif;
+  }
+}
+}
