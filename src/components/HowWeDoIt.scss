@@ -2,7 +2,7 @@
 @import "../styles/variables";
 @import "../styles/mixins";
 
-.home {
+.how {
   background-color: $MVP-White;
   padding: 20px;
   text-align: center;
@@ -10,13 +10,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @include mobile {
+    
+  }
 
-  .home_content {
+  .how_content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 
-    .home_header {
+    .how_header {
       padding-top: 5%;
       font-size: 24px;
       color: $MVP-black;
@@ -24,14 +27,16 @@
       font-family: "Corben", serif;
     }
 
-    .home_icon_container {
+    .how_icon_container {
       background-color: $MVP-Dark-Blue;
-      width: 100px;
-      height: 100px;
+      width: 70px;
+      height: 70px;
       border-radius: 50%;
 
       img {
-        padding-top: 15%;
+        padding-top: 3%;
+        height: 71px;
+        width: 71px;
       }
     }
   }
