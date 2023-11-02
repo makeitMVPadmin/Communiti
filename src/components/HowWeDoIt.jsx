@@ -1,7 +1,7 @@
 
 import React from "react";
 import hands from "../images/hands.svg";
-import events from "../images/events.svg";
+import calendar from "../images/calendar.svg";
 import inbox from "../images/inbox.svg";
 import update from "../images/update.svg";
 import "./HowWeDoIt.scss";
@@ -15,9 +15,9 @@ const HowWeDoIt = () => {
         </div>
         <h1 className="how_header">HOW WE DO IT</h1>
         <div className="how_images">
-          <img src={events} alt="events" />
-          <img src={inbox} alt="inbox" />
-          <img src={update} alt="update" />
+          <img className="how_image" src={calendar} alt="events" />
+          <img className="how_image" src={inbox} alt="inbox" />
+          <img className="how_image" src={update} alt="update" />
         </div>
       </div>
     </div>
