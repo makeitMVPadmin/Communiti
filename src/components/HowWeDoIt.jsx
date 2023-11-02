@@ -13,7 +13,7 @@ const HowWeDoIt = () => {
         <div className="home_icon_container">
           <img src={hands} alt="hands" />
         </div>
-        <h1>HOW WE DO IT</h1>
+        <h1 className="home_header">HOW WE DO IT</h1>
         <div className="home_images">
           <img src={events} alt="events" />
           <img src={inbox} alt="inbox" />

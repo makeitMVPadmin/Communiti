@@ -1,10 +1,6 @@
-
 @use "../styles/typography" as *;
 @import "../styles/variables";
 @import "../styles/mixins";
-
-
-
 
 .home {
   background-color: $MVP-White;
@@ -12,13 +8,21 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center horizontally */
-  align-items: center; 
+  justify-content: center;
+  align-items: center;
 
   .home_content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
+    .home_header {
+      padding-top: 5%;
+      font-size: 24px;
+      color: $MVP-black;
+      margin: 10px 0;
+      font-family: "Corben", serif;
+    }
 
     .home_icon_container {
       background-color: $MVP-Dark-Blue;
@@ -30,12 +34,5 @@
         padding-top: 15%;
       }
     }
-  h1 {
-    padding-top: 5%;
-    font-size: 24px;
-    color: $MVP-black;
-    margin: 10px 0;
-     font-family: "Corben", serif;
   }
-}
 }
