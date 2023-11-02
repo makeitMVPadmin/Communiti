@@ -23,7 +23,7 @@
       padding-top: 5%;
       font-size: 24px;
       color: $MVP-black;
-      margin: 10px 0;
+      margin: 10% 0% 20% 12%;
       font-family: "Corben", serif;
     }
 
@@ -32,6 +32,7 @@
       width: 70px;
       height: 70px;
       border-radius: 50%;
+      margin-left: 10%;
 
       img {
         padding-top: 3%;
@@ -42,9 +43,31 @@
   
 
       .how_image {
-        height: 21rem;
-        width: 23rem; // Add your specific styles for .how_image here
+        height: 12.5rem;
+        width: 12.8rem;
+       
       }
+       h3 { 
+        text-decoration: underline;
+        margin: 10% 10% 10% 0%;
+        font-family: "Gilroy", serif;
+        // margin-top: 2rem;
+        // margin-bottom: ;
+   
+    }
+    
     
   }
+  .left-align-section {
+  text-align: left;
+}
+
+.how_images .left-align-section h3,
+.how_images .left-align-section p {
+  text-align: left;
+}
+p{
+  margin-bottom: 4rem;
+  font-family: "Gilroy", serif;
+}
 }
