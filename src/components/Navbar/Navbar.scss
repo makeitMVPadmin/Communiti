@@ -1,5 +1,12 @@
 @import "https://www.dafontfree.io/download/gilroytypefamily/";
 
+@mixin tablet {
+  @media screen and (min-width: 768px) {
+    font-weight: 700;
+    font-size: 20px;
+  }
+}
+
 body{
   margin: 0;
   padding: 0;
@@ -9,8 +16,6 @@ body{
     background: #0954B0;
     color: white;
     font-family: "Gilroy", sans-serif;
-    font-weight: 700;
-    font-size: 20px;
     position: sticky;
     height: 90px;
     width:100%;
@@ -21,9 +26,31 @@ body{
     align-items: center;
     justify-content: space-between;
 
+    ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      margin: 0;
+    }
+    
+    li {
+      margin: 0 15px;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
 
-  
-  
+    li:last-child button {
+      margin-right: 10px;
+    }
+    .nav-links {
+      display: flex;
+    }
+
+    img {
+      padding-left: 20px;
+      width: 300px;
+    }
+    
+    @include tablet;
     @media screen and (max-width: 600px) {
       img {
         width: 50px; 
@@ -31,29 +58,8 @@ body{
     }
   }
   
-  ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    margin: 0;
-  }
+ 
   
-  li {
-    margin: 0 15px;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  }
-
-  li:last-child button {
-    margin-right: 10px;
-  }
-  .nav-links {
-    display: flex;
-  }
-  
-  img {
-    padding-left: 20px;
-    width: 300px;
-  }
 
   
 
