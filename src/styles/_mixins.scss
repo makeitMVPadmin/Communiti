@@ -5,15 +5,10 @@
     }
 }
 
-// Updated the desktop mixin to use 1024px instead of 1280px
-@mixin desktop {
-    @media screen and (min-width: 1024px) {
-        @content;
-    }
-}
+// // Updated the desktop mixin to use 1024px instead of 1280px
+// @mixin desktop {
+//     @media screen and (min-width: 1024px) {
+//         @content;
+//     }
+// }
 
-@mixin mobile {
-    @media screen and (max-width: 320px) {
-        @content;
-    }
-}

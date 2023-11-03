@@ -10,9 +10,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  @include mobile {
-    
-  }
+
 
   .how_content {
     display: flex;
@@ -25,6 +23,9 @@
       color: $MVP-black;
       margin: 10% 0% 20% 12%;
       font-family: "Corben", serif;
+      @include tablet {
+        margin: 0% 0% 5% 12%;
+      }
     }
 
     .how_icon_container {
@@ -33,11 +34,20 @@
       height: 70px;
       border-radius: 50%;
       margin-left: 10%;
+        @include tablet {
+          height:6.25rem;
+          width: 6.25rem;
+  }
 
-      img {
+      .how_hands {
         padding-top: 3%;
         height: 4.4rem;
         width: 4.4rem;
+        @include tablet{
+          height: 4.6rem;
+          width: 4.6rem;
+          padding-top: 10%;
+        }
       }
     }
   
@@ -45,6 +55,12 @@
       .how_image {
         height: 12.5rem;
         width: 12.8rem;
+        @include tablet{
+          margin-top: 0%;
+          height: 10rem;
+          width: 11rem;
+
+        }
        
       }
        h3 { 
@@ -63,11 +79,20 @@
 }
 
 .how_images .left-align-section h3,
-.how_images .left-align-section p {
+.how_images .left-align-section .paragraph {
   text-align: left;
 }
-p{
+.paragraph{
   margin-bottom: 4rem;
   font-family: "Gilroy", serif;
+}
+@include tablet{
+.how_images{
+  display: flex;
+  flex-direction: row;
+  margin-left: 9%;
+  margin-bottom: 0%;
+  
+}
 }
 }
