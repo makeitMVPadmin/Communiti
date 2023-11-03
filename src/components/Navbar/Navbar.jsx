@@ -23,7 +23,7 @@ export default function Navbar () {
         <>
             <nav className="navbar">
                 <a href="#">
-                    <img src={windowWidth < 480 ? miniCommuniti : communiti} alt="communiti" />
+                    <img src={windowWidth <= 600 ? miniCommuniti : communiti} alt="communiti" />
                 </a>
                 <ul className="nav-links">
                 {windowWidth >= 768 ? (
