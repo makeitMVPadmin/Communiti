@@ -1,60 +1,59 @@
-@use '../../styles/variables' as *;
-@use '../../styles/mixins' as *;
-.what-we-do {
-    background-color: $MVP-Light-Blue;
-    width: 100%;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+@use "../../styles/typography" as *;
 
-    padding: 5vw 4vw;
+.what-we-do {
+  background-color: $MVP-Light-Blue;
+  width: 100%;
+  font-family: Gilroy;
+  padding: 5vw 4vw;
+
+  @include tablet {
+    display: flex;
+    align-items: center;
+  }
+
+  &__left {
+    @include tablet {
+      width: 60%;
+    }
+
+    &-circle {
+      &-icon {
+        width: 25%;
+
+        @include tablet {
+          width: 15%;
+        }
+      }
+    }
+  }
+
+  &__heading {
+    font-size: 1.5rem;
+    margin-bottom: 3vw;
+    font-family: Corben;
 
     @include tablet {
-        display: flex;
-        align-items: center;
+      font-size: 1.8rem;
     }
+  }
 
-    &__left {
+  &__writing {
+    font-size: 1rem;
+    margin-bottom: 2vw;
 
-        @include tablet {
-            width: 60%;
-        }
-
-        &-circle {
-            width: 15vw;
-            height: 15vw;
-
-            background-color: $MVP-White;
-            border-radius: 50%;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            &-icon {
-                width: 11vw;
-                height: 11vw;
-            }
-        }
-
+    @include tablet {
+      font-size: 1.25rem;
     }
+  }
 
-    &__heading {
-        font-size: 1.8rem;
+  &__right-image {
+    width: 100%;
 
-        margin-bottom: 3vw;
+    @include tablet {
+      width: 40%;
+      height: 20%;
     }
-
-    &__writing {
-        font-size: .7rem;
-
-        margin-bottom: 2vw;
-    }
-
-    &__right-image {
-        width: 100%;
-
-        @include tablet {
-            width: 40%;
-            height: 20%;
-        }
-    }
-
+  }
 }

@@ -4,87 +4,62 @@
 
 .how {
   background-color: $MVP-White;
-  padding: 20px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding: 5vw 4vw;
 
-  .how_content {
+  &__hands {
+    width: 25%;
+    @include tablet {
+      width: 9%;
+    }
+  }
+
+  &__image {
+    width: 50%;
+    @include tablet {
+      width: 75%;
+    }
+  }
+
+  &__images {
+    @include tablet {
+      display: flex;
+      justify-content: space-evenly;
+      width: 100%;
+    }
+  }
+
+  &__header {
+    padding-top: 5%;
+    font-size: 1.5rem;
+    margin-bottom: 20vw;
+    color: $MVP-black;
+    font-family: Corben;
+
+    @include tablet {
+      margin-bottom: 3vw;
+      font-size: 1.8rem;
+    }
+  }
+
+  &__container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
 
-    .how_header {
-      padding-top: 5%;
-      font-size: 24px;
-      color: $MVP-black;
-      margin: 10% 0% 20% 12%;
-      font-family: "Corben", serif;
-      @include tablet {
-        margin: 0% 0% 5% 12%;
-      }
-    }
-
-    .how_icon_container {
-      background-color: $MVP-Dark-Blue;
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      margin-left: 10%;
-      @include tablet {
-        height: 6.25rem;
-        width: 6.25rem;
-      }
-
-      .how_hands {
-        padding-top: 3%;
-        height: 4.4rem;
-        width: 4.4rem;
-        @include tablet {
-          height: 4.6rem;
-          width: 4.6rem;
-          padding-top: 10%;
-        }
-      }
-    }
-
-    .how_image {
-      height: 12.5rem;
-      width: 12.8rem;
-      @include tablet {
-        margin-top: 0%;
-        height: 10rem;
-        width: 11rem;
-      }
-    }
-    h3 {
-      text-decoration: underline;
-      margin: 10% 10% 10% 0%;
-      font-family: "Gilroy", serif;
-      // margin-top: 2rem;
-      // margin-bottom: ;
+    @include tablet {
+      width: 30%;
     }
   }
-  .left-align-section {
-    text-align: left;
+
+  &__sub-header {
+    text-decoration: underline;
+    font-family: Gilroy;
+    margin: 1rem 0;
   }
 
-  .how_images .left-align-section h3,
-  .how_images .left-align-section .paragraph {
-    text-align: left;
-  }
-  .paragraph {
+  &__paragraph {
     margin-bottom: 4rem;
     font-family: "Gilroy", serif;
-  }
-  @include tablet {
-    .how_images {
-      display: flex;
-      flex-direction: row;
-      margin-left: 9%;
-      margin-bottom: 0%;
-    }
+    width: 96%;
   }
 }
