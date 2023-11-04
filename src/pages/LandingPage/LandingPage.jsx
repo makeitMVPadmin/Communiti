@@ -4,6 +4,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import WhatWeDo from "../../components/WhatWeDo/WhatWeDo";
 import Footer from "../../components/Footer/Footer";
 
+
 const LandingPage = () => {
   return (
     <>
