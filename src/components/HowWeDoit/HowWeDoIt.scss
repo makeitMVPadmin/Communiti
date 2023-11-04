@@ -1,0 +1,65 @@
+@use "../../styles/typography" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.how {
+  background-color: $MVP-White;
+  padding: 5vw 4vw;
+
+  &__hands {
+    width: 25%;
+    @include tablet {
+      width: 9%;
+    }
+  }
+
+  &__image {
+    width: 50%;
+    @include tablet {
+      width: 75%;
+    }
+  }
+
+  &__images {
+    @include tablet {
+      display: flex;
+      justify-content: space-evenly;
+      width: 100%;
+    }
+  }
+
+  &__header {
+    padding-top: 5%;
+    font-size: 1.5rem;
+    margin-bottom: 20vw;
+    color: $MVP-black;
+    font-family: Corben;
+
+    @include tablet {
+      margin-bottom: 3vw;
+      font-size: 1.8rem;
+    }
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include tablet {
+      width: 30%;
+    }
+  }
+
+  &__sub-header {
+    text-decoration: underline;
+    font-family: Gilroy;
+    margin: 1rem 0;
+  }
+
+  &__paragraph {
+    margin-bottom: 4rem;
+    font-family: "Gilroy", serif;
+    width: 96%;
+  }
+}
