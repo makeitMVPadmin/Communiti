@@ -1,0 +1,60 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+.what-we-do {
+    background-color: $MVP-Light-Blue;
+    width: 100%;
+
+    padding: 5vw 4vw;
+
+    @include tablet {
+        display: flex;
+    }
+
+    &__left {
+
+        @include tablet {
+            width: 60%;
+            border: 2px solid red;
+        }
+
+        &-circle {
+            width: 15vw;
+            height: 15vw;
+
+            background-color: $MVP-White;
+            border-radius: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &-icon {
+                width: 11vw;
+                height: 11vw;
+            }
+        }
+
+    }
+
+    &__heading {
+        font-size: 1.8rem;
+
+        margin-bottom: 3vw;
+    }
+
+    &__writing {
+        font-size: .7rem;
+
+        margin-bottom: 2vw;
+    }
+
+    &__right-image {
+        width: 100%;
+
+        @include tablet {
+            width: 40%;
+            height: 20%;
+        }
+    }
+
+}
