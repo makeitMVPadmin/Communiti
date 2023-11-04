@@ -8,47 +8,42 @@ import "./HowWeDoIt.scss";
 
 const HowWeDoIt = () => {
   return (
-    <div className="how">
-      <div className="how_content">
-        <div className="how_icon_container">
-          <img className="how_hands" src={hands} alt="hands" />
+    <section className="how">
+      <img className="how__hands" src={hands} alt="hands" />
+      <h2 className="how__header">HOW WE DO IT</h2>
+      <div className="how__images">
+        <div className="how__container">
+          <img className="how__image" src={calendar} alt="events" />
+          <div className="how__containers">
+            <h3 className="how__sub-header">Events</h3>
+            <p className="how__paragraph">
+              Stop forgetting your upcoming events. Track them all with your
+              Communiti calendar.
+            </p>
+          </div>
         </div>
-        <h2 className="how_header">HOW WE DO IT</h2>
-        <div className="how_images">
-          <div className="how_event_section">
-            <img className="how_image" src={calendar} alt="events" />
-            <div className="left-align-section">
-              <h3 className="underlined">Events</h3>
-              <p className="paragraph">
-                Stop forgetting your upcoming events. Track them all with your
-                Communiti calendar.
-              </p>
-            </div>
+        <div className="how__container">
+          <img className="how__image" src={inbox} alt="inbox" />
+          <div className="how__containers">
+            <h3 className="how__sub-header ">Inbox</h3>
+            <p className="how__paragraph">
+              Keep in touch with new connections and nurture existing ones with
+              your Communiti inbox.
+            </p>
           </div>
-          <div className="how_inbox_section">
-            <img className="how_image" src={inbox} alt="inbox" />
-            <div className="left-align-section">
-              <h3 className="underlined">Inbox</h3>
-              <p className="paragraph">
-                Keep in touch with new connections and nurture existing ones
-                with your Communiti inbox.
-              </p>
-            </div>
-          </div>
-          <div className="how_updates_section">
-            <img className="how_image" src={update} alt="update" />
-            <div className="left-align-section">
-              <h3 className="underlined">Updates</h3>
-              <p className="paragraph">
-                Subscribe for newsletters and announcements from the
-                organizations you're a part of so you can keep up with the
-                latest info.
-              </p>
-            </div>
+        </div>
+        <div className="how__container">
+          <img className="how__image" src={update} alt="update" />
+          <div className="how__containers">
+            <h3 className="how__sub-header">Updates</h3>
+            <p className="how__paragraph">
+              Subscribe for newsletters and announcements from the organizations
+              you're a part of so you can keep up with the latest info.
+            </p>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
