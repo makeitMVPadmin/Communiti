@@ -22,9 +22,9 @@ const WhatWeDo = () => {
                     Intended to serve as the ultimate hub, Communiti aims to centralize and enhance the community experience, making it vibrant, cohesive, and efficient for all members.
                 </p>
             </section>
-            {/* <div className='what-we-do__right'> */}
-                <img src={laptopGuy} alt='organized desk with a laptop computer sporting a 3d rendering of a man potentially talking about interesting apps to use on aforementioned computer' className='what-we-do__right-image'></img>
-            {/* </div> */}
+            
+            <img src={laptopGuy} alt='organized desk with a laptop computer sporting a 3d rendering of a man potentially talking about interesting apps to use on aforementioned computer' className='what-we-do__right-image'></img>
+            
         </article>
     )
 }
