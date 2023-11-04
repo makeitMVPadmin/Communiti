@@ -1,6 +1,6 @@
+import "./styles/_global.scss";
 import { Routes, Route } from "react-router-dom";
-
-import LandingPage from "./pages/HomePage/LandingPage";
+import LandingPage from "./pages/LandingPage/LandingPage";
 
 function App() {
   return (

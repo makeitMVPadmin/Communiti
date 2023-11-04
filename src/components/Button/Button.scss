@@ -1,26 +1,18 @@
-@mixin tablet {
-    @media screen and (max-width: 768px) {
-        font-size: 18px;
-        padding: 6px 10px;
-      }
-}
+@use "../../styles/typography" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
-@mixin phone {
-    @media screen and (max-width: 320px) {
-        font-size: 18px;
-        padding: 6px 10px;
-      }
-}
+.button {
+  color: $MVP-black;
+  border-radius: 1.5625rem;
+  border: none;
+  font-family: "Gilroy";
+  font-weight: 700;
+  font-size: 1.25rem;
+  padding: 0.5rem 1rem;
+  box-shadow: 0px 0.2rem 0.2rem 0px rgba(0, 0, 0, 0.25);
 
-button {
-    color: #000000;
-    border-radius: 25px;
-    border: none;
-    font-family: "Gilroy", sans-serif; 
-    font-weight: 700; 
-    font-size: 20px;
-    padding: 5px 15px;
-    box-shadow: 0px 3.2px 3.2px 0px rgba(0, 0, 0, 0.25);
-    @include tablet;
-    @include phone;
+  &--yellow {
+    background-color: $MVP-Yellow; /* Add yellow background color */
+  }
 }

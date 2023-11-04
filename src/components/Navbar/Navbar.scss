@@ -1,65 +1,58 @@
-@import "https://www.dafontfree.io/download/gilroytypefamily/";
-
-@mixin tablet {
-  @media screen and (min-width: 768px) {
-    font-weight: 700;
-    font-size: 20px;
-  }
-}
-
-body{
-  margin: 0;
-  padding: 0;
-}
+@use "../../styles/typography" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
 .navbar {
-    background: #0954B0;
-    color: white;
-    font-family: "Gilroy", sans-serif;
-    position: sticky;
-    height: 90px;
-    width:100%;
-    top: 0;
-    margin: 0;
-    z-index: 100;
+  background: $MVP-Dark-Blue;
+  color: white;
+  font-family: "Gilroy";
+  position: sticky;
+  padding: 0.625rem 1.25rem;
+  width: 100%;
+  top: 0;
+  margin: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__links {
     display: flex;
     align-items: center;
-    justify-content: space-between;
 
-    ul {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      margin: 0;
+    @include tablet {
+      width: 52%;
+      justify-content: flex-end;
     }
-    
-    li {
-      margin: 0 15px;
-      text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    }
+  }
 
-    li:last-child button {
-      margin-right: 10px;
-    }
-    .nav-links {
-      display: flex;
-    }
+  &__link {
+    color: $MVP-White;
+    margin-left: 1.25rem;
+    font-family: "Gilroy";
+    font-size: 1.25rem;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
-    img {
-      padding-left: 20px;
-      width: 300px;
-    }
-    
-    @include tablet;
-    @media screen and (max-width: 600px) {
-      img {
-        width: 50px; 
+    &-container {
+      &--desktop {
+        display: none;
+
+        @include tablet {
+          display: unset;
+        }
       }
     }
   }
-  
- 
-  
 
-  
+  &__img {
+    width: 100%;
 
+    @include tablet {
+      width: 90%;
+    }
+  }
+}
+
+.button {
+  margin-left: 1.25rem;
+}

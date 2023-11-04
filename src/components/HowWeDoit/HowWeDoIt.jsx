@@ -1,8 +1,9 @@
 import React from "react";
-import hands from "../images/hands.svg";
-import calendar from "../images/calendar.svg";
-import inbox from "../images/inbox.svg";
-import update from "../images/update.svg";
+import hands from "../../assets/images/hands.svg";
+import calendar from "../../assets/images/calendar.svg";
+import inbox from "../../assets/images/inbox.svg";
+import update from "../../assets/images/update.svg";
+
 import "./HowWeDoIt.scss";
 
 const HowWeDoIt = () => {
@@ -37,7 +38,6 @@ const HowWeDoIt = () => {
           <div className="how_updates_section">
             <img className="how_image" src={update} alt="update" />
             <div className="left-align-section">
-          
               <h3 className="underlined">Updates</h3>
               <p className="paragraph">
                 Subscribe for newsletters and announcements from the
