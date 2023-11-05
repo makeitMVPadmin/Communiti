@@ -1,12 +1,12 @@
 import React from "react";
-// import "./Home.scss";
-// import Hero from "../components/Hero";
+// import "./HomePage.scss";
+import Hero from "../../components/Hero/Hero";
 
 const HomePage = () => {
   return (
     <div className="home">
       <div className="home-hero"> 
-        {/* <Hero /> */} <h1>Testing HomePage</h1>
+        <Hero />
       </div>
     </div>
   );

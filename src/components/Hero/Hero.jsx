@@ -1,15 +1,15 @@
 import React from "react";
-import CtaButton from './components/buttons/CtaButton';
-// import { Logo } from './Logo';
-// import "./style.css"
+import "./Hero.scss";
+import { CtaButton } from '../CtaButton/CtaButton';
+import communitiHero from "../../assets/communitiHero.png";
 
-export const Hero = () => {
+const Hero = () => {
   return (
     <div className="hero">
       <div className="splash-content">
         <div className="right-content">
           <div className="overlap-group">
-            <img className="image" alt="Image" src="community_hero.png" />
+            <img className="image" alt="Image" src={communitiHero} />
           </div>
         </div>
         <div className="left-content">
@@ -33,3 +33,5 @@ export const Hero = () => {
     </div>
   );
 };
+
+export default Hero;

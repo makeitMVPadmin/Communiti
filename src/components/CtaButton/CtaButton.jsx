@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import React from "react";
-import "./style.css";
+import "./CtaButton.scss";
 
 export const CtaButton = ({ pressed, className }) => {
   return (
-    <button className={`CTA-button-pressed-${pressed} ${className}`}>
+    <button className={`CTA-button-pressed-${pressed || false } ${className || ""}`}>
       <div className="text-wrapper">Sign Up</div>
     </button>
   );
