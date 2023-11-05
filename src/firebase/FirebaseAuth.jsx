@@ -4,9 +4,14 @@ import { GoogleAuthProvider,
          signInWithEmailAndPassword, 
          createUserWithEmailAndPassword, 
         signInWithPopup } from 'firebase/auth'
+import { useState } from 'react'
 
 export default function FirebaseAuth() {
     const auth = getAuth()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    
     const handleSignUp = () => {
         createUserWithEmailAndPassword( auth, email, password )
             .then((userCredential) => {
