@@ -1,10 +1,11 @@
 @use "../styles/typography" as *;
-@import "../styles/variables";
-@import "../styles/mixins";
+@use "../styles/variables" as *;
+@use "../styles/mixins" as *;
+
 * {
   margin: 0;
   padding: 0;
-  
+  box-sizing: border-box;
 }
 
 a {
@@ -14,5 +15,9 @@ a {
 html,
 body {
   height: 100vh;
-  font-family: "Corben", serif;
+  font-family: "Corben";
+}
+
+ul {
+  list-style: none;
 }
