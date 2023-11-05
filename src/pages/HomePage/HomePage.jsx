@@ -30,13 +30,13 @@ function HomePage() {
                     <p className='home__writing'>or</p>
 
                     <div className='home__alt-buttons'>
-                        <div className='home__alt-buttons-button'>
+                        <div className='home__alt-buttons-button home__alt-buttons-button--google'>
                             <img src={google} alt='logo for Google' className='home__icon'></img>
                         </div>
-                        <div className='home__alt-buttons-button'>
+                        <div className='home__alt-buttons-button home__alt-buttons-button--facebook'>
                             <img src={facebook} alt='logo for Facebook' className='home__icon'></img>
                         </div>
-                        <div className='home__alt-buttons-button'>
+                        <div className='home__alt-buttons-button home__alt-buttons-button--apple'>
                         <img src={apple} alt='logo for Apple' className='home__icon'></img>
                         </div>
                     </div>
