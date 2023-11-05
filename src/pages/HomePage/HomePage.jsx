@@ -10,18 +10,23 @@ import apple from '../../assets/logos/apple.svg';
 function HomePage() {
     return (
         <main className='home'>
-            <img src={communitiLong} ></img>
+            <img src={communitiLong} alt="logo for Communiti" className='home__logo'></img>
+
             <div className='home__image'>
             </div>
 
             <h1 className='home__heading'>
-                Welcome to your Communiti!
+                Welcome to your 
+                <div className='home__heading-comminuti'>
+                    {/* <p>Communiti!</p> */}
+                    <span className='yellow-shade'>Communiti!</span>
+                </div>
             </h1>
 
             <button className='home__button home__button--login'>Log In</button>
             <button className='home__button home__button--signup'>Sign Up</button>
 
-            <p>or</p>
+            <p className='home__writing'>or</p>
 
             <div className='home__alt-buttons'>
                 <div className='home__alt-buttons-button'>

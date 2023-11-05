@@ -1,4 +1,6 @@
 @use '../../styles/mixins' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/typography' as *;
 
 .home {
     display: flex;
@@ -6,18 +8,62 @@
     justify-content: center;
     align-items: center;
 
+    padding: 3vw 4vw;
+
+
+    &__logo {
+        width: 80%;
+        margin-bottom: 8vw;
+    }
+
     &__image {
-        width: 10vw;
-        height: 10vw;
+        width: 35vw;
+        height: 35vw;
+
+        margin-bottom: 5vw;
 
         background-color: #D9D9D9;
+    }
+
+    &__heading {
+        width: 100%;
+        margin-bottom: 6vw;
+        &-comminuti {
+            height: fit-content;
+            border: 2px solid orange;
+        }
+    }
+
+    &__button {
+        width: 40%;
+        border: none;
+        border-radius: 32px;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+        padding: 1vw 0;
+        margin-bottom: 2vw;
+
+        color: $MVP-White;
+        font-family: "Gilroy";
+        font-size: 2rem;
+
+        &--login {
+            background-color: $MVP-black;
+        }
+
+        &--signup {
+            background-color: #525354;
+        }
+    }
+
+    &__writing {
+        margin: 6vw 0;
     }
 
     &__alt-buttons {
         display: flex;
         justify-content: space-between;
 
-        border: 2px solid red;
         width: 65%;
 
         &-button {
@@ -35,4 +81,19 @@
     &__icon {
         width: 80%;
     }
+}
+
+.yellow-shade {
+    // position: relative;
+    &::after {
+        color: red;
+        content: "Communiti!";
+
+        position: relative;
+        top: .5vw;
+        right: 52vw;
+        z-index: -1;
+    }
+
+    
 }
