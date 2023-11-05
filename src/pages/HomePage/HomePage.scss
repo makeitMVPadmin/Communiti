@@ -2,19 +2,25 @@
 @use '../../styles/variables' as *;
 @use '../../styles/typography' as *;
 
+.header-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 3vw 0;
+    
+    &__logo {
+        width: 80%;
+    }
+}
+
 .home {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    padding: 3vw 4vw;
-
-
-    &__logo {
-        width: 80%;
-        margin-bottom: 8vw;
-    }
+    padding: 3vw 5vw;
 
     &__image {
         width: 35vw;
@@ -25,39 +31,53 @@
         background-color: #D9D9D9;
     }
 
-    &__heading {
-        width: 100%;
-        margin-bottom: 6vw;
-        &-comminuti {
-            height: fit-content;
-            border: 2px solid orange;
-        }
+    &__content {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+        height: 50vh;
     }
 
-    &__button {
+    &__heading {
+        width: 100%;
+
+        font-size: 2.1rem;
+    }
+
+    &__buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
         width: 40%;
-        border: none;
-        border-radius: 32px;
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        height: 27vw;
 
-        padding: 1vw 0;
-        margin-bottom: 2vw;
-
-        color: $MVP-White;
-        font-family: "Gilroy";
-        font-size: 2rem;
-
-        &--login {
-            background-color: $MVP-black;
-        }
-
-        &--signup {
-            background-color: #525354;
+        &-button {
+            border: none;
+            border-radius: 32px;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    
+            padding: 1vw 0;
+    
+            color: $MVP-White;
+            font-family: "Gilroy";
+            font-size: 2rem;
+    
+            &--login {
+                background-color: $MVP-black;
+            }
+    
+            &--signup {
+                background-color: #525354;
+            }
         }
     }
 
     &__writing {
-        margin: 6vw 0;
+        // margin: 6vw 0;
     }
 
     &__alt-buttons {
@@ -83,17 +103,16 @@
     }
 }
 
-.yellow-shade {
-    // position: relative;
-    &::after {
-        color: red;
-        content: "Communiti!";
+// .yellow-shade {
+//     &::after {
+//         color: red;
+//         content: "Communiti!";
 
-        position: relative;
-        top: .5vw;
-        right: 52vw;
-        z-index: -1;
-    }
+//         position: relative;
+//         top: .5vw;
+//         right: 52vw;
+//         z-index: -1;
+//     }
 
     
-}
+// }
