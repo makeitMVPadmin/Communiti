@@ -40,12 +40,12 @@ export default function Navbar() {
           <Link className="navbar__link-container navbar__link-container--desktop">
             <li className="navbar__link">About</li>
           </Link>
-          <Link className="navbar__link-container" to="/">
+          <Link className="navbar__link-container" to="/login">
             <li className="navbar__link-button">
               <Button buttonText="Log In" className="button" />
             </li>
           </Link>
-          <Link className="navbar__link-container" to="/">
+          <Link className="navbar__link-container" to="/signup">
             <li className="navbar__link-button">
               <Button buttonText="Sign Up" className="button button--yellow" />
             </li>
