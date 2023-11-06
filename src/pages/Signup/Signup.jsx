@@ -15,13 +15,13 @@ function Signup() {
 
                 <section className='signup__content'>
                     <h1 className='signup__heading'>
-                        Welcome to your Communiti!
+                        Sign Up / Create your Communiti!
                     </h1>
 
                     <div className='signup__buttons'>
                         <div className='signup__buttons-button'>
                             <p className='signup__buttons-button-writing'>
-                                Username
+                                Email
                             </p>
                         </div>
                         <div className='signup__buttons-button'>
@@ -31,12 +31,12 @@ function Signup() {
                         </div>
                         <div className='signup__buttons-button'>
                             <p className='signup__buttons-button-writing'>
-                                Sign In
+                                Sign Up
                             </p>
                         </div>
                         <div className='signup__buttons-button'>
                             <p className='signup__buttons-button-writing'>
-                                Sign In With Google
+                                Sign Up With Google
                             </p>
                         </div>
                     </div>
