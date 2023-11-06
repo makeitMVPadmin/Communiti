@@ -4,7 +4,7 @@ import google from "../../assets/logos/google.svg";
 import facebook from "../../assets/logos/facebook.svg";
 import apple from "../../assets/logos/apple.svg";
 
-// import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function HomePage() {
   return (
@@ -23,9 +23,12 @@ function HomePage() {
         <section className="home__content">
           <h1 className="home__heading">Welcome to your Communiti!</h1>
           <div className="home__buttons">
-            <button className="home__buttons-button home__buttons-button--login">
+            <Link
+              to="/login"
+              className="home__buttons-button home__buttons-button--login"
+            >
               Log In
-            </button>
+            </Link>
             <button className="home__buttons-button home__buttons-button--signup">
               Sign Up
             </button>
