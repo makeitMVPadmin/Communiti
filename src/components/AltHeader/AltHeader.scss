@@ -1,0 +1,25 @@
+@use "../../styles/typography" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
+  height: 10%;
+
+  @include tablet {
+    background-color: #d9d9d9;
+    justify-content: flex-start;
+  }
+
+  &__logo {
+    height: 70%;
+
+    @include tablet {
+      width: 30%;
+    }
+  }
+}
