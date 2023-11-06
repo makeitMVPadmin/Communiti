@@ -1,0 +1,52 @@
+@use "../../styles/typography" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.hero {
+  background-color: $MVP-White;
+  padding: 5vw 4vw;
+  @include tablet {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  &__container {
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    @include tablet {
+      width: 55%;
+      }
+    }
+
+  &__image {
+    width: 100%;
+    @include tablet {
+      width: 40%;
+      height: 20%;
+      }
+    }
+
+  &__description {
+    display: flex;
+    font-family: Gilroy;
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    justify-content: center;
+    text-align: left;
+    }
+
+
+  &__header {
+    font-family: Corben;
+    padding-top: 10%;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: $MVP-black;
+    @include tablet {
+      width: 100%;
+      font-size: 1.5rem;
+    }
+  }
+}
