@@ -5,7 +5,6 @@ import "./CtaButton.scss";
 export const CtaButton = ({ pressed, className }) => {
   return (
     <button className={`CTA-button-pressed-${pressed || false } ${className || ""}`}>
-      <div className="text-wrapper">Sign Up</div>
     </button>
   );
 };

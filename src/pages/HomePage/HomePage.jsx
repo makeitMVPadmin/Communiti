@@ -1,5 +1,4 @@
 import './HomePage.scss';
-
 import communitiLong from '../../assets/logos/communiti2.svg';
 import google from '../../assets/logos/google.svg';
 import facebook from '../../assets/logos/facebook.svg';

@@ -1,35 +1,27 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Hero.scss";
-import { CtaButton } from '../CtaButton/CtaButton';
-import communitiHero from "../../assets/communitiHero.png";
+import Button from "../Button/Button";
+import communitiHero from "../../assets//images/communitiHero.svg";
 
 const Hero = () => {
   return (
     <div className="hero">
-      <div className="splash-content">
-        <div className="right-content">
-          <div className="overlap-group">
-            <img className="image" alt="Image" src={communitiHero} />
+            <img className="hero__image" alt="Image" src={communitiHero} />
+          <div>
+          <div className="hero__container">
+            <h1 className="hero__header"> Welcome to your Communiti!</h1>
           </div>
-        </div>
-        <div className="left-content">
-          <CtaButton
-            className="CTA-button-instance"
-            divClassName="design-component-instance-node"
-            pressed={false}
-          />
-          <p className="description">
+          <p className="hero__description">
             From interactive chats and virtual workshops to mentorships and
             more, we've got all your community needs covered in one place.
           </p>
-          <div className="hero">
-            <div className="div">
-              <div className="hero-drop">Communiti!</div>
-              <div className="hero-2"> Welcome to your Communiti!</div>
-            </div>
-          </div>
+        <div className="hero__sign-up">           
+        <Link className="hero__container" to="/">
+            <Button buttonText="Join the Launch" className="button button--yellow" />
+          </Link>
         </div>
-      </div>
+        </div> 
     </div>
   );
 };

@@ -1,120 +1,52 @@
-@import "https://www.dafontfree.io/download/gilroytypefamily/";
-
+@use "../../styles/typography" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
 .hero {
-  height: 562px;
-  position: relative;
-  width: 1244px;
-}
+  background-color: $MVP-White;
+  padding: 5vw 4vw;
+  @include tablet {
+    display: flex;
+    flex-direction: row-reverse;
+  }
 
-.hero .splash-content {
-  height: 562px;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 1244px;
-}
+  &__container {
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
 
-.hero .right-content {
-  height: 562px;
-  left: 688px;
-  position: absolute;
-  top: 0;
-  width: 556px;
-}
+    @include tablet {
+      width: 55%;
+      }
+    }
 
-.hero .overlap-group {
-  height: 562px;
-  position: relative;
-}
+  &__image {
+    width: 100%;
+    @include tablet {
+      width: 40%;
+      height: 20%;
+      }
+    }
+
+  &__description {
+    display: flex;
+    font-family: Gilroy;
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    justify-content: center;
+    text-align: left;
+    }
 
 
-.hero .image {
-  height: 562px;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 556px;
-}
-
-.hero .left-content {
-  height: 434px;
-  left: 0;
-  position: absolute;
-  top: 64px;
-  width: 651px;
-}
-
-.hero .CTA-button-instance {
-  background-color: var(--primary-mvp-yellow) !important;
-  height: 45px !important;
-  left: 0 !important;
-  position: absolute !important;
-  top: 390px !important;
-}
-
-.hero .design-component-instance-node {
-  color: var(--primary-mvp-black) !important;
-  margin-bottom: -0.08px !important;
-  margin-top: -2.08px !important;
-}
-
-.hero .description {
-  color: #000000;
-  font-family: var(--desktop-h2-subheader-font-family);
-  font-size: var(--desktop-h2-subheader-font-size);
-  font-style: var(--desktop-h2-subheader-font-style);
-  font-weight: var(--desktop-h2-subheader-font-weight);
-  height: 134px;
-  left: 0;
-  letter-spacing: var(--desktop-h2-subheader-letter-spacing);
-  line-height: var(--desktop-h2-subheader-line-height);
-  position: absolute;
-  top: 216px;
-  width: 557px;
-}
-
-.hero .header {
-  background-color: transparent;
-  height: 192px;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 653px;
-}
-
-.hero .div {
-  height: 192px;
-  position: relative;
-  width: 649px;
-}
-
-.hero .header-drop {
-  -webkit-text-stroke: 0.5px #000000;
-  color: var(--primary-mvp-yellow);
-  font-family: "Corben-Bold", Helvetica;
-  font-size: 58px;
-  font-weight: 700;
-  height: 64px;
-  left: 4px;
-  letter-spacing: 0;
-  line-height: 67.1px;
-  position: absolute;
-  top: 107px;
-  white-space: nowrap;
-  width: 557px;
-}
-
-.hero .header-2 {
-  color: #000000;
-  font-family: "Corben-Bold", Helvetica;
-  font-size: 58px;
-  font-weight: 700;
-  height: 192px;
-  left: 0;
-  letter-spacing: 0;
-  line-height: 81.2px;
-  position: absolute;
-  top: 0;
-  width: 649px;
+  &__header {
+    font-family: Corben;
+    padding-top: 10%;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: $MVP-black;
+    @include tablet {
+      width: 100%;
+      font-size: 1.5rem;
+    }
+  }
 }
