@@ -23,7 +23,7 @@ export default function Navbar() {
   return (
     <>
       <nav className="navbar">
-        <Link src="/" className="navbar__link">
+        <Link to="/home" className="navbar__link">
           <img
             className="navbar__img"
             src={windowWidth <= 767 ? miniCommuniti : communiti}
@@ -31,7 +31,10 @@ export default function Navbar() {
           />
         </Link>
         <ul className="navbar__links">
-          <Link className="navbar__link-container navbar__link-container--desktop">
+          <Link
+            to="/home"
+            className="navbar__link-container navbar__link-container--desktop"
+          >
             <li className="navbar__link">Home</li>
           </Link>
           <Link className="navbar__link-container navbar__link-container--desktop">
