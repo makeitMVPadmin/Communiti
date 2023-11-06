@@ -1,49 +1,88 @@
-import './Signup.scss';
-
-import communitiLong from '../../assets/logos/communiti2.svg';
+import "./Signup.scss";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Button from "../../components/Button/Button";
+import AltHeader from "../../components/AltHeader/AltHeader";
+import homeImg from "../../assets/images/homeIcon.svg";
+import google from "../../assets/logos/google-black.svg";
+import { handleSignUp, handleGoogleSignIn } from "../../firebase/FirebaseAuth";
 
 function Signup() {
-    return (
-        <>
-            <header className='header-signup'>
-                <img src={communitiLong} alt="logo for Communiti" className='header-signup__logo'></img>
-            </header>
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-            <main className='signup'>
-                <div className='signup__image'>
-                </div>
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
 
-                <section className='signup__content'>
-                    <h1 className='signup__heading'>
-                        Sign Up / Create your Communiti!
-                    </h1>
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
 
-                    <div className='signup__buttons'>
-                        <div className='signup__buttons-button'>
-                            <p className='signup__buttons-button-writing'>
-                                Email
-                            </p>
-                        </div>
-                        <div className='signup__buttons-button'>
-                            <p className='signup__buttons-button-writing'>
-                                Password
-                            </p>
-                        </div>
-                        <div className='signup__buttons-button'>
-                            <p className='signup__buttons-button-writing'>
-                                Sign Up
-                            </p>
-                        </div>
-                        <div className='signup__buttons-button'>
-                            <p className='signup__buttons-button-writing'>
-                                Sign Up With Google
-                            </p>
-                        </div>
-                    </div>
-                </section>
-            </main>
-        </>
-    )
+  const handleSignupSubmit = (event) => {
+    event.preventDefault();
+
+    // Call the Firebase signup function with the email and password
+    handleSignUp(email, password)
+      .then(() => {
+        // Signup was successful, redirect
+        navigate("/home");
+      })
+      .catch((error) => {
+        // Handle signup error, you can display an error message
+        console.error("Signup error:", error);
+      });
+  };
+
+  return (
+    <>
+      <AltHeader />
+      <main className="signuppage">
+        <img src={homeImg} alt="Home Icon" className="signuppage__image"></img>
+        <section className="signuppage__content">
+          <h1 className="signuppage__heading">
+            Create Your <br /> Communiti!
+          </h1>
+          <form className="signuppage__form" onSubmit={handleSignupSubmit}>
+            <input
+              className="signuppage__input"
+              placeholder="Email"
+              type="email"
+              name="email"
+              id="email"
+              value={email}
+              onChange={handleEmailChange}
+            ></input>
+            <input
+              className="signuppage__input"
+              placeholder="PASSWORD"
+              type="password"
+              name="password"
+              id="password"
+              value={password}
+              onChange={handlePasswordChange}
+            ></input>
+            <Button
+              buttonText="Sign Up"
+              className="button button--gray"
+              type="submit"
+            />
+          </form>
+          <p className="signuppage__writing">or</p>
+          <div className="signuppage__sso">
+            <button className="signuppage__sso-button signuppage__sso-button--google">
+              <img
+                src={google}
+                alt="logo for Google"
+                className="signuppage__sso-icon"
+              ></img>
+            </button>
+          </div>
+        </section>
+      </main>
+    </>
+  );
 }
 
 export default Signup;

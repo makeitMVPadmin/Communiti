@@ -1,63 +1,53 @@
 import "./HomePage.scss";
-import communitiLong from "../../assets/logos/communiti2.svg";
-import google from "../../assets/logos/google.svg";
-import facebook from "../../assets/logos/facebook.svg";
-import apple from "../../assets/logos/apple.svg";
-
 import { Link } from "react-router-dom";
+import Button from "../../components/Button/Button";
+import AltHeader from "../../components/AltHeader/AltHeader";
+import google from "../../assets/logos/google-black.svg";
+import facebook from "../../assets/logos/facebook-black.svg";
+import apple from "../../assets/logos/apple-black.svg";
+import homeImg from "../../assets/images/homeIcon.svg";
 
 function HomePage() {
   return (
     <>
-      <header className="header-main">
-        <img
-          src={communitiLong}
-          alt="logo for Communiti"
-          className="header-main__logo"
-        ></img>
-      </header>
-
-      <main className="home">
-        <div className="home__image"></div>
-
-        <section className="home__content">
-          <h1 className="home__heading">Welcome to your Communiti!</h1>
-          <div className="home__buttons">
-            <Link
-              to="/login"
-              className="home__buttons-button home__buttons-button--login"
-            >
-              Log In
+      <AltHeader />
+      <main className="homepage">
+        <img src={homeImg} alt="Home Icon" className="homepage__image"></img>
+        <section className="homepage__content">
+          <h1 className="homepage__heading">
+            Welcome to your <br /> Communiti!
+          </h1>
+          <div className="homepage__buttons">
+            <Link to="/login" className="homepage__buttons-link">
+              <Button buttonText="Log In" className="button button--black" />
             </Link>
-            <button className="home__buttons-button home__buttons-button--signup">
-              Sign Up
-            </button>
+            <Link to="/signup" className="homepage__buttons-link">
+              <Button buttonText="Sign Up" className="button button--gray" />
+            </Link>
           </div>
-
-          <p className="home__writing">or</p>
-
-          <div className="home__alt-buttons">
-            <div className="home__alt-buttons-button home__alt-buttons-button--google">
+          <p className="homepage__writing">or</p>
+          <div className="homepage__sso">
+            <button className="homepage__sso-button homepage__sso-button--google">
               <img
                 src={google}
                 alt="logo for Google"
-                className="home__icon"
+                className="homepage__sso-icon"
               ></img>
-            </div>
-            <div className="home__alt-buttons-button home__alt-buttons-button--facebook">
+            </button>
+            <button className="homepage__sso-button homepage__sso-button--facebook">
               <img
                 src={facebook}
                 alt="logo for Facebook"
-                className="home__icon"
+                className="homepage__sso-icon"
               ></img>
-            </div>
-            <div className="home__alt-buttons-button home__alt-buttons-button--apple">
+            </button>
+            <button className="homepage__sso-button homepage__sso-button--apple">
               <img
                 src={apple}
                 alt="logo for Apple"
-                className="home__icon"
+                className="homepage__sso-icon"
               ></img>
-            </div>
+            </button>
           </div>
         </section>
       </main>

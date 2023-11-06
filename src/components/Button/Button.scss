@@ -19,4 +19,24 @@
   @include tablet {
     padding: 0.5rem 0.55rem;
   }
+
+  &--gray {
+    background-color: #525354;
+    color: $MVP-White;
+    font-size: 1.5rem;
+    width: 100%;
+    @include tablet {
+      padding: 1rem 0.55rem;
+    }
+  }
+
+  &--black {
+    background-color: #000000;
+    color: $MVP-White;
+    font-size: 1.5rem;
+    width: 100%;
+    @include tablet {
+      padding: 1rem 0.55rem;
+    }
+  }
 }

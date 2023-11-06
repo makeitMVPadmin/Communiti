@@ -41,12 +41,12 @@ export default function Navbar() {
             <li className="navbar__link">About</li>
           </Link>
           <Link className="navbar__link-container" to="/">
-            <li>
+            <li className="navbar__link-button">
               <Button buttonText="Log In" className="button" />
             </li>
           </Link>
           <Link className="navbar__link-container" to="/">
-            <li>
+            <li className="navbar__link-button">
               <Button buttonText="Sign Up" className="button button--yellow" />
             </li>
           </Link>

@@ -1,206 +1,179 @@
-@use '../../styles/mixins' as *;
-@use '../../styles/variables' as *;
-@use '../../styles/typography' as *;
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/typography" as *;
 
-.header-main {
-    display: flex;
+.homepage {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 3vw 5vw;
+  align-items: center;
+
+  @include tablet {
+    flex-direction: row-reverse;
     justify-content: center;
-    align-items: center;
+    align-items: unset;
+  }
 
-    padding: 3vw 0;
+  &__image {
+    width: 40%;
+    height: 22%;
+    margin: 1rem 0;
 
     @include tablet {
-        background-color: #D9D9D9;
-
-        padding: 3vw 4vw;
-        justify-content: flex-start;
+      width: 45%;
+      height: 50%;
+      margin: 1rem;
     }
-    
-    &__logo {
-        width: 80%;
+  }
 
-        @include tablet {
-            width: 30%;
-        }
-    }
-}
-
-.home {
+  &__content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-
-    padding: 3vw 5vw;
+    width: 100%;
+    height: auto;
 
     @include tablet {
-        flex-direction: row-reverse;
+      width: 60%;
+      height: 100%;
+    }
+  }
+
+  &__heading {
+    width: 100%;
+    font-size: 1.6rem;
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+
+    @include tablet {
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      text-align: left;
+    }
+    @include laptop {
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+      text-align: left;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+
+    @include tablet {
+      width: 100%;
+      height: 17vw;
     }
 
-    &__image {
-        width: 35vw;
-        height: 35vw;
+    &-link {
+      width: 38%;
+      margin: 0.5rem;
 
-        margin-bottom: 5vw;
+      @include tablet {
+        width: 85%;
+      }
+    }
+    &-button {
+      border: none;
+      border-radius: 32px;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
-        background-color: #D9D9D9;
+      padding: 1vw 0;
 
+      color: $MVP-White;
+      font-family: "Gilroy";
+      font-size: 2rem;
+      text-align: center;
+
+      &--login {
+        background-color: $MVP-black;
+      }
+
+      &--signup {
+        background-color: #525354;
+      }
+
+      @include tablet {
+        width: 85%;
+      }
+    }
+  }
+
+  &__writing {
+    margin: 2rem;
+    @include tablet {
+      margin: 1rem;
+    }
+  }
+
+  &__sso {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+
+    @include tablet {
+      flex-direction: column;
+      align-items: center;
+      justify-content: unset;
+      width: 100%;
+      height: 100%;
+    }
+
+    &-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+
+      @include tablet {
+        width: 85%;
+        height: fit-content;
+        font-family: "Gilroy";
+        font-size: 1.5rem;
+        padding: 1rem 0.55rem;
+        border-radius: 2rem;
+        margin: 0.5rem 0;
+      }
+
+      &--google {
         @include tablet {
-            width: 45vw;
-            height: 45vw;
+          &::after {
+            content: "Google";
+          }
         }
-    }
+      }
 
-    &__content {
-
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-
-        height: 50vh;
-
+      &--facebook {
         @include tablet {
-            width: 55%;
-            height: 70vh;
+          &::after {
+            content: "Facebook";
+          }
         }
-    }
+      }
 
-    &__heading {
-        width: 100%;
-
-        font-size: 2.1rem;
-
+      &--apple {
         @include tablet {
-            margin-bottom: 4vw;;
+          &::after {
+            content: "Apple";
+          }
         }
+      }
     }
 
-    &__buttons {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+    &-icon {
+      width: 100%;
 
-        width: 40%;
-        height: 27vw;
-
-        @include tablet {
-            width: 100%;
-            height: 17vw;
-        }
-
-        &-button {
-            border: none;
-            border-radius: 32px;
-            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    
-            padding: 1vw 0;
-    
-            color: $MVP-White;
-            font-family: "Gilroy";
-            font-size: 2rem;
-            text-align: center;
-    
-            &--login {
-                background-color: $MVP-black;
-            }
-    
-            &--signup {
-                background-color: #525354;
-            }
-
-            @include tablet {
-                width: 85%;
-            }
-        }
+      @include tablet {
+        display: none;
+      }
     }
-
-    &__writing {
-        @include tablet {
-            padding: 1vw 7vw 1vw 0;
-        }
-    }
-
-    &__alt-buttons {
-        display: flex;
-        justify-content: space-between;
-
-        width: 65%;
-
-        @include tablet {
-            flex-direction: column;
-            
-            width: 100%;
-            height: 27vw;
-        }
-
-        &-button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            background-color: #D9D9D9;
-
-            width: 15vw;
-            height: 15vw;
-
-            @include tablet {
-                width: 85%;
-                height: fit-content;
-
-                font-family: "Gilroy";
-                font-size: 1.5rem;
-
-                padding: 1.5vw 0;
-
-                border-radius: 32px;
-            }
-
-            &--google {
-                @include tablet {
-                    &::after {
-                        content: "Google";
-                    }
-                }
-            }
-
-            &--facebook {
-                @include tablet {
-                    &::after {
-                        content: "Facebook";
-                    }
-                }
-            }
-
-            &--apple {
-                @include tablet {
-                    &::after {
-                        content: "Apple";
-                    }
-                }
-            }
-        }
-    }
-
-    &__icon {
-        width: 80%;
-
-        @include tablet {
-            display: none;
-        }
-    }
+  }
 }
-
-// .yellow-shade {
-//     &::after {
-//         color: red;
-//         content: "Communiti!";
-
-//         position: relative;
-//         top: .5vw;
-//         right: 52vw;
-//         z-index: -1;
-//     }
-
-    
-// }
