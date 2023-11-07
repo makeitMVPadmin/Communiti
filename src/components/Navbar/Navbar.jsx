@@ -26,7 +26,7 @@ export default function Navbar() {
         <Link to="/home" className="navbar__link">
           <img
             className="navbar__img"
-            src={windowWidth <= 767 ? miniCommuniti : communiti}
+            src={windowWidth <= 1023 ? miniCommuniti : communiti}
             alt="communiti"
           />
         </Link>

@@ -6,15 +6,20 @@
   background-color: $MVP-Light-Blue;
   width: 100%;
   font-family: Gilroy;
-  padding: 5vw 4vw;
+  padding: 1rem;
 
-  @include tablet {
+  @include laptop {
     display: flex;
     align-items: center;
+    padding: 2rem;
+  }
+
+  @include Desktop {
+    padding: 7rem;
   }
 
   &__left {
-    @include tablet {
+    @include laptop {
       width: 60%;
     }
 
@@ -22,7 +27,7 @@
       &-icon {
         width: 25%;
 
-        @include tablet {
+        @include laptop {
           width: 15%;
         }
       }
@@ -30,28 +35,19 @@
   }
 
   &__heading {
-    font-size: 1.5rem;
-    margin-bottom: 3vw;
-    font-family: Corben;
-
-    @include tablet {
-      font-size: 1.8rem;
-    }
+    @include LandingPage-Titles;
+    margin: 2rem 0;
   }
 
   &__writing {
-    font-size: 1rem;
-    margin-bottom: 2vw;
-
-    @include tablet {
-      font-size: 1.25rem;
-    }
+    @include LandingPage-Text;
+    margin-bottom: 2rem;
   }
 
   &__right-image {
     width: 100%;
 
-    @include tablet {
+    @include laptop {
       width: 40%;
       height: 20%;
     }

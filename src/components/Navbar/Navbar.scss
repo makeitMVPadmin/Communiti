@@ -20,7 +20,7 @@
     display: flex;
     align-items: center;
 
-    @include tablet {
+    @include laptop {
       width: 52%;
       justify-content: flex-end;
     }
@@ -33,11 +33,19 @@
     font-size: 1.25rem;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
+    @include laptop {
+      font-size: 2.6vw;
+    }
+
+    @include Desktop {
+      font-size: 1.6vw;
+    }
+
     &-container {
       &--desktop {
         display: none;
 
-        @include tablet {
+        @include laptop {
           display: unset;
         }
       }
@@ -48,9 +56,9 @@
     margin-left: 1.25rem;
   }
   &__img {
-    width: 100%;
+    width: 13vw;
 
-    @include tablet {
+    @include laptop {
       width: 90%;
     }
   }

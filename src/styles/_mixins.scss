@@ -4,8 +4,58 @@
   }
 }
 
+//laptop 1024 Width Size
 @mixin laptop {
   @media screen and (min-width: 1024px) {
     @content;
+  }
+}
+
+//laptop 1024 Width Size
+@mixin Desktop {
+  @media screen and (min-width: 1440px) {
+    @content;
+  }
+}
+
+@mixin LandingPage-Titles {
+  font-size: 8.5vw;
+  line-height: 114%;
+  font-family: Corben;
+
+  @include laptop {
+    font-size: 3vw;
+  }
+
+  @include Desktop {
+    font-size: 2vw;
+  }
+}
+
+@mixin LandingPage-Sub-Titles {
+  font-size: 8.5vw;
+  line-height: 114%;
+  font-family: Gilroy;
+
+  @include laptop {
+    font-size: 3vw;
+  }
+
+  @include Desktop {
+    font-size: 2vw;
+  }
+}
+
+@mixin LandingPage-Text {
+  font-size: 6.5vw;
+  line-height: 115%;
+  font-family: Gilroy;
+
+  @include laptop {
+    font-size: 2.5vw;
+  }
+
+  @include Desktop {
+    font-size: 1.5vw;
   }
 }

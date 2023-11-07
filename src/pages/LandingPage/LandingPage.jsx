@@ -5,14 +5,13 @@ import WhatWeDo from "../../components/WhatWeDo/WhatWeDo";
 import Footer from "../../components/Footer/Footer";
 import Hero from "../../components/Hero/Hero";
 
-
 const LandingPage = () => {
   return (
     <>
       <Navbar />
       <Hero />
-      <HowWeDoIt />
       <WhatWeDo />
+      <HowWeDoIt />
       <Footer />
     </>
   );
