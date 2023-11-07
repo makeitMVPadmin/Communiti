@@ -1,7 +1,7 @@
 import "./HomePage.scss";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
-import AltHeader from "../../components/AltHeader/AltHeader";
+import NavbarAlt from "../../components/NavbarAlt/NavbarAlt";
 import google from "../../assets/logos/google-black.svg";
 import facebook from "../../assets/logos/facebook-black.svg";
 import apple from "../../assets/logos/apple-black.svg";
@@ -23,7 +23,7 @@ function HomePage() {
 
   return (
     <>
-      <AltHeader />
+      <NavbarAlt />
       <main className="homepage">
         <img src={homeImg} alt="Home Icon" className="homepage__image"></img>
         <section className="homepage__content">
@@ -32,10 +32,13 @@ function HomePage() {
           </h1>
           <div className="homepage__buttons">
             <Link to="/login" className="homepage__buttons-link">
-              <Button buttonText="Log In" className="button button--black" />
+              <Button buttonText="Log In" className="button button--blue" />
             </Link>
             <Link to="/signup" className="homepage__buttons-link">
-              <Button buttonText="Sign Up" className="button button--gray" />
+              <Button
+                buttonText="Sign Up"
+                className="button button--yellow-alt"
+              />
             </Link>
           </div>
           <p className="homepage__writing">or</p>

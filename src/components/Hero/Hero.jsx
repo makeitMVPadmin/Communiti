@@ -12,7 +12,7 @@ const Hero = () => {
       </div>
       <div className="hero__left-container">
         <div className="hero__container">
-          <h1 className="hero__header"> Welcome to your Communiti!</h1>
+          <h1 className="hero__header">Welcome to your Communiti!</h1>
         </div>
         <p className="hero__description">
           From interactive chats and virtual workshops to mentorships and more,

@@ -21,9 +21,9 @@
     font-size: 1.6vw;
   }
 
-  &--gray {
-    background-color: #525354;
-    color: $MVP-White;
+  &--yellow-alt {
+    background-color: $MVP-Yellow;
+    color: $MVP-black;
     font-size: 1.5rem;
     width: 100%;
     @include tablet {
@@ -31,8 +31,8 @@
     }
   }
 
-  &--black {
-    background-color: #000000;
+  &--blue {
+    background-color: $MVP-Light-Blue;
     color: $MVP-White;
     font-size: 1.5rem;
     width: 100%;

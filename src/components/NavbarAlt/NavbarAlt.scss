@@ -1,0 +1,65 @@
+@use "../../styles/typography" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.navbar {
+  background: $MVP-Dark-Blue;
+  color: $MVP-White;
+  font-family: "Gilroy";
+  position: sticky;
+  padding: 0.625rem 1.25rem;
+  width: 100%;
+  top: 0;
+  margin: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__links {
+    display: flex;
+    align-items: center;
+
+    @include laptop {
+      width: 52%;
+      justify-content: flex-end;
+    }
+  }
+
+  &__link {
+    color: $MVP-White;
+    margin-left: 1.25rem;
+    font-family: "Gilroy";
+    font-size: 1.25rem;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+    @include laptop {
+      font-size: 2.6vw;
+    }
+
+    @include Desktop {
+      font-size: 1.6vw;
+    }
+
+    &-container {
+      &--desktop {
+        display: none;
+
+        @include laptop {
+          display: unset;
+        }
+      }
+    }
+  }
+
+  &__link-button {
+    margin-left: 1.25rem;
+  }
+  &__img {
+    width: 13vw;
+
+    @include laptop {
+      width: 90%;
+    }
+  }
+}

@@ -2,7 +2,7 @@ import "./LogIn.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Button from "../../components/Button/Button";
-import AltHeader from "../../components/AltHeader/AltHeader";
+import NavbarAlt from "../../components/NavbarAlt/NavbarAlt";
 import homeImg from "../../assets/images/homeIcon.svg";
 import google from "../../assets/logos/google-black.svg";
 import { handleSignIn, handleGoogleSignIn } from "../../firebase/FirebaseAuth";
@@ -44,7 +44,7 @@ function LogIn() {
 
   return (
     <>
-      <AltHeader />
+      <NavbarAlt />
       <main className="loginpage">
         <img src={homeImg} alt="Home Icon" className="loginpage__image"></img>
         <section className="loginpage__content">

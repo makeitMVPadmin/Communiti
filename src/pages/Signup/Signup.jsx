@@ -2,7 +2,7 @@ import "./Signup.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
-import AltHeader from "../../components/AltHeader/AltHeader";
+import NavbarAlt from "../../components/NavbarAlt/NavbarAlt";
 import homeImg from "../../assets/images/homeIcon.svg";
 import google from "../../assets/logos/google-black.svg";
 import { handleSignUp, handleGoogleSignIn } from "../../firebase/FirebaseAuth";
@@ -48,7 +48,7 @@ function Signup() {
 
   return (
     <>
-      <AltHeader />
+      <NavbarAlt />
       <main className="signuppage">
         <img src={homeImg} alt="Home Icon" className="signuppage__image"></img>
         <section className="signuppage__content">
