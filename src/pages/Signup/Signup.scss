@@ -109,10 +109,15 @@
   &__form {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    align-items: center;
   }
 
   &__input {
     margin: 0.5rem 0;
+    width: 100%;
+    padding: 0.5rem 0.7rem;
+    border-radius: 1.5625rem;
   }
 
   &__forgot-link {

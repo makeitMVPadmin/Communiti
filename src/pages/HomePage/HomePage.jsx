@@ -1,13 +1,26 @@
 import "./HomePage.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import AltHeader from "../../components/AltHeader/AltHeader";
 import google from "../../assets/logos/google-black.svg";
 import facebook from "../../assets/logos/facebook-black.svg";
 import apple from "../../assets/logos/apple-black.svg";
 import homeImg from "../../assets/images/homeIcon.svg";
+import { handleGoogleSignIn } from "../../firebase/FirebaseAuth";
 
 function HomePage() {
+  const navigate = useNavigate();
+  const handleGoogleButtonClicked = async () => {
+    try {
+      await handleGoogleSignIn();
+      // Google sign-in was successful, you can redirect the user or perform any other actions here.
+      navigate("/home");
+    } catch (error) {
+      // Handle the error or display an error message to the user.
+      console.error("Google sign-in error:", error);
+    }
+  };
+
   return (
     <>
       <AltHeader />
@@ -27,7 +40,10 @@ function HomePage() {
           </div>
           <p className="homepage__writing">or</p>
           <div className="homepage__sso">
-            <button className="homepage__sso-button homepage__sso-button--google">
+            <button
+              className="homepage__sso-button homepage__sso-button--google"
+              onClick={handleGoogleButtonClicked}
+            >
               <img
                 src={google}
                 alt="logo for Google"

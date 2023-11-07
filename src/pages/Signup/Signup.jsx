@@ -35,6 +35,17 @@ function Signup() {
       });
   };
 
+  const handleGoogleButtonClicked = async () => {
+    try {
+      await handleGoogleSignIn();
+      // Google sign-in was successful, you can redirect the user or perform any other actions here.
+      navigate("/home");
+    } catch (error) {
+      // Handle the error or display an error message to the user.
+      console.error("Google sign-in error:", error);
+    }
+  };
+
   return (
     <>
       <AltHeader />
@@ -45,6 +56,13 @@ function Signup() {
             Create Your <br /> Communiti!
           </h1>
           <form className="signuppage__form" onSubmit={handleSignupSubmit}>
+            <input
+              className="signuppage__input"
+              placeholder="Full Name"
+              type="text"
+              name="name"
+              id="name"
+            ></input>
             <input
               className="signuppage__input"
               placeholder="Email"
@@ -71,7 +89,10 @@ function Signup() {
           </form>
           <p className="signuppage__writing">or</p>
           <div className="signuppage__sso">
-            <button className="signuppage__sso-button signuppage__sso-button--google">
+            <button
+              className="signuppage__sso-button signuppage__sso-button--google"
+              onClick={handleGoogleButtonClicked}
+            >
               <img
                 src={google}
                 alt="logo for Google"

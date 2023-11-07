@@ -4,6 +4,7 @@
 
 .hero {
   background-color: $MVP-White;
+  width: 100%;
   padding: 5vw 4vw;
   @include tablet {
     display: flex;
@@ -11,22 +12,46 @@
   }
 
   &__container {
-    display:flex;
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
 
     @include tablet {
       width: 55%;
-      }
     }
+  }
 
   &__image {
-    width: 100%;
+    width: 70%;
+
     @include tablet {
-      width: 40%;
-      height: 20%;
+      width: 90%;
+    }
+
+    @include laptop {
+      width: 100%;
+      height: 75%;
+    }
+
+    &-container {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+
+      @include tablet {
+        width: 50%;
       }
     }
+  }
+
+  &__left-container {
+    @include tablet {
+      height: 100%;
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+    }
+  }
 
   &__description {
     display: flex;
@@ -35,18 +60,23 @@
     margin: 1rem 0;
     justify-content: center;
     text-align: left;
-    }
-
+  }
 
   &__header {
     font-family: Corben;
-    padding-top: 10%;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
+    line-height: 114%;
     margin-bottom: 1rem;
     color: $MVP-black;
+    width: 60%;
+
     @include tablet {
       width: 100%;
       font-size: 1.5rem;
+    }
+
+    @include laptop {
+      font-size: 1.8rem;
     }
   }
 }
