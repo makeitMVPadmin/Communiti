@@ -16,13 +16,10 @@
   }
 
   &__image {
-    width: 40%;
-    height: 22%;
+    width: 50%;
     margin: 1rem 0;
 
     @include laptop {
-      width: 45%;
-      height: 50%;
       margin: 1rem;
     }
   }
@@ -43,19 +40,13 @@
 
   &__heading {
     width: 100%;
-    font-size: 1.6rem;
+    font-size: 8vw;
     margin: 1rem 0;
     text-align: center;
 
     @include laptop {
       margin-bottom: 2rem;
-      font-size: 2rem;
-      text-align: left;
-    }
-    @include laptop {
-      margin-bottom: 2rem;
       font-size: 2.5rem;
-      text-align: left;
     }
   }
 
@@ -73,11 +64,11 @@
     }
 
     &-link {
-      width: 38%;
+      width: 80%;
       margin: 0.5rem;
 
       @include laptop {
-        width: 85%;
+        width: 50%;
       }
     }
     &-button {
@@ -107,9 +98,11 @@
   }
 
   &__writing {
+    font-size: 5vw;
     margin: 2rem;
     @include laptop {
       margin: 1rem;
+      font-size: 2vw;
     }
   }
 
@@ -127,19 +120,23 @@
     }
 
     &-button {
+      background: none;
       display: flex;
       justify-content: center;
       align-items: center;
       border: none;
+      width: 22%;
 
       @include laptop {
-        width: 85%;
+        box-shadow: 0px 0.2rem 0.2rem 0px rgba(0, 0, 0, 0.25);
+        width: 50%;
         height: fit-content;
         font-family: "Gilroy";
-        font-size: 1.5rem;
-        padding: 1rem 0.55rem;
-        border-radius: 2rem;
+        font-size: 1.4vw;
+        padding: 1vw 0vw;
+        border-radius: 6vw;
         margin: 0.5rem 0;
+        border: 2px solid $MVP-black;
       }
 
       &--google {
@@ -150,18 +147,18 @@
         }
       }
 
-      &--facebook {
+      &--linkedin {
         @include laptop {
           &::after {
-            content: "Facebook";
+            content: "Linkedin";
           }
         }
       }
 
-      &--apple {
+      &--facebook {
         @include laptop {
           &::after {
-            content: "Apple";
+            content: "Facebook";
           }
         }
       }

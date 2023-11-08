@@ -24,20 +24,24 @@
   &--yellow-alt {
     background-color: $MVP-Yellow;
     color: $MVP-black;
-    font-size: 1.5rem;
+    font-size: 7.5vw;
     width: 100%;
-    @include tablet {
-      padding: 1rem 0.55rem;
+    padding: 3vw 3vw;
+    @include laptop {
+      font-size: 1.4vw;
+      padding: 1vw 0vw;
     }
   }
 
   &--blue {
     background-color: $MVP-Light-Blue;
     color: $MVP-White;
-    font-size: 1.5rem;
+    font-size: 7.5vw;
     width: 100%;
-    @include tablet {
-      padding: 1rem 0.55rem;
+    padding: 3vw 3vw;
+    @include laptop {
+      font-size: 1.4vw;
+      padding: 1vw 0vw;
     }
   }
 }
