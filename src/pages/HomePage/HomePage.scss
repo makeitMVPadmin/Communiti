@@ -45,8 +45,7 @@
     width: 100%;
     font-size: 1.6rem;
     margin: 1rem 0;
-    display: flex;
-    justify-content: center;
+    text-align: center;
 
     @include laptop {
       margin-bottom: 2rem;

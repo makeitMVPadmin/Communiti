@@ -27,9 +27,7 @@ function HomePage() {
       <main className="homepage">
         <img src={homeImg} alt="Home Icon" className="homepage__image"></img>
         <section className="homepage__content">
-          <h1 className="homepage__heading">
-            Welcome to your <br /> Communiti!
-          </h1>
+          <h1 className="homepage__heading">Welcome to Communiti!</h1>
           <div className="homepage__buttons">
             <Link to="/login" className="homepage__buttons-link">
               <Button buttonText="Log In" className="button button--blue" />
