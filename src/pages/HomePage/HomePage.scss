@@ -3,7 +3,6 @@
 @use "../../styles/typography" as *;
 
 .homepage {
-  height: 100%;
   display: flex;
   flex-direction: column;
   padding: 3vw 5vw;
@@ -39,8 +38,8 @@
   }
 
   &__heading {
+    @include SSO-Title;
     width: 100%;
-    font-size: 8vw;
     margin: 1rem 0;
     text-align: center;
 
@@ -98,8 +97,8 @@
   }
 
   &__writing {
-    font-size: 5vw;
-    margin: 2rem;
+    font-size: 4vw;
+    margin: 0.5rem;
     @include laptop {
       margin: 1rem;
       font-size: 2vw;
@@ -165,7 +164,7 @@
     }
 
     &-icon {
-      width: 100%;
+      width: 75%;
 
       @include laptop {
         display: none;
