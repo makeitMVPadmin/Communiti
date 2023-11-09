@@ -1,9 +1,9 @@
-import "./CreateCommunitiPage.scss";
-import calendarImage from "../../assets/images/calendar.svg";
-import backArrow from "../../assets/images/back.svg";
+import "./CreateCommunitiPage1.scss";
+import calendarImage from "../../../assets/images/calendar.svg";
+import backArrow from "../../../assets/images/back.svg";
 import { useState } from "react";
 
-function CreateCommunitiPage() {
+function CreateCommuniti1() {
   const [selectedOption, setSelectedOption] = useState("");
   const [isLocationEnabled, setLocationEnabled] = useState(false);
   const [isLocation2Enabled, setLocation2Enabled] = useState(false);
@@ -15,32 +15,31 @@ function CreateCommunitiPage() {
   };
 
   return (
-    <div className="create-communiti">
-      <button className="create-communiti__button">
+    <div className="create-communiti1">
+      <button className="create-communiti1__button">
         <img
-          className="create-communiti__image create-communiti__image--back-arrow"
+          className="create-communiti1__image create-communiti1__image--back-arrow"
           src={backArrow}
           alt="backArrow"
         />
       </button>
-
-      <div className="create-communiti__container">
-        <div className="create-communiti__container-left">
-          <h1 className="create-communiti__heading">
+      <div className="create-communiti1__container">
+        <div className="create-communiti1__container-left">
+          <h1 className="create-communiti1__heading">
             Welcome to your Communiti!
           </h1>
-          <form className="create-communiti__form">
-            <label className="create-communiti__label" for="communitiName">
+          <form className="create-communiti1__form">
+            <label className="create-communiti1__label" for="communitiName">
               What would you like to name it?
             </label>
             <input
-              className="create-communiti__input"
+              className="create-communiti__input1"
               placeholder="Communiti Name"
               type="text"
               name="communitiName"
               id="communitiName"
             />
-            <p className="create-communiti__description">
+            <p className="create-communiti1__description">
               Where is the Communiti?
             </p>
             <input
@@ -48,34 +47,34 @@ function CreateCommunitiPage() {
               id="virtual"
               name="virtual"
               value="virtual"
-              className="create-communiti__checkbox"
+              className="create-communiti1__checkbox"
               checked={selectedOption === "virtual"}
               onChange={handleOptionChange}
             />
             <label
-              className="create-communiti__checkbox-label"
+              className="create-communiti1__checkbox-label"
               htmlfor="virtual"
             >
               Virtual
             </label>
-            <div className="create-communiti__checkbox-container">
+            <div className="create-communiti1__checkbox-container">
               <input
                 type="checkbox"
                 id="hybrid"
                 name="hybrid"
                 value="hybrid"
-                className="create-communiti__checkbox"
+                className="create-communiti1__checkbox"
                 checked={selectedOption === "hybrid"}
                 onChange={handleOptionChange}
               />
               <label
-                className="create-communiti__checkbox-label"
+                className="create-communiti1__checkbox-label"
                 htmlFor="hybrid"
               >
                 Hybrid
               </label>
               <input
-                className={`create-communiti__input create-communiti__input--location ${
+                className={`create-communiti1__input create-communiti1__input--location ${
                   isLocation2Enabled ? "" : "disabled"
                 }`}
                 placeholder="Location"
@@ -85,24 +84,24 @@ function CreateCommunitiPage() {
                 disabled={!isLocation2Enabled}
               />
             </div>
-            <div className="create-communiti__checkbox-container">
+            <div className="create-communiti1__checkbox-container">
               <input
                 type="checkbox"
                 id="in-person"
                 name="in-person"
                 value="in-person"
-                className="create-communiti__checkbox"
+                className="create-communiti1__checkbox"
                 checked={selectedOption === "in-person"}
                 onChange={handleOptionChange}
               />
               <label
-                className="create-communiti__checkbox-label"
+                className="create-communiti1__checkbox-label"
                 htmlFor="in-person"
               >
                 In Person
               </label>
               <input
-                className={`create-communiti__input create-communiti__input--location ${
+                className={`create-communiti1__input create-communiti1__input--location ${
                   isLocationEnabled ? "" : "disabled"
                 }`}
                 placeholder="Location"
@@ -114,9 +113,9 @@ function CreateCommunitiPage() {
             </div>
           </form>
         </div>
-        <div className="create-communiti__container-right">
+        <div className="create-communiti1__container-right">
           <img
-            className="create-communiti__image"
+            className="create-communiti1__image"
             src={calendarImage}
             alt="Calendar"
           />
@@ -126,4 +125,4 @@ function CreateCommunitiPage() {
   );
 }
 
-export default CreateCommunitiPage;
+export default CreateCommuniti1;

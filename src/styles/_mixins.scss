@@ -7,22 +7,36 @@
   }
 }
 
-//laptop 1024 Width Size
 @mixin laptop {
   @media screen and (min-width: 1024px) {
     @content;
   }
 }
 
-//laptop 1024 Width Size
 @mixin Desktop {
   @media screen and (min-width: 1440px) {
     @content;
   }
 }
 
+@mixin Four-K {
+  @media screen and (min-width: 2560px) {
+    @content;
+  }
+}
+
+// Text
 @mixin heading {
-  font-size: 42px;
+  @include laptop {
+    font-size: 36px;
+  }
+  @include Desktop {
+    font-size: 3.625rem;
+  }
+
+  @include Four-K {
+    font-size: 4.625rem;
+  }
 }
 
 @mixin LandingPage-Titles {
