@@ -26,6 +26,20 @@
   img {
     width: 50px;
   }
+  .logo-container{
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+
+    }
+  }
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
 }
 
 .separator {
@@ -33,7 +47,7 @@
   width: 5px;
   height: 45%;
   background-color: #000;
-  margin: 0 150px;
+  margin: auto;
 }
 
 .logo {
@@ -47,7 +61,7 @@
   }
 
   .icon-row {
-    margin: 20px 0; /* Adjust this margin as needed */
+    margin: 20px 0;
   }
 
   .separator {
