@@ -6,6 +6,7 @@ import smallCalendar from "../../assets/images/smallCalendar.svg";
 import communitiesIconBlack from "../../assets/images/communitiesIconBlack.svg";
 import searchIcon from "../../assets/images/searchIcon.svg";
 import communiti2 from "../../assets/logos/communiti2.svg";
+import profilePic from "../../assets/images/profilePic.svg";
 import { Link } from "react-router-dom";
 
 export default function EventsNavbar() {
@@ -32,23 +33,28 @@ const [searchTerm, setSearchTerm] = useState("");
   return (
     <div className="events-navbar">
       <div className="logo">
-        <img className="logoPicture"src={communiti2} alt="community-logo" />
+        <img className="logoPicture" src={communiti2} alt="community-logo" />
       </div>
       <div className="button-group">
-        <Link to="/events/home"className="button-with-image">
-          <img src={home} alt="home" type="button" />
+        <Link to="/events/home" className="button-with-image">
+          <img className="icons" src={home} alt="home" type="button" />
           <span>Home</span>
         </Link>
         <Link to="/events/chat" className="button-with-image">
-          <img src={chat} alt="chat bubbles" type="button" />
+          <img className="icons" src={chat} alt="chat bubbles" type="button" />
           <span>Chats</span>
         </Link>
         <Link to="/events/events" className="button-with-image">
-          <img src={smallCalendar} alt="small calendar" type="button" />
+          <img
+            className="icons"
+            src={smallCalendar}
+            alt="small calendar"
+            type="button"
+          />
           <span>Events</span>
         </Link>
         <Link to="/events/communities" className="button-with-image">
-          <img
+          <img className="icons"
             src={communitiesIconBlack}
             alt="communities icon"
             type="button"
@@ -82,6 +88,9 @@ const [searchTerm, setSearchTerm] = useState("");
           </div>
         )}
       </form>
+      <div className="profilePicContainer">
+      <img className="profilePic" src={profilePic} alt="profile pic" />
+      </div>
     </div>
   );
 }
