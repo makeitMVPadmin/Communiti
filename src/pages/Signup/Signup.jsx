@@ -3,8 +3,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import NavbarAlt from "../../components/NavbarAlt/NavbarAlt";
-import homeImg from "../../assets/images/homeIcon.svg";
-import google from "../../assets/logos/google-black.svg";
+import communitiHero from "../../assets//images/communitiHero.svg";
+import google from "../../assets/logos/google.svg";
+import linkedin from "../../assets/logos/linkedin.svg";
+import facebook from "../../assets/logos/facebook.svg";
 import { handleSignUp, handleGoogleSignIn } from "../../firebase/FirebaseAuth";
 
 function Signup() {
@@ -50,11 +52,13 @@ function Signup() {
     <>
       <NavbarAlt />
       <main className="signuppage">
-        <img src={homeImg} alt="Home Icon" className="signuppage__image"></img>
+        <img
+          src={communitiHero}
+          alt="Home Icon"
+          className="signuppage__image"
+        ></img>
         <section className="signuppage__content">
-          <h1 className="signuppage__heading">
-            Create Your <br /> Communiti!
-          </h1>
+          <h1 className="signuppage__heading">Create Your Communiti!</h1>
           <form className="signuppage__form" onSubmit={handleSignupSubmit}>
             <input
               className="signuppage__input"
@@ -73,8 +77,8 @@ function Signup() {
               onChange={handleEmailChange}
             ></input>
             <input
-              className="signuppage__input"
-              placeholder="PASSWORD"
+              className="signuppage__input signuppage__input--margin"
+              placeholder="Password"
               type="password"
               name="password"
               id="password"
@@ -83,7 +87,7 @@ function Signup() {
             ></input>
             <Button
               buttonText="Sign Up"
-              className="button button--gray"
+              className="button button--yellow-alt signuppage__button"
               type="submit"
             />
           </form>
@@ -95,7 +99,27 @@ function Signup() {
             >
               <img
                 src={google}
-                alt="logo for Google"
+                alt="Google Sign On"
+                className="signuppage__sso-icon"
+              ></img>
+            </button>
+            <button
+              className="signuppage__sso-button signuppage__sso-button--linkedin"
+              onClick={handleGoogleButtonClicked}
+            >
+              <img
+                src={linkedin}
+                alt="linkedin Sign On"
+                className="signuppage__sso-icon"
+              ></img>
+            </button>
+            <button
+              className="signuppage__sso-button signuppage__sso-button--facebook"
+              onClick={handleGoogleButtonClicked}
+            >
+              <img
+                src={facebook}
+                alt="facebook Sign On"
                 className="signuppage__sso-icon"
               ></img>
             </button>
