@@ -16,7 +16,7 @@
     background-color: $MVP-Yellow; /* Add yellow background color */
   }
 
-  @include Desktop {
+  @include laptop {
     padding: 0.5vw 1vw;
     font-size: 1.6vw;
   }
