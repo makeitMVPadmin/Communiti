@@ -9,6 +9,7 @@ import EventsHomePage from "./pages/Events/EventsHomePage";
 import EventsCommunitiesPage from "./pages/Events/EventsCommunitiesPage";
 import EventsChatsPage from "./pages/Events/EventsChatsPage";
 
+import CreateCommunitiPage from "./pages/CreateCommunitiPage/CreateCommunitiPage";
 function App() {
   return (
     <Routes>
@@ -20,6 +21,7 @@ function App() {
       <Route path="/events/communities" element={<EventsCommunitiesPage />} />
       <Route path="/events/chat" element={<EventsChatsPage />} />
       <Route path="/events/events" element={<EventsPage />} />
+      <Route path="/create-communiti" element={<CreateCommunitiPage />} />
     </Routes>
   );
 }

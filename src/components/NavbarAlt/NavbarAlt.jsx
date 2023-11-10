@@ -1,5 +1,3 @@
-import "./NavbarAlt.scss";
-import Button from "../Button/Button";
 import communiti from "../../assets/logos/communiti.svg";
 import miniCommuniti from "../../assets/logos/miniCommuniti.svg";
 import { useState, useEffect } from "react";
@@ -23,7 +21,7 @@ export default function NavbarAlt() {
   return (
     <>
       <nav className="navbar">
-        <Link to="/home" className="navbar__link">
+        <Link to="/" className="navbar__link">
           <img
             className="navbar__img"
             src={windowWidth <= 1023 ? miniCommuniti : communiti}

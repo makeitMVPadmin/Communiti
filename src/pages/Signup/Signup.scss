@@ -3,7 +3,6 @@
 @use "../../styles/typography" as *;
 
 .signuppage {
-  height: 100%;
   display: flex;
   flex-direction: column;
   padding: 3vw 5vw;
@@ -16,13 +15,10 @@
   }
 
   &__image {
-    width: 40%;
-    height: 22%;
+    width: 50%;
     margin: 1rem 0;
 
     @include laptop {
-      width: 45%;
-      height: 50%;
       margin: 1rem;
     }
   }
@@ -38,32 +34,27 @@
     @include laptop {
       width: 60%;
       height: 100%;
+      justify-content: space-evenly;
     }
   }
 
   &__heading {
+    @include SSO-Title;
     width: 100%;
-    font-size: 1.6rem;
     margin: 1rem 0;
-    display: flex;
-    justify-content: center;
+    text-align: center;
 
     @include laptop {
       margin-bottom: 2rem;
-      font-size: 2rem;
-      text-align: left;
-    }
-    @include laptop {
-      margin-bottom: 2rem;
       font-size: 2.5rem;
-      text-align: left;
     }
   }
 
   &__writing {
-    margin: 2rem;
+    margin: 0.5rem;
     @include laptop {
       margin: 1rem;
+      font-size: 2vw;
     }
   }
 
@@ -73,35 +64,23 @@
     width: 100%;
 
     @include laptop {
-      flex-direction: column;
-      align-items: center;
-      justify-content: unset;
-      width: 100%;
-      height: 100%;
+      justify-content: center;
     }
 
     &-button {
+      background: none;
       display: flex;
       justify-content: center;
       align-items: center;
       border: none;
+      width: 22%;
+    }
+
+    &-icon {
+      width: 75%;
 
       @include laptop {
-        width: 85%;
-        height: fit-content;
-        font-family: "Gilroy";
-        font-size: 1.5rem;
-        padding: 1rem 0.55rem;
-        border-radius: 2rem;
-        margin: 0.5rem 0;
-      }
-
-      &--google {
-        @include laptop {
-          &::after {
-            content: "Sign Up With Google";
-          }
-        }
+        width: 50%;
       }
     }
   }
@@ -114,20 +93,13 @@
   }
 
   &__input {
-    margin: 0.5rem 0;
-    width: 100%;
-    padding: 0.5rem 0.7rem;
-    border-radius: 1.5625rem;
+    @include SSO-Input;
   }
 
-  &__forgot-link {
-  }
-
-  &-icon {
-    width: 100%;
-
+  &__button {
     @include laptop {
-      display: none;
+      width: 50%;
+      margin: 0 0 0.5rem 0;
     }
   }
 }
