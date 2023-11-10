@@ -1,8 +1,8 @@
-import EventsNavbar from "../../components/EventsNavbar/EventsNavbar";
+import EventsNavbar from "../../components/DashboardNavbar/DashboardNavbar";
 function EventsCommunitiesPage() {
   return (
     <>
-    <EventsNavbar />
+      <EventsNavbar />
       <h1>this is the communities page</h1>
     </>
   );

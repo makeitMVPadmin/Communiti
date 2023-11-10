@@ -1,9 +1,9 @@
-import EventsNavbar from "../../components/EventsNavbar/EventsNavbar";
+import EventsNavbar from "../../components/DashboardNavbar/DashboardNavbar";
 
 function EventsChatsPage() {
   return (
     <>
-    <EventsNavbar />
+      <EventsNavbar />
       <h1>this is the chats page</h1>
     </>
   );

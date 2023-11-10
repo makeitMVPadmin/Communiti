@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import "./CreateCommunitiPage.scss";
-import CreateCommuniti1 from "../../components/CommunitiesComponents/CreateCommuniti1/CreateCommuniti1";
-import CreateCommuniti2 from "../../components/CommunitiesComponents/CreateCommuniti2/CreateCommuniti2";
-import CreateCommuniti3 from "../../components/CommunitiesComponents/CreateCommuniti3/CreateCommuniti3";
-import backArrow from "../../assets/images/back.svg";
-import Button from "../../components/Button/Button";
+import DashboardNavbar from "../../../components/DashboardNavbar/DashboardNavbar";
+import CreateCommuniti1 from "../../../components/CommunitiesComponents/CreateCommuniti1/CreateCommuniti1";
+import CreateCommuniti2 from "../../../components/CommunitiesComponents/CreateCommuniti2/CreateCommuniti2";
+import CreateCommuniti3 from "../../../components/CommunitiesComponents/CreateCommuniti3/CreateCommuniti3";
+import backArrow from "../../../assets/images/back.svg";
+import Button from "../../../components/Button/Button";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage, db } from "../../firebase/FirebaseConfig";
+import { storage, db } from "../../../firebase/FirebaseConfig";
 
 function CreateCommunitiPage() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -66,50 +67,54 @@ function CreateCommunitiPage() {
   };
 
   return (
-    <div className="create-communiti">
-      <button className="create-communiti__button-back" onClick={handleBack}>
-        <img
-          className="create-communiti__back-arrow"
-          src={backArrow}
-          alt="backArrow"
-        />
-      </button>
-      <div className="create-communiti__container">
-        {currentStep === 1 && (
-          <CreateCommuniti1
-            communitiName={communitiName}
-            setCommunitiName={setCommunitiName}
-            selectedOption={selectedOption}
-            setSelectedOption={setSelectedOption}
-            location={location}
-            setLocation={setLocation}
+    <>
+      <DashboardNavbar />
+      <div className="create-communiti">
+        <button className="create-communiti__button-back" onClick={handleBack}>
+          <img
+            className="create-communiti__back-arrow"
+            src={backArrow}
+            alt="backArrow"
           />
-        )}
-        {currentStep === 2 && (
-          <CreateCommuniti2
-            communitiDescription={communitiDescription}
-            setCommunitiDescription={setCommunitiDescription}
+        </button>
+        <div className="create-communiti__container">
+          {currentStep === 1 && (
+            <CreateCommuniti1
+              communitiName={communitiName}
+              setCommunitiName={setCommunitiName}
+              selectedOption={selectedOption}
+              setSelectedOption={setSelectedOption}
+              location={location}
+              setLocation={setLocation}
+            />
+          )}
+          {currentStep === 2 && (
+            <CreateCommuniti2
+              communitiDescription={communitiDescription}
+              setCommunitiDescription={setCommunitiDescription}
+            />
+          )}
+          {currentStep === 3 && (
+            <CreateCommuniti3 image={image} setImage={setImage} />
+          )}
+        </div>
+        {currentStep <= 3 && (
+          <Button
+            buttonText={currentStep === 3 ? "Done" : "Next"}
+            className={`button create-communiti__button-next ${
+              (currentStep === 1 &&
+                (!communitiName ||
+                  (selectedOption === "hybrid" && !location))) ||
+              (currentStep === 2 && !communitiDescription) ||
+              (currentStep === 3 && !image)
+                ? "button__not-active"
+                : "button__active"
+            }`}
+            onClick={handleNext}
           />
-        )}
-        {currentStep === 3 && (
-          <CreateCommuniti3 image={image} setImage={setImage} />
         )}
       </div>
-      {currentStep <= 3 && (
-        <Button
-          buttonText={currentStep === 3 ? "Done" : "Next"}
-          className={`button create-communiti__button-next ${
-            (currentStep === 1 &&
-              (!communitiName || (selectedOption === "hybrid" && !location))) ||
-            (currentStep === 2 && !communitiDescription) ||
-            (currentStep === 3 && !image)
-              ? "button__not-active"
-              : "button__active"
-          }`}
-          onClick={handleNext}
-        />
-      )}
-    </div>
+    </>
   );
 }
 

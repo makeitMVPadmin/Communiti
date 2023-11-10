@@ -1,4 +1,4 @@
-import EventsNavbar from "../../components/EventsNavbar/EventsNavbar";
+import EventsNavbar from "../../components/DashboardNavbar/DashboardNavbar";
 function EventsHomePage() {
   return (
     <>

@@ -1,12 +1,10 @@
 import React from "react";
-import EventsNavbar from "../../components/EventsNavbar/EventsNavbar";
-
+import DashboardNavbar from "../../components/DashboardNavbar/DashboardNavbar";
 
 const EventsPage = () => {
   return (
     <>
-      <EventsNavbar />
-
+      <DashboardNavbar />
     </>
   );
 };
