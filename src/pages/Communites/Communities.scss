@@ -1,4 +1,71 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/typography" as *;
+
+* {
+  font-family: Gilroy;
+}
 .communities {
   height: 100%;
   width: 100%;
+  .communities-top {
+      background-color: #E9E9E9;
+      height: 20%;
+    .communities-back {
+      display: flex; // Added display flex
+      align-items: center; // Added to align items vertically
+      margin-left: 2rem;
+
+      .communities-back-button {
+        height: 2rem;
+        width: 2rem;
+      }
+
+      .communities-back-text {
+        text-decoration: none;
+        color: black;
+        margin-left: 1rem;
+        font-size: large;
+      }
+    }
+  }
+  .communities-middle {
+    display: flex;
+    flex-direction: row;
+    margin-left: 5rem;
+      .communities-middle-image {
+        margin-top: -2rem;
+      }
+      .communities-middle-text {
+        margin-left: 2rem;
+        font-size: 25px;
+        .communities-location-text {
+          font-size: 20px;
+          margin-right: 2rem;
+        }
+        .communities-members-text {
+          font-size: 20px;
+          margin-left: 1rem;
+        }
+      }
+  }
+  .communities-description-container {
+    height: 12rem;
+    width: 50rem;
+    background-color: #E9E9E9; 
+    margin-left: 5rem;
+    margin-top: 1rem;
+    text-align:start;
+    border-radius: 2%;
+      .communities-description-text {
+        margin-left: 3rem;
+        .communities-description-header {
+          font-size: 25px;
+        }
+        .communities-description-words {
+          font-size: 20px;
+        }
+      }
+  }
+
 }
