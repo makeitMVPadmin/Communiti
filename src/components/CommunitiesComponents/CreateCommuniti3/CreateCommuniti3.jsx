@@ -1,5 +1,3 @@
-// CreateCommuniti3.jsx
-import React, { useState } from "react";
 import "./CreateCommuniti3.scss";
 import calendarImage from "../../../assets/images/calendar.svg";
 import chooseFile from "../../../assets/images/choose-file.svg";
@@ -9,20 +7,28 @@ function CreateCommuniti3({ image, setImage }) {
     const file = e.target.files[0];
 
     if (file) {
-      const reader = new FileReader();
+      // Check file type using the file name
+      const fileName = file.name.toLowerCase();
+      const isJPEG = fileName.endsWith(".jpg") || fileName.endsWith(".jpeg");
+      const isPNG = fileName.endsWith(".png");
+      const isPDF = fileName.endsWith(".pdf");
+      const isSVG = fileName.endsWith(".svg");
 
-      reader.onloadend = () => {
-        // Do something with the loaded image (e.g., display preview)
-        setImage(reader.result);
-      };
-
-      reader.readAsDataURL(file);
+      if (!(isJPEG || isPNG || isPDF || isSVG)) {
+        alert("Supported formats: JPG, PNG, PDF, SVG");
+        e.target.value = null; // Reset the file input
+        return;
+      }
 
       // Check file size
       if (file.size > 3000000) {
         alert("File size exceeds 3MB. Please choose a smaller file.");
         e.target.value = null; // Reset the file input
+        return;
       }
+
+      // Set the image state as a File object
+      setImage(file);
     }
   };
 
@@ -43,7 +49,7 @@ function CreateCommuniti3({ image, setImage }) {
             {image ? (
               <img
                 className="create-communiti3__container-preview"
-                src={image}
+                src={image instanceof File ? URL.createObjectURL(image) : image}
                 alt="Preview"
               />
             ) : (
@@ -74,8 +80,8 @@ function CreateCommuniti3({ image, setImage }) {
           )}
           {!image && (
             <p className="create-communiti3__container-input-text--alt">
-              supported formats: JPG, PNG, PDF,
-              <br /> SVG maximum size: 3MB
+              supported formats: JPG, PNG, PDF, SVG
+              <br /> maximum size: 3MB
             </p>
           )}
         </form>
