@@ -1,0 +1,104 @@
+@use "../../../styles/mixins" as *;
+@use "../../../styles/variables" as *;
+@use "../../../styles/typography" as *;
+
+.create-communiti2__content {
+  @include Four-K {
+    padding: 0 1rem;
+  }
+
+  &-container {
+    display: flex;
+    &-right {
+      display: flex;
+      width: 40%;
+      height: 100%;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    &-left {
+      display: flex;
+      width: 60%;
+      height: 100%;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+    }
+  }
+
+  &-heading {
+    @include heading;
+    font-family: Corben;
+    margin: 0rem 0 3rem 0;
+  }
+
+  &-form {
+    width: 100%;
+
+    @include laptop {
+      height: 70%;
+    }
+    height: 75%;
+  }
+
+  &-label {
+    color: $MVP-LightGray;
+    font-size: 2.5vw;
+    line-height: 115.645%;
+    @include Desktop {
+      font-size: 1.9vw;
+    }
+  }
+  &-textarea-container {
+    margin: 1rem 0;
+    width: 90%;
+    height: 30%;
+    padding: 0.5rem 1.5rem;
+    border-radius: 8px;
+    border: 3px solid #000;
+
+    &::placeholder {
+      color: $MVP-Gray;
+    }
+  }
+  &-textarea {
+    width: 100%;
+    border: none;
+    color: $MVP-black;
+    font-family: Gilroy;
+    font-size: 2.4vw;
+    line-height: 115.645%;
+    @include Desktop {
+      font-size: 1.7vw;
+    }
+
+    &::placeholder {
+      color: $MVP-Gray;
+    }
+
+    &:focus {
+      outline: none !important;
+    }
+  }
+
+  &-character-count {
+    color: $MVP-black;
+    text-align: right;
+    font-size: 1.5vw;
+    line-height: 115.645%; /* 28.911px */
+  }
+
+  &-image {
+    @include laptop {
+      width: 60%;
+    }
+
+    @include Desktop {
+      width: 50%;
+    }
+
+    @include Four-K {
+      width: 40%;
+    }
+  }
+}

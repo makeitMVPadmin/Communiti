@@ -1,127 +1,82 @@
+import React, { useState } from "react";
 import "./CreateCommunitiPage.scss";
-import calendarImage from "../../assets/images/calendar.svg";
+import CreateCommuniti1 from "../../components/CommunitiesComponents/CreateCommuniti1/CreateCommuniti1";
+import CreateCommuniti2 from "../../components/CommunitiesComponents/CreateCommuniti2/CreateCommuniti2";
+import CreateCommuniti3 from "../../components/CommunitiesComponents/CreateCommuniti3/CreateCommuniti3";
 import backArrow from "../../assets/images/back.svg";
-import { useState } from "react";
+import Button from "../../components/Button/Button";
 
 function CreateCommunitiPage() {
+  const [currentStep, setCurrentStep] = useState(1);
+  const [communitiName, setCommunitiName] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
-  const [isLocationEnabled, setLocationEnabled] = useState(false);
-  const [isLocation2Enabled, setLocation2Enabled] = useState(false);
+  const [location, setLocation] = useState("");
+  const [communitiDescription, setCommunitiDescription] = useState("");
+  const [image, setImage] = useState(null);
 
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
-    setLocationEnabled(event.target.value === "in-person");
-    setLocation2Enabled(event.target.value === "hybrid");
+  const handleNext = () => {
+    if (
+      currentStep === 1 &&
+      communitiName &&
+      (selectedOption !== "hybrid" || location)
+    ) {
+      setCurrentStep(currentStep + 1);
+    } else if (currentStep === 2 && communitiDescription) {
+      setCurrentStep(currentStep + 1);
+    } else if (currentStep === 3 && image) {
+      // Perform any additional actions needed for the last step
+      console.log("Communiti creation complete!");
+    }
+  };
+
+  const handleBack = () => {
+    setCurrentStep(currentStep - 1);
   };
 
   return (
     <div className="create-communiti">
-      <button className="create-communiti__button">
+      <button className="create-communiti__button-back" onClick={handleBack}>
         <img
-          className="create-communiti__image create-communiti__image--back-arrow"
+          className="create-communiti__back-arrow"
           src={backArrow}
           alt="backArrow"
         />
       </button>
-
       <div className="create-communiti__container">
-        <div className="create-communiti__container-left">
-          <h1 className="create-communiti__heading">
-            Welcome to your Communiti!
-          </h1>
-          <form className="create-communiti__form">
-            <label className="create-communiti__label" for="communitiName">
-              What would you like to name it?
-            </label>
-            <input
-              className="create-communiti__input"
-              placeholder="Communiti Name"
-              type="text"
-              name="communitiName"
-              id="communitiName"
-            />
-            <p className="create-communiti__description">
-              Where is the Communiti?
-            </p>
-            <input
-              type="checkbox"
-              id="virtual"
-              name="virtual"
-              value="virtual"
-              className="create-communiti__checkbox"
-              checked={selectedOption === "virtual"}
-              onChange={handleOptionChange}
-            />
-            <label
-              className="create-communiti__checkbox-label"
-              htmlfor="virtual"
-            >
-              Virtual
-            </label>
-            <div className="create-communiti__checkbox-container">
-              <input
-                type="checkbox"
-                id="hybrid"
-                name="hybrid"
-                value="hybrid"
-                className="create-communiti__checkbox"
-                checked={selectedOption === "hybrid"}
-                onChange={handleOptionChange}
-              />
-              <label
-                className="create-communiti__checkbox-label"
-                htmlFor="hybrid"
-              >
-                Hybrid
-              </label>
-              <input
-                className={`create-communiti__input create-communiti__input--location ${
-                  isLocation2Enabled ? "" : "disabled"
-                }`}
-                placeholder="Location"
-                type="text"
-                name="location"
-                id="location"
-                disabled={!isLocation2Enabled}
-              />
-            </div>
-            <div className="create-communiti__checkbox-container">
-              <input
-                type="checkbox"
-                id="in-person"
-                name="in-person"
-                value="in-person"
-                className="create-communiti__checkbox"
-                checked={selectedOption === "in-person"}
-                onChange={handleOptionChange}
-              />
-              <label
-                className="create-communiti__checkbox-label"
-                htmlFor="in-person"
-              >
-                In Person
-              </label>
-              <input
-                className={`create-communiti__input create-communiti__input--location ${
-                  isLocationEnabled ? "" : "disabled"
-                }`}
-                placeholder="Location"
-                type="text"
-                name="location"
-                id="location"
-                disabled={!isLocationEnabled}
-              />
-            </div>
-          </form>
-        </div>
-        <div className="create-communiti__container-right">
-          <img
-            className="create-communiti__image"
-            src={calendarImage}
-            alt="Calendar"
+        {currentStep === 1 && (
+          <CreateCommuniti1
+            communitiName={communitiName}
+            setCommunitiName={setCommunitiName}
+            selectedOption={selectedOption}
+            setSelectedOption={setSelectedOption}
+            location={location}
+            setLocation={setLocation}
           />
-        </div>
+        )}
+        {currentStep === 2 && (
+          <CreateCommuniti2
+            communitiDescription={communitiDescription}
+            setCommunitiDescription={setCommunitiDescription}
+          />
+        )}
+        {currentStep === 3 && (
+          <CreateCommuniti3 image={image} setImage={setImage} />
+        )}
       </div>
+      {currentStep <= 3 && (
+        <Button
+          buttonText={currentStep === 3 ? "Done" : "Next"}
+          className={`button create-communiti__button-next ${
+            (currentStep === 1 &&
+              (!communitiName || (selectedOption === "hybrid" && !location))) ||
+            (currentStep === 2 && !communitiDescription) ||
+            (currentStep === 3 && !image)
+              ? "button__not-active"
+              : "button__active"
+          }`}
+          onClick={handleNext}
+        />
+      )}
     </div>
   );
 }

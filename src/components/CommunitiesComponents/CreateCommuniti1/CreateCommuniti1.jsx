@@ -1,10 +1,16 @@
-import "./CreateCommunitiPage1.scss";
+// CreateCommuniti1.jsx
+import React, { useState } from "react";
+import "./CreateCommuniti1.scss";
 import calendarImage from "../../../assets/images/calendar.svg";
-import backArrow from "../../../assets/images/back.svg";
-import { useState } from "react";
 
-function CreateCommuniti1() {
-  const [selectedOption, setSelectedOption] = useState("");
+function CreateCommuniti1({
+  communitiName,
+  setCommunitiName,
+  selectedOption,
+  setSelectedOption,
+  location,
+  setLocation,
+}) {
   const [isLocationEnabled, setLocationEnabled] = useState(false);
   const [isLocation2Enabled, setLocation2Enabled] = useState(false);
 
@@ -15,111 +21,111 @@ function CreateCommuniti1() {
   };
 
   return (
-    <div className="create-communiti1">
-      <button className="create-communiti1__button">
-        <img
-          className="create-communiti1__image create-communiti1__image--back-arrow"
-          src={backArrow}
-          alt="backArrow"
-        />
-      </button>
-      <div className="create-communiti1__container">
-        <div className="create-communiti1__container-left">
-          <h1 className="create-communiti1__heading">
-            Welcome to your Communiti!
-          </h1>
-          <form className="create-communiti1__form">
-            <label className="create-communiti1__label" for="communitiName">
-              What would you like to name it?
-            </label>
-            <input
-              className="create-communiti__input1"
-              placeholder="Communiti Name"
-              type="text"
-              name="communitiName"
-              id="communitiName"
-            />
-            <p className="create-communiti1__description">
-              Where is the Communiti?
-            </p>
+    <div className="create-communiti1__container">
+      <div className="create-communiti1__container-left">
+        <h1 className="create-communiti1__container-heading">
+          Welcome to your Communiti!
+        </h1>
+        <form className="create-communiti1__container-form">
+          <label
+            className="create-communiti1__container-label"
+            htmlFor="communitiName"
+          >
+            What would you like to name it?
+          </label>
+          <input
+            className="create-communiti1__container-input"
+            placeholder="Communiti Name"
+            type="text"
+            name="communitiName"
+            id="communitiName"
+            value={communitiName}
+            onChange={(e) => setCommunitiName(e.target.value)}
+          />
+          <p className="create-communiti1__container-description">
+            Where is the Communiti?
+          </p>
+          <input
+            type="checkbox"
+            id="virtual"
+            name="virtual"
+            value="virtual"
+            className="create-communiti1__container-checkbox"
+            checked={selectedOption === "virtual"}
+            onChange={handleOptionChange}
+          />
+          <label
+            className="create-communiti1__container-checkbox-label"
+            htmlFor="virtual"
+          >
+            Virtual
+          </label>
+          <div className="create-communiti1__container-checkbox-container">
             <input
               type="checkbox"
-              id="virtual"
-              name="virtual"
-              value="virtual"
-              className="create-communiti1__checkbox"
-              checked={selectedOption === "virtual"}
+              id="hybrid"
+              name="hybrid"
+              value="hybrid"
+              className="create-communiti1__container-checkbox"
+              checked={selectedOption === "hybrid"}
               onChange={handleOptionChange}
             />
             <label
-              className="create-communiti1__checkbox-label"
-              htmlfor="virtual"
+              className="create-communiti1__container-checkbox-label"
+              htmlFor="hybrid"
             >
-              Virtual
+              Hybrid
             </label>
-            <div className="create-communiti1__checkbox-container">
-              <input
-                type="checkbox"
-                id="hybrid"
-                name="hybrid"
-                value="hybrid"
-                className="create-communiti1__checkbox"
-                checked={selectedOption === "hybrid"}
-                onChange={handleOptionChange}
-              />
-              <label
-                className="create-communiti1__checkbox-label"
-                htmlFor="hybrid"
-              >
-                Hybrid
-              </label>
-              <input
-                className={`create-communiti1__input create-communiti1__input--location ${
-                  isLocation2Enabled ? "" : "disabled"
-                }`}
-                placeholder="Location"
-                type="text"
-                name="location"
-                id="location"
-                disabled={!isLocation2Enabled}
-              />
-            </div>
-            <div className="create-communiti1__checkbox-container">
-              <input
-                type="checkbox"
-                id="in-person"
-                name="in-person"
-                value="in-person"
-                className="create-communiti1__checkbox"
-                checked={selectedOption === "in-person"}
-                onChange={handleOptionChange}
-              />
-              <label
-                className="create-communiti1__checkbox-label"
-                htmlFor="in-person"
-              >
-                In Person
-              </label>
-              <input
-                className={`create-communiti1__input create-communiti1__input--location ${
-                  isLocationEnabled ? "" : "disabled"
-                }`}
-                placeholder="Location"
-                type="text"
-                name="location"
-                id="location"
-                disabled={!isLocationEnabled}
-              />
-            </div>
-          </form>
-        </div>
-        <div className="create-communiti1__container-right">
-          <img
-            className="create-communiti1__image"
-            src={calendarImage}
-            alt="Calendar"
-          />
-        </div>
+            <input
+              className={`create-communiti1__container-input create-communiti1__container-input--location ${
+                isLocation2Enabled ? "" : "disabled"
+              }`}
+              placeholder="Location"
+              type="text"
+              name="location"
+              id="location"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              disabled={!isLocation2Enabled}
+            />
+          </div>
+          <div className="create-communiti1__container-checkbox-container">
+            <input
+              type="checkbox"
+              id="in-person"
+              name="in-person"
+              value="in-person"
+              className="create-communiti1__container-checkbox"
+              checked={selectedOption === "in-person"}
+              onChange={handleOptionChange}
+            />
+            <label
+              className="create-communiti1__container-checkbox-label"
+              htmlFor="in-person"
+            >
+              In Person
+            </label>
+            <input
+              className={`create-communiti1__container-input create-communiti1__container-input--location ${
+                isLocationEnabled ? "" : "disabled"
+              }`}
+              placeholder="Location"
+              type="text"
+              name="location"
+              id="location"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              disabled={!isLocationEnabled}
+            />
+          </div>
+        </form>
+      </div>
+      <div className="create-communiti1__container-right">
+        <img
+          className="create-communiti1__container-image"
+          src={calendarImage}
+          alt="Calendar"
+        />
       </div>
     </div>
   );

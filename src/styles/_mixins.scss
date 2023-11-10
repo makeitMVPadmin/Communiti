@@ -13,8 +13,26 @@
   }
 }
 
+@mixin Tablet {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin Laptop {
+  @media screen and (min-width: 1024px) {
+    @content;
+  }
+}
+
 @mixin Desktop {
   @media screen and (min-width: 1440px) {
+    @content;
+  }
+}
+
+@mixin FullSizeDesktop {
+  @media screen and (min-width: 1920px) {
     @content;
   }
 }
@@ -28,10 +46,10 @@
 // Text
 @mixin heading {
   @include laptop {
-    font-size: 36px;
+    font-size: 3.7vw;
   }
   @include Desktop {
-    font-size: 3.625rem;
+    font-size: 4vw;
   }
 
   @include Four-K {
