@@ -8,7 +8,7 @@ import backArrow from "../../../assets/images/back.svg";
 import Button from "../../../components/Button/Button";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage, db } from "../../../firebase/FirebaseConfig";
+import { storage, db } from "../../../Firebase/firebaseConfig";
 
 function CreateCommunitiPage() {
   const [currentStep, setCurrentStep] = useState(1);
