@@ -25,6 +25,10 @@
     @include heading;
     font-family: Corben;
     margin: 0rem 0 3rem 0;
+
+    @include Desktop {
+      margin: 0rem 0 2rem 0;
+    }
   }
 
   &-form {
@@ -37,23 +41,25 @@
     font-size: 2.65vw;
     line-height: 115.645%; /* 34.694px */
     @include Desktop {
-      font-size: 1.9vw;
+      font-size: 1.5vw;
     }
   }
   &-input {
     margin: 1rem 0;
     display: flex;
-    width: 76%;
-    padding: 8px;
+    width: 70%;
+    padding: 0.5rem;
     align-items: center;
-    gap: 8px;
     border-radius: 8px;
     border: 3px solid #000;
-
     color: $MVP-black;
     font-family: Gilroy;
     font-size: 1.5625rem;
     line-height: 115.645%;
+
+    @include Desktop {
+      font-size: 1.2vw;
+    }
 
     &::placeholder {
       color: $MVP-Gray;
@@ -77,7 +83,8 @@
     font-size: 2.65vw;
     line-height: 115.645%;
     @include Desktop {
-      font-size: 1.9vw;
+      margin: 1rem 0 1rem 0;
+      font-size: 1.5vw;
     }
   }
 
@@ -91,7 +98,7 @@
       font-size: 2.4vw;
       line-height: 115.645%;
       @include Desktop {
-        font-size: 1.9vw;
+        font-size: 1.5vw;
       }
     }
 
@@ -106,7 +113,7 @@
       width: 90%;
     }
     @include Desktop {
-      width: 90%;
+      width: 75%;
     }
     @include Four-K {
       width: 80%;

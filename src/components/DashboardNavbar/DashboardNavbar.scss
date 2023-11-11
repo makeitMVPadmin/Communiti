@@ -15,7 +15,8 @@
   border-bottom: 1px solid #000;
 
   @include Desktop {
-    padding: 0px 2.5rem;
+    padding: 2rem 1.5rem;
+    height: 10%;
   }
 
   &__left {
@@ -32,7 +33,7 @@
     width: 24vw;
 
     @include Desktop {
-      width: 21vw;
+      width: 16vw;
     }
   }
 
@@ -86,7 +87,7 @@
   &__img {
     width: 2.3vw;
     @include Desktop {
-      width: 2.3vw;
+      width: 1.5vw;
     }
 
     &--profile {

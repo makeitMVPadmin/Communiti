@@ -9,8 +9,10 @@ import Button from "../../../components/Button/Button";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage, db } from "../../../firebase/FirebaseConfig";
+import { useNavigate } from "react-router-dom";
 
 function CreateCommunitiPage() {
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const [communitiName, setCommunitiName] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
@@ -29,20 +31,14 @@ function CreateCommunitiPage() {
       setCurrentStep(currentStep + 1);
     } else if (currentStep === 3 && image) {
       try {
-        // Update the filename generation
         const imageFilename = image.name || `image_${Date.now()}`;
-
-        // Upload the image to Firebase Storage
         const storageRef = ref(storage, `community_images/${imageFilename}`);
         await uploadBytes(storageRef, image);
-
-        // Get the download URL of the uploaded image
         const imageUrl = await getDownloadURL(storageRef);
 
-        // Create a new document in the "Communities" collection with the image URL
         const docRef = await addDoc(collection(db, "Communities"), {
           Name: communitiName,
-          CreatedBy: "ChatGPT", // Replace with the actual user once user authentication is implemented
+          CreatedBy: "ChatGPT",
           Created: serverTimestamp(),
           Description: communitiDescription,
           Location:
@@ -50,15 +46,17 @@ function CreateCommunitiPage() {
               ? `Virtual || ${location}`
               : selectedOption,
           CommunityImage: imageUrl,
-          // Add any additional fields you want to save
         });
 
         console.log("Document written with ID: ", docRef.id);
+
+        console.log("Communiti creation complete!");
+
+        // Navigate to the "/communities" route
+        navigate("/communities");
       } catch (error) {
         console.error("Error adding document: ", error);
       }
-
-      console.log("Communiti creation complete!");
     }
   };
 
