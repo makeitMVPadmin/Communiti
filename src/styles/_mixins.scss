@@ -43,9 +43,15 @@
   }
 }
 
+@mixin Designers {
+  @media screen and (width: 1440px) {
+    @content;
+  }
+}
+
 // Text
 @mixin heading {
-  @include laptop {
+  @include Laptop {
     font-size: 3.7vw;
   }
   @include Desktop {
@@ -62,7 +68,7 @@
   line-height: 114%;
   font-family: Corben;
 
-  @include laptop {
+  @include Laptop {
     font-size: 3vw;
   }
 
@@ -76,7 +82,7 @@
   line-height: 114%;
   font-family: Gilroy;
 
-  @include laptop {
+  @include Laptop {
     font-size: 3vw;
   }
 
@@ -90,7 +96,7 @@
   line-height: 115%;
   font-family: Gilroy;
 
-  @include laptop {
+  @include Laptop {
     font-size: 2.5vw;
   }
 
@@ -104,7 +110,7 @@
   line-height: 115%;
   font-family: Corben;
 
-  @include laptop {
+  @include Laptop {
     font-size: 2.5vw;
   }
 
@@ -118,7 +124,7 @@
   line-height: 115%;
   font-family: Gilroy;
 
-  @include laptop {
+  @include Laptop {
     font-size: 2.5vw;
   }
 
@@ -132,7 +138,7 @@
   line-height: 115%;
   font-family: Gilroy;
 
-  @include laptop {
+  @include Laptop {
     font-size: 2.5vw;
   }
 
@@ -163,7 +169,7 @@
     margin: 0.5rem 0 1rem 0;
   }
 
-  @include laptop {
+  @include Laptop {
     width: 50%;
     font-size: 1.4vw;
     padding: 1vw 1vw;

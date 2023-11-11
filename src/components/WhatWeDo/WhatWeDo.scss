@@ -8,7 +8,7 @@
   font-family: Gilroy;
   padding: 1rem;
 
-  @include laptop {
+  @include Laptop {
     display: flex;
     align-items: center;
     padding: 2rem;
@@ -19,7 +19,7 @@
   }
 
   &__left {
-    @include laptop {
+    @include Laptop {
       width: 60%;
     }
 
@@ -27,7 +27,7 @@
       &-icon {
         width: 25%;
 
-        @include laptop {
+        @include Laptop {
           width: 15%;
         }
       }
@@ -47,7 +47,7 @@
   &__right-image {
     width: 100%;
 
-    @include laptop {
+    @include Laptop {
       width: 40%;
       height: 20%;
     }

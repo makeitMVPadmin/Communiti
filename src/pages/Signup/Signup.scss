@@ -8,7 +8,7 @@
   padding: 3vw 5vw;
   align-items: center;
 
-  @include laptop {
+  @include Laptop {
     flex-direction: row-reverse;
     justify-content: center;
     align-items: unset;
@@ -18,7 +18,7 @@
     width: 50%;
     margin: 1rem 0;
 
-    @include laptop {
+    @include Laptop {
       margin: 1rem;
     }
   }
@@ -31,7 +31,7 @@
     width: 100%;
     height: auto;
 
-    @include laptop {
+    @include Laptop {
       width: 60%;
       height: 100%;
       justify-content: space-evenly;
@@ -44,7 +44,7 @@
     margin: 1rem 0;
     text-align: center;
 
-    @include laptop {
+    @include Laptop {
       margin-bottom: 2rem;
       font-size: 2.5rem;
     }
@@ -52,7 +52,7 @@
 
   &__writing {
     margin: 0.5rem;
-    @include laptop {
+    @include Laptop {
       margin: 1rem;
       font-size: 2vw;
     }
@@ -63,7 +63,7 @@
     justify-content: space-evenly;
     width: 100%;
 
-    @include laptop {
+    @include Laptop {
       justify-content: center;
     }
 
@@ -79,7 +79,7 @@
     &-icon {
       width: 75%;
 
-      @include laptop {
+      @include Laptop {
         width: 50%;
       }
     }
@@ -97,7 +97,7 @@
   }
 
   &__button {
-    @include laptop {
+    @include Laptop {
       width: 50%;
       margin: 0 0 0.5rem 0;
     }

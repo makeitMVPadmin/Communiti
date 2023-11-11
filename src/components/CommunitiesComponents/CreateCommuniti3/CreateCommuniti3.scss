@@ -129,7 +129,7 @@
   }
 
   &-image {
-    @include laptop {
+    @include Laptop {
       width: 80%;
     }
     @include Desktop {

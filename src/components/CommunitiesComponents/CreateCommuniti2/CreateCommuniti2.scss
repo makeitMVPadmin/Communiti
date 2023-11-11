@@ -35,7 +35,7 @@
   &-form {
     width: 100%;
 
-    @include laptop {
+    @include Laptop {
       height: 70%;
     }
     height: 75%;
@@ -93,7 +93,7 @@
   }
 
   &-image {
-    @include laptop {
+    @include Laptop {
       width: 60%;
     }
 

@@ -6,7 +6,14 @@ import CreateCommuniti2 from "../../../components/CommunitiesComponents/CreateCo
 import CreateCommuniti3 from "../../../components/CommunitiesComponents/CreateCommuniti3/CreateCommuniti3";
 import backArrow from "../../../assets/images/back.svg";
 import Button from "../../../components/Button/Button";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  updateDoc,
+  doc,
+  arrayUnion,
+} from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage, db } from "../../../firebase/FirebaseConfig";
 import { useNavigate } from "react-router-dom";
@@ -36,9 +43,12 @@ function CreateCommunitiPage() {
         await uploadBytes(storageRef, image);
         const imageUrl = await getDownloadURL(storageRef);
 
+        // Use the actual user ID when user authentication is implemented
+        const createdBy = "YFVOpHLSMYVDyfYEYYoe";
+
         const docRef = await addDoc(collection(db, "Communities"), {
           Name: communitiName,
-          CreatedBy: "ChatGPT",
+          CreatedBy: createdBy,
           Created: serverTimestamp(),
           Description: communitiDescription,
           Location:
@@ -49,6 +59,12 @@ function CreateCommunitiPage() {
         });
 
         console.log("Document written with ID: ", docRef.id);
+
+        // Update user's Communities-Manage field array
+        const userDocRef = doc(collection(db, "Users"), createdBy);
+        await updateDoc(userDocRef, {
+          "Communities-Manage": arrayUnion(docRef.id),
+        });
 
         console.log("Communiti creation complete!");
 

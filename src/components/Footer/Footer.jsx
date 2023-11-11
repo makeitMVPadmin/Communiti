@@ -1,8 +1,8 @@
 import "./Footer.scss";
 import { Link } from "react-router-dom";
-import instagram from "../../assets/logos/instagram.svg";
-import twitter from "../../assets/logos/twitter.svg";
-import linkedin from "../../assets/logos/linkedin.svg";
+import instagram from "../../assets/logos/instagramIconBlack.svg";
+import xIcon from "../../assets/logos/xIconBlack.svg";
+import linkedin from "../../assets/logos/linkedinIconBlack.svg";
 import communiti2 from "../../assets/logos/communiti2.svg";
 
 function Footer() {
@@ -15,7 +15,7 @@ function Footer() {
           <img src={instagram} alt="instagram" />
         </Link>
         <Link>
-          <img src={twitter} alt="twitter" />
+          <img src={xIcon} alt="X" />
         </Link>
         <Link>
           <img src={linkedin} alt="linkedin" />

@@ -16,7 +16,7 @@
     background-color: $MVP-Yellow; /* Add yellow background color */
   }
 
-  @include laptop {
+  @include Laptop {
     padding: 0.5vw 1vw;
     font-size: 1.6vw;
   }
@@ -27,7 +27,7 @@
     font-size: 5vw;
     width: 100%;
     padding: 3vw 3vw;
-    @include laptop {
+    @include Laptop {
       font-size: 1.4vw;
       padding: 1vw 0vw;
     }
@@ -39,7 +39,7 @@
     font-size: 5vw;
     width: 100%;
     padding: 3vw 3vw;
-    @include laptop {
+    @include Laptop {
       font-size: 1.4vw;
       padding: 1vw 0vw;
     }
@@ -52,7 +52,7 @@
     justify-content: center;
     align-items: center;
 
-    @include laptop {
+    @include Laptop {
       width: 7rem;
       height: 2.5rem;
       padding: 0.5rem 1rem;
@@ -78,7 +78,7 @@
     justify-content: center;
     align-items: center;
 
-    @include laptop {
+    @include Laptop {
       width: 7rem;
       height: 2.5rem;
       padding: 0.5rem 1rem;

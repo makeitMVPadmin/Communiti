@@ -18,7 +18,7 @@
     display: flex;
     align-items: center;
 
-    @include laptop {
+    @include Laptop {
       justify-content: flex-end;
     }
   }
@@ -30,7 +30,7 @@
     font-size: 1.25rem;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
-    @include laptop {
+    @include Laptop {
       font-size: 2.6vw;
     }
 
@@ -42,7 +42,7 @@
       &--desktop {
         display: none;
 
-        @include laptop {
+        @include Laptop {
           display: unset;
         }
       }
@@ -55,7 +55,7 @@
   &__img {
     width: 13vw;
 
-    @include laptop {
+    @include Laptop {
       width: 90%;
     }
   }
