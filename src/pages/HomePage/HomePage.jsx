@@ -2,11 +2,19 @@ import "./HomePage.scss";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import NavbarAlt from "../../components/NavbarAlt/NavbarAlt";
+<<<<<<< HEAD
 import google from "../../assets/logos/google-black.svg";
 import facebook from "../../assets/logos/facebook-black.svg";
 import apple from "../../assets/logos/apple-black.svg";
 import homeImg from "../../assets/images/homeIcon.svg";
 import { handleGoogleSignIn } from "../../Firebase/firebaseAuth";
+=======
+import google from "../../assets/logos/google.svg";
+import linkedin from "../../assets/logos/linkedin.svg";
+import facebook from "../../assets/logos/facebook.svg";
+import communitiHero from "../../assets//images/communitiHero.svg";
+import { handleGoogleSignIn } from "../../firebase/FirebaseAuth";
+>>>>>>> develop
 
 function HomePage() {
   const navigate = useNavigate();
@@ -25,7 +33,11 @@ function HomePage() {
     <>
       <NavbarAlt />
       <main className="homepage">
-        <img src={homeImg} alt="Home Icon" className="homepage__image"></img>
+        <img
+          src={communitiHero}
+          alt="Home Icon"
+          className="homepage__image"
+        ></img>
         <section className="homepage__content">
           <h1 className="homepage__heading">Welcome to Communiti!</h1>
           <div className="homepage__buttons">
@@ -47,21 +59,21 @@ function HomePage() {
             >
               <img
                 src={google}
-                alt="logo for Google"
+                alt="Google Sign On"
+                className="homepage__sso-icon"
+              ></img>
+            </button>
+            <button className="homepage__sso-button homepage__sso-button--linkedin">
+              <img
+                src={linkedin}
+                alt="linkedin Sign On"
                 className="homepage__sso-icon"
               ></img>
             </button>
             <button className="homepage__sso-button homepage__sso-button--facebook">
               <img
                 src={facebook}
-                alt="logo for Facebook"
-                className="homepage__sso-icon"
-              ></img>
-            </button>
-            <button className="homepage__sso-button homepage__sso-button--apple">
-              <img
-                src={apple}
-                alt="logo for Apple"
+                alt="facebook Sign On"
                 className="homepage__sso-icon"
               ></img>
             </button>

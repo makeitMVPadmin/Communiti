@@ -1,0 +1,46 @@
+@use "../../../styles/mixins" as *;
+@use "../../../styles/variables" as *;
+@use "../../../styles/typography" as *;
+
+.create-communiti {
+  background-color: $MVP-Light-Blue;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Gilroy;
+
+  &__button {
+    &-back {
+      position: absolute;
+      top: 22vh;
+      left: 4vw;
+      z-index: 1;
+      border: none;
+      background: none;
+    }
+
+    &-next {
+      @include laptop {
+        position: absolute;
+        bottom: 17vh;
+        right: 13vw;
+        z-index: 1;
+      }
+    }
+  }
+  &__back-arrow {
+    @include Desktop {
+      width: 4vw;
+    }
+  }
+
+  &__container {
+    background: $MVP-White;
+    width: 94%;
+    height: 80%;
+    border-radius: 1rem;
+    border: 0.3125rem solid #000;
+    padding: 3rem 7rem;
+  }
+}
