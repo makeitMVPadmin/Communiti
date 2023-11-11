@@ -55,7 +55,7 @@ function LogIn() {
           className="signuppage__image"
         ></img>
         <section className="loginpage__content">
-          <h1 className="loginpage__heading">Login in to your Communiti!</h1>
+          <h1 className="loginpage__heading">Log in to your Communiti!</h1>
           <form
             className="loginpage__form"
             onSubmit={handleSignInButtonClicked}

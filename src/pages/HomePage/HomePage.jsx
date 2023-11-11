@@ -2,19 +2,11 @@ import "./HomePage.scss";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import NavbarAlt from "../../components/NavbarAlt/NavbarAlt";
-<<<<<<< HEAD
-import google from "../../assets/logos/google-black.svg";
-import facebook from "../../assets/logos/facebook-black.svg";
-import apple from "../../assets/logos/apple-black.svg";
-import homeImg from "../../assets/images/homeIcon.svg";
-import { handleGoogleSignIn } from "../../Firebase/firebaseAuth";
-=======
 import google from "../../assets/logos/google.svg";
 import linkedin from "../../assets/logos/linkedin.svg";
 import facebook from "../../assets/logos/facebook.svg";
 import communitiHero from "../../assets//images/communitiHero.svg";
 import { handleGoogleSignIn } from "../../firebase/FirebaseAuth";
->>>>>>> develop
 
 function HomePage() {
   const navigate = useNavigate();
