@@ -5,7 +5,8 @@ import Button from "../../components/Button/Button";
 import NavbarAlt from "../../components/NavbarAlt/NavbarAlt";
 import homeImg from "../../assets/images/homeIcon.svg";
 import google from "../../assets/logos/google-black.svg";
-import { handleSignUp, handleGoogleSignIn } from "../../firebase/FirebaseAuth";
+import { handleSignUp, handleGoogleSignIn } from "../../Firebase/firebaseAuth";
+
 
 function Signup() {
   const navigate = useNavigate();

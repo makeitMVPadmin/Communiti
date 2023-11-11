@@ -5,7 +5,7 @@ import Button from "../../components/Button/Button";
 import NavbarAlt from "../../components/NavbarAlt/NavbarAlt";
 import homeImg from "../../assets/images/homeIcon.svg";
 import google from "../../assets/logos/google-black.svg";
-import { handleSignIn, handleGoogleSignIn } from "../../firebase/FirebaseAuth";
+import { handleSignIn, handleGoogleSignIn } from "../../Firebase/firebaseAuth";
 
 function LogIn() {
   const navigate = useNavigate();
@@ -49,7 +49,7 @@ function LogIn() {
         <img src={homeImg} alt="Home Icon" className="loginpage__image"></img>
         <section className="loginpage__content">
           <h1 className="loginpage__heading">
-            Login in to your <br /> Communiti!
+            Log in to your <br /> Communiti!
           </h1>
           <form
             className="loginpage__form"

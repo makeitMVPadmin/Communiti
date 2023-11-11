@@ -6,7 +6,7 @@ import google from "../../assets/logos/google-black.svg";
 import facebook from "../../assets/logos/facebook-black.svg";
 import apple from "../../assets/logos/apple-black.svg";
 import homeImg from "../../assets/images/homeIcon.svg";
-import { handleGoogleSignIn } from "../../firebase/FirebaseAuth";
+import { handleGoogleSignIn } from "../../Firebase/firebaseAuth";
 
 function HomePage() {
   const navigate = useNavigate();
