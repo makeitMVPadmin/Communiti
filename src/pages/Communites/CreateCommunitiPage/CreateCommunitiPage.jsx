@@ -81,7 +81,7 @@ function CreateCommunitiPage() {
   };
 
   return (
-    <>
+    <div className="create-communiti-container">
       <DashboardNavbar />
       <div className="create-communiti">
         <button className="create-communiti__button-back" onClick={handleBack}>
@@ -128,7 +128,7 @@ function CreateCommunitiPage() {
           />
         )}
       </div>
-    </>
+    </div>
   );
 }
 

@@ -51,15 +51,48 @@
 
 // Text
 @mixin heading {
+  font-family: Corben;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+  color: $MVP-black;
   @include Laptop {
-    font-size: 3.7vw;
+    font-size: 4vw;
   }
-  @include Desktop {
-    font-size: 3vw;
+  @include Designers {
+    font-size: 3.625rem; // 58px
+  }
+}
+
+@mixin SubHeader {
+  color: $MVP-black;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 115.645%;
+
+  @include Laptop {
+    font-size: 4vw;
+    font-size: 2.1vw;
   }
 
-  @include Four-K {
-    font-size: 4.625rem;
+  @include Designers {
+    font-size: 1.875rem; //30px
+  }
+}
+
+@mixin Body {
+  color: $MVP-black;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 115.645%; /* 28.911px */
+
+  @include Laptop {
+    font-size: 1.7vw;
+  }
+  @include Designers {
+    font-size: 1.5625rem; //25px
   }
 }
 
@@ -72,7 +105,7 @@
     font-size: 3vw;
   }
 
-  @include Desktop {
+  @include Designers {
     font-size: 2vw;
   }
 }

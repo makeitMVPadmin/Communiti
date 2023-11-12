@@ -31,7 +31,7 @@ function CreateCommuniti1({
             className="create-communiti1__container-label"
             htmlFor="communitiName"
           >
-            What would you like to name it?
+            Communiti Name
           </label>
           <input
             className="create-communiti1__container-input"
