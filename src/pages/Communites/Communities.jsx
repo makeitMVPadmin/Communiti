@@ -127,6 +127,7 @@ function Communities() {
                             <img
                               src={rightArrowIcon}
                               alt="right arrow button"
+                              className="communities__card-arrow-button-img"
                             />
                           </button>
                         </div>
@@ -176,6 +177,7 @@ function Communities() {
                             <img
                               src={rightArrowIcon}
                               alt="right arrow button"
+                              className="communities__card-arrow-button-img"
                             />
                           </button>
                         </div>
