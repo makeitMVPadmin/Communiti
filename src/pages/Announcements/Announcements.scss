@@ -14,13 +14,20 @@ $mockup-blue: #C8E7FB;
 
     &__hero {
         width: 100%;
-        height: 15vh;
+        height: 20vh;
+        
+        padding: .5vw 1vw;
 
         background-color: $mockup-blue;
 
         &-writing {
             display: flex;
+            justify-content: space-between;
             align-items: center;
+
+            width: 13%;
+
+            font-size: 1.2rem;
 
             &-icon {
                 width: 2vw;
@@ -39,6 +46,8 @@ $mockup-blue: #C8E7FB;
 
         background-color: transparent;
 
+        width: 85%;
+
         position: relative;
         top: -5vw;
 
@@ -47,8 +56,9 @@ $mockup-blue: #C8E7FB;
             justify-content: space-between;
             align-items: center;
 
-            width: 90%;
-            border: 2px solid orange;
+            width: 80%;
+            padding-right: 2vw;
+            // border: 2px solid orange;
         }
 
         &-writing {
@@ -59,6 +69,8 @@ $mockup-blue: #C8E7FB;
 
             width: 80%;
 
+            padding: .4vw .6vw;
+
             &-top {
                 font-size: 4rem;
             }
@@ -67,26 +79,28 @@ $mockup-blue: #C8E7FB;
                 display: flex;
                 justify-content: space-between;
 
-                border: 2px solid blue;
+                // border: 2px solid blue;
+                padding-right: 1vw;
 
                 &-left {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
 
-                    width: 40%;
+                    width: 50%;
 
-                    border: 2px solid pink;
+                    // border: 2px solid pink;
                 }
 
                 &-right {
-                    border: 2px solid purple;
+                    // border: 2px solid purple;
+                    font-size: 1.3rem;
 
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
 
-                    width: 15%;
+                    width: 20%;
                 }
             }
         }
@@ -101,13 +115,34 @@ $mockup-blue: #C8E7FB;
             width: fit-content;
             height: fit-content;
 
+            padding: .2vw .4vw;
+            border-radius: 8px;
+
             &-icon {
                 width: 1vw;
                 height: 1vw;
+
+                margin-right: .7vw;
             }
 
             &-writing {
                 width: fit-content;
+                font-size: 1.5rem;
+            }
+        }
+
+        &-description {
+            // border: 2px solid orange;
+
+            width: 85%;
+
+            &-heading {
+                font-size: 1.7rem;
+
+                margin: 1vw 0vw;
+            }
+
+            &-description {
                 font-size: 1.5rem;
             }
         }
