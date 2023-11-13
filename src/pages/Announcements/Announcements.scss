@@ -38,7 +38,7 @@ $mockup-light-blue: #E1F0FB;
     }
 
     &__card {
-        border: 2px solid red;
+        // border: 2px solid red;
 
         display: flex;
         flex-direction: column;
@@ -70,7 +70,7 @@ $mockup-light-blue: #E1F0FB;
 
             width: 80%;
 
-            padding: .4vw .6vw;
+            padding: 1vw 1.5vw;
 
             &-top {
                 font-size: 4rem;
@@ -88,14 +88,14 @@ $mockup-light-blue: #E1F0FB;
                     justify-content: space-between;
                     align-items: center;
 
-                    width: 50%;
+                    width: 36%;
 
                     // border: 2px solid pink;
                 }
 
                 &-right {
                     // border: 2px solid purple;
-                    font-size: 1.3rem;
+                    font-size: 1.5rem;
 
                     display: flex;
                     justify-content: space-between;
@@ -137,14 +137,19 @@ $mockup-light-blue: #E1F0FB;
 
             width: 85%;
 
+            margin: 1vw 0vw;
+
             &-heading {
-                font-size: 1.7rem;
+                font-size: 2rem;
 
                 margin: 1vw 0vw;
             }
 
             &-description {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
+                line-height: 2vw;
+
+                width: 90%;
             }
         }
     }

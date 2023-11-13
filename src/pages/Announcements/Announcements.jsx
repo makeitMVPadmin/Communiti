@@ -9,6 +9,7 @@ import members from '../../assets/images/members.svg';
 import { useState } from 'react';
 import AnnouncementsTab from '../../components/AnnouncementsTab/AnnouncementsTab';
 import EventsTab from '../../components/EventsTab/EventsTab';
+import MembersTab from '../../components/MembersTab/MembersTab';
 
 function Announcements() {
     const [showAnnouncements, setShowAnnouncements] = useState(true);
@@ -49,6 +50,7 @@ function Announcements() {
 
     const [announcements, setAnnouncements] = useState(placeholderGroup.announcements);
     const [events, setEvents] = useState(placeholderGroup.events);
+    const [groupMembers, setGroupMembers] = useState(placeholderGroup.members);
 
     function handleTabChoice(choice) {
         switch (choice) {
@@ -141,6 +143,7 @@ function Announcements() {
 
                         {showAnnouncements && <AnnouncementsTab announcements={announcements} /> }
                         {showEvents && <EventsTab events={events} />}
+                        {showMembers && <MembersTab groupMembers={groupMembers} />}
 
                     </section>
                 </section>
