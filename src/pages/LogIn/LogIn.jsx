@@ -8,7 +8,7 @@ import communitiHero from "../../assets//images/communitiHero.svg";
 import google from "../../assets/logos/google.svg";
 import linkedin from "../../assets/logos/linkedin.svg";
 import facebook from "../../assets/logos/facebook.svg";
-import { handleSignIn, handleGoogleSignIn } from "../../firebase/FirebaseAuth";
+import { handleSignIn, handleGoogleSignIn } from "../../Firebase/firebaseAuth";
 
 function LogIn() {
   const navigate = useNavigate();
@@ -55,7 +55,7 @@ function LogIn() {
           className="signuppage__image"
         ></img>
         <section className="loginpage__content">
-          <h1 className="loginpage__heading">Login in to your Communiti!</h1>
+          <h1 className="loginpage__heading">Log in to your Communiti!</h1>
           <form
             className="loginpage__form"
             onSubmit={handleSignInButtonClicked}

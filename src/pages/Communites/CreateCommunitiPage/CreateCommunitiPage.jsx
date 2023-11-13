@@ -14,7 +14,7 @@ import {
   arrayUnion,
 } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage, db } from "../../../firebase/FirebaseConfig";
+import { storage, db } from "../../../Firebase/firebaseConfig";
 import { useNavigate } from "react-router-dom";
 
 function CreateCommunitiPage() {
