@@ -7,6 +7,7 @@ import location from '../../assets/images/location.svg';
 import members from '../../assets/images/members.svg';
 
 import { useState } from 'react';
+import AnnouncementsTab from '../../components/AnnouncementsTab/AnnouncementsTab';
 
 function Announcements() {
     const [showAnnouncements, setShowAnnouncements] = useState(true);
@@ -20,11 +21,33 @@ function Announcements() {
         numMembers: 25,
         description: "Join our Product Enthusiasts Club for exclusive insights, discounts, and community. Stay ahead with the latest trends and meet fellow product aficionados. Your gateway to product innovation!",
         announcements: [],
+        events: [],
         thumb: "somethinghere"
     }
 
-    function handleTabChoice(choice) {
+    const [announcements, setAnnouncements] = useState(placeholderGroup.announcements);
+    const [events, setEvents] = useState(placeholderGroup.events);
 
+    function handleTabChoice(choice) {
+        switch (choice) {
+            case 'A':
+                setShowAnnouncements(true);
+                setShowEvents(false);
+                setShowMembers(false);
+                break;
+            case 'E':
+                setShowAnnouncements(false);
+                setShowEvents(true);
+                setShowMembers(false);
+                break;
+            case 'M':
+                setShowAnnouncements(false);
+                setShowEvents(false);
+                setShowMembers(true);
+                break;
+            default:
+                break;
+        }
     }
 
     return (
@@ -82,17 +105,20 @@ function Announcements() {
                     </section>
 
                     <section className='announcements-page__aem'>
-                        <div className='announcements-page__tabs'>
-                            <p onClick={ () => handleTabChoice('A') }>
+                        <div className='announcements-page__aem-tabs'>
+                            <p onClick={ () => handleTabChoice('A') } className={showAnnouncements ? "announcements-page__aem-tabs-tab announcements-page__aem-tabs-tab--active" : "announcements-page__aem-tabs-tab"}>
                                 Announcements
                             </p>
-                            <p>
+                            <p onClick={ () => handleTabChoice('E') } className={showEvents ? "announcements-page__aem-tabs-tab announcements-page__aem-tabs-tab--active" : "announcements-page__aem-tabs-tab"}>
                                 Events
                             </p>
-                            <p>
+                            <p onClick={ () => handleTabChoice('M') } className={showMembers ? "announcements-page__aem-tabs-tab announcements-page__aem-tabs-tab--active" : "announcements-page__aem-tabs-tab"}>
                                 Members
                             </p>
                         </div>
+
+                        {showAnnouncements && <AnnouncementsTab announcements={announcements} /> }
+                        {/* {showEvents && } */}
 
                     </section>
                 </section>
