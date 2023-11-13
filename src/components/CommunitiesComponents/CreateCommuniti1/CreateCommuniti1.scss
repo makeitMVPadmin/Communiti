@@ -25,7 +25,7 @@
   }
   &-left {
     display: flex;
-    width: 56%;
+    width: 60%;
     height: 100%;
     align-items: flex-start;
     justify-content: center;
@@ -79,6 +79,15 @@
     @include Laptop {
       margin: 3.3vw 0 1.1vw 0;
     }
+
+    &--alt {
+      @include Body;
+      @include Laptop {
+        color: rgba(30, 30, 30, 0.7);
+        margin: 1.1vw 0 1vw 0;
+        font-family: Gilroy;
+      }
+    }
   }
 
   &-checkbox {
@@ -106,5 +115,14 @@
   &-image {
     height: 100%;
     width: 100%;
+  }
+
+  &-bottom {
+    @include Laptop {
+      display: flex;
+      margin: 3vw 0;
+      align-items: center;
+      justify-content: space-between;
+    }
   }
 }
