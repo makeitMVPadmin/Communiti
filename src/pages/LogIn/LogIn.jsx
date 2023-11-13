@@ -8,7 +8,7 @@ import communitiHero from "../../assets//images/communitiHero.svg";
 import google from "../../assets/logos/google.svg";
 import linkedin from "../../assets/logos/linkedin.svg";
 import facebook from "../../assets/logos/facebook.svg";
-import { handleSignIn, handleGoogleSignIn } from "../../firebase/FirebaseAuth";
+import { handleSignIn, handleGoogleSignIn } from "../../Firebase/FirebaseAuth";
 
 function LogIn() {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ function LogIn() {
   const handleSignInButtonClicked = async () => {
     try {
       await handleSignIn(email, password);
-      // Sign-in was successful, you can redirect the user or perform any other actions here.
+      // Sign-in was successful
       navigate("/home");
     } catch (error) {
       // Handle the error or display an error message to the user.
@@ -37,8 +37,8 @@ function LogIn() {
   const handleGoogleButtonClicked = async () => {
     try {
       await handleGoogleSignIn();
-      // Google sign-in was successful, you can redirect the user or perform any other actions here.
-      navigate("/home");
+      // Google sign-in was successful
+      navigate("/dashboard");
     } catch (error) {
       // Handle the error or display an error message to the user.
       console.error("Google sign-in error:", error);
@@ -55,7 +55,7 @@ function LogIn() {
           className="signuppage__image"
         ></img>
         <section className="loginpage__content">
-          <h1 className="loginpage__heading">Login in to your Communiti!</h1>
+          <h1 className="loginpage__heading">Log in to your Communiti!</h1>
           <form
             className="loginpage__form"
             onSubmit={handleSignInButtonClicked}

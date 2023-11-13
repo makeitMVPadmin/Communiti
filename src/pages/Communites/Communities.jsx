@@ -7,7 +7,7 @@ import placeHolderIcon from "../../assets/images/PlaceHolderIcon.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../firebase/FirebaseConfig";
+import { db } from "../../Firebase/FirebaseConfig";
 
 function Communities() {
   const [userCommunitiesManage, setUserCommunitiesManage] = useState([]);

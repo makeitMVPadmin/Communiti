@@ -7,12 +7,17 @@ import communitiHero from "../../assets//images/communitiHero.svg";
 import google from "../../assets/logos/google.svg";
 import linkedin from "../../assets/logos/linkedin.svg";
 import facebook from "../../assets/logos/facebook.svg";
-import { handleSignUp, handleGoogleSignIn } from "../../firebase/FirebaseAuth";
+import { handleSignUp, handleGoogleSignIn } from "../../Firebase/FirebaseAuth";
 
 function Signup() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [fullName, setFullName] = useState("");
+
+  const handleFullNamechange = (event) => {
+    setFullName(event.target.value);
+  };
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -26,7 +31,7 @@ function Signup() {
     event.preventDefault();
 
     // Call the Firebase signup function with the email and password
-    handleSignUp(email, password)
+    handleSignUp(email, password, fullName)
       .then(() => {
         // Signup was successful, redirect
         navigate("/home");
@@ -41,7 +46,7 @@ function Signup() {
     try {
       await handleGoogleSignIn();
       // Google sign-in was successful, you can redirect the user or perform any other actions here.
-      navigate("/home");
+      navigate("/dashboard");
     } catch (error) {
       // Handle the error or display an error message to the user.
       console.error("Google sign-in error:", error);
@@ -66,6 +71,8 @@ function Signup() {
               type="text"
               name="name"
               id="name"
+              value={fullName}
+              onChange={handleFullNamechange}
             ></input>
             <input
               className="signuppage__input"
