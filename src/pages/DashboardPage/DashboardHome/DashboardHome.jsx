@@ -1,7 +1,6 @@
 import "./DashboardHome.scss"
 import clockIcon from "../../../assets/images/clockIcon.svg"
-import profilePic from "../../../assets/images/profilePic.svg"
-
+import PlaceHolderIcon from "../../../assets/images/PlaceHolderIcon.png"
 export default function DashboardHome () {
     return(
        <>
@@ -12,7 +11,7 @@ export default function DashboardHome () {
                 <div className="post-container">
                     <div className="icon-heading">
                         <div className="profile-image">
-                            <img src={profilePic} alt="user profile" />
+                            <img src={PlaceHolderIcon} alt="user profile" />
                         </div>
                         <div className="heading">
                             <div className="name"> Early Career Designers</div>

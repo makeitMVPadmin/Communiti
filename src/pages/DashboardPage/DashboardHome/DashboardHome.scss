@@ -51,12 +51,17 @@ body{
     }
     
     .profile-image {
-        min-width: 50px;
-        min-height: 50px;
+        width: 50px;
+        height: 50px;
         border-radius: 10px;
         border: 3px solid $MVP-black;
+        overflow: hidden;
         img {
-            object-fit: contain;
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            object-position: center;
+            border-radius: 10px;
         }
     }
     
