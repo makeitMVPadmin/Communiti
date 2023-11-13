@@ -7,9 +7,49 @@ import communitiesIcon from "../../assets/images/communitiesIcon.svg";
 import LogoIcon from "../../assets/logos/communiti2.svg";
 import profilePic from "../../assets/images/profilePic.svg";
 import DropDownArrow from "../../assets/images/drop-down-arrow.svg";
+
 import { NavLink, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+
+import { collection, doc, getDoc } from "firebase/firestore";
+import { db, auth } from "../../firebase/FirebaseConfig";
 
 function DashboardNavbar() {
+  const [profilePhoto, setProfilePhoto] = useState(profilePic); // Change the variable here
+
+  useEffect(() => {
+    // Get the current user from Firebase Authentication
+    const currentUser = auth.currentUser;
+
+    // Check if a user is signed in
+    if (currentUser) {
+      const uid = currentUser.uid;
+
+      // Fetch user data from Firestore based on UID
+      const fetchUserData = async () => {
+        try {
+          const userDocRef = doc(collection(db, "Users"), uid);
+          const userDocSnapshot = await getDoc(userDocRef);
+
+          if (userDocSnapshot.exists()) {
+            const userData = userDocSnapshot.data();
+            console.log("User Data:", userData);
+
+            if (userData && userData.profilePhoto) {
+              setProfilePhoto(userData.profilePhoto);
+              console.log("Profile Photo set:", userData.profilePhoto);
+            }
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error.message);
+        }
+      };
+
+      // Call the fetchUserData function
+      fetchUserData();
+    }
+  }, []);
+
   return (
     <div className="dashboard-navbar">
       <div className="dashboard-navbar__left">
@@ -84,7 +124,7 @@ function DashboardNavbar() {
       <div className="dashboard-navbar__right">
         <Link to="/profile" className="dashboard-navbar__link">
           <img
-            src={profilePic}
+            src={profilePhoto}
             alt="profile icon"
             className="dashboard-navbar__img dashboard-navbar__img--profile"
           />

@@ -26,7 +26,7 @@ function LogIn() {
   const handleSignInButtonClicked = async () => {
     try {
       await handleSignIn(email, password);
-      // Sign-in was successful, you can redirect the user or perform any other actions here.
+      // Sign-in was successful
       navigate("/home");
     } catch (error) {
       // Handle the error or display an error message to the user.
@@ -37,8 +37,8 @@ function LogIn() {
   const handleGoogleButtonClicked = async () => {
     try {
       await handleGoogleSignIn();
-      // Google sign-in was successful, you can redirect the user or perform any other actions here.
-      navigate("/home");
+      // Google sign-in was successful
+      navigate("/dashboard");
     } catch (error) {
       // Handle the error or display an error message to the user.
       console.error("Google sign-in error:", error);
