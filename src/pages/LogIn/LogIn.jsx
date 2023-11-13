@@ -8,7 +8,7 @@ import communitiHero from "../../assets//images/communitiHero.svg";
 import google from "../../assets/logos/google.svg";
 import linkedin from "../../assets/logos/linkedin.svg";
 import facebook from "../../assets/logos/facebook.svg";
-import { handleSignIn, handleGoogleSignIn } from "../../Firebase/firebaseAuth";
+import { handleSignIn, handleGoogleSignIn } from "../../Firebase/FirebaseAuth";
 
 function LogIn() {
   const navigate = useNavigate();

@@ -12,7 +12,7 @@ import { NavLink, Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
 import { collection, doc, getDoc } from "firebase/firestore";
-import { db, auth } from "../../firebase/FirebaseConfig";
+import { db, auth } from "../../Firebase/FirebaseConfig";
 
 function DashboardNavbar() {
   const [profilePhoto, setProfilePhoto] = useState(profilePic); // Change the variable here

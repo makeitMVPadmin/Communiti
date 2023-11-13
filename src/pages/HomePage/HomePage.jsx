@@ -6,7 +6,7 @@ import google from "../../assets/logos/google.svg";
 import linkedin from "../../assets/logos/linkedin.svg";
 import facebook from "../../assets/logos/facebook.svg";
 import communitiHero from "../../assets//images/communitiHero.svg";
-import { handleGoogleSignIn } from "../../Firebase/firebaseAuth";
+import { handleGoogleSignIn } from "../../Firebase/FirebaseAuth";
 
 function HomePage() {
   const navigate = useNavigate();

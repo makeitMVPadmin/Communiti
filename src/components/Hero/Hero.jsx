@@ -3,7 +3,7 @@ import "./Hero.scss";
 import Button from "../Button/Button";
 import communitiHero from "../../assets/images/communitiHero.svg";
 import arrowCircleButton from "../../assets/images/arrowCircleButton.svg";
-import { handleSignUp } from "../../firebase/FirebaseAuth";
+import { handleSignUp } from "../../Firebase/FirebaseAuth";
 
 function Hero() {
   const [email, setEmail] = useState("");
@@ -67,23 +67,23 @@ function Hero() {
                   <img
                     src={arrowCircleButton}
                     alt="Submit"
-                    className="arrow-circle-button">
-                  </img>
+                    className="arrow-circle-button"
+                  ></img>
                 </button>
               </form>
             </div>
           )}
           {showSuccess && (
             <div className="hero__success">
-                <p className="hero__success-message">
-                  Success! Thank you for signing up! We can't wait to have you
-                  in the Communiti!
-                </p>
-              </div>
-            )}
+              <p className="hero__success-message">
+                Success! Thank you for signing up! We can't wait to have you in
+                the Communiti!
+              </p>
             </div>
-          </div>
+          )}
         </div>
+      </div>
+    </div>
   );
 }
 
