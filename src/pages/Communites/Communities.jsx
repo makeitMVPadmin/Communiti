@@ -7,7 +7,7 @@ import placeHolderIcon from "../../assets/images/PlaceHolderIcon.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../Firebase/FirebaseConfig";
+import { db, auth } from "../../Firebase/FirebaseConfig";
 
 function Communities() {
   const [userCommunitiesManage, setUserCommunitiesManage] = useState([]);
@@ -23,32 +23,41 @@ function Communities() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch user data
-        const userSnapshot = await getDocs(collection(db, "Users"));
-        const users = [];
-        userSnapshot.forEach((doc) => {
-          users.push({ id: doc.id, ...doc.data() });
-        });
-
-        // Find the user by ID (replace 'YFVOpHLSMYVDyfYEYYoe' with the actual user ID)
-        const currentUser = users.find(
-          (user) => user.id === "YFVOpHLSMYVDyfYEYYoe"
-        );
+        // Get the current user from Firebase Authentication
+        const currentUser = auth.currentUser;
 
         if (currentUser) {
-          setUserCommunitiesManage(currentUser["Communities-Manage"] || []);
-          setUserCommunitiesJoined(currentUser["Communities-Joined"] || []);
-        }
+          const uid = currentUser.uid;
 
-        // Fetch all communities
-        const communitiesSnapshot = await getDocs(
-          collection(db, "Communities")
-        );
-        const communities = [];
-        communitiesSnapshot.forEach((doc) => {
-          communities.push({ id: doc.id, ...doc.data() });
-        });
-        setAllCommunities(communities);
+          // Fetch user data
+          const userSnapshot = await getDocs(collection(db, "Users"));
+          const users = [];
+          userSnapshot.forEach((doc) => {
+            users.push({ id: doc.id, ...doc.data() });
+          });
+
+          // Find the user by ID (replace 'uid' with the actual user ID)
+          const currentUserData = users.find((user) => user.id === uid);
+
+          if (currentUserData) {
+            setUserCommunitiesManage(
+              currentUserData["CommunitiesManage"] || []
+            );
+            setUserCommunitiesJoined(
+              currentUserData["CommunitiesJoined"] || []
+            );
+          }
+
+          // Fetch all communities
+          const communitiesSnapshot = await getDocs(
+            collection(db, "Communities")
+          );
+          const communities = [];
+          communitiesSnapshot.forEach((doc) => {
+            communities.push({ id: doc.id, ...doc.data() });
+          });
+          setAllCommunities(communities);
+        }
       } catch (error) {
         console.error("Error fetching data: ", error);
       }

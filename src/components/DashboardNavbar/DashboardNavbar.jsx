@@ -3,11 +3,9 @@ import homeIcon from "../../assets/images/homeIcon.svg";
 import chatIcon from "../../assets/images/chatIcon.svg";
 import calendarIcon from "../../assets/images/calendarIcon.svg";
 import communitiesIcon from "../../assets/images/communitiesIcon.svg";
-
 import LogoIcon from "../../assets/logos/communiti2.svg";
 import profilePic from "../../assets/images/profilePic.svg";
 import DropDownArrow from "../../assets/images/drop-down-arrow.svg";
-
 import { NavLink, Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
