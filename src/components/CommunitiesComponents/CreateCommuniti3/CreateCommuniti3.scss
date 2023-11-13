@@ -1,0 +1,135 @@
+@use "../../../styles/mixins" as *;
+@use "../../../styles/variables" as *;
+@use "../../../styles/typography" as *;
+
+.create-communiti3__container {
+  @include Laptop {
+    display: flex;
+    height: 100%;
+  }
+
+  &-right {
+    @include Laptop {
+      width: 44%;
+      display: flex;
+      align-items: flex-end;
+    }
+  }
+  &-left {
+    display: flex;
+    width: 66%;
+    height: 100%;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  &-heading {
+    @include heading;
+    margin: 4.1vw 0;
+  }
+
+  &-form {
+    @include Laptop {
+      width: 30.7vw;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  &-label {
+    color: $MVP-LightGray;
+    @include SubHeader;
+  }
+  &-input {
+    margin: 1rem 0;
+    display: flex;
+    width: 76%;
+    padding: 0.5rem;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    border: 3px solid #000;
+
+    color: $MVP-black;
+    font-family: Gilroy;
+    font-size: 1.5625rem;
+    line-height: 115.645%;
+
+    &::placeholder {
+      color: $MVP-Gray;
+    }
+
+    &-text {
+      font-size: 2.4vw;
+      line-height: 115.645%;
+
+      @include Desktop {
+        font-size: 1.7vw;
+      }
+
+      &--alt {
+        font-size: 2vw;
+        line-height: 115.645%;
+        text-align: center;
+        align-self: center;
+
+        @include Desktop {
+          font-size: 1.3vw;
+        }
+      }
+    }
+
+    &-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+
+      @include Laptop {
+        margin: 2rem 0;
+        border: 0.0625rem dashed #000;
+        width: 29.9vw;
+        height: 12.4vw;
+      }
+
+      .visually-hidden {
+        position: absolute;
+        width: 0.0625rem;
+        height: 0.0625rem;
+        margin: -0.0625rem;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+      }
+
+      &-input {
+        display: none;
+      }
+
+      &-label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        img {
+          margin-right: 0.5rem; // Adjust spacing as needed
+        }
+      }
+    }
+  }
+
+  &-image {
+    @include Laptop {
+      width: 27.5vw;
+      height: 26.6vw;
+    }
+  }
+
+  &-preview {
+    width: 40%;
+  }
+}

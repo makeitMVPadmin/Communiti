@@ -1,43 +1,121 @@
+@use "../styles/typography" as *;
+@use "../styles/variables" as *;
+
 @mixin tablet {
   @media screen and (min-width: 768px) {
     @content;
   }
 }
 
-//laptop 1024 Width Size
 @mixin laptop {
   @media screen and (min-width: 1024px) {
     @content;
   }
 }
 
-//laptop 1024 Width Size
+@mixin Tablet {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin Laptop {
+  @media screen and (min-width: 1024px) {
+    @content;
+  }
+}
+
 @mixin Desktop {
   @media screen and (min-width: 1440px) {
     @content;
   }
 }
 
+@mixin FullSizeDesktop {
+  @media screen and (min-width: 1920px) {
+    @content;
+  }
+}
+
+@mixin Four-K {
+  @media screen and (min-width: 2560px) {
+    @content;
+  }
+}
+
+@mixin Designers {
+  @media screen and (width: 1440px) {
+    @content;
+  }
+}
+
+// Text
+@mixin heading {
+  font-family: Corben;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+  color: $MVP-black;
+  @include Laptop {
+    font-size: 4vw;
+  }
+  @include Designers {
+    font-size: 3.625rem; // 58px
+  }
+}
+
+@mixin SubHeader {
+  color: $MVP-black;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 115.645%;
+
+  @include Laptop {
+    font-size: 4vw;
+    font-size: 2.1vw;
+  }
+
+  @include Designers {
+    font-size: 1.875rem; //30px
+  }
+}
+
+@mixin Body {
+  color: $MVP-black;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 115.645%; /* 28.911px */
+
+  @include Laptop {
+    font-size: 1.7vw;
+  }
+  @include Designers {
+    font-size: 1.5625rem; //25px
+  }
+}
+
 @mixin LandingPage-Titles {
-  font-size: 8.5vw;
+  font-size: 8vw;
   line-height: 114%;
   font-family: Corben;
 
-  @include laptop {
+  @include Laptop {
     font-size: 3vw;
   }
 
-  @include Desktop {
+  @include Designers {
     font-size: 2vw;
   }
 }
 
 @mixin LandingPage-Sub-Titles {
-  font-size: 8.5vw;
+  font-size: 5vw;
   line-height: 114%;
   font-family: Gilroy;
 
-  @include laptop {
+  @include Laptop {
     font-size: 3vw;
   }
 
@@ -47,15 +125,86 @@
 }
 
 @mixin LandingPage-Text {
-  font-size: 6.5vw;
+  font-size: 6vw;
   line-height: 115%;
   font-family: Gilroy;
 
-  @include laptop {
+  @include Laptop {
     font-size: 2.5vw;
   }
 
   @include Desktop {
     font-size: 1.5vw;
+  }
+}
+
+@mixin SSO-Title {
+  font-size: 6vw;
+  line-height: 115%;
+  font-family: Corben;
+
+  @include Laptop {
+    font-size: 2.5vw;
+  }
+
+  @include Desktop {
+    font-size: 1.5vw;
+  }
+}
+
+@mixin SSO-SubHeader {
+  font-size: 6vw;
+  line-height: 115%;
+  font-family: Gilroy;
+
+  @include Laptop {
+    font-size: 2.5vw;
+  }
+
+  @include Desktop {
+    font-size: 1.5vw;
+  }
+}
+
+@mixin SSO-Text {
+  font-size: 6vw;
+  line-height: 115%;
+  font-family: Gilroy;
+
+  @include Laptop {
+    font-size: 2.5vw;
+  }
+
+  @include Desktop {
+    font-size: 1.5vw;
+  }
+}
+
+@mixin SSO-Input {
+  box-shadow: 0px 0.2rem 0.2rem 0px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  padding: 3vw 3vw;
+  border-radius: 6vw;
+  margin: 0.5rem 0;
+  border: 2px solid #000000;
+  font-family: "Gilroy";
+  font-weight: 700;
+  font-size: 4vw;
+
+  &:focus {
+    border: 2px solid $MVP-Yellow;
+  }
+  &::placeholder {
+    color: $MVP-Light-Blue; /* Change the placeholder text color to MVP-Blue */
+  }
+
+  &--margin {
+    margin: 0.5rem 0 1rem 0;
+  }
+
+  @include Laptop {
+    width: 50%;
+    font-size: 1.4vw;
+    padding: 1vw 1vw;
   }
 }

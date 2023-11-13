@@ -3,26 +3,22 @@
 @use "../../styles/typography" as *;
 
 .signuppage {
-  height: 100%;
   display: flex;
   flex-direction: column;
   padding: 3vw 5vw;
   align-items: center;
 
-  @include laptop {
+  @include Laptop {
     flex-direction: row-reverse;
     justify-content: center;
     align-items: unset;
   }
 
   &__image {
-    width: 40%;
-    height: 22%;
+    width: 50%;
     margin: 1rem 0;
 
-    @include laptop {
-      width: 45%;
-      height: 50%;
+    @include Laptop {
       margin: 1rem;
     }
   }
@@ -35,35 +31,30 @@
     width: 100%;
     height: auto;
 
-    @include laptop {
+    @include Laptop {
       width: 60%;
       height: 100%;
+      justify-content: space-evenly;
     }
   }
 
   &__heading {
+    @include SSO-Title;
     width: 100%;
-    font-size: 1.6rem;
     margin: 1rem 0;
-    display: flex;
-    justify-content: center;
+    text-align: center;
 
-    @include laptop {
-      margin-bottom: 2rem;
-      font-size: 2rem;
-      text-align: left;
-    }
-    @include laptop {
+    @include Laptop {
       margin-bottom: 2rem;
       font-size: 2.5rem;
-      text-align: left;
     }
   }
 
   &__writing {
-    margin: 2rem;
-    @include laptop {
+    margin: 0.5rem;
+    @include Laptop {
       margin: 1rem;
+      font-size: 2vw;
     }
   }
 
@@ -72,36 +63,24 @@
     justify-content: space-evenly;
     width: 100%;
 
-    @include laptop {
-      flex-direction: column;
-      align-items: center;
-      justify-content: unset;
-      width: 100%;
-      height: 100%;
+    @include Laptop {
+      justify-content: center;
     }
 
     &-button {
+      background: none;
       display: flex;
       justify-content: center;
       align-items: center;
       border: none;
+      width: 22%;
+    }
 
-      @include laptop {
-        width: 85%;
-        height: fit-content;
-        font-family: "Gilroy";
-        font-size: 1.5rem;
-        padding: 1rem 0.55rem;
-        border-radius: 2rem;
-        margin: 0.5rem 0;
-      }
+    &-icon {
+      width: 75%;
 
-      &--google {
-        @include laptop {
-          &::after {
-            content: "Sign Up With Google";
-          }
-        }
+      @include Laptop {
+        width: 50%;
       }
     }
   }
@@ -114,17 +93,13 @@
   }
 
   &__input {
-    margin: 0.5rem 0;
-    width: 100%;
-    padding: 0.5rem 0.7rem;
-    border-radius: 1.5625rem;
+    @include SSO-Input;
   }
 
-  &-icon {
-    width: 100%;
-
-    @include laptop {
-      display: none;
+  &__button {
+    @include Laptop {
+      width: 50%;
+      margin: 0 0 0.5rem 0;
     }
   }
 }

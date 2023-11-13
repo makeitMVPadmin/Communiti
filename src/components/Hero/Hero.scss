@@ -7,7 +7,7 @@
   width: 100%;
   padding: 1rem;
 
-  @include laptop {
+  @include Laptop {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
@@ -23,7 +23,7 @@
     flex-direction: column;
     align-items: flex-start;
 
-    @include laptop {
+    @include Laptop {
       width: 100%;
     }
   }
@@ -31,7 +31,7 @@
   &__image {
     width: 70%;
 
-    @include laptop {
+    @include Laptop {
       width: 90%;
     }
 
@@ -40,14 +40,14 @@
       width: 100%;
       justify-content: center;
 
-      @include laptop {
+      @include Laptop {
         width: 50%;
       }
     }
   }
 
   &__left-container {
-    @include laptop {
+    @include Laptop {
       height: 100%;
       width: 60%;
       display: flex;
@@ -61,7 +61,7 @@
     color: $MVP-black;
     width: 65%;
 
-    @include laptop {
+    @include Laptop {
       font-size: 3vw;
       width: 100%;
     }

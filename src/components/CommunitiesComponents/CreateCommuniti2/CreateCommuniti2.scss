@@ -1,0 +1,104 @@
+@use "../../../styles/mixins" as *;
+@use "../../../styles/variables" as *;
+@use "../../../styles/typography" as *;
+
+.create-communiti2 {
+  @include Laptop {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__content {
+    &-container {
+      @include Laptop {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+      }
+
+      &-right {
+        @include Laptop {
+          display: flex;
+          width: 16.3vw;
+          height: 15.8vw;
+          align-items: flex-start;
+          justify-content: center;
+        }
+      }
+
+      &-left {
+        @include Laptop {
+          display: flex;
+          width: 60%;
+          height: 100%;
+          align-items: flex-start;
+          justify-content: center;
+          flex-direction: column;
+        }
+      }
+    }
+
+    &-heading {
+      @include heading;
+      @include Laptop {
+        margin: 4.1vw 0;
+      }
+    }
+
+    &-form {
+      @include Laptop {
+        height: 70%;
+        width: 100%;
+      }
+    }
+
+    &-label {
+      color: $MVP-LightGray;
+      @include SubHeader;
+    }
+
+    &-textarea-container {
+      @include Laptop {
+        width: 73%;
+        height: 38%;
+        margin: 1.1vw 0;
+        padding: 0.6vw 1.7vw;
+        border: 0.2vw solid #000;
+        border-radius: 0.6vw;
+      }
+
+      &::placeholder {
+        color: $MVP-Gray;
+      }
+    }
+
+    &-textarea {
+      width: 100%;
+      border: none;
+      @include Body;
+
+      &::placeholder {
+        color: $MVP-Gray;
+      }
+
+      &:focus {
+        outline: none !important;
+      }
+    }
+
+    &-character-count {
+      @include Body;
+      @include Laptop {
+        text-align: right;
+      }
+    }
+
+    &-image {
+      @include Laptop {
+        width: 100%;
+      }
+    }
+  }
+}

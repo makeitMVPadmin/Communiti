@@ -6,7 +6,7 @@
   background-color: $MVP-White;
   padding: 1rem;
 
-  @include laptop {
+  @include Laptop {
     padding: 2rem;
   }
 
@@ -16,20 +16,20 @@
 
   &__hands {
     width: 25%;
-    @include laptop {
+    @include Laptop {
       width: 9%;
     }
   }
 
   &__image {
     width: 50%;
-    @include laptop {
+    @include Laptop {
       width: 75%;
     }
   }
 
   &__images {
-    @include laptop {
+    @include Laptop {
       display: flex;
       justify-content: space-evenly;
       width: 100%;
@@ -42,7 +42,7 @@
     margin: 1rem 0 2rem 0;
     color: $MVP-black;
 
-    @include laptop {
+    @include Laptop {
       margin-bottom: 3vw;
     }
   }
@@ -52,7 +52,7 @@
     flex-direction: column;
     align-items: center;
 
-    @include laptop {
+    @include Laptop {
       width: 30%;
     }
   }
