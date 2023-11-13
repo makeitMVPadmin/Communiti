@@ -8,6 +8,7 @@ import members from '../../assets/images/members.svg';
 
 import { useState } from 'react';
 import AnnouncementsTab from '../../components/AnnouncementsTab/AnnouncementsTab';
+import EventsTab from '../../components/EventsTab/EventsTab';
 
 function Announcements() {
     const [showAnnouncements, setShowAnnouncements] = useState(true);
@@ -18,10 +19,31 @@ function Announcements() {
         name: "Product Pitchers",
         location: "San Francisco",
         meetingType: "Virtual",
-        numMembers: 25,
         description: "Join our Product Enthusiasts Club for exclusive insights, discounts, and community. Stay ahead with the latest trends and meet fellow product aficionados. Your gateway to product innovation!",
         announcements: [],
         events: [],
+        members: [
+            {
+                id: 0,
+                name: "Dami Dabiri",
+                role: "Project Manager"
+            },
+            {
+                id: 1,
+                name: "Anthony Quisepe",
+                role: "Dev Lead"
+            },
+            {
+                id: 2,
+                name: "Andrea Matos",
+                role: "Developer"
+            },
+            {
+                id: 3,
+                name: "Ana Bennett",
+                role: "Developer"
+            }
+        ],
         thumb: "somethinghere"
     }
 
@@ -88,7 +110,7 @@ function Announcements() {
                                 <div className='announcements-page__card-writing-bottom-right'>
                                     <img src={members} alt="the silouhette of two people, one standing directly behind the other"></img>
                                     <p>
-                                        {placeholderGroup.numMembers} members
+                                        {placeholderGroup.members.length} members
                                     </p>
                                 </div>
                             </div>
@@ -118,7 +140,7 @@ function Announcements() {
                         </div>
 
                         {showAnnouncements && <AnnouncementsTab announcements={announcements} /> }
-                        {/* {showEvents && } */}
+                        {showEvents && <EventsTab events={events} />}
 
                     </section>
                 </section>
