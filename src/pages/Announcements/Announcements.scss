@@ -174,10 +174,13 @@ $mockup-light-blue: #E1F0FB;
                 width: 30%;
                 padding: 1vw;
 
+                border: 3px solid black;
+
                 border-radius: 8px 8px 0px 0px;
 
                 &--active {
                     background-color: $mockup-light-blue;
+                    border-bottom: none;
                 }
             }
         }

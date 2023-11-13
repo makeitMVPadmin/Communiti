@@ -5,7 +5,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth";
-import { auth } from "./FirebaseConfig"; // Import the Firebase authentication object from FirebaseConfig
+import { auth } from "./firebaseConfig"; // Import the Firebase authentication object from FirebaseConfig
 
 // Export a function to handle user sign-up
 export const handleSignUp = (email, password) => {
