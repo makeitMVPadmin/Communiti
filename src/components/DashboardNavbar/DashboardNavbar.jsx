@@ -22,8 +22,11 @@ function DashboardNavbar() {
         </Link>
         <NavLink
           to="/dashboard"
-          className="dashboard-navbar__link"
-          activeClassName="active"
+          className={(navData) =>
+            navData.isActive
+              ? "dashboard-navbar__link active"
+              : "dashboard-navbar__link"
+          }
         >
           <img
             src={homeIcon}
@@ -34,8 +37,11 @@ function DashboardNavbar() {
         </NavLink>
         <NavLink
           to="/communities"
-          className="dashboard-navbar__link"
-          activeClassName="active"
+          className={(navData) =>
+            navData.isActive
+              ? "dashboard-navbar__link active"
+              : "dashboard-navbar__link"
+          }
         >
           <img
             src={communitiesIcon}
@@ -46,8 +52,11 @@ function DashboardNavbar() {
         </NavLink>
         <NavLink
           to="/events"
-          className="dashboard-navbar__link"
-          activeClassName="active"
+          className={(navData) =>
+            navData.isActive
+              ? "dashboard-navbar__link active"
+              : "dashboard-navbar__link"
+          }
         >
           <img
             src={calendarIcon}
@@ -58,8 +67,11 @@ function DashboardNavbar() {
         </NavLink>
         <NavLink
           to="/chat"
-          className="dashboard-navbar__link"
-          activeClassName="active"
+          className={(navData) =>
+            navData.isActive
+              ? "dashboard-navbar__link active"
+              : "dashboard-navbar__link"
+          }
         >
           <img
             src={chatIcon}

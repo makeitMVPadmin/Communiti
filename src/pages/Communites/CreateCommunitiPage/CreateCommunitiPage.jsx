@@ -4,13 +4,21 @@ import DashboardNavbar from "../../../components/DashboardNavbar/DashboardNavbar
 import CreateCommuniti1 from "../../../components/CommunitiesComponents/CreateCommuniti1/CreateCommuniti1";
 import CreateCommuniti2 from "../../../components/CommunitiesComponents/CreateCommuniti2/CreateCommuniti2";
 import CreateCommuniti3 from "../../../components/CommunitiesComponents/CreateCommuniti3/CreateCommuniti3";
-import backArrow from "../../../assets/images/back.svg";
-import Button from "../../../components/Button/Button";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+
+import {
+  collection,
+  addDoc,
+  serverTimestamp,
+  updateDoc,
+  doc,
+  arrayUnion,
+} from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage, db } from "../../../Firebase/firebaseConfig";
+import { storage, db } from "../../../firebase/FirebaseConfig";
+import { useNavigate } from "react-router-dom";
 
 function CreateCommunitiPage() {
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const [communitiName, setCommunitiName] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
@@ -19,46 +27,53 @@ function CreateCommunitiPage() {
   const [image, setImage] = useState(null);
 
   const handleNext = async () => {
-    if (
-      currentStep === 1 &&
-      communitiName &&
-      (selectedOption !== "hybrid" || location)
-    ) {
+    if (currentStep === 1 && communitiName && (selectedOption || location)) {
       setCurrentStep(currentStep + 1);
     } else if (currentStep === 2 && communitiDescription) {
       setCurrentStep(currentStep + 1);
     } else if (currentStep === 3 && image) {
       try {
-        // Update the filename generation
         const imageFilename = image.name || `image_${Date.now()}`;
-
-        // Upload the image to Firebase Storage
         const storageRef = ref(storage, `community_images/${imageFilename}`);
         await uploadBytes(storageRef, image);
-
-        // Get the download URL of the uploaded image
         const imageUrl = await getDownloadURL(storageRef);
 
-        // Create a new document in the "Communities" collection with the image URL
+        // Use the actual user ID when user authentication is implemented
+        const createdBy = "YFVOpHLSMYVDyfYEYYoe";
+
+        const locationValue =
+          selectedOption === "in-person" && selectedOption === "virtual"
+            ? "Both"
+            : selectedOption === "in-person"
+            ? location
+            : selectedOption === "virtual"
+            ? "Virtual"
+            : "";
+
         const docRef = await addDoc(collection(db, "Communities"), {
           Name: communitiName,
-          CreatedBy: "ChatGPT", // Replace with the actual user once user authentication is implemented
+          CreatedBy: createdBy,
           Created: serverTimestamp(),
           Description: communitiDescription,
-          Location:
-            selectedOption === "hybrid"
-              ? `Virtual || ${location}`
-              : selectedOption,
+          Location: locationValue,
           CommunityImage: imageUrl,
-          // Add any additional fields you want to save
         });
 
         console.log("Document written with ID: ", docRef.id);
+
+        // Update user's Communities-Manage field array
+        const userDocRef = doc(collection(db, "Users"), createdBy);
+        await updateDoc(userDocRef, {
+          "Communities-Manage": arrayUnion(docRef.id),
+        });
+
+        console.log("Communiti creation complete!");
+
+        // Navigate to the "/communities" route
+        navigate("/communities");
       } catch (error) {
         console.error("Error adding document: ", error);
       }
-
-      console.log("Communiti creation complete!");
     }
   };
 
@@ -67,16 +82,9 @@ function CreateCommunitiPage() {
   };
 
   return (
-    <>
+    <div className="create-communiti-container">
       <DashboardNavbar />
       <div className="create-communiti">
-        <button className="create-communiti__button-back" onClick={handleBack}>
-          <img
-            className="create-communiti__back-arrow"
-            src={backArrow}
-            alt="backArrow"
-          />
-        </button>
         <div className="create-communiti__container">
           {currentStep === 1 && (
             <CreateCommuniti1
@@ -86,35 +94,29 @@ function CreateCommunitiPage() {
               setSelectedOption={setSelectedOption}
               location={location}
               setLocation={setLocation}
+              handleBack={handleBack}
+              handleNext={handleNext}
             />
           )}
           {currentStep === 2 && (
             <CreateCommuniti2
               communitiDescription={communitiDescription}
               setCommunitiDescription={setCommunitiDescription}
+              handleBack={handleBack}
+              handleNext={handleNext}
             />
           )}
           {currentStep === 3 && (
-            <CreateCommuniti3 image={image} setImage={setImage} />
+            <CreateCommuniti3
+              image={image}
+              setImage={setImage}
+              handleBack={handleBack}
+              handleNext={handleNext}
+            />
           )}
         </div>
-        {currentStep <= 3 && (
-          <Button
-            buttonText={currentStep === 3 ? "Done" : "Next"}
-            className={`button create-communiti__button-next ${
-              (currentStep === 1 &&
-                (!communitiName ||
-                  (selectedOption === "hybrid" && !location))) ||
-              (currentStep === 2 && !communitiDescription) ||
-              (currentStep === 3 && !image)
-                ? "button__not-active"
-                : "button__active"
-            }`}
-            onClick={handleNext}
-          />
-        )}
       </div>
-    </>
+    </div>
   );
 }
 

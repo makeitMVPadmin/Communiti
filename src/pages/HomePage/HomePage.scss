@@ -8,7 +8,7 @@
   padding: 3vw 5vw;
   align-items: center;
 
-  @include laptop {
+  @include Laptop {
     flex-direction: row-reverse;
     justify-content: center;
     align-items: unset;
@@ -18,7 +18,7 @@
     width: 50%;
     margin: 1rem 0;
 
-    @include laptop {
+    @include Laptop {
       margin: 1rem;
     }
   }
@@ -31,7 +31,7 @@
     width: 100%;
     height: auto;
 
-    @include laptop {
+    @include Laptop {
       width: 60%;
       height: 100%;
     }
@@ -43,7 +43,7 @@
     margin: 1rem 0;
     text-align: center;
 
-    @include laptop {
+    @include Laptop {
       margin-bottom: 2rem;
       font-size: 2.5rem;
     }
@@ -57,16 +57,15 @@
     height: 100%;
     align-items: center;
 
-    @include laptop {
+    @include Laptop {
       width: 100%;
-      height: 17vw;
     }
 
     &-link {
       width: 80%;
       margin: 0.5rem;
 
-      @include laptop {
+      @include Laptop {
         width: 50%;
       }
     }
@@ -90,7 +89,7 @@
         background-color: #525354;
       }
 
-      @include laptop {
+      @include Laptop {
         width: 85%;
       }
     }
@@ -99,7 +98,7 @@
   &__writing {
     font-size: 4vw;
     margin: 0.5rem;
-    @include laptop {
+    @include Laptop {
       margin: 1rem;
       font-size: 2vw;
     }
@@ -110,7 +109,7 @@
     justify-content: space-evenly;
     width: 100%;
 
-    @include laptop {
+    @include Laptop {
       flex-direction: column;
       align-items: center;
       justify-content: unset;
@@ -126,7 +125,7 @@
       border: none;
       width: 22%;
 
-      @include laptop {
+      @include Laptop {
         box-shadow: 0px 0.2rem 0.2rem 0px rgba(0, 0, 0, 0.25);
         width: 50%;
         height: fit-content;
@@ -139,7 +138,7 @@
       }
 
       &--google {
-        @include laptop {
+        @include Laptop {
           &::after {
             content: "Google";
           }
@@ -147,7 +146,7 @@
       }
 
       &--linkedin {
-        @include laptop {
+        @include Laptop {
           &::after {
             content: "Linkedin";
           }
@@ -155,7 +154,7 @@
       }
 
       &--facebook {
-        @include laptop {
+        @include Laptop {
           &::after {
             content: "Facebook";
           }
@@ -166,7 +165,7 @@
     &-icon {
       width: 75%;
 
-      @include laptop {
+      @include Laptop {
         display: none;
       }
     }

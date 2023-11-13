@@ -4,6 +4,7 @@
 
 .create-communiti1__container {
   display: flex;
+  align-items: center;
 
   &-right {
     display: flex;
@@ -11,10 +12,20 @@
     height: 100%;
     align-items: center;
     justify-content: center;
+
+    @include laptop {
+      height: 23.3vw;
+      width: 22.6vw;
+    }
+
+    @include Designers {
+      width: 20.3824rem; // width: 326.118px;
+      height: 20.9954rem; //    height: 335.926px;
+    }
   }
   &-left {
     display: flex;
-    width: 56%;
+    width: 60%;
     height: 100%;
     align-items: flex-start;
     justify-content: center;
@@ -23,8 +34,7 @@
 
   &-heading {
     @include heading;
-    font-family: Corben;
-    margin: 0rem 0 3rem 0;
+    margin: 4.1vw 0;
   }
 
   &-form {
@@ -33,27 +43,20 @@
   }
 
   &-label {
-    color: $MVP-LightGray;
-    font-size: 2.65vw;
-    line-height: 115.645%; /* 34.694px */
-    @include Desktop {
-      font-size: 1.9vw;
-    }
+    @include SubHeader;
   }
   &-input {
-    margin: 1rem 0;
     display: flex;
-    width: 76%;
-    padding: 8px;
     align-items: center;
-    gap: 8px;
-    border-radius: 8px;
-    border: 3px solid #000;
 
-    color: $MVP-black;
-    font-family: Gilroy;
-    font-size: 1.5625rem;
-    line-height: 115.645%;
+    @include Body;
+    @include Laptop {
+      margin: 1.1vw 0;
+      width: 57%;
+      border: 0.21vw solid #000;
+      border-radius: 0.5vw;
+      padding: 0.5vw;
+    }
 
     &::placeholder {
       color: $MVP-Gray;
@@ -72,27 +75,35 @@
   }
 
   &-description {
-    margin: 3rem 0 1rem 0;
-    color: $MVP-LightGray;
-    font-size: 2.65vw;
-    line-height: 115.645%;
-    @include Desktop {
-      font-size: 1.9vw;
+    @include SubHeader;
+    @include Laptop {
+      margin: 3.3vw 0 1.1vw 0;
+    }
+
+    &--alt {
+      @include Body;
+      @include Laptop {
+        color: rgba(30, 30, 30, 0.7);
+        margin: 1.1vw 0 1vw 0;
+        font-family: Gilroy;
+      }
     }
   }
 
   &-checkbox {
-    margin: 1rem 0.5rem;
-    width: 20px;
-    height: 20px;
+    @include Laptop {
+      height: 1.4vw;
+      width: 1.4vw;
+      margin: 1.1vw 0.5vw;
+    }
+
+    @include Designers {
+      width: 1.25rem; //20px
+      height: 1.25rem; //20px
+    }
 
     &-label {
-      color: $MVP-LightGray;
-      font-size: 2.4vw;
-      line-height: 115.645%;
-      @include Desktop {
-        font-size: 1.9vw;
-      }
+      @include Body;
     }
 
     &-container {
@@ -102,14 +113,16 @@
   }
 
   &-image {
-    @include laptop {
-      width: 90%;
-    }
-    @include Desktop {
-      width: 90%;
-    }
-    @include Four-K {
-      width: 80%;
+    height: 100%;
+    width: 100%;
+  }
+
+  &-bottom {
+    @include Laptop {
+      display: flex;
+      margin: 3vw 0;
+      align-items: center;
+      justify-content: space-between;
     }
   }
 }

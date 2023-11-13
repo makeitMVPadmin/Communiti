@@ -43,17 +43,56 @@
   }
 }
 
+@mixin Designers {
+  @media screen and (width: 1440px) {
+    @content;
+  }
+}
+
 // Text
 @mixin heading {
-  @include laptop {
-    font-size: 3.7vw;
-  }
-  @include Desktop {
+  font-family: Corben;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+  color: $MVP-black;
+  @include Laptop {
     font-size: 4vw;
   }
+  @include Designers {
+    font-size: 3.625rem; // 58px
+  }
+}
 
-  @include Four-K {
-    font-size: 4.625rem;
+@mixin SubHeader {
+  color: $MVP-black;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 115.645%;
+
+  @include Laptop {
+    font-size: 4vw;
+    font-size: 2.1vw;
+  }
+
+  @include Designers {
+    font-size: 1.875rem; //30px
+  }
+}
+
+@mixin Body {
+  color: $MVP-black;
+  font-family: Gilroy;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 115.645%; /* 28.911px */
+
+  @include Laptop {
+    font-size: 1.7vw;
+  }
+  @include Designers {
+    font-size: 1.5625rem; //25px
   }
 }
 
@@ -62,11 +101,11 @@
   line-height: 114%;
   font-family: Corben;
 
-  @include laptop {
+  @include Laptop {
     font-size: 3vw;
   }
 
-  @include Desktop {
+  @include Designers {
     font-size: 2vw;
   }
 }
@@ -76,7 +115,7 @@
   line-height: 114%;
   font-family: Gilroy;
 
-  @include laptop {
+  @include Laptop {
     font-size: 3vw;
   }
 
@@ -90,7 +129,7 @@
   line-height: 115%;
   font-family: Gilroy;
 
-  @include laptop {
+  @include Laptop {
     font-size: 2.5vw;
   }
 
@@ -104,7 +143,7 @@
   line-height: 115%;
   font-family: Corben;
 
-  @include laptop {
+  @include Laptop {
     font-size: 2.5vw;
   }
 
@@ -118,7 +157,7 @@
   line-height: 115%;
   font-family: Gilroy;
 
-  @include laptop {
+  @include Laptop {
     font-size: 2.5vw;
   }
 
@@ -132,7 +171,7 @@
   line-height: 115%;
   font-family: Gilroy;
 
-  @include laptop {
+  @include Laptop {
     font-size: 2.5vw;
   }
 
@@ -163,7 +202,7 @@
     margin: 0.5rem 0 1rem 0;
   }
 
-  @include laptop {
+  @include Laptop {
     width: 50%;
     font-size: 1.4vw;
     padding: 1vw 1vw;
