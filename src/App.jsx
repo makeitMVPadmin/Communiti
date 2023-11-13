@@ -11,6 +11,7 @@ import EventsChatsPage from "./pages/Events/EventsChatsPage";
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import CreateCommunitiPage from "./pages/Communites/CreateCommunitiPage/CreateCommunitiPage";
 import Communities from "./pages/Communites/Communities";
+import Announcements from "./pages/Announcements/Announcements";
 function App() {
   return (
     <Routes>
@@ -25,6 +26,7 @@ function App() {
       <Route path="/events/events" element={<EventsPage />} />
       <Route path="/communities" element={<Communities />} />
       <Route path="/communities/create" element={<CreateCommunitiPage />} />
+      <Route path='/announcements' element={<Announcements />} />
     </Routes>
   );
 }

@@ -1,0 +1,40 @@
+@use '../../styles/variables' as *;
+
+$mockup-light-blue: #E1F0FB;
+
+.announcements-tab {
+    background-color: $mockup-light-blue;
+    border-radius: 8px;
+
+    padding: 2vw;
+
+    &__none {
+        background-color: rgba($MVP-Light-Blue, 0.2);
+        border-radius: 8px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 2vw;
+
+        &-writing {
+            font-size: 1.8rem;
+            line-height: 2vw;
+
+            width: 60%;
+        }
+
+        &-button {
+            border: 3px solid $MVP-black;
+            border-radius: 8px;
+
+            width: 40%;
+            padding: 1vw;
+
+            font-size: 2.5rem;
+            font-weight: 600;
+            background-color: $MVP-Yellow;
+        }
+    }
+}
