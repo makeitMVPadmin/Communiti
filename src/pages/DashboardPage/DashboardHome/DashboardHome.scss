@@ -1,6 +1,7 @@
 @use "../../../styles/typography" as *;
 @use "../../../styles/variables" as *;
 @use "../../../styles/mixins" as *;
+@use "../../../styles/mixins" as *;
 
 body{
     font-family: Gilroy;
@@ -8,8 +9,10 @@ body{
 .welcome {
     display: flex; 
     justify-content: flex-start;
-    margin: 50px 0px 30px 150px;
+    margin: 50px 0px 30px calc(450px - 1px);
+    
     width: 100%;
+    
 }
 .container{
     margin: 20px 20px;
@@ -21,8 +24,11 @@ body{
 }
 .post-container {
     width: 85%;
+    max-width: 1000px;
+    max-height: 200px;
     padding: 20px 20px;
     margin-top: 10px;
+    overflow: hidden;
     background-color: white;
     box-shadow: 0px 0.2rem 0.2rem 0px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
@@ -31,43 +37,52 @@ body{
     align-items: center;
     display: flex;
     flex-direction: column;
-}
 
-.icon-heading {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.profile-image {
-    width: 50px;
-    height: 50px;
-    border-radius: 10px;
-    border: 3px solid $MVP-black;
-    img {
-        object-fit: contain;
+    @include tablet{
+        min-width: 300px; 
     }
-}
-
-.heading {
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-}
-
-.name{
-    font-size: 1.5rem;
-    font-weight: 700;
-}
-
-.time-posted{
-    display: flex;
-    flex-direction: row;
-    img {
-        width: 10px;
-        margin-right: 3px
+    
+    .icon-heading {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 20px;
+    
     }
-    font-size: 10px;
+    
+    .profile-image {
+        min-width: 50px;
+        min-height: 50px;
+        border-radius: 10px;
+        border: 3px solid $MVP-black;
+        img {
+            object-fit: contain;
+        }
+    }
+    
+    .heading {
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px;
+    }
+    
+    .name{
+        font-size: 1.5rem;
+        font-weight: 700;
+        @media screen and (max-width: 320px){
+            font-size: 1rem;
+        }
+    }
+    
+    .time-posted{
+        display: flex;
+        flex-direction: row;
+        img {
+            width: 10px;
+            margin-right: 3px
+        }
+        font-size: .8rem;
+    }
+
 }

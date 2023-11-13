@@ -6,7 +6,7 @@ export default function DashboardHome () {
        <>
             <div className="container">
                 <div className="welcome">
-                    <h1> Welcome Back, NAME 👋 </h1>
+                <h1> Welcome Back, NAME 👋 </h1>
                 </div>
                 <div className="post-container">
                     <div className="icon-heading">
