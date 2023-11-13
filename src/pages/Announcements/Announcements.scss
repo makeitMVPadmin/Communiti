@@ -1,14 +1,115 @@
 @use '../../styles/global' as *;
 @use '../../styles/variables' as *;
+@use '../../styles/typography' as *;
 
 $mockup-blue: #C8E7FB;
 
 .announcements-page {
+    font-family: "Gilroy";
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     &__hero {
         width: 100%;
         height: 15vh;
 
         background-color: $mockup-blue;
+
+        &-writing {
+            display: flex;
+            align-items: center;
+
+            &-icon {
+                width: 2vw;
+                height: 2vw;
+            }
+        }
+    }
+
+    &__card {
+        border: 2px solid red;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        background-color: transparent;
+
+        position: relative;
+        top: -5vw;
+
+        &-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            width: 90%;
+            border: 2px solid orange;
+        }
+
+        &-writing {
+            background-color: $MVP-White;
+
+            border: 3px solid $MVP-black;
+            border-radius: 8px;
+
+            width: 80%;
+
+            &-top {
+                font-size: 4rem;
+            }
+
+            &-bottom {
+                display: flex;
+                justify-content: space-between;
+
+                border: 2px solid blue;
+
+                &-left {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    width: 40%;
+
+                    border: 2px solid pink;
+                }
+
+                &-right {
+                    border: 2px solid purple;
+
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    width: 15%;
+                }
+            }
+        }
+
+        &-card {
+            background-color: rgba($MVP-Light-Blue, 0.1);
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            width: fit-content;
+            height: fit-content;
+
+            &-icon {
+                width: 1vw;
+                height: 1vw;
+            }
+
+            &-writing {
+                width: fit-content;
+                font-size: 1.5rem;
+            }
+        }
     }
 }
