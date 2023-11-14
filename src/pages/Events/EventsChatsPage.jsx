@@ -1,3 +1,4 @@
+
 import EventsNavbar from "../../components/DashboardNavbar/DashboardNavbar";
 import "./EventsChats.scss";
 import chatPic from "../../assets/images/chatPic.svg";
@@ -5,6 +6,7 @@ import pencil from "../../assets/images/pencil.svg";
 import notification from "../../assets/images/notification.svg";
 import searchIcon from "../../assets/images/searchIcon.svg";
 import ellipsis from "../../assets/images/ellipsis.svg";
+
 function EventsChatsPage() {
   const chatList = [
     { name: "Karen Lupert", imageUrl: chatPic, hasNewMessages: true },
@@ -52,6 +54,7 @@ function EventsChatsPage() {
       ))}
     </div>
   );
+  
 
   return (
     <>
@@ -100,7 +103,7 @@ function EventsChatsPage() {
               <ChatWindow />
             </div>
             <div className="message-input-area">
-              <input type="text" placeholder="Type a message..." />
+              <input className="message-input"type="text" placeholder="Type a message..." />
             </div>
           </div>
         </div>

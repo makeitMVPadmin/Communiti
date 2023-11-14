@@ -81,14 +81,16 @@ body {
     }
   }
   .whole-container {
+   
     .search-container {
       // flex-grow: 1;
       display: flex;
       align-items: flex-start;
+      
 
       input {
         // flex-grow: 1;
-        width: 47.5rem;
+        width: 61.875rem;
         height: 3rem;
         padding: 10px;
         font-size: 16px;
@@ -116,11 +118,13 @@ body {
     display: flex;
     flex-direction: column;
     border-radius: 2%;
-    width: 50rem;
+    width: 62.875rem;
     height: 75.125rem;
+    border: 1px solid #b6b3b3; 
+
 
     .chat-topBar {
-      width: 50rem;
+      width: 62.875rem;
       height: 5rem;
       background-color: #c8e7fb;
       box-shadow: 0 8px 6px -6px grey;
@@ -136,5 +140,10 @@ body {
         margin-right: 2rem;
       }
     }
+    .message-input {
+        height: 3rem;
+        width:62.875rem; 
+    }
+   
   }
 }
