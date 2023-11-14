@@ -1,4 +1,3 @@
-
 import EventsNavbar from "../../components/DashboardNavbar/DashboardNavbar";
 import "./EventsChats.scss";
 import chatPic from "../../assets/images/chatPic.svg";
@@ -58,7 +57,6 @@ function EventsChatsPage() {
       ))}
     </div>
   );
-  
 
   return (
     <>
@@ -103,11 +101,15 @@ function EventsChatsPage() {
               <span className="chat-name">Karen Lupert</span>
               <img className="chat-ellipsis" src={ellipsis} alt="ellipsis" />
             </div>
-            <div>
+            <div className="chat-container-bottom">
               <ChatWindow />
-            </div>
-            <div className="message-input-area">
-              <input className="message-input"type="text" placeholder="Type a message..." />
+              <div className="message-input-area">
+                <input
+                  className="message-input"
+                  type="text"
+                  placeholder="Type a message..."
+                />
+              </div>
             </div>
           </div>
         </div>

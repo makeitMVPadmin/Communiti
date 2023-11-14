@@ -128,7 +128,7 @@ body {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 2rem;
+    
       .chat-name {
         margin-left: 2rem;
         font-size: 1.875rem;
@@ -137,6 +137,13 @@ body {
         margin-right: 2rem;
       }
     }
+  .chat-container-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; 
+ 
+  height: calc(100% - 60px); // Adjust height based on your layout
+
     .chat-message {
       display: flex;
       flex-direction: row;
@@ -170,4 +177,5 @@ body {
       width: 62.875rem;
     }
   }
+}
 }
