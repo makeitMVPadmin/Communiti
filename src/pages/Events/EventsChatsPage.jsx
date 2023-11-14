@@ -57,6 +57,7 @@ function EventsChatsPage() {
       ))}
     </div>
   );
+  
 
   return (
     <>
