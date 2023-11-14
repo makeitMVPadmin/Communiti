@@ -5,6 +5,9 @@ import pencil from "../../assets/images/pencil.svg";
 import notification from "../../assets/images/notification.svg";
 import searchIcon from "../../assets/images/searchIcon.svg";
 import ellipsis from "../../assets/images/ellipsis.svg";
+import paperclip from "../../assets/images/paperclip.svg";
+import emoji from "../../assets/images/emoji.svg";
+
 
 function EventsChatsPage() {
   const chatList = [
@@ -57,7 +60,12 @@ function EventsChatsPage() {
       ))}
     </div>
   );
-  
+  const handleAttachment = (event) => {
+    // Get the selected file
+    const file = event.target.files[0];
+    // Perform actions with the file (like uploading or storing the file)
+    console.log(file); // Just for demonstration
+  };
 
   return (
     <>
@@ -110,6 +118,22 @@ function EventsChatsPage() {
                   type="text"
                   placeholder="Type a message..."
                 />
+
+                <input
+                  type="file"
+                  id="file-input"
+                  style={{ display: "none" }}
+                  onChange={handleAttachment}
+                />
+                <button
+                  className="attach-button"
+                  onClick={() => document.getElementById("file-input").click()}
+                >
+                  <img src={paperclip} alt="Attach" />
+                </button>
+                <button className="emoji-button">
+                  <img src={emoji} alt="Emoji" />
+                </button>
               </div>
             </div>
           </div>
