@@ -1,15 +1,58 @@
 import EventsNavbar from "../../components/DashboardNavbar/DashboardNavbar";
-import "./EventsChats.scss"
+import "./EventsChats.scss";
 import chatPic from "../../assets/images/chatPic.svg";
-import pencil from "../../assets/images/pencil.svg"
+import pencil from "../../assets/images/pencil.svg";
 import notification from "../../assets/images/notification.svg";
 import searchIcon from "../../assets/images/searchIcon.svg";
+import ellipsis from "../../assets/images/ellipsis.svg";
 function EventsChatsPage() {
   const chatList = [
     { name: "Karen Lupert", imageUrl: chatPic, hasNewMessages: true },
     { name: "Karen Lupert", imageUrl: chatPic, hasNewMessages: true },
     { name: "Karen Lupert", imageUrl: chatPic, hasNewMessages: true },
   ];
+
+  const messages = [
+    {
+      image: chatPic,
+      sender: "Marina Reese",
+      timestamp: "5:10 PM",
+      content:
+        "Quick note: today Liza will join our team synch to provide updates on the launch. If you have questions, bring them!",
+    },
+    {
+      image: chatPic,
+      sender: "Marina Reese",
+      timestamp: "5:10 PM",
+      content:
+        "Quick note: today Liza will join our team synch to provide updates on the launch. If you have questions, bring them!",
+    },
+    {
+      image: chatPic,
+      sender: "Marina Reese",
+      timestamp: "5:10 PM",
+      content:
+        "Quick note: today Liza will join our team synch to provide updates on the launch. If you have questions, bring them!",
+    },
+    // Additional messages can be added here in the same format
+  ];
+
+  const ChatMessage = ({ image, sender, timestamp, content }) => (
+    <div>
+      <img src={image} alt="profile pic" />
+      <strong>{sender}</strong> <span>{timestamp}</span>
+      <p>{content}</p>
+    </div>
+  );
+
+  const ChatWindow = () => (
+    <div>
+      {messages.map((msg, index) => (
+        <ChatMessage key={index} {...msg} />
+      ))}
+    </div>
+  );
+
   return (
     <>
       <EventsNavbar />
@@ -41,11 +84,25 @@ function EventsChatsPage() {
             ))}
           </div>
         </div>
-        <div className="search-container">
-          <input type="text" placeholder="Search chats" />
-          <button className="search-button">
-            <img src={searchIcon} alt="Search" />
-          </button>
+        <div className="whole-container">
+          <div className="search-container">
+            <input type="text" placeholder="Search chats" />
+            <button className="search-button">
+              <img src={searchIcon} alt="Search" />
+            </button>
+          </div>
+          <div className="chat-container">
+            <div className="chat-topBar">
+              <span className="chat-name">Karen Lupert</span>
+              <img className="chat-ellipsis" src={ellipsis} alt="ellipsis" />
+            </div>
+            <div>
+              <ChatWindow />
+            </div>
+            <div className="message-input-area">
+              <input type="text" placeholder="Type a message..." />
+            </div>
+          </div>
         </div>
       </div>
     </>
