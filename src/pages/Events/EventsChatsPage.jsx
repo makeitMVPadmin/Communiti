@@ -40,10 +40,14 @@ function EventsChatsPage() {
   ];
 
   const ChatMessage = ({ image, sender, timestamp, content }) => (
-    <div>
-      <img src={image} alt="profile pic" />
-      <strong>{sender}</strong> <span>{timestamp}</span>
-      <p>{content}</p>
+    <div className="chat-message">
+      <div>
+        <img src={image} alt="profile pic" />
+      </div>
+      <div>
+        <strong>{sender}</strong> <span>{timestamp}</span>
+        <p>{content}</p>
+      </div>
     </div>
   );
 
