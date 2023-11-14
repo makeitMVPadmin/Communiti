@@ -40,12 +40,8 @@ function Communities() {
           const currentUserData = users.find((user) => user.id === uid);
 
           if (currentUserData) {
-            setUserCommunitiesManage(
-              currentUserData["CommunitiesManage"] || []
-            );
-            setUserCommunitiesJoined(
-              currentUserData["CommunitiesJoined"] || []
-            );
+            setUserCommunitiesManage(currentUserData["CommunitiesManage"]);
+            setUserCommunitiesJoined(currentUserData["CommunitiesJoined"]);
           }
 
           // Fetch all communities

@@ -4,9 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import NavbarAlt from "../../components/NavbarAlt/NavbarAlt";
 import communitiHero from "../../assets//images/communitiHero.svg";
-import google from "../../assets/logos/google.svg";
-import linkedin from "../../assets/logos/linkedin.svg";
-import facebook from "../../assets/logos/facebook.svg";
+import { Link } from "react-router-dom";
 import { handleSignUp, handleGoogleSignIn } from "../../Firebase/FirebaseAuth";
 
 function Signup() {
@@ -66,7 +64,7 @@ function Signup() {
           <h1 className="signuppage__heading">Create Your Communiti!</h1>
           <form className="signuppage__form" onSubmit={handleSignupSubmit}>
             <input
-              className="signuppage__input"
+              className="signuppage__input signuppage__input--margin"
               placeholder="Full Name"
               type="text"
               name="name"
@@ -75,7 +73,7 @@ function Signup() {
               onChange={handleFullNamechange}
             ></input>
             <input
-              className="signuppage__input"
+              className="signuppage__input signuppage__input--margin"
               placeholder="Email"
               type="email"
               name="email"
@@ -92,45 +90,35 @@ function Signup() {
               value={password}
               onChange={handlePasswordChange}
             ></input>
-            <Button
-              buttonText="Sign Up"
-              className="button button--yellow-alt signuppage__button"
-              type="submit"
-            />
+            <div className="signuppage__button-link">
+              <Button
+                buttonText="Sign Up"
+                className="button button--yellow-alt signuppage__button"
+                type="submit"
+              />
+            </div>
           </form>
-          <p className="signuppage__writing">or</p>
-          <div className="signuppage__sso">
-            <button
-              className="signuppage__sso-button signuppage__sso-button--google"
+          <div className="signuppage__button-link">
+            <Button
+              buttonText=" Sign Up With Google"
+              className="button button--red "
               onClick={handleGoogleButtonClicked}
-            >
-              <img
-                src={google}
-                alt="Google Sign On"
-                className="signuppage__sso-icon"
-              ></img>
-            </button>
-            <button
-              className="signuppage__sso-button signuppage__sso-button--linkedin"
-              onClick={handleGoogleButtonClicked}
-            >
-              <img
-                src={linkedin}
-                alt="linkedin Sign On"
-                className="signuppage__sso-icon"
-              ></img>
-            </button>
-            <button
-              className="signuppage__sso-button signuppage__sso-button--facebook"
-              onClick={handleGoogleButtonClicked}
-            >
-              <img
-                src={facebook}
-                alt="facebook Sign On"
-                className="signuppage__sso-icon"
-              ></img>
-            </button>
+            ></Button>
           </div>
+          <div className="signuppage__text-container">
+            <hr className="signuppage__divider" />
+            <p className="signuppage__text">or</p>
+            <hr className="signuppage__divider" />
+          </div>
+          <Link
+            className="signuppage__button-link signuppage__button-link--signup"
+            to={"/signin"}
+          >
+            <Button
+              buttonText="Sign In"
+              className="button button--dark-blue "
+            ></Button>
+          </Link>
         </section>
       </main>
     </>

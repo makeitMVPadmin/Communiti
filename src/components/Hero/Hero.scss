@@ -80,7 +80,7 @@
   }
 
   &__success {
-  margin-top: 1rem;
+    margin-top: 1rem;
   }
 
   &__success-message {
@@ -98,15 +98,15 @@
     align-items: left;
     padding: 1vw;
   }
-  
+
   &__form label {
     margin-bottom: 1rem;
   }
-  
+
   &__form input {
     padding: 0.5rem;
   }
-  
+
   &__form button {
     background-color: $MVP-Yellow;
     border: none;
@@ -114,7 +114,7 @@
     width: 40px;
     height: 40px;
     cursor: pointer;
-  
+
     img {
       width: 70%;
       height: 70%;

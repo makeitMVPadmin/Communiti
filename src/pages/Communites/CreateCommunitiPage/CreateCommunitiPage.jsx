@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./CreateCommunitiPage.scss";
 import DashboardNavbar from "../../../components/DashboardNavbar/DashboardNavbar";
 import CreateCommuniti1 from "../../../components/CommunitiesComponents/CreateCommuniti1/CreateCommuniti1";
 import CreateCommuniti2 from "../../../components/CommunitiesComponents/CreateCommuniti2/CreateCommuniti2";
 import CreateCommuniti3 from "../../../components/CommunitiesComponents/CreateCommuniti3/CreateCommuniti3";
-
 import {
   collection,
   addDoc,
@@ -14,7 +13,7 @@ import {
   arrayUnion,
 } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage, db } from "../../../Firebase/FirebaseConfig";
+import { storage, db, auth } from "../../../Firebase/FirebaseConfig";
 import { useNavigate } from "react-router-dom";
 
 function CreateCommunitiPage() {
@@ -39,7 +38,7 @@ function CreateCommunitiPage() {
         const imageUrl = await getDownloadURL(storageRef);
 
         // Use the actual user ID when user authentication is implemented
-        const createdBy = "YFVOpHLSMYVDyfYEYYoe";
+        const createdBy = auth.currentUser.uid;
 
         const locationValue =
           selectedOption === "in-person" && selectedOption === "virtual"
@@ -61,10 +60,10 @@ function CreateCommunitiPage() {
 
         console.log("Document written with ID: ", docRef.id);
 
-        // Update user's Communities-Manage field array
+        // Update user's CommunitiesManage field array
         const userDocRef = doc(collection(db, "Users"), createdBy);
         await updateDoc(userDocRef, {
-          "Communities-Manage": arrayUnion(docRef.id),
+          CommunitiesManage: arrayUnion(docRef.id),
         });
 
         console.log("Communiti creation complete!");
