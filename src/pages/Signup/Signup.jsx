@@ -112,7 +112,7 @@ function Signup() {
           </div>
           <Link
             className="signuppage__button-link signuppage__button-link--signup"
-            to={"/signin"}
+            to={"/login"}
           >
             <Button
               buttonText="Sign In"
