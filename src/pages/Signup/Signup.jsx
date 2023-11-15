@@ -12,8 +12,9 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
+  const [error, setError] = useState(null);
 
-  const handleFullNamechange = (event) => {
+  const handleFullNameChange = (event) => {
     setFullName(event.target.value);
   };
 
@@ -25,14 +26,43 @@ function Signup() {
     setPassword(event.target.value);
   };
 
+  const isFormValid = () => {
+    // Basic validation checks
+    if (!fullName.trim() || !email.trim() || !password.trim()) {
+      setError("All fields must be filled");
+      return false;
+    }
+
+    // Email validation using a simple regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError("Invalid email address");
+      return false;
+    }
+
+    // Password length validation
+    if (password.length < 8) {
+      setError("Password must be at least 8 characters long");
+      return false;
+    }
+
+    setError(null); // Reset error state if all checks pass
+    return true;
+  };
+
   const handleSignupSubmit = (event) => {
     event.preventDefault();
+
+    // Validate the form
+    if (!isFormValid()) {
+      return;
+    }
 
     // Call the Firebase signup function with the email and password
     handleSignUp(email, password, fullName)
       .then(() => {
         // Signup was successful, redirect
-        navigate("/home");
+        navigate("/dashboard");
       })
       .catch((error) => {
         // Handle signup error, you can display an error message
@@ -62,6 +92,7 @@ function Signup() {
         ></img>
         <section className="signuppage__content">
           <h1 className="signuppage__heading">Create Your Communiti!</h1>
+          {error && <p className="signuppage__error">{error}</p>}
           <form className="signuppage__form" onSubmit={handleSignupSubmit}>
             <input
               className="signuppage__input signuppage__input--margin"
@@ -70,7 +101,7 @@ function Signup() {
               name="name"
               id="name"
               value={fullName}
-              onChange={handleFullNamechange}
+              onChange={handleFullNameChange}
             ></input>
             <input
               className="signuppage__input signuppage__input--margin"
