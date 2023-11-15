@@ -4,6 +4,7 @@ import LandingPage from "./pages/LandingPage/LandingPage";
 import HomePage from "./pages/HomePage/HomePage";
 import Signup from "./pages/Signup/Signup";
 import LogIn from "./pages/LogIn/LogIn";
+import ForgotPage from "./pages/ForgotPage/ForgotPage";
 import EventsPage from "./pages/Events/EventsPage";
 import EventsHomePage from "./pages/Events/EventsHomePage";
 import EventsCommunitiesPage from "./pages/Events/EventsCommunitiesPage";
@@ -19,6 +20,7 @@ function App() {
       <Route path="/home" element={<HomePage />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<LogIn />} />
+      <Route path="/forgot" element={<ForgotPage />} />
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route path="/events" element={<EventsHomePage />} />
       <Route path="/events/communities" element={<EventsCommunitiesPage />} />
@@ -26,7 +28,7 @@ function App() {
       <Route path="/events/events" element={<EventsPage />} />
       <Route path="/communities" element={<Communities />} />
       <Route path="/communities/create" element={<CreateCommunitiPage />} />
-      <Route path='/announcements' element={<Announcements />} />
+      <Route path="/announcements" element={<Announcements />} />
     </Routes>
   );
 }
