@@ -13,7 +13,7 @@
     align-items: center;
     justify-content: center;
 
-    @include laptop {
+    @include Laptop {
       height: 23.3vw;
       width: 22.6vw;
     }
@@ -33,7 +33,7 @@
   }
 
   &-heading {
-    @include heading;
+    @include Heading;
     margin: 4.1vw 0;
   }
 

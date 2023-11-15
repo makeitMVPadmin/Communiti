@@ -25,8 +25,8 @@ export const updateUserInFirestore = async (
         fullName: fullName || user.displayName,
         userID: user.uid,
         createdAt: serverTimestamp(),
-        communitiesJoined: [],
-        communitiesManage: [],
+        CommunitiesJoined: [],
+        CommunitiesManage: [],
         profilePhoto: photoURL || "", // You may set this value during signup
       });
     } else {

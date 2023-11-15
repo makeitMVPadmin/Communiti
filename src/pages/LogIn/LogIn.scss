@@ -15,11 +15,14 @@
   }
 
   &__image {
-    width: 50%;
+    width: 42.5vw;
+    height: 43vw;
     margin: 1rem 0;
 
     @include Laptop {
-      margin: 1rem;
+      width: 39vw;
+      height: 39.1vw;
+      margin: auto 0;
     }
   }
 
@@ -39,52 +42,37 @@
   }
 
   &__heading {
-    @include SSO-Title;
+    @include Heading;
     width: 100%;
     margin: 1rem 0;
     text-align: center;
 
     @include Laptop {
-      margin-bottom: 2rem;
-      font-size: 2.5rem;
+      margin-bottom: 5.6vw;
     }
   }
 
-  &__writing {
+  &__text {
     font-size: 4vw;
     margin: 0.5rem;
-    @include Laptop {
-      margin: 1rem;
-      font-size: 2vw;
-    }
-  }
-
-  &__sso {
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
 
     @include Laptop {
-      justify-content: center;
+      @include Body;
     }
 
-    &-button {
-      background: none;
+    &-container {
       display: flex;
       justify-content: center;
       align-items: center;
-      border: none;
-      width: 22%;
-    }
-
-    &-icon {
-      width: 75%;
 
       @include Laptop {
-        width: 50%;
+        margin: 1vw 0 2.1vw 0;
+        width: 36.7vw;
+        justify-content: space-evenly;
       }
     }
   }
+
   &__form {
     display: flex;
     flex-direction: column;
@@ -93,32 +81,55 @@
   }
 
   &__input {
-    @include SSO-Input;
+    @include Input;
+    margin-bottom: 2.7vw;
   }
 
   &__button {
-    margin: 1rem 0;
-    @include Laptop {
-      width: 50%;
-      margin: 1rem 0;
+    &-link {
+      width: 90.8vw;
+      height: 13.7vw;
+      margin: 7vw 0 0 0;
+
+      @include Laptop {
+        width: 36.7vw;
+        height: 5.6vw;
+        margin: 0 0 2.1vw 0;
+      }
     }
   }
 
   &__forgot {
-    font-size: 2.5vw;
-    margin: 0 3vw;
-    color: $MVP-Dark-Blue;
+    @include Buttons;
+    color: rgba(0, 0, 0, 0.7);
 
-    @include Laptop {
-      font-size: 0.7vw;
-      margin: 0 1vw;
-    }
     &-link {
-      align-self: flex-start;
+      display: flex;
+      width: 100%;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+  }
+
+  &__divider {
+    width: 40vw;
+    height: 0.3vw;
+    @include Laptop {
+      width: 14.5vw;
+      height: 0.1vw;
+    }
+  }
+  &__label {
+    text-align: left;
+    margin-top: 1rem;
+    @include Buttons;
+
+    &-container {
+      display: flex;
+      width: 100%;
+
       @include Laptop {
-        align-self: unset;
-        text-align: left;
-        width: 50%;
+        width: 36.7vw;
       }
     }
   }

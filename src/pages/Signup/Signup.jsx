@@ -4,9 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import NavbarAlt from "../../components/NavbarAlt/NavbarAlt";
 import communitiHero from "../../assets//images/communitiHero.svg";
-import google from "../../assets/logos/google.svg";
-import linkedin from "../../assets/logos/linkedin.svg";
-import facebook from "../../assets/logos/facebook.svg";
+import { Link } from "react-router-dom";
 import { handleSignUp, handleGoogleSignIn } from "../../Firebase/FirebaseAuth";
 
 function Signup() {
@@ -14,8 +12,9 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
+  const [error, setError] = useState(null);
 
-  const handleFullNamechange = (event) => {
+  const handleFullNameChange = (event) => {
     setFullName(event.target.value);
   };
 
@@ -27,14 +26,43 @@ function Signup() {
     setPassword(event.target.value);
   };
 
+  const isFormValid = () => {
+    // Basic validation checks
+    if (!fullName.trim() || !email.trim() || !password.trim()) {
+      setError("All fields must be filled");
+      return false;
+    }
+
+    // Email validation using a simple regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError("Invalid email address");
+      return false;
+    }
+
+    // Password length validation
+    if (password.length < 8) {
+      setError("Password must be at least 8 characters long");
+      return false;
+    }
+
+    setError(null); // Reset error state if all checks pass
+    return true;
+  };
+
   const handleSignupSubmit = (event) => {
     event.preventDefault();
+
+    // Validate the form
+    if (!isFormValid()) {
+      return;
+    }
 
     // Call the Firebase signup function with the email and password
     handleSignUp(email, password, fullName)
       .then(() => {
         // Signup was successful, redirect
-        navigate("/home");
+        navigate("/dashboard");
       })
       .catch((error) => {
         // Handle signup error, you can display an error message
@@ -64,18 +92,19 @@ function Signup() {
         ></img>
         <section className="signuppage__content">
           <h1 className="signuppage__heading">Create Your Communiti!</h1>
+          {error && <p className="signuppage__error">{error}</p>}
           <form className="signuppage__form" onSubmit={handleSignupSubmit}>
             <input
-              className="signuppage__input"
+              className="signuppage__input signuppage__input--margin"
               placeholder="Full Name"
               type="text"
               name="name"
               id="name"
               value={fullName}
-              onChange={handleFullNamechange}
+              onChange={handleFullNameChange}
             ></input>
             <input
-              className="signuppage__input"
+              className="signuppage__input signuppage__input--margin"
               placeholder="Email"
               type="email"
               name="email"
@@ -92,45 +121,35 @@ function Signup() {
               value={password}
               onChange={handlePasswordChange}
             ></input>
-            <Button
-              buttonText="Sign Up"
-              className="button button--yellow-alt signuppage__button"
-              type="submit"
-            />
+            <div className="signuppage__button-link">
+              <Button
+                buttonText="Sign Up"
+                className="button button--yellow-alt signuppage__button"
+                type="submit"
+              />
+            </div>
           </form>
-          <p className="signuppage__writing">or</p>
-          <div className="signuppage__sso">
-            <button
-              className="signuppage__sso-button signuppage__sso-button--google"
+          <div className="signuppage__button-link">
+            <Button
+              buttonText=" Sign Up With Google"
+              className="button button--red "
               onClick={handleGoogleButtonClicked}
-            >
-              <img
-                src={google}
-                alt="Google Sign On"
-                className="signuppage__sso-icon"
-              ></img>
-            </button>
-            <button
-              className="signuppage__sso-button signuppage__sso-button--linkedin"
-              onClick={handleGoogleButtonClicked}
-            >
-              <img
-                src={linkedin}
-                alt="linkedin Sign On"
-                className="signuppage__sso-icon"
-              ></img>
-            </button>
-            <button
-              className="signuppage__sso-button signuppage__sso-button--facebook"
-              onClick={handleGoogleButtonClicked}
-            >
-              <img
-                src={facebook}
-                alt="facebook Sign On"
-                className="signuppage__sso-icon"
-              ></img>
-            </button>
+            ></Button>
           </div>
+          <div className="signuppage__text-container">
+            <hr className="signuppage__divider" />
+            <p className="signuppage__text">or</p>
+            <hr className="signuppage__divider" />
+          </div>
+          <Link
+            className="signuppage__button-link signuppage__button-link--signup"
+            to={"/login"}
+          >
+            <Button
+              buttonText="Sign In"
+              className="button button--dark-blue "
+            ></Button>
+          </Link>
         </section>
       </main>
     </>

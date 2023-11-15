@@ -2,9 +2,6 @@ import "./HomePage.scss";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import NavbarAlt from "../../components/NavbarAlt/NavbarAlt";
-import google from "../../assets/logos/google.svg";
-import linkedin from "../../assets/logos/linkedin.svg";
-import facebook from "../../assets/logos/facebook.svg";
 import communitiHero from "../../assets//images/communitiHero.svg";
 import { handleGoogleSignIn } from "../../Firebase/FirebaseAuth";
 
@@ -34,41 +31,26 @@ function HomePage() {
           <h1 className="homepage__heading">Welcome to Communiti!</h1>
           <div className="homepage__buttons">
             <Link to="/login" className="homepage__buttons-link">
-              <Button buttonText="Log In" className="button button--blue" />
+              <Button buttonText="Log In" className="button--yellow-alt" />
             </Link>
             <Link to="/signup" className="homepage__buttons-link">
               <Button
                 buttonText="Sign Up"
-                className="button button--yellow-alt"
+                className="button button--dark-blue"
               />
             </Link>
           </div>
-          <p className="homepage__writing">or</p>
-          <div className="homepage__sso">
-            <button
-              className="homepage__sso-button homepage__sso-button--google"
+          <div className="homepage__text-container">
+            <hr className="homepage__divider" />
+            <p className="homepage__text">or</p>
+            <hr className="homepage__divider" />
+          </div>
+          <div className="homepage__buttons-link">
+            <Button
+              buttonText="Log In With Google"
+              className="button button--red "
               onClick={handleGoogleButtonClicked}
-            >
-              <img
-                src={google}
-                alt="Google Sign On"
-                className="homepage__sso-icon"
-              ></img>
-            </button>
-            <button className="homepage__sso-button homepage__sso-button--linkedin">
-              <img
-                src={linkedin}
-                alt="linkedin Sign On"
-                className="homepage__sso-icon"
-              ></img>
-            </button>
-            <button className="homepage__sso-button homepage__sso-button--facebook">
-              <img
-                src={facebook}
-                alt="facebook Sign On"
-                className="homepage__sso-icon"
-              ></img>
-            </button>
+            ></Button>
           </div>
         </section>
       </main>

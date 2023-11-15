@@ -92,6 +92,7 @@
 
     &--profile {
       width: 6vw;
+      border-radius: 50%;
 
       @include Desktop {
         width: 4vw;

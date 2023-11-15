@@ -1,0 +1,185 @@
+@use '../../styles/global' as *;
+@use '../../styles/variables' as *;
+@use '../../styles/typography' as *;
+
+$mockup-blue: #C8E7FB;
+$mockup-light-blue: #E1F0FB;
+
+.announcements-page {
+    font-family: "Gilroy";
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__hero {
+        width: 100%;
+        height: 20vh;
+        
+        padding: .5vw 1vw;
+
+        background-color: $mockup-blue;
+
+        &-writing {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            width: 13%;
+
+            font-size: 1.2rem;
+
+            &-icon {
+                width: 2vw;
+                height: 2vw;
+            }
+        }
+    }
+
+    &__card {
+        // border: 2px solid red;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        background-color: transparent;
+
+        width: 85%;
+
+        position: relative;
+        top: -5vw;
+
+        &-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            width: 80%;
+            padding-right: 2vw;
+            // border: 2px solid orange;
+        }
+
+        &-writing {
+            background-color: $MVP-White;
+
+            border: 3px solid $MVP-black;
+            border-radius: 8px;
+
+            width: 80%;
+
+            padding: 1vw 1.5vw;
+
+            &-top {
+                font-size: 4rem;
+            }
+
+            &-bottom {
+                display: flex;
+                justify-content: space-between;
+
+                // border: 2px solid blue;
+                padding-right: 1vw;
+
+                &-left {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    width: 36%;
+
+                    // border: 2px solid pink;
+                }
+
+                &-right {
+                    // border: 2px solid purple;
+                    font-size: 1.5rem;
+
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    width: 20%;
+                }
+            }
+        }
+
+        &-card {
+            background-color: rgba($MVP-Light-Blue, 0.1);
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            width: fit-content;
+            height: fit-content;
+
+            padding: .2vw .4vw;
+            border-radius: 8px;
+
+            &-icon {
+                width: 1vw;
+                height: 1vw;
+
+                margin-right: .7vw;
+            }
+
+            &-writing {
+                width: fit-content;
+                font-size: 1.5rem;
+            }
+        }
+
+        &-description {
+            // border: 2px solid orange;
+
+            width: 85%;
+
+            margin: 1vw 0vw;
+
+            &-heading {
+                font-size: 2rem;
+
+                margin: 1vw 0vw;
+            }
+
+            &-description {
+                font-size: 1.8rem;
+                line-height: 2vw;
+
+                width: 90%;
+            }
+        }
+    }
+
+    &__aem {
+        width: 90%;
+
+        &-tabs {
+            display: flex;
+            justify-content: space-between;
+
+            width: 60%;
+            padding: 0vw 1vw;
+            margin: 2vw 0vw 0vw 0vw;
+
+            // border: 2px solid blue;
+
+            &-tab {
+                font-size: 1.8rem;
+                text-align: center;
+
+                width: 30%;
+                padding: 1vw;
+
+                border-radius: 8px 8px 0px 0px;
+
+                &--active {
+                    background-color: $mockup-light-blue;
+                }
+            }
+        }
+    }
+}

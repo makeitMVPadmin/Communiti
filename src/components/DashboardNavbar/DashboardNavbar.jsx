@@ -3,26 +3,27 @@ import homeIcon from "../../assets/images/homeIcon.svg";
 import chatIcon from "../../assets/images/chatIcon.svg";
 import calendarIcon from "../../assets/images/calendarIcon.svg";
 import communitiesIcon from "../../assets/images/communitiesIcon.svg";
-
 import LogoIcon from "../../assets/logos/communiti2.svg";
 import profilePic from "../../assets/images/profilePic.svg";
 import DropDownArrow from "../../assets/images/drop-down-arrow.svg";
-
 import { NavLink, Link } from "react-router-dom";
-import React, { useEffect, useState } from "react";
-
+import { useEffect, useState } from "react";
 import { collection, doc, getDoc } from "firebase/firestore";
 import { db, auth } from "../../Firebase/FirebaseConfig";
 
 function DashboardNavbar() {
-  const [profilePhoto, setProfilePhoto] = useState(profilePic); // Change the variable here
+  const [profilePhoto, setProfilePhoto] = useState(() => {
+    // Try to get profile photo from session storage
+    const storedProfilePhoto = sessionStorage.getItem("profilePhoto");
+    return storedProfilePhoto ? JSON.parse(storedProfilePhoto) : null;
+  });
 
   useEffect(() => {
     // Get the current user from Firebase Authentication
     const currentUser = auth.currentUser;
 
     // Check if a user is signed in
-    if (currentUser) {
+    if (currentUser && !profilePhoto) {
       const uid = currentUser.uid;
 
       // Fetch user data from Firestore based on UID
@@ -33,11 +34,14 @@ function DashboardNavbar() {
 
           if (userDocSnapshot.exists()) {
             const userData = userDocSnapshot.data();
-            console.log("User Data:", userData);
-
             if (userData && userData.profilePhoto) {
               setProfilePhoto(userData.profilePhoto);
-              console.log("Profile Photo set:", userData.profilePhoto);
+
+              // Store profile photo in session storage
+              sessionStorage.setItem(
+                "profilePhoto",
+                JSON.stringify(userData.profilePhoto)
+              );
             }
           }
         } catch (error) {
@@ -48,7 +52,7 @@ function DashboardNavbar() {
       // Call the fetchUserData function
       fetchUserData();
     }
-  }, []);
+  }, [profilePhoto]);
 
   return (
     <div className="dashboard-navbar">
@@ -124,7 +128,7 @@ function DashboardNavbar() {
       <div className="dashboard-navbar__right">
         <Link to="/profile" className="dashboard-navbar__link">
           <img
-            src={profilePhoto}
+            src={profilePhoto || profilePic}
             alt="profile icon"
             className="dashboard-navbar__img dashboard-navbar__img--profile"
           />

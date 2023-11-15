@@ -4,10 +4,6 @@ import { useState } from "react";
 import Button from "../../components/Button/Button";
 import NavbarAlt from "../../components/NavbarAlt/NavbarAlt";
 import communitiHero from "../../assets//images/communitiHero.svg";
-
-import google from "../../assets/logos/google.svg";
-import linkedin from "../../assets/logos/linkedin.svg";
-import facebook from "../../assets/logos/facebook.svg";
 import { handleSignIn, handleGoogleSignIn } from "../../Firebase/FirebaseAuth";
 
 function LogIn() {
@@ -52,17 +48,19 @@ function LogIn() {
         <img
           src={communitiHero}
           alt="Home Icon"
-          className="signuppage__image"
+          className="loginpage__image"
         ></img>
         <section className="loginpage__content">
-          <h1 className="loginpage__heading">Log in to your Communiti!</h1>
+          <h1 className="loginpage__heading">Log in to Communiti!</h1>
           <form
             className="loginpage__form"
             onSubmit={handleSignInButtonClicked}
           >
+            <div className="loginpage__label-container">
+              <label className="loginpage__label">Email</label>
+            </div>
             <input
               className="loginpage__input"
-              placeholder="Email"
               type="email"
               name="email"
               id="email"
@@ -70,9 +68,15 @@ function LogIn() {
               value={email}
               onChange={handleEmailChange}
             ></input>
+            <div className="loginpage__label-container">
+              <label className="loginpage__label">Password</label>
+              <Link to={"/forgot"} className="loginpage__forgot-link">
+                <p className="loginpage__forgot"> Forgot Password?</p>
+              </Link>
+            </div>
+
             <input
               className="loginpage__input"
-              placeholder="Password"
               type="password"
               name="password"
               id="password"
@@ -80,42 +84,36 @@ function LogIn() {
               value={password}
               onChange={handlePasswordChange}
             ></input>
-            <Link to={"/forgotpassword"} className="loginpage__forgot-link">
-              <p className="loginpage__forgot"> FORGOT PASSWORD?</p>
-            </Link>
-            <Button
-              buttonText="Log In"
-              className="button button--yellow-alt loginpage__button"
-              type="submit"
-            />
+
+            <div className="loginpage__button-link">
+              <Button
+                buttonText="Log In"
+                className="button button--yellow-alt loginpage__button"
+                type="submit"
+              />
+            </div>
           </form>
-          <p className="loginpage__writing">or</p>
-          <div className="loginpage__sso">
-            <button className="loginpage__sso-button loginpage__sso-button--google">
-              <img
-                src={google}
-                alt="Google Sign On"
-                className="loginpage__sso-icon"
-                onClick={handleGoogleButtonClicked}
-              ></img>
-            </button>
-            <button className="loginpage__sso-button loginpage__sso-button--linkedin">
-              <img
-                src={linkedin}
-                alt="linkedin Sign On"
-                className="loginpage__sso-icon"
-                onClick={handleGoogleButtonClicked}
-              ></img>
-            </button>
-            <button className="loginpage__sso-button loginpage__sso-button--facebook">
-              <img
-                src={facebook}
-                alt="facebook Sign On"
-                className="loginpage__sso-icon"
-                onClick={handleGoogleButtonClicked}
-              ></img>
-            </button>
+          <div className="loginpage__button-link">
+            <Button
+              buttonText="Log In With Google"
+              className="button button--red "
+              onClick={handleGoogleButtonClicked}
+            ></Button>
           </div>
+          <div className="loginpage__text-container">
+            <hr className="loginpage__divider" />
+            <p className="loginpage__text">or</p>
+            <hr className="loginpage__divider" />
+          </div>
+          <Link
+            className="loginpage__button-link loginpage__button-link--signup"
+            to={"/signup"}
+          >
+            <Button
+              buttonText="Sign Up"
+              className="button button--dark-blue "
+            ></Button>
+          </Link>
         </section>
       </main>
     </>
