@@ -11,8 +11,8 @@ import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import CreateCommunitiPage from "./pages/Communites/CreateCommunitiPage/CreateCommunitiPage";
 import Communities from "./pages/Communites/Communities";
 import CommunitiProfile from "./pages/CommunitiProfile/CommunitiProfile";
-import Announcements from "./pages/Announcements/Announcements";
-import { auth } from "./Firebase/FirebaseConfig"; // Update with the correct path
+import { auth } from "./Firebase/FirebaseConfig";
+import "./styles/_global.scss";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -30,7 +30,6 @@ function App() {
   }, []);
 
   if (loading) {
-    // You might want to add a loading spinner or some indicator here
     return null;
   }
 
@@ -50,7 +49,6 @@ function App() {
           <Route path="/communities" element={<Communities />} />
           <Route path="/communities/create" element={<CreateCommunitiPage />} />
           <Route path="/communities/:id" element={<CommunitiProfile />} />
-          <Route path="/announcements" element={<Announcements />} />
         </>
       ) : (
         <Route path="*" element={<Navigate to="/login" />} />
