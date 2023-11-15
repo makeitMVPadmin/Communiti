@@ -1,4 +1,98 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/typography" as *;
+
 .dashboard-page {
   height: 100%;
   width: 100%;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 159px;
+  }
+
+  &__welcome {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  &__header {
+    @include Heading;
+    font-family: Gilroy;
+  }
+
+  &__post-container {
+    margin: 51px 0;
+    width: 85%;
+    max-width: 1000px;
+    max-height: 200px;
+    padding: 20px 20px;
+    margin-top: 10px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0px 0.2rem 0.2rem 0px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    color: $MVP-black;
+    display: flex;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+    @include Tablet {
+      min-width: 300px;
+    }
+  }
+  &__icon-heading {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  &__profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border: 3px solid $MVP-black;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      object-position: center;
+      border-radius: 10px;
+    }
+  }
+
+  &__heading {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+  }
+
+  &__name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    @media screen and (max-width: 320px) {
+      font-size: 1rem;
+    }
+  }
+
+  &__time-posted {
+    display: flex;
+    flex-direction: row;
+    img {
+      width: 10px;
+      margin-right: 3px;
+    }
+    font-size: 0.8rem;
+  }
+}
+
+body {
+  font-family: Gilroy;
 }
