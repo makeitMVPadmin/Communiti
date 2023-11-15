@@ -24,7 +24,7 @@ function App() {
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route path="/events" element={<EventsHomePage />} />
       <Route path="/events/communities" element={<EventsCommunitiesPage />} />
-      <Route path="/events/chat" element={<EventsChatsPage />} />
+      <Route path="/chat" element={<EventsChatsPage />} />
       <Route path="/events/events" element={<EventsPage />} />
       <Route path="/communities" element={<Communities />} />
       <Route path="/communities/create" element={<CreateCommunitiPage />} />
