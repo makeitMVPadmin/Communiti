@@ -80,16 +80,42 @@
   }
 
   &__success {
-    margin-top: 1rem;
+    background: $MVP-White;
+    margin: 1rem auto;
+    border-radius: 5.6vw;
+    border: 0.8vw solid #000;
+    box-shadow: 0.8vw 0.8vw 0px 0px #09f;
+    width: 81.8vw;
+    height: 45.7vw;
+    padding: 4.3vw 6.4vw;
+
+    @include Laptop {
+      border-radius: 1.5vw;
+      border: 0.2vw solid #000;
+      background: $MVP-White;
+      box-shadow: 0.6vw 0.6vw 0px 0px #09f;
+      width: 42.4vw;
+      height: 13vw;
+      margin: 1rem 0;
+      padding: 1.1vw 1.7vw;
+    }
   }
 
   &__success-message {
-    @include LandingPage-Text;
+    @include Body;
     color: $MVP-black;
-    text-align: center;
-    margin-bottom: 1rem;
+    text-align: left;
     border-color: black;
     border-radius: 0.5rem;
+
+    &-header {
+      @include SubHeader;
+      margin-bottom: 6vw;
+
+      @include Laptop {
+        margin: 0 0 1.5vw 0;
+      }
+    }
   }
 
   &__form {

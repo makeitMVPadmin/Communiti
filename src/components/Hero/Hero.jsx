@@ -3,7 +3,8 @@ import "./Hero.scss";
 import Button from "../Button/Button";
 import communitiHero from "../../assets/images/communitiHero.svg";
 import arrowCircleButton from "../../assets/images/arrowCircleButton.svg";
-import { handleSignUp } from "../../Firebase/FirebaseAuth";
+import { db } from "../../Firebase/FirebaseConfig";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 function Hero() {
   const [email, setEmail] = useState("");
@@ -14,20 +15,25 @@ function Hero() {
     setEmail(event.target.value);
   };
 
-  const handleSignupSubmit = (event) => {
+  const handleSignupSubmit = async (event) => {
     event.preventDefault();
 
-    // Call Firebase signup function with the email
-    handleSignUp(email)
-      .then(() => {
-        // Display success message to the user
-        setShowForm(false);
-        setShowSuccess(true);
-      })
-      .catch((error) => {
-        // Handle signup error, you can display an error message
-        console.error("Signup error:", error);
+    try {
+      // Add the email to the PreLaunch collection in Firestore
+      const preLaunchCollectionRef = collection(db, "PreLaunch"); // Replace 'PreLaunch' with your actual collection name
+      await addDoc(preLaunchCollectionRef, {
+        email: email,
+        timestamp: serverTimestamp(),
       });
+
+      // Update state to show success message
+      setShowSuccess(true);
+      setShowForm(false);
+    } catch (error) {
+      // Handle any errors
+      console.error("Error submitting email to Firestore:", error);
+      // You may want to show an error message to the user here
+    }
   };
 
   return (
@@ -43,7 +49,7 @@ function Hero() {
           From interactive chats and virtual workshops to mentorships and more,
           we've got all your community needs covered in one place.
         </p>
-        <div className="hero__container">
+        <div className="hero__container hero__container--alt">
           {!showForm && !showSuccess && (
             <Button
               buttonText="Join the Launch"
@@ -74,9 +80,10 @@ function Hero() {
           )}
           {showSuccess && (
             <div className="hero__success">
+              <h4 className="hero__success-message-header">Success!</h4>
               <p className="hero__success-message">
-                Success! Thank you for signing up! We can't wait to have you in
-                the Communiti!
+                Thank you for signing up! We can't wait to have you in the
+                Communiti!
               </p>
             </div>
           )}
