@@ -74,7 +74,7 @@ function Hero() {
           {showSuccess && (
             <div className="hero__success">
               <p className="hero__success-message">
-                Success! Thank you for signing up! We can't wait to have you in
+                Success! {"\n"}{"\n"}Thank you for signing up! {"\n"}We can't wait to have you in
                 the Communiti!
               </p>
             </div>

@@ -81,15 +81,19 @@
 
   &__success {
     margin-top: 1rem;
+    white-space: pre-wrap;
   }
 
   &__success-message {
     @include LandingPage-Text;
     color: $MVP-black;
-    text-align: center;
+    text-align: left;
     margin-bottom: 1rem;
+    border-style: solid;
     border-color: black;
-    border-radius: 0.5rem;
+    box-shadow: 5px 5px 0px 0px $MVP-Light-Blue;
+    border-radius: 1.5rem;
+    padding: .5rem;
   }
 
   &__form {
