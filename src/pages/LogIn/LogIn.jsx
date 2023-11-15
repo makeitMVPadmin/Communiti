@@ -70,7 +70,7 @@ function LogIn() {
             ></input>
             <div className="loginpage__label-container">
               <label className="loginpage__label">Password</label>
-              <Link to={"/forgotpassword"} className="loginpage__forgot-link">
+              <Link to={"/forgot"} className="loginpage__forgot-link">
                 <p className="loginpage__forgot"> Forgot Password?</p>
               </Link>
             </div>
