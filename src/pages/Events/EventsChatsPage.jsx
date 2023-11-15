@@ -8,7 +8,6 @@ import ellipsis from "../../assets/images/ellipsis.svg";
 import paperclip from "../../assets/images/paperclip.svg";
 import emoji from "../../assets/images/emoji.svg";
 
-
 function EventsChatsPage() {
   const chatList = [
     { name: "Karen Lupert", imageUrl: chatPic, hasNewMessages: true },

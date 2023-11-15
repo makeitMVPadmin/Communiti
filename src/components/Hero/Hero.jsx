@@ -7,7 +7,7 @@ import { handleSignUp } from "../../Firebase/FirebaseAuth";
 
 function Hero() {
   const [email, setEmail] = useState("");
-  const [showForm, setShowForm] = useState(true);
+  const [showForm, setShowForm] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
   const handleEmailChange = (event) => {
@@ -30,11 +30,6 @@ function Hero() {
       });
   };
 
-  const handleSuccessClose = () => {
-    setShowForm(false);
-    setShowSuccess(false);
-  };
-
   return (
     <div className="hero">
       <div className="hero__image-container">
@@ -49,10 +44,13 @@ function Hero() {
           we've got all your community needs covered in one place.
         </p>
         <div className="hero__container">
-          <Button
-            buttonText="Join the Launch"
-            className="button button--yellow"
-          />
+          {!showForm && !showSuccess && (
+            <Button
+              buttonText="Join the Launch"
+              className="button button--yellow"
+              onClick={() => setShowForm(true)}
+            />
+          )}
           {showForm && (
             <div className="hero__sign-up">
               <form onSubmit={handleSignupSubmit} className="hero__form">
@@ -62,13 +60,14 @@ function Hero() {
                   value={email}
                   onChange={handleEmailChange}
                   placeholder="email address"
+                  className="hero__input"
                 />
-                <button type="submit" className="button button--yellow">
+                <button type="submit">
                   <img
                     src={arrowCircleButton}
                     alt="Submit"
                     className="arrow-circle-button"
-                  ></img>
+                  />
                 </button>
               </form>
             </div>
