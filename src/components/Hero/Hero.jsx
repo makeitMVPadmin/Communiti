@@ -44,7 +44,7 @@ function Hero() {
           we've got all your community needs covered in one place.
         </p>
         <div className="hero__container">
-          {(!showForm && !showSuccess) && (
+          {!showForm && !showSuccess && (
             <Button
               buttonText="Join the Launch"
               className="button button--yellow"
@@ -60,8 +60,9 @@ function Hero() {
                   value={email}
                   onChange={handleEmailChange}
                   placeholder="email address"
+                  className="hero__input"
                 />
-                <button type="submit" className="button button--yellow">
+                <button type="submit">
                   <img
                     src={arrowCircleButton}
                     alt="Submit"
