@@ -5,13 +5,12 @@ import HomePage from "./pages/HomePage/HomePage";
 import Signup from "./pages/Signup/Signup";
 import LogIn from "./pages/LogIn/LogIn";
 import ForgotPage from "./pages/ForgotPage/ForgotPage";
-import EventsPage from "./pages/Events/EventsPage";
-import EventsHomePage from "./pages/Events/EventsHomePage";
-import EventsCommunitiesPage from "./pages/Events/EventsCommunitiesPage";
-import EventsChatsPage from "./pages/Events/EventsChatsPage";
+import EventsPage from "./pages/EventsPage/EventsPage";
+import ChatsPage from "./pages/ChatsPage/ChatsPage";
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import CreateCommunitiPage from "./pages/Communites/CreateCommunitiPage/CreateCommunitiPage";
 import Communities from "./pages/Communites/Communities";
+import CommunitiProfile from "./pages/CommunitiProfile/CommunitiProfile";
 import Announcements from "./pages/Announcements/Announcements";
 import { auth } from "./Firebase/FirebaseConfig"; // Update with the correct path
 
@@ -46,15 +45,11 @@ function App() {
       {user ? (
         <>
           <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/events" element={<EventsHomePage />} />
-          <Route
-            path="/events/communities"
-            element={<EventsCommunitiesPage />}
-          />
-          <Route path="/chat" element={<EventsChatsPage />} />
-          <Route path="/events/events" element={<EventsPage />} />
+          <Route path="/events" element={<EventsPage />} />
+          <Route path="/chat" element={<ChatsPage />} />
           <Route path="/communities" element={<Communities />} />
           <Route path="/communities/create" element={<CreateCommunitiPage />} />
+          <Route path="/communities/:id" element={<CommunitiProfile />} />
           <Route path="/announcements" element={<Announcements />} />
         </>
       ) : (

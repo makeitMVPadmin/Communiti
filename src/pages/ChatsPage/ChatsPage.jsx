@@ -1,5 +1,5 @@
 import EventsNavbar from "../../components/DashboardNavbar/DashboardNavbar";
-import "./EventsChats.scss";
+import "./ChatsPage.scss";
 import chatPic from "../../assets/images/chatPic.svg";
 import pencil from "../../assets/images/pencil.svg";
 import notification from "../../assets/images/notification.svg";
@@ -8,7 +8,7 @@ import ellipsis from "../../assets/images/ellipsis.svg";
 import paperclip from "../../assets/images/paperclip.svg";
 import emoji from "../../assets/images/emoji.svg";
 
-function EventsChatsPage() {
+function ChatsPage() {
   const chatList = [
     { name: "Karen Lupert", imageUrl: chatPic, hasNewMessages: true },
     { name: "Karen Lupert", imageUrl: chatPic, hasNewMessages: true },
@@ -142,4 +142,4 @@ function EventsChatsPage() {
   );
 }
 
-export default EventsChatsPage;
+export default ChatsPage;

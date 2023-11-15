@@ -169,36 +169,36 @@ body {
           margin-top: 0.5rem;
         }
       }
-       .message-input-area {
-          display: flex;
-          align-items: center;
-          border-top: 1px solid #ccc;
-          background-color: #f8f8f8;
-          padding: 10px;
+      .message-input-area {
+        display: flex;
+        align-items: center;
+        border-top: 1px solid #ccc;
+        background-color: #f8f8f8;
+        padding: 10px;
 
-          .attach-button, .emoji-button {
-            border: none;
-            background: transparent;
-            padding: 5px;
-            cursor: pointer;
+        .attach-button,
+        .emoji-button {
+          border: none;
+          background: transparent;
+          padding: 5px;
+          cursor: pointer;
 
-            img {
-              width: 24px; // Adjust as needed
-              height: 24px; // Adjust as needed
-            }
+          img {
+            width: 24px; // Adjust as needed
+            height: 24px; // Adjust as needed
           }
-      .message-input {
-        height: 3rem;
-        width: 62.875rem;
-        background-color: #0c77f81a;
-        border: none;
-        width: 57.875rem;
-        height: 3.5rem;
-        margin-left: 2rem;
-        border-radius: 2%;
+        }
+        .message-input {
+          height: 3rem;
+          width: 62.875rem;
+          background-color: #0c77f81a;
+          border: none;
+          width: 57.875rem;
+          height: 3.5rem;
+          margin-left: 2rem;
+          border-radius: 2%;
+        }
       }
     }
   }
 }
-}
-

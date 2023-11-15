@@ -1,81 +1,83 @@
-@use '../../styles/variables' as *;
+@use "../../styles/typography" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
-$mockup-light-blue: #E1F0FB;
+$mockup-light-blue: #e1f0fb;
 $mockup-grey: #828282;
 
 .members-tab {
-    background-color: $mockup-light-blue;
-    border-radius: 8px;
+  background-color: $mockup-light-blue;
 
-    padding: 2vw;
+  @include Laptop {
+    border-radius: 0.5vw;
+    border: 0.2vw solid #000;
+    width: 79vw;
+    padding: 45px 32px;
+  }
 
-    &__header {
-        display: flex;
-        align-items: center;
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4.6vw;
 
-        margin-bottom: 2vw;
-        font-size: 1.7rem;
+    &-heading {
+      margin-right: 1rem;
+      @include SubHeader;
 
-        &-heading {
-            margin-right: 1rem;
-        }
-
-        &-groupnum {
-            color: $mockup-grey;
-        }
+      &--alt {
+        color: $mockup-grey;
+      }
     }
+  }
 
-    &__members {
-        width: 100%;
+  &__members {
+    width: 100%;
 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    &-member {
+      background-color: $MVP-White;
+      border: 1px solid $MVP-black;
+      border-radius: 16px;
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5vw 1.1vw;
+      align-items: center;
+      margin-bottom: 2vw;
+      width: 35.7vw;
+      height: 7.3vw;
+
+      &-icon {
+        width: 3.4vw;
+        height: 3.4vw;
+      }
+
+      &-left {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
+      }
 
-        &-member {
-            background-color: $MVP-White;
-            border: 1px solid $MVP-black;
-            border-radius: 16px;
+      &-profile-pic {
+        width: 5vw;
+        height: 5vw;
+        margin-right: 1vw;
+        border-radius: 50%;
+      }
 
-            display: flex;
-            justify-content: space-between;
+      &-writing {
+        display: flex;
+        flex-direction: column;
 
-            width: 47%;
-
-            padding: .5vw 1vw;
-            margin-bottom: 2vw;
-
-            &-left {
-                // border: 2px solid red;
-
-                width: 60%;
-                display: flex;
-            }
-
-            &-profile-pic {
-                width: 4vw;
-                height: 4vw;
-
-                margin-right: 1vw;
-            }
-
-            &-writing {
-                // border: 2px solid orange;
-
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-
-                &-name {
-                    font-size: 1.9rem;
-                }
-
-                &-role {
-                    font-size: 1.6rem;
-                    color: $mockup-grey;
-                }
-            }
+        &-name {
+          @include SubHeader;
         }
-    }
 
+        &-role {
+          @include Body;
+          color: $mockup-grey;
+        }
+      }
+    }
+  }
 }
