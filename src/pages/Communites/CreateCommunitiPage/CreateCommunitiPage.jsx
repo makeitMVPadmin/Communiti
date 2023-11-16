@@ -11,6 +11,7 @@ import {
   updateDoc,
   doc,
   arrayUnion,
+  setDoc,
 } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage, db, auth } from "../../../Firebase/FirebaseConfig";
@@ -61,18 +62,29 @@ function CreateCommunitiPage() {
           CommunityImage: imageUrl,
         });
 
-        console.log("Document written with ID: ", docRef.id);
+        // Add the creator to the community members subcollection
+        const membersCollectionRef = collection(
+          db,
+          `Communities/${docRef.id}/Members`
+        );
+
+        // Use the actual user ID when user authentication is implemented
+        const creatorUserId = auth.currentUser.uid;
+
+        // Add the creator as a member of the community
+        await setDoc(doc(membersCollectionRef, creatorUserId), {
+          JoinedAt: serverTimestamp(),
+        });
 
         // Update user's CommunitiesManage field array
-        const userDocRef = doc(collection(db, "Users"), createdBy);
+        const userDocRef = doc(collection(db, "Users"), creatorUserId);
         await updateDoc(userDocRef, {
           CommunitiesManage: arrayUnion(docRef.id),
         });
 
         console.log("Communiti creation complete!");
-
         // Navigate to the "/communities" route
-        navigate("/communities");
+        navigate(`/communities/admin/${docRef.id}`);
       } catch (error) {
         console.error("Error adding document: ", error);
       }

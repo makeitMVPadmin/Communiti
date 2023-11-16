@@ -10,7 +10,7 @@ import EventsTab from "../../../components/EventsTab/EventsTab";
 import MembersTab from "../../../components/MembersTab/MembersTab";
 import { useParams } from "react-router-dom";
 import { db } from "../../../Firebase/FirebaseConfig";
-import { collection, doc, getDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 
 function AdminCommunitiProfile() {
   const { id } = useParams();
@@ -20,7 +20,10 @@ function AdminCommunitiProfile() {
   const [communityData, setCommunityData] = useState(null);
   const [announcements, setAnnouncements] = useState([]);
   const [events, setEvents] = useState([]);
-  const [groupMembers, setGroupMembers] = useState([]);
+  const [memberCount, setMemberCount] = useState(0);
+  const [memberIds, setMemberIds] = useState([]);
+  const [memberRoles, setMemberRoles] = useState([]);
+  const [inviteLink, setInviteLink] = useState("");
 
   useEffect(() => {
     const fetchCommunityData = async () => {
@@ -34,7 +37,34 @@ function AdminCommunitiProfile() {
             setCommunityData(community);
             setAnnouncements(community.announcements || []);
             setEvents(community.events || []);
-            setGroupMembers(community.members || []);
+
+            // Fetch the Members subcollection and count its documents
+            const membersCollectionRef = collection(
+              db,
+              `Communities/${id}/Members`
+            );
+            const membersSnapshot = await getDocs(membersCollectionRef);
+            const memberIds = membersSnapshot.docs.map((doc) => doc.id);
+            setMemberIds(memberIds);
+            setMemberCount(memberIds.length);
+
+            const memberRoles = [];
+            for (const memberId of memberIds) {
+              const memberRef = doc(
+                collection(db, `Communities/${id}/Members`),
+                memberId
+              );
+              const memberDoc = await getDoc(memberRef);
+              if (memberDoc.exists()) {
+                const memberData = memberDoc.data();
+                const memberRole = {
+                  memberId,
+                  role: memberData.role || "Default Role",
+                };
+                memberRoles.push(memberRole);
+              }
+            }
+            setMemberRoles(memberRoles);
           } else {
             console.log("No such document!");
           }
@@ -46,6 +76,41 @@ function AdminCommunitiProfile() {
 
     fetchCommunityData();
   }, [id]);
+
+  useEffect(() => {
+    const fetchCommunityData = async () => {
+      try {
+        if (id) {
+          const communityRef = doc(collection(db, "Communities"), id);
+          const communityDoc = await getDoc(communityRef);
+
+          if (communityDoc.exists()) {
+            const community = communityDoc.data();
+            // ... (other data setting logic)
+
+            // Create the invite link based on the community ID
+            const link = `https://communiti-630fc.web.app/communities/id:${id}`;
+            setInviteLink(link);
+          } else {
+            console.log("No such document!");
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching document: ", error);
+      }
+    };
+
+    fetchCommunityData();
+  }, [id]);
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(inviteLink);
+      alert("Link copied to clipboard!");
+    } catch (error) {
+      console.error("Error copying link to clipboard: ", error);
+    }
+  };
 
   function handleTabChoice(choice) {
     switch (choice) {
@@ -82,6 +147,12 @@ function AdminCommunitiProfile() {
             ></img>
             <p>Back to Communities</p>
           </div>
+          <button
+            className="admin-communiti-profile__button"
+            onClick={copyToClipboard}
+          >
+            Invite
+          </button>
         </section>
         {communityData && (
           <section className="admin-communiti-profile__card">
@@ -97,26 +168,22 @@ function AdminCommunitiProfile() {
                 </h1>
                 <div className="admin-communiti-profile__card-writing-bottom">
                   <div className="admin-communiti-profile__card-writing-bottom-left">
-                    <div className="admin-communiti-profile__card-card">
-                      <img
-                        className="admin-communiti-profile__card-card-icon"
-                        src={location}
-                        alt="pin drop icon"
-                      ></img>
-                      <p className="admin-communiti-profile__card-card-writing">
-                        {communityData.Location}
-                      </p>
-                    </div>
-                    <div className="admin-communiti-profile__card-card">
-                      <img
-                        className="admin-communiti-profile__card-card-icon"
-                        src={location}
-                        alt="pin drop icon"
-                      ></img>
-                      <p className="admin-communiti-profile__card-card-writing">
-                        {communityData.meetingType}
-                      </p>
-                    </div>
+                    {communityData.Location &&
+                      communityData.Location.map((locationItem, index) => (
+                        <div
+                          key={index}
+                          className="admin-communiti-profile__card-card"
+                        >
+                          <img
+                            className="admin-communiti-profile__card-card-icon"
+                            src={location}
+                            alt="pin drop icon"
+                          ></img>
+                          <p className="admin-communiti-profile__card-card-writing">
+                            {locationItem}
+                          </p>
+                        </div>
+                      ))}
                   </div>
                   <div className="admin-communiti-profile__card-writing-bottom-right">
                     <img
@@ -124,9 +191,7 @@ function AdminCommunitiProfile() {
                       alt="the silouhette of two people, one standing directly behind the other"
                     ></img>
                     <p className="admin-communiti-profile__card-text">
-                      {communityData.members
-                        ? `${communityData.members.length} members`
-                        : "Loading..."}
+                      {memberCount !== null ? `${memberCount} members` : "0"}
                     </p>
                   </div>
                 </div>
@@ -180,7 +245,9 @@ function AdminCommunitiProfile() {
                 <AnnouncementsTab announcements={announcements} />
               )}
               {showEvents && <EventsTab events={events} />}
-              {showMembers && <MembersTab groupMembers={groupMembers} />}
+              {showMembers && (
+                <MembersTab memberIds={memberIds} memberRoles={memberRoles} />
+              )}
             </section>
           </section>
         )}

@@ -17,19 +17,6 @@ $mockup-light-blue: #e1f0fb;
     height: 18vw;
     padding: 1.8vw 2.7vw 0 2.7vw;
     background-color: $mockup-blue;
-
-    &-writing {
-      display: flex;
-
-      @include Buttons;
-      &-icon {
-        @include Laptop {
-          width: 2.3vw;
-          height: 2vw;
-          margin-right: 3.6vw;
-        }
-      }
-    }
   }
 
   &__card {
@@ -179,6 +166,25 @@ $mockup-light-blue: #e1f0fb;
         &--active {
           background-color: $mockup-light-blue;
         }
+      }
+    }
+  }
+
+  &__button {
+    @include Buttons;
+    border: 0.2vw solid $MVP-black;
+    border-radius: 0.5vw;
+    padding: 1vw;
+    background-color: $MVP-Yellow;
+
+    @include Laptop {
+      width: 26vw;
+    }
+
+    &-container {
+      @include Laptop {
+        display: flex;
+        justify-content: flex-end;
       }
     }
   }

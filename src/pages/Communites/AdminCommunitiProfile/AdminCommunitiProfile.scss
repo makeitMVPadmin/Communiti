@@ -17,6 +17,9 @@ $mockup-light-blue: #e1f0fb;
     height: 18vw;
     padding: 1.8vw 2.7vw 0 2.7vw;
     background-color: $mockup-blue;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
 
     &-writing {
       display: flex;
@@ -179,6 +182,25 @@ $mockup-light-blue: #e1f0fb;
         &--active {
           background-color: $mockup-light-blue;
         }
+      }
+    }
+  }
+
+  &__button {
+    @include Buttons;
+    border: 0.2vw solid $MVP-black;
+    border-radius: 0.5vw;
+    padding: 1vw;
+    background-color: $MVP-Yellow;
+
+    @include Laptop {
+      width: 13vw;
+    }
+
+    &-container {
+      @include Laptop {
+        display: flex;
+        justify-content: flex-end;
       }
     }
   }
