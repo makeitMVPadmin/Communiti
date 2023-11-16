@@ -3,14 +3,9 @@
 @use "../../styles/mixins" as *;
 
 .announcements-overlay {
-  position: absolute;
   width: 73.9vw;
   height: 44.7vw;
   background-color: $MVP-White;
-  z-index: 9;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   padding: 3.3vw;
   border-radius: 0.8vw;
 
@@ -80,4 +75,19 @@
   &__button--not-active {
     background: #98c4fa;
   }
+}
+
+.announcements-overlay-background {
+  background: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9;
+
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
