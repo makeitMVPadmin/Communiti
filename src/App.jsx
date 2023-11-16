@@ -11,6 +11,7 @@ import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import CreateCommunitiPage from "./pages/Communites/CreateCommunitiPage/CreateCommunitiPage";
 import Communities from "./pages/Communites/Communities";
 import CommunitiProfile from "./pages/CommunitiProfile/CommunitiProfile";
+import AdminCommunitiProfile from "./pages/Communites/AdminCommunitiProfile/AdminCommunitiProfile";
 import { auth } from "./Firebase/FirebaseConfig";
 import "./styles/_global.scss";
 
@@ -48,6 +49,10 @@ function App() {
           <Route path="/chat" element={<ChatsPage />} />
           <Route path="/communities" element={<Communities />} />
           <Route path="/communities/create" element={<CreateCommunitiPage />} />
+          <Route
+            path="/communities/admin/:id"
+            element={<AdminCommunitiProfile />}
+          />
           <Route path="/communities/:id" element={<CommunitiProfile />} />
         </>
       ) : (
