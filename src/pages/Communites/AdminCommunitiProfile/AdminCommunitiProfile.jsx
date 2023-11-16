@@ -26,7 +26,7 @@ function AdminCommunitiProfile() {
     const fetchCommunityData = async () => {
       try {
         if (id) {
-          const communityRef = doc(collection(db, "Communities"), id); // Corrected usage of doc and collection
+          const communityRef = doc(collection(db, "Communities"), id);
           const communityDoc = await getDoc(communityRef);
 
           if (communityDoc.exists()) {

@@ -21,7 +21,7 @@ function CreateCommunitiPage() {
   const [currentStep, setCurrentStep] = useState(1);
   const [communitiName, setCommunitiName] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
-  const [location, setLocation] = useState("");
+  const [location, setLocation] = useState([]);
   const [communitiDescription, setCommunitiDescription] = useState("");
   const [image, setImage] = useState(null);
 
@@ -40,21 +40,24 @@ function CreateCommunitiPage() {
         // Use the actual user ID when user authentication is implemented
         const createdBy = auth.currentUser.uid;
 
-        const locationValue =
-          selectedOption === "in-person" && selectedOption === "virtual"
-            ? "Both"
-            : selectedOption === "in-person"
-            ? location
-            : selectedOption === "virtual"
-            ? "Virtual"
-            : "";
+        const locationValues = [];
+
+        // Check if "Virtual" is selected and add it to locationValues
+        if (selectedOption.includes("virtual")) {
+          locationValues.push("Virtual");
+        }
+
+        // Check if "In Person" is selected and add its value if available
+        if (selectedOption.includes("in-person") && location) {
+          locationValues.push(location);
+        }
 
         const docRef = await addDoc(collection(db, "Communities"), {
           Name: communitiName,
           CreatedBy: createdBy,
           Created: serverTimestamp(),
           Description: communitiDescription,
-          Location: locationValue,
+          Location: locationValues,
           CommunityImage: imageUrl,
         });
 

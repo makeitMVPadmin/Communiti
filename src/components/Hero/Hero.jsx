@@ -18,9 +18,17 @@ function Hero() {
   const handleSignupSubmit = async (event) => {
     event.preventDefault();
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      // If the email is empty or doesn't match the regex pattern
+      // You can handle invalid email input here (show an error message, for example)
+      console.error("Please provide a valid email address");
+      return;
+    }
+
     try {
       // Add the email to the PreLaunch collection in Firestore
-      const preLaunchCollectionRef = collection(db, "PreLaunch"); // Replace 'PreLaunch' with your actual collection name
+      const preLaunchCollectionRef = collection(db, "PreLaunch");
       await addDoc(preLaunchCollectionRef, {
         email: email,
         timestamp: serverTimestamp(),
@@ -30,9 +38,8 @@ function Hero() {
       setShowSuccess(true);
       setShowForm(false);
     } catch (error) {
-      // Handle any errors
       console.error("Error submitting email to Firestore:", error);
-      // You may want to show an error message to the user here
+      // Handle any errors
     }
   };
 

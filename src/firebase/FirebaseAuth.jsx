@@ -10,7 +10,7 @@ import { auth } from "./FirebaseConfig"; // Import the Firebase authentication o
 import { updateUserInFirestore } from "./FirebaseStore";
 
 // Export a function to handle user sign-up
-export const handleSignUp = async (fullName, email, password) => {
+export const handleSignUp = async (email, password, fullName) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,

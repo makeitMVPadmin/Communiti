@@ -1,4 +1,3 @@
-// CreateCommuniti1.jsx
 import React, { useState } from "react";
 import "./CreateCommuniti1.scss";
 import calendarImage from "../../../assets/images/calendar.svg";
@@ -18,20 +17,24 @@ function CreateCommuniti1({
 
   const handleOptionChange = (event) => {
     const option = event.target.value;
+    const isChecked = event.target.checked;
 
     setSelectedOption((prevSelectedOptions) => {
-      // If the option is already selected, remove it
-      if (prevSelectedOptions.includes(option)) {
-        return prevSelectedOptions.filter(
-          (selectedOption) => selectedOption !== option
-        );
+      if (isChecked && !prevSelectedOptions.includes(option)) {
+        return [...prevSelectedOptions, option];
+      } else if (!isChecked && prevSelectedOptions.includes(option)) {
+        return prevSelectedOptions.filter((selected) => selected !== option);
       }
-
-      // Otherwise, add the option to the selected options
-      return [...prevSelectedOptions, option];
+      return prevSelectedOptions;
     });
 
-    setLocationEnabled(option === "in-person");
+    if (option === "in-person") {
+      setLocationEnabled(isChecked);
+    }
+  };
+
+  const handleLocationChange = (event) => {
+    setLocation(event.target.value);
   };
 
   return (
@@ -94,18 +97,20 @@ function CreateCommuniti1({
               >
                 In Person
               </label>
-              <input
-                className={`create-communiti1__container-input create-communiti1__container-input--location ${
-                  isLocationEnabled ? "" : "disabled"
-                }`}
-                placeholder="Location"
-                type="text"
-                name="location"
-                id="location"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                disabled={!isLocationEnabled}
-              />
+              {selectedOption.includes("in-person") && (
+                <input
+                  className={`create-communiti1__container-input create-communiti1__container-input--location ${
+                    isLocationEnabled ? "" : "disabled"
+                  }`}
+                  placeholder="Location"
+                  type="text"
+                  name="location"
+                  id="location"
+                  value={location}
+                  onChange={handleLocationChange}
+                  disabled={!isLocationEnabled}
+                />
+              )}
             </div>
           </form>
         </div>
@@ -126,7 +131,8 @@ function CreateCommuniti1({
         <Button
           buttonText="Next"
           className={`button create-communiti__button-next ${
-            !communitiName || (!selectedOption.length && !location)
+            !communitiName ||
+            (!selectedOption.length && !location && !isLocationEnabled)
               ? "button__not-active"
               : "button__active"
           }`}
