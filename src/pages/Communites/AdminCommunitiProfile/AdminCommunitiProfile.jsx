@@ -8,12 +8,13 @@ import members from "../../../assets/images/members.svg";
 import AnnouncementsTab from "../../../components/AnnouncementsTab/AnnouncementsTab";
 import EventsTab from "../../../components/EventsTab/EventsTab";
 import MembersTab from "../../../components/MembersTab/MembersTab";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { db } from "../../../Firebase/FirebaseConfig";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 
 function AdminCommunitiProfile() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [showAnnouncements, setShowAnnouncements] = useState(true);
   const [showEvents, setShowEvents] = useState(false);
   const [showMembers, setShowMembers] = useState(false);
@@ -139,7 +140,10 @@ function AdminCommunitiProfile() {
       <DashboardNavbar />
       <main className="admin-communiti-profile">
         <section className="admin-communiti-profile__hero">
-          <div className="admin-communiti-profile__hero-writing">
+          <div
+            className="admin-communiti-profile__hero-writing"
+            onClick={() => navigate(`/communities/`)}
+          >
             <img
               className="admin-communiti-profile__hero-writing-icon"
               src={back}

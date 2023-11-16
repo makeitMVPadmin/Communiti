@@ -29,6 +29,7 @@ function CommunitiProfile() {
   const [memberCount, setMemberCount] = useState(0);
   const [memberIds, setMemberIds] = useState([]);
   const [memberRoles, setMemberRoles] = useState([]);
+  const [isUserJoined, setIsUserJoined] = useState(false); // Define isUserJoined state
 
   useEffect(() => {
     const fetchCommunityData = async () => {
@@ -43,7 +44,6 @@ function CommunitiProfile() {
             setAnnouncements(community.announcements || []);
             setEvents(community.events || []);
 
-            // Fetch the Members subcollection and count its documents
             const membersCollectionRef = collection(
               db,
               `Communities/${id}/Members`
@@ -82,6 +82,14 @@ function CommunitiProfile() {
     fetchCommunityData();
   }, [id]);
 
+  useEffect(() => {
+    const currentUser = auth.currentUser;
+    if (currentUser) {
+      const userId = currentUser.uid;
+      setIsUserJoined(memberIds.includes(userId)); // Set the user's membership status
+    }
+  }, [memberIds]); // Update isUserJoined when memberIds change
+
   function handleTabChoice(choice) {
     switch (choice) {
       case "A":
@@ -111,27 +119,23 @@ function CommunitiProfile() {
     if (currentUser) {
       const userId = currentUser.uid;
 
-      // Add the user to the Community's Members subcollection
       const memberRef = doc(db, `Communities/${communityId}/Members`, userId);
-      await setDoc(memberRef, { userId: userId, role: "Member" }); // Storing the user ID in a 'userId' field
+      await setDoc(memberRef, { userId: userId, role: "Member" });
 
-      // Update the user's profile in the Users Collection
       const userRef = doc(db, "Users", userId);
       const userDoc = await getDoc(userRef);
       if (userDoc.exists()) {
         const userData = userDoc.data();
-
-        // Check if CommunitiesJoined exists, if not, create a new array
         const communitiesJoined = userData.CommunitiesJoined || [];
 
-        // Add the new communityId to the existing array (if not already included)
         if (!communitiesJoined.includes(communityId)) {
           const updatedCommunities = [...communitiesJoined, communityId];
-
-          // Update the user's profile in the Users Collection with the updated array
           await updateDoc(userRef, {
             CommunitiesJoined: updatedCommunities,
           });
+          console.log("Joined Community !");
+        } else {
+          console.log("User has already joined this community!");
         }
       } else {
         console.log("User document does not exist.");
@@ -146,14 +150,16 @@ function CommunitiProfile() {
       <DashboardNavbar />
       <main className="communiti-profile">
         <section className="communiti-profile__hero">
-          <div className="communiti-profile__button-container">
-            <button
-              className="communiti-profile__button"
-              onClick={handleJoinCommunity}
-            >
-              Join the Community
-            </button>
-          </div>
+          {!isUserJoined && ( // Render the button only if the user hasn't joined
+            <div className="communiti-profile__button-container">
+              <button
+                className="communiti-profile__button"
+                onClick={handleJoinCommunity}
+              >
+                Join the Community
+              </button>
+            </div>
+          )}
         </section>
         {communityData && (
           <section className="communiti-profile__card">
