@@ -92,7 +92,11 @@ function CreateCommunitiPage() {
   };
 
   const handleBack = () => {
-    setCurrentStep(currentStep - 1);
+    if (currentStep === 1) {
+      navigate("/communities"); // Redirect to "/communities"
+    } else {
+      setCurrentStep(currentStep - 1);
+    }
   };
 
   return (
