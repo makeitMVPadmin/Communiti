@@ -1,9 +1,9 @@
-import EventsNavbar from "../../components/DashboardNavbar/DashboardNavbar";
+import ChatNavbar from "../../components/DashboardNavbar/DashboardNavbar";
 import "./ChatsPage.scss";
 import chatPic from "../../assets/images/chatPic.svg";
 import pencil from "../../assets/images/pencil.svg";
 import notification from "../../assets/images/notification.svg";
-import searchIcon from "../../assets/images/searchIcon.svg";
+import searchIcon from "../../assets/images/SearchIcon.svg";
 import ellipsis from "../../assets/images/ellipsis.svg";
 import paperclip from "../../assets/images/paperclip.svg";
 import emoji from "../../assets/images/emoji.svg";
@@ -41,13 +41,13 @@ function ChatsPage() {
   ];
 
   const ChatMessage = ({ image, sender, timestamp, content }) => (
-    <div className="chat-message">
-      <div>
-        <img src={image} alt="profile pic" />
-      </div>
-      <div>
-        <strong>{sender}</strong> <span>{timestamp}</span>
-        <p>{content}</p>
+    <div className="chat__message">
+      <img src={image} alt="profile pic" className="chat__message-img" />
+      <div className="chat__message-container">
+        <p className="chat__message-name">
+          {sender} <span className="chat-message-time">{timestamp}</span>
+        </p>
+        <p className="chat__message-content">{content}</p>
       </div>
     </div>
   );
@@ -68,52 +68,64 @@ function ChatsPage() {
 
   return (
     <>
-      <EventsNavbar />
-      <div className="events-chat-container">
-        <div className="sidebar">
-          <div className="title-edit">
-            <h2>Chats</h2>
-            <button>
-              <img src={pencil} alt="Edit" />
+      <ChatNavbar />
+      <div className="chat">
+        <div className="chat__sidebar">
+          <div className="chat__title-edit">
+            <h2 className="chat__title">Chats</h2>
+            <button className="chat__button">
+              <img className="chat__button-img" src={pencil} alt="Edit" />
             </button>
           </div>
-          <div className="tabs-row">
-            <span className="tab-option active-tab">Inbox</span>
-            <span className="tab-option">Communities</span>
+          <div className="chat__tabs-row">
+            <button className="chat__tabs-option">Inbox</button>
           </div>
-          <div className="inbox-tab">
+
+          <div className="chat__inbox-tab">
             {chatList.map((chat, index) => (
-              <div key={index} className="chat-item">
-                <img src={chat.imageUrl} alt={chat.name} />
-                <span>{chat.name}</span>
+              <div key={index} className="chat__inbox-tab-item">
+                <img
+                  className="chat__inbox-tab-item-image"
+                  src={chat.imageUrl}
+                  alt={chat.name}
+                />
+                <p>{chat.name}</p>
                 {chat.hasNewMessages && (
                   <img
                     src={notification}
                     alt="New Message"
-                    className="notification-icon"
+                    className="chat__inbox-tab-item-notification-icon"
                   />
                 )}
               </div>
             ))}
           </div>
         </div>
-        <div className="whole-container">
-          <div className="search-container">
-            <input type="text" placeholder="Search chats" />
-            <button className="search-button">
-              <img src={searchIcon} alt="Search" />
+        <div className="chat__whole-container">
+          <div className="chat__search-container">
+            <input
+              type="text"
+              placeholder="Search chats"
+              className="chat__search"
+            />
+            <button className="chat__search-button">
+              <img
+                src={searchIcon}
+                alt="Search"
+                className="chat__search-button-img"
+              />
             </button>
           </div>
-          <div className="chat-container">
-            <div className="chat-topBar">
-              <span className="chat-name">Karen Lupert</span>
-              <img className="chat-ellipsis" src={ellipsis} alt="ellipsis" />
+          <div className="chat__container">
+            <div className="chat__topbar">
+              <h2 className="chat__name">Karen Lupert</h2>
+              <img className="chat__ellipsis" src={ellipsis} alt="ellipsis" />
             </div>
-            <div className="chat-container-bottom">
+            <div className="chat__container-bottom">
               <ChatWindow />
-              <div className="message-input-area">
+              <div className="chat__message-input-area">
                 <input
-                  className="message-input"
+                  className="chat__message-input"
                   type="text"
                   placeholder="Type a message..."
                 />
@@ -125,12 +137,12 @@ function ChatsPage() {
                   onChange={handleAttachment}
                 />
                 <button
-                  className="attach-button"
+                  className="chat__search-button--alt"
                   onClick={() => document.getElementById("file-input").click()}
                 >
                   <img src={paperclip} alt="Attach" />
                 </button>
-                <button className="emoji-button">
+                <button className="chat__search-button--alt">
                   <img src={emoji} alt="Emoji" />
                 </button>
               </div>
