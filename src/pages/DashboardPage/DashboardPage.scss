@@ -1,4 +1,109 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/typography" as *;
+
 .dashboard-page {
   height: 100%;
   width: 100%;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @include Laptop {
+      padding: 3.5vw 10.8vw;
+    }
+  }
+
+  &__welcome {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  &__header {
+    @include Heading;
+    font-family: Gilroy;
+  }
+
+  &__post-container {
+    overflow: hidden;
+    background-color: white;
+    color: $MVP-black;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    @include Laptop {
+      margin-top: 3.6vw;
+      width: 78.5vw;
+      overflow: hidden;
+      background-color: white;
+      box-shadow: 0 0.2vw 0.2vw 0 rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+      color: $MVP-black;
+      display: flex;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      padding: 1.7vw;
+    }
+  }
+  &__icon-heading {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    @include Laptop {
+      margin-bottom: 1.7vw;
+    }
+  }
+
+  &__profile-image {
+    overflow: hidden;
+
+    @include Laptop {
+      width: 5.2vw;
+      height: 5.2vw;
+      border-radius: 0.5vw;
+      border: 0.2vw solid #000;
+    }
+  }
+
+  &__heading {
+    display: flex;
+    flex-direction: column;
+
+    @include Laptop {
+      margin-left: 2.1vw;
+    }
+  }
+
+  &__name {
+    @include SubHeader;
+    @include Laptop {
+      margin-bottom: 0.4vw;
+    }
+  }
+
+  &__time-posted {
+    display: flex;
+    flex-direction: row;
+  }
+  &__time {
+    @include Body;
+  }
+
+  &__clock {
+    @include Laptop {
+      width: 1.7vw;
+      height: 1.7vw;
+      margin-right: 0.5vw;
+    }
+  }
+
+  &__text {
+    @include Body;
+  }
 }

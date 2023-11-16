@@ -3,7 +3,8 @@ import "./Hero.scss";
 import Button from "../Button/Button";
 import communitiHero from "../../assets/images/communitiHero.svg";
 import arrowCircleButton from "../../assets/images/arrowCircleButton.svg";
-import { handleSignUp } from "../../Firebase/FirebaseAuth";
+import { db } from "../../Firebase/FirebaseConfig";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 function Hero() {
   const [email, setEmail] = useState("");
@@ -14,20 +15,32 @@ function Hero() {
     setEmail(event.target.value);
   };
 
-  const handleSignupSubmit = (event) => {
+  const handleSignupSubmit = async (event) => {
     event.preventDefault();
 
-    // Call Firebase signup function with the email
-    handleSignUp(email)
-      .then(() => {
-        // Display success message to the user
-        setShowForm(false);
-        setShowSuccess(true);
-      })
-      .catch((error) => {
-        // Handle signup error, you can display an error message
-        console.error("Signup error:", error);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      // If the email is empty or doesn't match the regex pattern
+      // You can handle invalid email input here (show an error message, for example)
+      console.error("Please provide a valid email address");
+      return;
+    }
+
+    try {
+      // Add the email to the PreLaunch collection in Firestore
+      const preLaunchCollectionRef = collection(db, "PreLaunch");
+      await addDoc(preLaunchCollectionRef, {
+        email: email,
+        timestamp: serverTimestamp(),
       });
+
+      // Update state to show success message
+      setShowSuccess(true);
+      setShowForm(false);
+    } catch (error) {
+      console.error("Error submitting email to Firestore:", error);
+      // Handle any errors
+    }
   };
 
   return (
@@ -43,8 +56,8 @@ function Hero() {
           From interactive chats and virtual workshops to mentorships and more,
           we've got all your community needs covered in one place.
         </p>
-        <div className="hero__container">
-          {(!showForm && !showSuccess) && (
+        <div className="hero__container hero__container--alt">
+          {!showForm && !showSuccess && (
             <Button
               buttonText="Join the Launch"
               className="button button--yellow"
@@ -60,8 +73,9 @@ function Hero() {
                   value={email}
                   onChange={handleEmailChange}
                   placeholder="email address"
+                  className="hero__input"
                 />
-                <button type="submit" className="button button--yellow">
+                <button type="submit">
                   <img
                     src={arrowCircleButton}
                     alt="Submit"
@@ -73,9 +87,10 @@ function Hero() {
           )}
           {showSuccess && (
             <div className="hero__success">
+              <h4 className="hero__success-message-header">Success!</h4>
               <p className="hero__success-message">
-                Success! {"\n"}{"\n"}Thank you for signing up! {"\n"}We can't wait to have you in
-                the Communiti!
+                Thank you for signing up! We can't wait to have you in the
+                Communiti!
               </p>
             </div>
           )}

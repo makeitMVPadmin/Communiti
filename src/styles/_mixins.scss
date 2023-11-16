@@ -60,6 +60,7 @@
   font-style: normal;
   font-weight: 800;
   line-height: 115.645%;
+  font-size: 7.2vw;
 
   @include Laptop {
     font-size: 4vw;
@@ -77,6 +78,7 @@
   font-style: normal;
   font-weight: 800;
   line-height: 115.645%; /* 28.911px */
+  font-size: 5.6vw;
 
   @include Laptop {
     font-size: 1.7vw;

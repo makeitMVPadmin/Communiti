@@ -11,6 +11,7 @@ import {
   updateDoc,
   doc,
   arrayUnion,
+  setDoc,
 } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage, db, auth } from "../../../Firebase/FirebaseConfig";
@@ -21,7 +22,7 @@ function CreateCommunitiPage() {
   const [currentStep, setCurrentStep] = useState(1);
   const [communitiName, setCommunitiName] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
-  const [location, setLocation] = useState("");
+  const [location, setLocation] = useState([]);
   const [communitiDescription, setCommunitiDescription] = useState("");
   const [image, setImage] = useState(null);
 
@@ -40,36 +41,50 @@ function CreateCommunitiPage() {
         // Use the actual user ID when user authentication is implemented
         const createdBy = auth.currentUser.uid;
 
-        const locationValue =
-          selectedOption === "in-person" && selectedOption === "virtual"
-            ? "Both"
-            : selectedOption === "in-person"
-            ? location
-            : selectedOption === "virtual"
-            ? "Virtual"
-            : "";
+        const locationValues = [];
+
+        // Check if "Virtual" is selected and add it to locationValues
+        if (selectedOption.includes("virtual")) {
+          locationValues.push("Virtual");
+        }
+
+        // Check if "In Person" is selected and add its value if available
+        if (selectedOption.includes("in-person") && location) {
+          locationValues.push(location);
+        }
 
         const docRef = await addDoc(collection(db, "Communities"), {
           Name: communitiName,
           CreatedBy: createdBy,
           Created: serverTimestamp(),
           Description: communitiDescription,
-          Location: locationValue,
+          Location: locationValues,
           CommunityImage: imageUrl,
         });
 
-        console.log("Document written with ID: ", docRef.id);
+        // Add the creator to the community members subcollection
+        const membersCollectionRef = collection(
+          db,
+          `Communities/${docRef.id}/Members`
+        );
+
+        // Use the actual user ID when user authentication is implemented
+        const creatorUserId = auth.currentUser.uid;
+
+        // Add the creator as a member of the community
+        await setDoc(doc(membersCollectionRef, creatorUserId), {
+          JoinedAt: serverTimestamp(),
+        });
 
         // Update user's CommunitiesManage field array
-        const userDocRef = doc(collection(db, "Users"), createdBy);
+        const userDocRef = doc(collection(db, "Users"), creatorUserId);
         await updateDoc(userDocRef, {
           CommunitiesManage: arrayUnion(docRef.id),
         });
 
         console.log("Communiti creation complete!");
-
         // Navigate to the "/communities" route
-        navigate("/communities");
+        navigate(`/communities/admin/${docRef.id}`);
       } catch (error) {
         console.error("Error adding document: ", error);
       }
