@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 function DashboardPage() {
   const navigate = useNavigate();
+  const [userCommunities, setUserCommunities] = useState([]);
   const [userFullName, setUserFullName] = useState(() => {
     const storedFullName = sessionStorage.getItem("FullName");
     return storedFullName ? JSON.parse(storedFullName) : null;
@@ -41,6 +42,32 @@ function DashboardPage() {
     fetchUserData();
   }, []);
 
+  useEffect(() => {
+    const fetchUserCommunities = async () => {
+      try {
+        const currentUser = auth.currentUser;
+        if (currentUser) {
+          const uid = currentUser.uid;
+          const userDocRef = doc(collection(db, "Users"), uid);
+          const userDocSnapshot = await getDoc(userDocRef);
+
+          if (userDocSnapshot.exists()) {
+            const userCommunitiesIds =
+              userDocSnapshot.data().CommunitiesJoined || [];
+
+            console.log("User Communities IDs:", userCommunitiesIds);
+
+            setUserCommunities(userCommunitiesIds);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching user communities:", error);
+      }
+    };
+
+    fetchUserCommunities();
+  }, []);
+
   const handleCreateCommunity = () => {
     // Load the specified URL on button click
     navigate("/communities/create");
@@ -55,6 +82,7 @@ function DashboardPage() {
             Welcome back! {userFullName ? `${userFullName} 👋` : "Loading..."}
           </h1>
         </div>
+        {/* {userCommunities.length === 0 && ( */}
         <div className="communities__create-container">
           <div className="communities__subheading-container">
             <h3 className="communities__subheading">
@@ -64,6 +92,7 @@ function DashboardPage() {
               Create and Manage it with ease right here.
             </h3>
           </div>
+
           <button
             className="communities__button"
             onClick={handleCreateCommunity}
@@ -76,6 +105,7 @@ function DashboardPage() {
             <p className="communities__button-text">Create Community</p>
           </button>
         </div>
+        {/* )} */}
         <div className="dashboard-page__post-container">
           <div className="dashboard-page__icon-heading">
             <img

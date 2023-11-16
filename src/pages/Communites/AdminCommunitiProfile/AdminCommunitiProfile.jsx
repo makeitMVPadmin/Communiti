@@ -11,11 +11,13 @@ import MembersTab from "../../../components/MembersTab/MembersTab";
 import { useParams, useNavigate } from "react-router-dom";
 import { db } from "../../../Firebase/FirebaseConfig";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import AnnouncmentsOverlay from "../../../components/AnnouncementsOverlay/AnnouncementsOverlay";
 
 function AdminCommunitiProfile() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [showAnnouncements, setShowAnnouncements] = useState(true);
+  const [showAnnouncementsOverlay, setAnnouncementsOverlay] = useState(false);
   const [showEvents, setShowEvents] = useState(false);
   const [showMembers, setShowMembers] = useState(false);
   const [communityData, setCommunityData] = useState(null);
@@ -87,7 +89,6 @@ function AdminCommunitiProfile() {
 
           if (communityDoc.exists()) {
             const community = communityDoc.data();
-            // ... (other data setting logic)
 
             // Create the invite link based on the community ID
             const link = `https://communiti-630fc.web.app/communities/id:${id}`;
@@ -137,6 +138,12 @@ function AdminCommunitiProfile() {
 
   return (
     <>
+      {showAnnouncementsOverlay && (
+        <AnnouncmentsOverlay
+          setAnnouncementsOverlay={setAnnouncementsOverlay}
+          communityData={communityData}
+        />
+      )}
       <DashboardNavbar />
       <main className="admin-communiti-profile">
         <section className="admin-communiti-profile__hero">
@@ -246,7 +253,10 @@ function AdminCommunitiProfile() {
               </div>
 
               {showAnnouncements && (
-                <AnnouncementsTab announcements={announcements} />
+                <AnnouncementsTab
+                  announcements={announcements}
+                  setAnnouncementsOverlay={setAnnouncementsOverlay}
+                />
               )}
               {showEvents && <EventsTab events={events} />}
               {showMembers && (
