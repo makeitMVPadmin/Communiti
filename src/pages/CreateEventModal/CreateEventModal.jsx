@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./CreateEventModal.scss";
+import calendar from "../../assets/images/calendar.svg";
+
 
 function CreateEventModal() {
   const [eventTitle, setEventTitle] = useState("");
@@ -166,6 +168,7 @@ function CreateEventModal() {
         <button type="button">Cancel</button>
         <button type="submit">Create</button>
       </form>
+      <img src={calendar} alt="calendar" />
     </div>
   );
 }
