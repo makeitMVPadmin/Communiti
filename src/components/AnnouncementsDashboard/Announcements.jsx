@@ -1,6 +1,5 @@
 import "./Announcements.scss";
 import clockIcon from "../../assets/images/clockIcon.svg";
-import { useParams } from "react-router-dom";
 import { collection, getDocs, doc, query, getDoc } from "firebase/firestore";
 import { db } from "../../Firebase/FirebaseConfig";
 import { useState, useEffect } from "react";
@@ -35,35 +34,51 @@ function getTimeAgo(timestamp) {
   return "Just now";
 }
 
-function Announcements({ communityData }) {
-  const { id } = useParams();
+function Announcements({ communityId }) {
   const [announcements, setAnnouncements] = useState([]);
+  const [communityInfo, setCommunityInfo] = useState(null);
+
+  useEffect(() => {
+    const fetchCommunityData = async () => {
+      try {
+        if (communityId) {
+          const communityRef = doc(collection(db, "Communities"), communityId);
+          const communityDoc = await getDoc(communityRef);
+
+          if (communityDoc.exists()) {
+            const communityData = communityDoc.data();
+            setCommunityInfo(communityData);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching community details:", error);
+      }
+    };
+
+    fetchCommunityData();
+  }, [communityId]);
 
   useEffect(() => {
     const fetchCommunityAnnouncementsData = async () => {
       try {
-        if (id) {
-          const communityRef = doc(collection(db, "Communities"), id);
-          const communityDoc = await getDoc(communityRef);
+        // Proceed only if communityInfo is available
+        if (communityInfo) {
+          const announcementsQuery = query(
+            collection(db, "Communities", communityId, "Announcements")
+          );
+          const announcementsSnapshot = await getDocs(announcementsQuery);
+          const announcementsData = [];
 
-          if (communityDoc.exists()) {
-            const announcementsQuery = query(
-              collection(communityRef, "Announcements")
-            );
-            const announcementsSnapshot = await getDocs(announcementsQuery);
-            const announcementsData = [];
-
-            announcementsSnapshot.forEach((doc) => {
-              const { text, timestamp } = doc.data();
-              const formattedTime = getTimeAgo(timestamp); // Format timestamp
-              announcementsData.push({
-                text,
-                timestamp: formattedTime, // Use the formatted time
-              });
+          announcementsSnapshot.forEach((doc) => {
+            const { text, timestamp } = doc.data();
+            const formattedTime = getTimeAgo(timestamp); // Format timestamp
+            announcementsData.push({
+              text,
+              timestamp: formattedTime, // Use the formatted time
             });
+          });
 
-            setAnnouncements(announcementsData);
-          }
+          setAnnouncements(announcementsData);
         }
       } catch (error) {
         console.error("Error fetching announcements:", error);
@@ -71,20 +86,24 @@ function Announcements({ communityData }) {
     };
 
     fetchCommunityAnnouncementsData();
-  }, [id]);
+  }, [communityInfo, communityId]);
 
   return (
     <>
       {announcements.map((announcement, index) => (
         <div key={index} className="announcements__post-container">
           <div className="announcements__icon-heading">
-            <img
-              src={communityData.CommunityImage}
-              alt="Placeholder for user profile"
-              className="announcements__profile-image"
-            />
+            {communityInfo && (
+              <img
+                src={communityInfo.CommunityImage}
+                alt="Placeholder for community profile"
+                className="announcements__profile-image"
+              />
+            )}
             <div className="announcements__heading">
-              <div className="announcements__name">{communityData.Name}</div>
+              {communityInfo && (
+                <div className="announcements__name">{communityInfo.Name}</div>
+              )}
               <div className="announcements__time-posted">
                 <img
                   src={clockIcon}

@@ -63,7 +63,7 @@ function AdminCommunitiProfile() {
                 const memberData = memberDoc.data();
                 const memberRole = {
                   memberId,
-                  role: memberData.role || "Default Role",
+                  role: memberData.role || "New Member",
                 };
                 memberRoles.push(memberRole);
               }
@@ -92,7 +92,7 @@ function AdminCommunitiProfile() {
             const community = communityDoc.data();
 
             // Create the invite link based on the community ID
-            const link = `https://communiti-630fc.web.app/communities/id:${id}`;
+            const link = `https://communiti-630fc.web.app/communities/${id}`;
             setInviteLink(link);
           } else {
             console.log("No such document!");
