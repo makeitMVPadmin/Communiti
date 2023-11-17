@@ -128,9 +128,9 @@ function DashboardPage() {
           </div>
           <div className="dashboard-page__content">
             <p className="dashboard-page__text">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos ex,
-              inventore voluptate quidem delectus, saepe vitae, illum odit optio
-              ullam voluptas excepturi laborum ipsum voluptatibus! Ut eos
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos
+              ex,inventore voluptate quidem delectus, saepe vitae, illum odit
+              optio ullam voluptas excepturi laborum ipsum voluptatibus! Ut eos
               asperiores assumenda unde!
             </p>
           </div>

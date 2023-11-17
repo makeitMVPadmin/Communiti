@@ -259,7 +259,7 @@ function AdminCommunitiProfile() {
                     announcements={announcements}
                     setAnnouncementsOverlay={setAnnouncementsOverlay}
                   />
-                  <Announcements />
+                  <Announcements communityData={communityData} />
                 </div>
               )}
               {showEvents && <EventsTab events={events} />}

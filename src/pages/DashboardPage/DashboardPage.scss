@@ -106,4 +106,9 @@
   &__text {
     @include Body;
   }
+
+  &__content {
+    width: 100%;
+    overflow: hidden;
+  }
 }
