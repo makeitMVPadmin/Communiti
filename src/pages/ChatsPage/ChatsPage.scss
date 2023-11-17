@@ -19,7 +19,7 @@
 
     @include Laptop {
       width: 26vw;
-      height: 88.6vw;
+      height: 61.6vw;
       padding: 1.1vw;
       border: 0.3vw solid black;
       border-radius: 0.5vw;
@@ -90,7 +90,7 @@
       }
 
       p {
-        @include SubHeader;
+        @include Body;
 
         @include Laptop {
           margin-left: 1.7vw;
@@ -108,7 +108,7 @@
   }
 
   &__whole-container {
-    height: 88.6vw;
+    height: 61.6vw;
     width: 68.7vw;
     margin-left: 2.3vw;
   }
@@ -145,7 +145,7 @@
     flex-direction: column;
     border-radius: 2%;
     width: 100%;
-    height: 83.6vw;
+    height: 56.3vw;
     border: 0.1vw solid #b6b3b3;
     overflow: hidden;
   }
@@ -167,7 +167,7 @@
 
   &__topbar {
     width: 100%;
-    height: 6vw;
+    height: 5vw;
     background-color: #c8e7fb;
     box-shadow: 0 0.5vw 0.4vw -0.4vw grey;
     display: flex;
@@ -201,8 +201,8 @@
 
     &-img {
       @include Laptop {
-        width: 70px;
-        height: 70px;
+        width: 4.2vw;
+        height: 4.2vw;
         margin-right: 1.1vw;
       }
     }
@@ -210,11 +210,11 @@
       @include Buttons;
     }
     &-time {
+      @include Body;
       color: rgba(0, 0, 0, 0.2);
-      @include Buttons;
     }
     &-content {
-      @include Buttons;
+      @include Body;
     }
   }
 

@@ -1,6 +1,11 @@
 import "./AnnouncementsTab.scss";
+import Announcements from "../Announcements/Announcements";
 
-function AnnouncementsTab({ announcements, setAnnouncementsOverlay }) {
+function AnnouncementsTab({
+  announcements,
+  setAnnouncementsOverlay,
+  communityData,
+}) {
   function noAnnouncements() {
     return (
       <div className="announcements-tab__none">
@@ -26,8 +31,11 @@ function AnnouncementsTab({ announcements, setAnnouncementsOverlay }) {
     );
   }
   return (
-    <section className="announcements-tab">
-      {announcements.length === 0 ? noAnnouncements() : someAnnouncements()}
+    <section className="announcements-tab-background">
+      <div className="announcements-tab">
+        {announcements.length === 0 ? noAnnouncements() : someAnnouncements()}
+      </div>
+      <Announcements communityData={communityData} />
     </section>
   );
 }

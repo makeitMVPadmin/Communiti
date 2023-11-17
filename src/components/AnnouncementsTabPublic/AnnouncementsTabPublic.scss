@@ -4,24 +4,25 @@
 
 $mockup-light-blue: #e1f0fb;
 
-.announcements-tab {
+.announcements-tab-public {
   @include Laptop {
     width: 79vw;
     height: 17.7vw;
-
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0 3vw;
   }
   &-background {
     background-color: $mockup-light-blue;
     background: #e1f0fb;
     border-radius: 0.5vw;
     border: 0.2vw solid #000;
+    padding: 3vw 3vw;
+    width: 79vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 4vw 3vw;
   }
   &__none {
     background-color: rgba($MVP-Light-Blue, 0.2);
@@ -30,12 +31,12 @@ $mockup-light-blue: #e1f0fb;
     align-items: center;
     justify-content: space-between;
     width: 71.8vw;
-    padding: 2.3vw 2.8vw;
     height: 9.5vw;
 
     &-writing {
       @include Body;
-      width: 38.1vw;
+      width: 100%;
+      text-align: center;
     }
 
     &-button {

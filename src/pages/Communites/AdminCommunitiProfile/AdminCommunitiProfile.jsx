@@ -254,14 +254,13 @@ function AdminCommunitiProfile() {
               </div>
 
               {showAnnouncements && (
-                <div>
-                  <AnnouncementsTab
-                    announcements={announcements}
-                    setAnnouncementsOverlay={setAnnouncementsOverlay}
-                  />
-                  <Announcements communityData={communityData} />
-                </div>
+                <AnnouncementsTab
+                  announcements={announcements}
+                  setAnnouncementsOverlay={setAnnouncementsOverlay}
+                  communityData={communityData}
+                />
               )}
+
               {showEvents && <EventsTab events={events} />}
               {showMembers && (
                 <MembersTab memberIds={memberIds} memberRoles={memberRoles} />

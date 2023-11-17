@@ -45,7 +45,7 @@ function ChatsPage() {
       <img src={image} alt="profile pic" className="chat__message-img" />
       <div className="chat__message-container">
         <p className="chat__message-name">
-          {sender} <span className="chat-message-time">{timestamp}</span>
+          {sender} <span className="chat__message-time">{timestamp}</span>
         </p>
         <p className="chat__message-content">{content}</p>
       </div>

@@ -4,7 +4,7 @@ import DashboardNavbar from "../../components/DashboardNavbar/DashboardNavbar";
 import penAndPaper from "../../assets/images/penAndPaper.svg";
 import location from "../../assets/images/location.svg";
 import members from "../../assets/images/members.svg";
-import AnnouncementsTab from "../../components/AnnouncementsTab/AnnouncementsTab";
+import AnnouncementsTab from "../../components/AnnouncementsTabPublic/AnnouncementsTabPublic";
 import EventsTab from "../../components/EventsTab/EventsTab";
 import MembersTab from "../../components/MembersTab/MembersTab";
 import { useParams } from "react-router-dom";
@@ -249,7 +249,10 @@ function CommunitiProfile() {
               </div>
 
               {showAnnouncements && (
-                <AnnouncementsTab announcements={announcements} />
+                <AnnouncementsTab
+                  announcements={announcements}
+                  communityData={communityData}
+                />
               )}
               {showEvents && <EventsTab events={events} />}
               {showMembers && (
