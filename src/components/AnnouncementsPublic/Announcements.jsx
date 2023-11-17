@@ -1,14 +1,7 @@
 import "./Announcements.scss";
 import clockIcon from "../../assets/images/clockIcon.svg";
 import { useParams } from "react-router-dom";
-import {
-  collection,
-  getDocs,
-  doc,
-  query,
-  getDoc,
-  Timestamp,
-} from "firebase/firestore";
+import { collection, getDocs, doc, query, getDoc } from "firebase/firestore";
 import { db } from "../../Firebase/FirebaseConfig";
 import { useState, useEffect } from "react";
 

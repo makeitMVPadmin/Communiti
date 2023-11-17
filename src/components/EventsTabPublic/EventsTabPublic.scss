@@ -1,0 +1,50 @@
+@use "../../styles/typography" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+$mockup-light-blue: #e1f0fb;
+
+.events-tab-public {
+  background-color: $mockup-light-blue;
+  border-radius: 0.5vw;
+  border: 0.2vw solid #000;
+  background: #e1f0fb;
+
+  @include Laptop {
+    width: 79vw;
+    height: 17.7vw;
+    padding: 4vw 3vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__none {
+    background-color: rgba($MVP-Light-Blue, 0.2);
+    border-radius: 0.5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.3vw 2.8vw;
+    height: 9.5vw;
+
+    &-writing {
+      @include Body;
+      width: 38.1vw;
+      width: 100%;
+      text-align: center;
+    }
+
+    &-button {
+      @include Buttons;
+      border: 0.2vw solid $MVP-black;
+      border-radius: 0.5vw;
+      padding: 1vw;
+      background-color: $MVP-Yellow;
+
+      @include Laptop {
+        width: 26vw;
+      }
+    }
+  }
+}
