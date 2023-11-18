@@ -77,11 +77,7 @@ function CreateCommuniti3({ image, setImage, handleBack, handleNext }) {
                 </>
               )}
             </div>
-            {image && (
-              <>
-                {/* Add any additional content you want to display when an image is uploaded */}
-              </>
-            )}
+            {image && <></>}
             {!image && (
               <p className="create-communiti3__container-input-text--alt">
                 supported formats: JPG, PNG, PDF, SVG
