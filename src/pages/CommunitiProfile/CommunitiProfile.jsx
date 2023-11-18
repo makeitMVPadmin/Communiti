@@ -5,7 +5,7 @@ import penAndPaper from "../../assets/images/penAndPaper.svg";
 import location from "../../assets/images/location.svg";
 import members from "../../assets/images/members.svg";
 import AnnouncementsTab from "../../components/AnnouncementsTabPublic/AnnouncementsTabPublic";
-import EventsTab from "../../components/EventsTab/EventsTab";
+import EventsTab from "../../components/EventsTabPublic/EventsTabPublic";
 import MembersTab from "../../components/MembersTab/MembersTab";
 import { useParams } from "react-router-dom";
 import { db, auth } from "../../Firebase/FirebaseConfig";

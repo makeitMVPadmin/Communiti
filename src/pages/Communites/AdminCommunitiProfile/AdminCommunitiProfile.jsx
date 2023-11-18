@@ -20,6 +20,7 @@ function AdminCommunitiProfile() {
   const [showAnnouncements, setShowAnnouncements] = useState(true);
   const [showAnnouncementsOverlay, setAnnouncementsOverlay] = useState(false);
   const [showEvents, setShowEvents] = useState(false);
+  const [showEventsOverlay, setEventsOverlay] = useState(false);
   const [showMembers, setShowMembers] = useState(false);
   const [communityData, setCommunityData] = useState(null);
   const [announcements, setAnnouncements] = useState([]);
@@ -252,7 +253,6 @@ function AdminCommunitiProfile() {
                   Members
                 </p>
               </div>
-
               {showAnnouncements && (
                 <AnnouncementsTab
                   announcements={announcements}
@@ -260,8 +260,13 @@ function AdminCommunitiProfile() {
                   communityData={communityData}
                 />
               )}
-
-              {showEvents && <EventsTab events={events} />}
+              {showEvents && (
+                <EventsTab
+                  events={events}
+                  setEventsOverlay={setEventsOverlay}
+                  communityData={communityData}
+                />
+              )}
               {showMembers && (
                 <MembersTab memberIds={memberIds} memberRoles={memberRoles} />
               )}

@@ -20,7 +20,7 @@ export const handleSignUp = async (email, password, fullName) => {
     const { user } = userCredential;
 
     // Update or create user in Firestore
-    await updateUserInFirestore(user);
+    await updateUserInFirestore(user, { email, fullName });
   } catch (error) {
     // Handle the error or display an error message to the user.
     console.error("Sign-up error:", error);
@@ -38,7 +38,7 @@ export const handleSignIn = async (email, password) => {
     const { user } = userCredential;
 
     // Update user in Firestore on sign-in (if needed)
-    await updateUserInFirestore(user);
+    await updateUserInFirestore(user, { email });
   } catch (error) {
     // Handle the error or display an error message to the user.
     console.error("Sign-in error:", error);

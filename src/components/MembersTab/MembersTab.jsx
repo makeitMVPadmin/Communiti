@@ -29,7 +29,7 @@ function MembersTab({ memberIds, memberRoles }) {
               const memberData = {
                 id: userDoc.id,
                 name: userData.fullName,
-                role: role || "Default Role",
+                role: role || "New Memeber",
                 photo: userData.profilePhoto,
               };
               membersDetails.push(memberData);

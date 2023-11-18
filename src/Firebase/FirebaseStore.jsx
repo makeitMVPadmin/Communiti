@@ -15,7 +15,6 @@ export const updateUserInFirestore = async (
   try {
     const usersRef = collection(db, "Users");
     const userDocRef = doc(usersRef, user.uid);
-
     const userDoc = await getDoc(userDocRef);
 
     if (!userDoc.exists()) {

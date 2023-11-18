@@ -1,4 +1,4 @@
-import "./EventsTab.scss";
+import "./EventsTabPublic.scss";
 import { useState, useEffect } from "react";
 import { collection, getDocs, doc, query, getDoc } from "firebase/firestore";
 import { db } from "../../Firebase/FirebaseConfig";
@@ -33,12 +33,11 @@ function EventsTab({ communityData }) {
 
   function noEvents() {
     return (
-      <div className="events-tab__none">
-        <p className="events-tab__none-writing">
-          Bring your community to life!
-          <br /> Create events to connect and engage
+      <div className="events-tab-public__none">
+        <p className="events-tab-public__none-writing">
+          Oops! No Events Events will appear here when they are available. Get
+          ready for something amazing!
         </p>
-        <button className="events-tab__none-button">+ Create Event</button>
       </div>
     );
   }
@@ -52,8 +51,8 @@ function EventsTab({ communityData }) {
   }
 
   return (
-    <section className="events-tab-background">
-      <div className="events-tab-">{renderEvents()}</div>
+    <section className="events-tab-public-background">
+      <div className="events-tab-public">{renderEvents()}</div>
     </section>
   );
 }
