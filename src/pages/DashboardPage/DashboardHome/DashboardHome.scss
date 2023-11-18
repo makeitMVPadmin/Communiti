@@ -3,9 +3,6 @@
 @use "../../../styles/mixins" as *;
 @use "../../../styles/mixins" as *;
 
-body{
-    font-family: Gilroy;
-}
 .welcome {
     display: flex; 
     justify-content: flex-start;
@@ -19,6 +16,7 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-family: Gilroy;
 
 }
 .post-container {

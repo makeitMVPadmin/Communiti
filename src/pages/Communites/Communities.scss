@@ -61,6 +61,7 @@
     border: 0.1875rem solid #000;
     background: $MVP-Yellow;
     color: $MVP-black;
+    cursor: pointer;
 
     @include Laptop {
       width: 22vw;
