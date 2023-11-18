@@ -42,32 +42,6 @@ function DashboardPage() {
     fetchUserData();
   }, []);
 
-  // useEffect(() => {
-  //   const fetchUserCommunities = async () => {
-  //     try {
-  //       const currentUser = auth.currentUser;
-  //       if (currentUser) {
-  //         const uid = currentUser.uid;
-  //         const userDocRef = doc(collection(db, "Users"), uid);
-  //         const userDocSnapshot = await getDoc(userDocRef);
-
-  //         if (userDocSnapshot.exists()) {
-  //           const userCommunitiesIds =
-  //             userDocSnapshot.data().CommunitiesJoined || [];
-
-  //           console.log("User Communities IDs:", userCommunitiesIds);
-
-  //           setUserCommunities(userCommunitiesIds);
-  //         }
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching user communities:", error);
-  //     }
-  //   };
-
-  //   fetchUserCommunities();
-  // }, []);
-
   useEffect(() => {
     // Fetch user's communities
     const fetchUserCommunities = async () => {
