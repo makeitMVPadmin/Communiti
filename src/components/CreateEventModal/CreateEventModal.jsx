@@ -18,8 +18,7 @@ function CreateEventModal({ setEventsOverlay }) {
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [timezone, setTimezone] = useState("");
-  const [thumbnail, setThumbnail] = useState(null);
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
 
   const { id } = useParams();
 
@@ -34,9 +33,6 @@ function CreateEventModal({ setEventsOverlay }) {
     setTimezone(event.target.value);
   };
 
-  const handleThumbnailChange = (event) => {
-    setThumbnail(event.target.files[0]);
-  };
   const handleEventTitleChange = (e) => {
     setEventTitle(e.target.value);
     setTitleCharCount(e.target.value.length); // Update character count
@@ -50,7 +46,10 @@ function CreateEventModal({ setEventsOverlay }) {
     event.preventDefault();
 
     try {
-      const thumbnailURL = typeof thumbnail === "string" ? thumbnail : null;
+      const imageFileName = image.name || `image_${Date.now()}`;
+      const storageRef = ref(storage, `event_thumbnails/${imageFileName}`);
+      await uploadBytes(storageRef, image);
+      const imageUrl = await getDownloadURL(storageRef);
 
       const eventsRef = collection(db, `Communities/${id}/Events`);
       const eventData = {
@@ -62,7 +61,7 @@ function CreateEventModal({ setEventsOverlay }) {
         startTime,
         endTime,
         timezone,
-        thumbnail: thumbnail || null,
+        eventImage: imageUrl,
       };
 
       await addDoc(eventsRef, {
@@ -98,17 +97,7 @@ function CreateEventModal({ setEventsOverlay }) {
         return;
       }
 
-      const storageRef = ref(storage, `event_thumbnails/${file.name}`);
-      try {
-        await uploadBytes(storageRef, file);
-        const downloadURL = await getDownloadURL(storageRef);
-        // Log the URL to verify
-        console.log("Download URL:", downloadURL);
-        setThumbnail(downloadURL);
-        setImage(downloadURL); // Update image state with the URL
-      } catch (error) {
-        console.error("Error uploading file: ", error);
-      }
+      setImage(file);
     }
   };
   return (
