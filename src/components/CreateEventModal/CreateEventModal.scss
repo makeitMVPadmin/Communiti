@@ -12,6 +12,9 @@
   &-background {
     width: 100%;
     padding: 10.5vw 10.5vw 10.5vw 10.5vw;
+    position: absolute;
+    background: $MVP-White;
+    z-index: 9;
   }
   &__title {
     @include Heading;

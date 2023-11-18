@@ -7,7 +7,6 @@ import LogIn from "./pages/LogIn/LogIn";
 import ForgotPage from "./pages/ForgotPage/ForgotPage";
 import EventsPage from "./pages/EventsPage/EventsPage";
 import ChatsPage from "./pages/ChatsPage/ChatsPage";
-import CreateEventModal from "./pages/CreateEventModal/CreateEventModal";
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
 import CreateCommunitiPage from "./pages/Communites/CreateCommunitiPage/CreateCommunitiPage";
 import Communities from "./pages/Communites/Communities";
@@ -42,7 +41,6 @@ function App() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<LogIn />} />
       <Route path="/forgot" element={<ForgotPage />} />
-      <Route path="/event/create" element={<CreateEventModal />} />
 
       {user ? (
         <>

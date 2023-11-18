@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./CreateEventModal.scss";
 import calendar from "../../assets/images/calendar.svg";
 import chooseFile from "../../assets/images/choose-file.svg";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { useParams } from "react-router-dom";
+import { db, storage } from "../../Firebase/FirebaseConfig";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
-function CreateEventModal({ image, setImage, handleBack, handleNext }) {
+function CreateEventModal({ setEventsOverlay }) {
   const [eventTitle, setEventTitle] = useState("");
   const [titleCharCount, setTitleCharCount] = useState(0);
   const [description, setDescription] = useState("");
@@ -15,6 +19,9 @@ function CreateEventModal({ image, setImage, handleBack, handleNext }) {
   const [endTime, setEndTime] = useState("");
   const [timezone, setTimezone] = useState("");
   const [thumbnail, setThumbnail] = useState(null);
+  const [image, setImage] = useState("");
+
+  const { id } = useParams();
 
   const handleLocationChange = (event) => {
     setLocationType(event.target.value);
@@ -39,15 +46,40 @@ function CreateEventModal({ image, setImage, handleBack, handleNext }) {
     setDescriptionCharCount(e.target.value.length); // Update character count for description
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    try {
+      const thumbnailURL = typeof thumbnail === "string" ? thumbnail : null;
+
+      const eventsRef = collection(db, `Communities/${id}/Events`);
+      const eventData = {
+        title: eventTitle,
+        description,
+        date,
+        locationType,
+        venueAddress: locationType === "venue" ? venueAddress : null,
+        startTime,
+        endTime,
+        timezone,
+        thumbnail: thumbnail || null,
+      };
+
+      await addDoc(eventsRef, {
+        ...eventData,
+        timestamp: serverTimestamp(),
+      });
+
+      setEventsOverlay(false);
+    } catch (error) {
+      console.error("Error adding event: ", error);
+    }
   };
 
-  const handleFileInputChange = (e) => {
+  const handleFileInputChange = async (e) => {
     const file = e.target.files[0];
 
     if (file) {
-      // Check file type using the file name
       const fileName = file.name.toLowerCase();
       const isJPEG = fileName.endsWith(".jpg") || fileName.endsWith(".jpeg");
       const isPNG = fileName.endsWith(".png");
@@ -56,22 +88,29 @@ function CreateEventModal({ image, setImage, handleBack, handleNext }) {
 
       if (!(isJPEG || isPNG || isPDF || isSVG)) {
         alert("Supported formats: JPG, PNG, PDF, SVG");
-        e.target.value = null; // Reset the file input
+        e.target.value = null;
         return;
       }
 
-      // Check file size
       if (file.size > 3000000) {
         alert("File size exceeds 3MB. Please choose a smaller file.");
-        e.target.value = null; // Reset the file input
+        e.target.value = null;
         return;
       }
 
-      // Set the image state as a File object
-      setImage(file);
+      const storageRef = ref(storage, `event_thumbnails/${file.name}`);
+      try {
+        await uploadBytes(storageRef, file);
+        const downloadURL = await getDownloadURL(storageRef);
+        // Log the URL to verify
+        console.log("Download URL:", downloadURL);
+        setThumbnail(downloadURL);
+        setImage(downloadURL); // Update image state with the URL
+      } catch (error) {
+        console.error("Error uploading file: ", error);
+      }
     }
   };
-
   return (
     <div className="event-overlay-background">
       <div className="event-overlay">
@@ -232,7 +271,7 @@ function CreateEventModal({ image, setImage, handleBack, handleNext }) {
               </select>
 
               <div className="event-overlay__image-container">
-                <form className="create-communiti3__container-form">
+                <div className="create-communiti3__container-form">
                   <label
                     className="create-communiti3__container-label event-overlay__picture-title"
                     htmlFor="communiti-icon"
@@ -278,7 +317,7 @@ function CreateEventModal({ image, setImage, handleBack, handleNext }) {
                       <br /> maximum size: 3MB
                     </p>
                   )}
-                </form>
+                </div>
               </div>
             </div>
             <img className="event-overlay__img" src={calendar} alt="calendar" />
@@ -287,6 +326,7 @@ function CreateEventModal({ image, setImage, handleBack, handleNext }) {
             <button
               className="event-overlay__button event-overlay__button--alt"
               type="button"
+              onClick={() => setEventsOverlay(false)}
             >
               Cancel
             </button>
