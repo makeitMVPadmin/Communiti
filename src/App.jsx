@@ -42,7 +42,7 @@ function App() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<LogIn />} />
       <Route path="/forgot" element={<ForgotPage />} />
-      <Route path="/createEvent" element={<CreateEventModal />} />
+      <Route path="/event/create" element={<CreateEventModal />} />
 
       {user ? (
         <>
