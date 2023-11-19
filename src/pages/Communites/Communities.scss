@@ -41,6 +41,7 @@
     border: 0.1875rem solid #000;
     background: $MVP-Yellow;
     color: $MVP-black;
+    cursor: pointer;
 
     @include Laptop {
       width: 22vw;
@@ -260,6 +261,7 @@
       align-self: flex-end;
       border: none;
       background-color: transparent;
+      cursor: pointer;
 
       @include Laptop {
         height: 2.2vw;

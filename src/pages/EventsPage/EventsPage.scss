@@ -31,6 +31,7 @@
     gap: 0.7vw;
     border-radius: 0.5vw;
     background: #85bbfb;
+    cursor: pointer;
     @include Body;
   }
 
@@ -48,6 +49,7 @@
       gap: 0.7vw;
       border-radius: 0.5vw;
       border: 0.1vw solid #000;
+      cursor:text;
 
       /* Mobile - Body */
       font-family: Gilroy;

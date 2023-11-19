@@ -46,6 +46,7 @@
     border-radius: 0.5vw;
     justify-content: space-evenly;
     @include Buttons;
+    cursor: pointer;
 
     &-edit {
       background: $MVP-Dark-Blue;

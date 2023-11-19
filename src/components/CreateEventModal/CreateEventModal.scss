@@ -47,6 +47,7 @@
         border-radius: 0.5vw;
         border: 0.2vw solid #000;
         width: 100%;
+        cursor: pointer;
       }
     }
 
@@ -78,6 +79,7 @@
       border-radius: 0.5vw;
       border: 0.2vw solid #000;
       width: 13.5vw;
+      cursor: text;
     }
     &-count {
       @include Body;
@@ -89,6 +91,7 @@
     }
 
     &-location {
+      cursor: pointer;
       &-alt {
         margin-left: 3.8vw;
         width: 25.5vw;
@@ -139,6 +142,7 @@
       gap: 0.7vw;
       border-radius: 0.5vw;
       border: 0.2vw solid #000;
+      cursor: pointer;
 
       /* Mobile - Body */
       font-family: Gilroy;
@@ -156,6 +160,7 @@
       justify-content: center;
       align-items: center;
       gap: 0.7vw;
+      cursor: text;
 
       border-radius: 0.5vw;
       border: 0.2vw solid #000;
@@ -176,6 +181,8 @@
     background: $MVP-Yellow;
     @include Buttons;
     font-family: Gilroy;
+    
+    cursor: pointer;
 
     &--alt {
       background: $MVP-White;

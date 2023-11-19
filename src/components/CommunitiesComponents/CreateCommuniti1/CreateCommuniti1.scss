@@ -91,6 +91,7 @@
   }
 
   &-checkbox {
+    cursor: pointer;
     @include Laptop {
       height: 1.4vw;
       width: 1.4vw;

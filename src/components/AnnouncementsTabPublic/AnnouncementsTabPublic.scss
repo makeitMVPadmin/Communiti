@@ -44,6 +44,7 @@ $mockup-light-blue: #e1f0fb;
       border-radius: 0.5vw;
       padding: 1vw;
       background-color: $MVP-Yellow;
+      cursor: pointer;
 
       @include Laptop {
         width: 26vw;
