@@ -13,8 +13,8 @@ import { collection, doc, getDoc } from "firebase/firestore";
 import { db, auth } from "../../Firebase/FirebaseConfig";
 
 function DashboardNavbar() {
-  const navigate = useNavigate()
-  const [dorpdownButton, setDropdownButton] = useState(false)
+  const navigate = useNavigate();
+  const [dropdownButton, setDropdownButton] = useState(false);
   const [profilePhoto, setProfilePhoto] = useState(() => {
     // Try to get profile photo from session storage
     const storedProfilePhoto = sessionStorage.getItem("profilePhoto");
@@ -23,16 +23,16 @@ function DashboardNavbar() {
 
   const handleLogout = async () => {
     try {
-      await auth.signOut()
-      navigate('/')
-    } catch( error ) {
-      console.error("Error logging out: ", error)
+      await auth.signOut();
+      navigate("/");
+    } catch (error) {
+      console.error("Error logging out: ", error);
     }
-  }
+  };
 
   const handleDropdown = () => {
-
-  }
+    setDropdownButton(!dropdownButton); // Toggle the dropdownButton state
+  };
 
   useEffect(() => {
     // Get the current user from Firebase Authentication
@@ -149,10 +149,14 @@ function DashboardNavbar() {
             className="dashboard-navbar__img dashboard-navbar__img--profile"
           />
         </Link>
-        <button className="dashboard-navbar__button">
+        <button className="dashboard-navbar__button" onClick={handleDropdown}>
           <img src={DropDownArrow} alt="DropDownArrow icon" />
         </button>
-        <button onClick={handleLogout}>Logout</button>
+        {dropdownButton && ( // Render logout button if dropdownButton is true
+          <button className="log-out" onClick={handleLogout}>
+            Logout
+          </button>
+        )}
       </div>
     </div>
   );
