@@ -11,8 +11,6 @@
   &__thumbnail {
     width: 21.2vw;
     height: 11.1vw;
-    width: 38.9vw;
-    height: 160px;
     border-radius: 0.5vw;
 
     &-img {
@@ -22,6 +20,7 @@
   }
 
   &__details {
+    width: 40.4vw;
     &-title {
       @include SubHeader;
     }

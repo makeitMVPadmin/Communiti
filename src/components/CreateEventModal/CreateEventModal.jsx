@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./CreateEventModal.scss";
 import calendar from "../../assets/images/calendar.svg";
 import chooseFile from "../../assets/images/choose-file.svg";
@@ -6,6 +6,7 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 import { db, storage } from "../../Firebase/FirebaseConfig";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import moment from "moment-timezone";
 
 function CreateEventModal({ setEventsOverlay }) {
   const [eventTitle, setEventTitle] = useState("");
@@ -19,6 +20,8 @@ function CreateEventModal({ setEventsOverlay }) {
   const [endTime, setEndTime] = useState("");
   const [timezone, setTimezone] = useState("");
   const [image, setImage] = useState(null);
+  const [timezoneOptions, setTimezoneOptions] = useState([]);
+  const [userTimezone, setUserTimezone] = useState("");
 
   const { id } = useParams();
 
@@ -42,6 +45,30 @@ function CreateEventModal({ setEventsOverlay }) {
     setDescriptionCharCount(e.target.value.length); // Update character count for description
   };
 
+  useEffect(() => {
+    // Generate time zone options dynamically
+    const generateTimeZoneOptions = () => {
+      const timeZones = moment.tz.names();
+      const timeZoneOptions = timeZones.map((tz) => ({
+        value: tz,
+        label: `${tz} (UTC${moment.tz(tz).format("Z")})`,
+      }));
+      return timeZoneOptions;
+    };
+
+    // Set the time zone options in state
+    setTimezoneOptions(generateTimeZoneOptions());
+
+    // Detect user's time zone
+    const detectUserTimezone = () => {
+      const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      setUserTimezone(userTimeZone);
+    };
+
+    // Call the function to detect user's time zone
+    detectUserTimezone();
+  }, []);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -58,8 +85,8 @@ function CreateEventModal({ setEventsOverlay }) {
         date,
         locationType,
         venueAddress: locationType === "venue" ? venueAddress : null,
-        startTime,
-        endTime,
+        startTime: moment(`${date}T${startTime}`).toISOString(),
+        endTime: moment(`${date}T${endTime}`).toISOString(),
         timezone,
         eventImage: imageUrl,
       };
@@ -238,25 +265,11 @@ function CreateEventModal({ setEventsOverlay }) {
                 onChange={handleTimezoneChange}
               >
                 <option value="">Select Timezone</option>
-                <option value="GMT-0800">
-                  (GMT -8:00) Pacific Time (US & Canada)
-                </option>
-                <option value="GMT-0500">
-                  (GMT -5:00) Eastern Time (US & Canada)
-                </option>
-                <option value="GMT">(GMT) Greenwich Mean Time, London</option>
-                <option value="GMT+0100">
-                  (GMT +1:00) Central European Time, Paris
-                </option>
-                <option value="GMT+0530">
-                  (GMT +5:30) India Standard Time, New Delhi
-                </option>
-                <option value="GMT+0800">
-                  (GMT +8:00) China Standard Time, Beijing
-                </option>
-                <option value="GMT+1000">
-                  (GMT +10:00) Eastern Australia, Sydney
-                </option>
+                {timezoneOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
               </select>
 
               <div className="event-overlay__image-container">

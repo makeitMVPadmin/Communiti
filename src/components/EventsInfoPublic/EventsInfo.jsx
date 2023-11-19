@@ -45,11 +45,13 @@ function EventsInfo({ communityId }) {
             const { title } = doc.data();
             const { description } = doc.data();
             const { eventImage } = doc.data();
+            const { startTime } = doc.data();
 
             eventsData.push({
               title,
               description,
               eventImage,
+              startTime,
             });
           });
 
@@ -62,6 +64,38 @@ function EventsInfo({ communityId }) {
 
     fetchCommunityEventsData();
   }, [communityInfo, communityId]);
+
+  const formatDate = (timestamp) => {
+    const eventDate = new Date(timestamp);
+    const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+    const months = [
+      "JAN",
+      "FEB",
+      "MAR",
+      "APR",
+      "MAY",
+      "JUN",
+      "JUL",
+      "AUG",
+      "SEP",
+      "OCT",
+      "NOV",
+      "DEC",
+    ];
+    const dayOfWeek = days[eventDate.getUTCDay()];
+    const month = months[eventDate.getUTCMonth()];
+    const day = eventDate.getUTCDate();
+    let hours = eventDate.getUTCHours();
+    const minutes = eventDate.getUTCMinutes();
+    const ampm = hours >= 12 ? "PM" : "AM";
+    hours %= 12;
+    hours = hours || 12; // 0 should be converted to 12
+
+    const formattedDate = `${dayOfWeek}, ${month} ${day} ${hours}:${minutes
+      .toString()
+      .padStart(2, "0")} ${ampm} UTC`;
+    return formattedDate;
+  };
 
   const handleAttending = () => {
     // Logic to toggle userAttending state
@@ -90,7 +124,7 @@ function EventsInfo({ communityId }) {
               {event.description}
             </p>
             <p className="events-info__details-datetime">
-              WED, NOV 9 4:00 PM PST
+              {formatDate(event.startTime)}
             </p>
           </div>
           <button className={attendingClass} onClick={handleAttending}>
