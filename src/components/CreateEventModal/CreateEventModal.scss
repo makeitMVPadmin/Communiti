@@ -176,6 +176,8 @@
     background: $MVP-Yellow;
     @include Buttons;
     font-family: Gilroy;
+    
+    cursor: pointer;
 
     &--alt {
       background: $MVP-White;
