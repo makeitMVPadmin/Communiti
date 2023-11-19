@@ -87,6 +87,7 @@
       align-items: center;
       justify-content: center;
       position: relative;
+      cursor: pointer;
 
       @include Laptop {
         margin: 2rem 0;
