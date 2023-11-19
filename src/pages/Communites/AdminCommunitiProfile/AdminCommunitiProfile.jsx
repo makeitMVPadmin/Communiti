@@ -12,7 +12,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { db } from "../../../Firebase/FirebaseConfig";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import AnnouncmentsOverlay from "../../../components/AnnouncementsOverlay/AnnouncementsOverlay";
-import Announcements from "../../../components/Announcements/Announcements";
+import EventsOverlay from "../../../components/CreateEventModal/CreateEventModal";
 
 function AdminCommunitiProfile() {
   const { id } = useParams();
@@ -143,6 +143,12 @@ function AdminCommunitiProfile() {
       {showAnnouncementsOverlay && (
         <AnnouncmentsOverlay
           setAnnouncementsOverlay={setAnnouncementsOverlay}
+          communityData={communityData}
+        />
+      )}
+      {showEventsOverlay && (
+        <EventsOverlay
+          setEventsOverlay={setEventsOverlay}
           communityData={communityData}
         />
       )}
