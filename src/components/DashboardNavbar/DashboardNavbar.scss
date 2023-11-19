@@ -100,18 +100,48 @@
     }
   }
 
-  &__button {
-    display: flex;
-    align-items: center;
-    background: none;
-    border: none;
-    cursor: pointer;
+  &__dropdown {
+    position: relative;
+
+    &__button {
+      display: flex;
+      align-items: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
 
     & img {
       width: 2vw;
 
       @include Desktop {
         width: 3vw;
+      }
+    }
+
+    &__dropdown-content {
+      position: absolute;
+      background-color: $MVP-White;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+      display: none;
+    
+      &.show {
+        display: block;
+      }
+
+      &__logout-button {
+        width: 100%;
+        padding: 1rem;
+        text-align: left;
+        background-color: $MVP-black; // Black background
+        color: $MVP-White; // White text
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+          background-color: darken($MVP-black, 10%);
+        }
       }
     }
   }

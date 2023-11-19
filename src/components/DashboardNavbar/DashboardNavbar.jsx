@@ -6,17 +6,36 @@ import communitiesIcon from "../../assets/images/communitiesIcon.svg";
 import LogoIcon from "../../assets/logos/communiti2.svg";
 import profilePic from "../../assets/images/profilePic.svg";
 import DropDownArrow from "../../assets/images/drop-down-arrow.svg";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { collection, doc, getDoc } from "firebase/firestore";
 import { db, auth } from "../../Firebase/FirebaseConfig";
 
 function DashboardNavbar() {
+  const navigate = useNavigate();
+  const [dropdownButton, setDropdownButton] = useState(false);
   const [profilePhoto, setProfilePhoto] = useState(() => {
     // Try to get profile photo from session storage
     const storedProfilePhoto = sessionStorage.getItem("profilePhoto");
     return storedProfilePhoto ? JSON.parse(storedProfilePhoto) : null;
   });
+
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+      // Sign-out was successful
+      sessionStorage.removeItem("profilePhoto");
+      navigate("/home");
+    } catch (error) {
+      // Handle the error or display an error message to the user.
+      console.error("Sign-out error:", error);
+    }
+  };
+
+  const handleDropdownClicked = () => {
+    setDropdownButton(!dropdownButton);
+    // show logout button next
+  };
 
   useEffect(() => {
     // Get the current user from Firebase Authentication
@@ -133,9 +152,24 @@ function DashboardNavbar() {
             className="dashboard-navbar__img dashboard-navbar__img--profile"
           />
         </Link>
-        <button className="dashboard-navbar__button">
-          <img src={DropDownArrow} alt="DropDownArrow icon" />
-        </button>
+        <div className="dashboard-navbar__dropdown">
+          <button 
+            onClick={handleDropdownClicked}
+            className="dashboard-navbar__button"
+          >
+            <img src={DropDownArrow} alt="DropDownArrow icon" />
+          </button>
+          {dropdownButton && (
+            <div className="dashboard-navbar__dropdown-content">
+              <button 
+                onClick={handleLogout} 
+                className="dashboard-navbar__logout-button"
+              >
+                Logout
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

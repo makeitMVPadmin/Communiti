@@ -40,10 +40,10 @@ function App() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<LogIn />} />
       <Route path="/forgot" element={<ForgotPage />} />
+      <Route path="/dashboard" element={<DashboardPage />} />
 
       {user ? (
         <>
-          <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/chat" element={<ChatsPage />} />
           <Route path="/communities" element={<Communities />} />
