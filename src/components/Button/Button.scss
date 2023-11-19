@@ -27,9 +27,37 @@
     font-size: 5vw;
     width: 100%;
     padding: 3vw 3vw;
+    border-radius: 0;
     @include Laptop {
-      font-size: 1.4vw;
+      font-size: 1.9vw;
       padding: 1vw 0vw;
+      height: 100%;
+    }
+  }
+  &--dark-blue {
+    background-color: $MVP-Dark-Blue;
+    color: $MVP-White;
+    font-size: 5vw;
+    width: 100%;
+    padding: 3vw 3vw;
+    border-radius: 0;
+    @include Laptop {
+      font-size: 1.9vw;
+      padding: 1vw 0vw;
+      height: 100%;
+    }
+  }
+  &--red {
+    background-color: $MVP-Red;
+    color: $MVP-black;
+    font-size: 5vw;
+    width: 100%;
+    padding: 3vw 3vw;
+    border-radius: 0;
+    @include Laptop {
+      font-size: 1.9vw;
+      padding: 1vw 0vw;
+      height: 100%;
     }
   }
 

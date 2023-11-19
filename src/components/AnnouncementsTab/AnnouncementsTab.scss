@@ -1,40 +1,51 @@
-@use '../../styles/variables' as *;
+@use "../../styles/typography" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
-$mockup-light-blue: #E1F0FB;
+$mockup-light-blue: #e1f0fb;
 
 .announcements-tab {
+  @include Laptop {
+    width: 79vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &-background {
     background-color: $mockup-light-blue;
-    border-radius: 8px;
+    background: #e1f0fb;
+    border-radius: 0.5vw;
+    border: 0.2vw solid #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4vw 3vw;
+  }
+  &__none {
+    background-color: rgba($MVP-Light-Blue, 0.2);
+    border-radius: 0.5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 71.8vw;
+    padding: 2.3vw 2.8vw;
+    height: 9.5vw;
 
-    padding: 2vw;
-
-    &__none {
-        background-color: rgba($MVP-Light-Blue, 0.2);
-        border-radius: 8px;
-
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        padding: 2vw;
-
-        &-writing {
-            font-size: 1.8rem;
-            line-height: 2vw;
-
-            width: 60%;
-        }
-
-        &-button {
-            border: 3px solid $MVP-black;
-            border-radius: 8px;
-
-            width: 40%;
-            padding: 1vw;
-
-            font-size: 2.5rem;
-            font-weight: 600;
-            background-color: $MVP-Yellow;
-        }
+    &-writing {
+      @include Body;
+      width: 38.1vw;
     }
+
+    &-button {
+      @include Buttons;
+      border: 0.2vw solid $MVP-black;
+      border-radius: 0.5vw;
+      padding: 1vw;
+      background-color: $MVP-Yellow;
+
+      @include Laptop {
+        width: 26vw;
+      }
+    }
+  }
 }

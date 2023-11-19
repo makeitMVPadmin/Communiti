@@ -4,12 +4,13 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signInWithPopup,
+  sendPasswordResetEmail as sendResetEmail,
 } from "firebase/auth";
 import { auth } from "./FirebaseConfig"; // Import the Firebase authentication object from FirebaseConfig
 import { updateUserInFirestore } from "./FirebaseStore";
 
 // Export a function to handle user sign-up
-export const handleSignUp = async (fullName, email, password) => {
+export const handleSignUp = async (email, password, fullName) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -19,7 +20,7 @@ export const handleSignUp = async (fullName, email, password) => {
     const { user } = userCredential;
 
     // Update or create user in Firestore
-    await updateUserInFirestore(user);
+    await updateUserInFirestore(user, { email, fullName });
   } catch (error) {
     // Handle the error or display an error message to the user.
     console.error("Sign-up error:", error);
@@ -37,7 +38,7 @@ export const handleSignIn = async (email, password) => {
     const { user } = userCredential;
 
     // Update user in Firestore on sign-in (if needed)
-    await updateUserInFirestore(user);
+    await updateUserInFirestore(user, { email });
   } catch (error) {
     // Handle the error or display an error message to the user.
     console.error("Sign-in error:", error);
@@ -66,5 +67,16 @@ export const handleGoogleSignIn = async () => {
   } catch (error) {
     // Handle the error or display an error message to the user.
     console.error("Google sign-in error:", error);
+  }
+};
+
+//reset user password via email
+export const sendPasswordResetEmail = async (email) => {
+  try {
+    await sendResetEmail(auth, email);
+    console.log("Password reset email sent!");
+  } catch (error) {
+    console.error("Error sending password reset email:", error.message);
+    throw error;
   }
 };

@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./CreateCommunitiPage.scss";
 import DashboardNavbar from "../../../components/DashboardNavbar/DashboardNavbar";
 import CreateCommuniti1 from "../../../components/CommunitiesComponents/CreateCommuniti1/CreateCommuniti1";
 import CreateCommuniti2 from "../../../components/CommunitiesComponents/CreateCommuniti2/CreateCommuniti2";
 import CreateCommuniti3 from "../../../components/CommunitiesComponents/CreateCommuniti3/CreateCommuniti3";
-
 import {
   collection,
   addDoc,
@@ -12,9 +11,10 @@ import {
   updateDoc,
   doc,
   arrayUnion,
+  setDoc,
 } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage, db } from "../../../Firebase/FirebaseConfig";
+import { storage, db, auth } from "../../../Firebase/FirebaseConfig";
 import { useNavigate } from "react-router-dom";
 
 function CreateCommunitiPage() {
@@ -22,7 +22,7 @@ function CreateCommunitiPage() {
   const [currentStep, setCurrentStep] = useState(1);
   const [communitiName, setCommunitiName] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
-  const [location, setLocation] = useState("");
+  const [location, setLocation] = useState([]);
   const [communitiDescription, setCommunitiDescription] = useState("");
   const [image, setImage] = useState(null);
 
@@ -39,38 +39,52 @@ function CreateCommunitiPage() {
         const imageUrl = await getDownloadURL(storageRef);
 
         // Use the actual user ID when user authentication is implemented
-        const createdBy = "YFVOpHLSMYVDyfYEYYoe";
+        const createdBy = auth.currentUser.uid;
 
-        const locationValue =
-          selectedOption === "in-person" && selectedOption === "virtual"
-            ? "Both"
-            : selectedOption === "in-person"
-            ? location
-            : selectedOption === "virtual"
-            ? "Virtual"
-            : "";
+        const locationValues = [];
+
+        // Check if "Virtual" is selected and add it to locationValues
+        if (selectedOption.includes("virtual")) {
+          locationValues.push("Virtual");
+        }
+
+        // Check if "In Person" is selected and add its value if available
+        if (selectedOption.includes("in-person") && location) {
+          locationValues.push(location);
+        }
 
         const docRef = await addDoc(collection(db, "Communities"), {
           Name: communitiName,
           CreatedBy: createdBy,
           Created: serverTimestamp(),
           Description: communitiDescription,
-          Location: locationValue,
+          Location: locationValues,
           CommunityImage: imageUrl,
         });
 
-        console.log("Document written with ID: ", docRef.id);
+        // Add the creator to the community members subcollection
+        const membersCollectionRef = collection(
+          db,
+          `Communities/${docRef.id}/Members`
+        );
 
-        // Update user's Communities-Manage field array
-        const userDocRef = doc(collection(db, "Users"), createdBy);
+        // Use the actual user ID when user authentication is implemented
+        const creatorUserId = auth.currentUser.uid;
+
+        // Add the creator as a member of the community
+        await setDoc(doc(membersCollectionRef, creatorUserId), {
+          JoinedAt: serverTimestamp(),
+        });
+
+        // Update user's CommunitiesManage field array
+        const userDocRef = doc(collection(db, "Users"), creatorUserId);
         await updateDoc(userDocRef, {
-          "Communities-Manage": arrayUnion(docRef.id),
+          CommunitiesManage: arrayUnion(docRef.id),
         });
 
         console.log("Communiti creation complete!");
-
         // Navigate to the "/communities" route
-        navigate("/communities");
+        navigate(`/communities/admin/${docRef.id}`);
       } catch (error) {
         console.error("Error adding document: ", error);
       }
@@ -78,7 +92,11 @@ function CreateCommunitiPage() {
   };
 
   const handleBack = () => {
-    setCurrentStep(currentStep - 1);
+    if (currentStep === 1) {
+      navigate("/communities"); // Redirect to "/communities"
+    } else {
+      setCurrentStep(currentStep - 1);
+    }
   };
 
   return (

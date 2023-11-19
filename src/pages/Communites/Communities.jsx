@@ -40,12 +40,8 @@ function Communities() {
           const currentUserData = users.find((user) => user.id === uid);
 
           if (currentUserData) {
-            setUserCommunitiesManage(
-              currentUserData["CommunitiesManage"] || []
-            );
-            setUserCommunitiesJoined(
-              currentUserData["CommunitiesJoined"] || []
-            );
+            setUserCommunitiesManage(currentUserData["CommunitiesManage"]);
+            setUserCommunitiesJoined(currentUserData["CommunitiesJoined"]);
           }
 
           // Fetch all communities
@@ -67,7 +63,6 @@ function Communities() {
   }, []);
 
   const handleCreateCommunity = () => {
-    // Load the specified URL on button click
     navigate("/communities/create");
   };
 
@@ -132,7 +127,12 @@ function Communities() {
                           <h4 className="communities__card-heading">
                             {community?.Name}
                           </h4>
-                          <button className="communities__card-arrow-button">
+                          <button
+                            className="communities__card-arrow-button"
+                            onClick={() =>
+                              navigate(`/communities/admin/${community?.id}`)
+                            }
+                          >
                             <img
                               src={rightArrowIcon}
                               alt="right arrow button"
@@ -182,7 +182,12 @@ function Communities() {
                           <h4 className="communities__card-heading">
                             {community?.Name}
                           </h4>
-                          <button className="communities__card-arrow-button">
+                          <button
+                            className="communities__card-arrow-button"
+                            onClick={() =>
+                              navigate(`/communities/${community?.id}`)
+                            }
+                          >
                             <img
                               src={rightArrowIcon}
                               alt="right arrow button"

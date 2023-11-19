@@ -1,0 +1,191 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/typography" as *;
+
+$mockup-blue: #c8e7fb;
+$mockup-light-blue: #e1f0fb;
+
+.communiti-profile {
+  font-family: "Gilroy";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__hero {
+    width: 100%;
+    height: 18vw;
+    padding: 1.8vw 2.7vw 0 2.7vw;
+    background-color: $mockup-blue;
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    width: 89.5vw;
+    position: relative;
+    top: -5vw;
+
+    &-top {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 80%;
+      padding-right: 2vw;
+
+      &-pic {
+        border-radius: 0.5vw;
+        border: 0.2vw solid #000;
+        height: 14.3vw;
+        width: 14.3vw;
+        margin: 0 2.1vw 0 0;
+      }
+    }
+
+    &-writing {
+      background-color: $MVP-White;
+      border: 3px solid $MVP-black;
+      border-radius: 8px;
+
+      @include Laptop {
+        width: 49.4vw;
+        height: 13.2vw;
+        padding: 1.1vw;
+      }
+
+      &-top {
+        @include Heading;
+        font-family: Gilroy;
+        @include Laptop {
+          margin: 0 0 1.1vw 0;
+        }
+      }
+
+      &-bottom {
+        display: flex;
+        justify-content: space-between;
+
+        // border: 2px solid blue;
+        padding-right: 1vw;
+
+        &-left {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          // border: 2px solid pink;
+        }
+
+        &-right {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+      }
+    }
+
+    &-card {
+      background-color: rgba($MVP-Light-Blue, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      @include Laptop {
+        height: 3.2vw;
+        padding: 0.3vw 0.5vw;
+        border-radius: 0.5vw;
+        margin-right: 1.1vw;
+      }
+
+      &-icon {
+        width: 2vw;
+        height: 2vw;
+        margin: 0 0.4vw 0 0;
+      }
+
+      &-writing {
+        @include Body;
+      }
+    }
+
+    &-text {
+      @include Body;
+      margin-left: 1.3vw;
+    }
+    &-description {
+      width: 85%;
+      margin: 1vw 0vw;
+
+      &-heading {
+        @include SubHeader;
+        @include Laptop {
+          margin: 1vw 0vw;
+        }
+      }
+
+      &-description {
+        @include Body;
+      }
+    }
+  }
+
+  &__aem {
+    @include Laptop {
+      width: 78.8vw;
+      margin: 3vw 0 0 0;
+    }
+
+    &-tabs {
+      display: flex;
+      align-items: center;
+
+      @include Laptop {
+        width: 80.7vw;
+        padding: 0 1.1vw;
+        gap: 1.1vw;
+      }
+
+      &-tab {
+        display: flex;
+        justify-content: center;
+        background: #09f;
+
+        @include SubHeader;
+        @include Laptop {
+          width: 19.9vw;
+          padding: 1.1vw 0;
+          border-radius: 0.5vw 0.5vw 0 0;
+          border-top: 0.2vw solid #000;
+          border-right: 0.2vw solid #000;
+          border-left: 0.2vw solid #000;
+        }
+
+        &--active {
+          background-color: $mockup-light-blue;
+        }
+      }
+    }
+  }
+
+  &__button {
+    @include Buttons;
+    border: 0.2vw solid $MVP-black;
+    border-radius: 0.5vw;
+    padding: 1vw;
+    background-color: $MVP-Yellow;
+
+    @include Laptop {
+      width: 26vw;
+    }
+
+    &-container {
+      @include Laptop {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+  }
+}

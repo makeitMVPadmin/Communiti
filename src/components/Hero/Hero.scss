@@ -80,44 +80,103 @@
   }
 
   &__success {
-  margin-top: 1rem;
+    background: $MVP-White;
+    margin: 1rem auto;
+    border-radius: 5.6vw;
+    border: 0.8vw solid #000;
+    box-shadow: 0.8vw 0.8vw 0px 0px #09f;
+    width: 81.8vw;
+    height: 45.7vw;
+    padding: 4.3vw 6.4vw;
+
+    @include Laptop {
+      border-radius: 1.5vw;
+      border: 0.2vw solid #000;
+      background: $MVP-White;
+      box-shadow: 0.6vw 0.6vw 0px 0px #09f;
+      width: 42.4vw;
+      height: 13vw;
+      margin: 1rem 0;
+      padding: 1.1vw 1.7vw;
+    }
   }
 
   &__success-message {
-    @include LandingPage-Text;
+    @include Body;
     color: $MVP-black;
-    text-align: center;
-    margin-bottom: 1rem;
+    text-align: left;
     border-color: black;
     border-radius: 0.5rem;
+
+    &-header {
+      @include SubHeader;
+      margin-bottom: 6vw;
+
+      @include Laptop {
+        margin: 0 0 1.5vw 0;
+      }
+    }
   }
 
   &__form {
     display: flex;
     flex-direction: row;
-    align-items: left;
-    padding: 1vw;
+    padding: 0.7vw 1.5vw;
+    border: solid 0.8vw #000000;
+    border-radius: 0.9vw;
+    justify-content: space-between;
+    align-items: center;
+    height: 12vw;
+    width: 69.8vw;
+
+    @include Laptop {
+      width: 23.4vw;
+      height: 4.4vw;
+      padding: 0.7vw 1.5vw;
+      border-radius: 0.6vw;
+      border: solid 0.2vw #000000;
+    }
   }
-  
+
   &__form label {
     margin-bottom: 1rem;
   }
-  
+
   &__form input {
-    padding: 0.5rem;
+    border: none;
+
+    &::placeholder {
+      color: $MVP-black;
+    }
+
+    &:focus {
+      outline: none;
+    }
+    @include Buttons;
+
+    @include Laptop {
+      height: 100%;
+      font-size: 1.5vw;
+    }
   }
-  
+
   &__form button {
     background-color: $MVP-Yellow;
     border: none;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-  
+    width: 6vw;
+    height: 6vw;
+
+    @include Laptop {
+      width: 1.4vw;
+      height: 1.4vw;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
     img {
-      width: 70%;
-      height: 70%;
+      width: 100%;
+      height: 100%;
     }
   }
 }

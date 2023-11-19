@@ -41,7 +41,7 @@
     }
 
     &-heading {
-      @include heading;
+      @include Heading;
       @include Laptop {
         margin: 4.1vw 0;
       }

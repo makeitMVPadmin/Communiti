@@ -1,0 +1,93 @@
+@use "../../styles/typography" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.announcements-overlay {
+  width: 73.9vw;
+  height: 44.7vw;
+  background-color: $MVP-White;
+  padding: 3.3vw;
+  border-radius: 0.8vw;
+
+  &__top-container {
+    display: flex;
+  }
+
+  &__logo {
+    width: 5.2vw;
+    height: 5.2vw;
+    flex-shrink: 0;
+    border-radius: 0.5vw;
+    border: 0.2vw solid #000;
+    margin-right: 2.2vw;
+  }
+
+  &__name {
+    @include SubHeader;
+  }
+
+  &__middle-container {
+    display: flex;
+    width: 65.1vw;
+    height: 25.9vw;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 3.3vw;
+
+    border-radius: 0.5vw;
+    border: 0.2vw solid #000;
+  }
+
+  &__textarea {
+    width: 100%;
+    height: 100%;
+    padding: 1.1vw;
+    gap: 2.2vw;
+
+    @include Body;
+    &::placeholder {
+      color: rgba(0, 0, 0, 0.5);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__bottom-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2.2vw;
+  }
+
+  &__button {
+    display: flex;
+    padding: 0.5vw 1.1vw;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5vw;
+    border-radius: 0.5vw;
+    background: $MVP-Dark-Blue;
+
+    @include Buttons;
+    color: $MVP-White;
+  }
+  &__button--not-active {
+    background: #98c4fa;
+  }
+}
+
+.announcements-overlay-background {
+  background: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9;
+
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
