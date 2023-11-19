@@ -6,17 +6,33 @@ import communitiesIcon from "../../assets/images/communitiesIcon.svg";
 import LogoIcon from "../../assets/logos/communiti2.svg";
 import profilePic from "../../assets/images/profilePic.svg";
 import DropDownArrow from "../../assets/images/drop-down-arrow.svg";
+import { useNavigate } from "react-router-dom";
 import { NavLink, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { collection, doc, getDoc } from "firebase/firestore";
 import { db, auth } from "../../Firebase/FirebaseConfig";
 
 function DashboardNavbar() {
+  const navigate = useNavigate()
+  const [dorpdownButton, setDropdownButton] = useState(false)
   const [profilePhoto, setProfilePhoto] = useState(() => {
     // Try to get profile photo from session storage
     const storedProfilePhoto = sessionStorage.getItem("profilePhoto");
     return storedProfilePhoto ? JSON.parse(storedProfilePhoto) : null;
   });
+
+  const handleLogout = async () => {
+    try {
+      await auth.signOut()
+      navigate('/')
+    } catch( error ) {
+      console.error("Error logging out: ", error)
+    }
+  }
+
+  const handleDropdown = () => {
+
+  }
 
   useEffect(() => {
     // Get the current user from Firebase Authentication
@@ -136,6 +152,7 @@ function DashboardNavbar() {
         <button className="dashboard-navbar__button">
           <img src={DropDownArrow} alt="DropDownArrow icon" />
         </button>
+        <button onClick={handleLogout}>Logout</button>
       </div>
     </div>
   );
