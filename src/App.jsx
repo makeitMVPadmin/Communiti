@@ -57,7 +57,7 @@ function App() {
             element={<AdminCommunitiProfile />}
           />
           <Route path="/communities/:id" element={<CommunitiProfile />} />
-          {/* <Route path="/andrea" element={<EventsInfoModal />} /> */}
+          <Route path="/andrea" element={<EventsInfoModal />} />
         </>
       ) : (
         <Route path="*" element={<Navigate to="/login" />} />

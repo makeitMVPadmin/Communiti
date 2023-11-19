@@ -135,6 +135,8 @@ $temp-grey: #828282;
                 width: 50%;
                 background-color: $temp-pink;
 
+                cursor: pointer;
+
                 @include Tablet {
                     width: 90%;
                     height: 10%;
@@ -221,6 +223,7 @@ $temp-grey: #828282;
                         width: fit-content;
                         background-color: transparent;
                         border: none;
+                        cursor: pointer;
 
                         @include Tablet {
                             width: 100%;
@@ -279,6 +282,7 @@ $temp-grey: #828282;
 
                 &-icon {
                     @extend .events-modal__content-one-icon;
+                    cursor: pointer;
                 }
             }
         }
