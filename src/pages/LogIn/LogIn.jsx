@@ -19,16 +19,22 @@ function LogIn() {
     setPassword(e.target.value);
   };
 
-  const handleSignInButtonClicked = async () => {
-    try {
-      await handleSignIn(email, password);
-      // Sign-in was successful
-      navigate("/home");
-    } catch (error) {
-      // Handle the error or display an error message to the user.
-      console.error("Sign-in error:", error);
-    }
-  };
+ const handleSignInButtonClicked = (event) => {
+   event.preventDefault();
+   // Call the Firebase signup function with the email and password
+   handleSignIn(email, password)
+     .then(() => {
+       // Signup was successful, redirect
+       navigate("/dashboard");
+     })
+     .catch((error) => {
+       // Handle signup error, you can display an error message
+       console.error("Sign-in error:", error);
+     });
+ };
+
+
+
 
   const handleGoogleButtonClicked = async () => {
     try {
