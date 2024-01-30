@@ -3,6 +3,7 @@ import EditIcon from "../../assets/images/EditIconWhite.svg";
 import { useState, useEffect } from "react";
 import { db } from "../../Firebase/FirebaseConfig";
 import { collection, getDocs, doc, query, getDoc } from "firebase/firestore";
+import { Link } from "react-router-dom";
 
 function EventsInfo({ communityId }) {
   const [events, setEvents] = useState([]);
@@ -98,28 +99,30 @@ function EventsInfo({ communityId }) {
   return (
     <>
       {events.map((event, index) => (
-        <div key={index} className="events-info">
-          <div className="events-info__thumbnail">
-            <img
-              className="events-info__thumbnail-img"
-              src={event.eventImage}
-              alt="Events Thumbnail"
-            />
+        <Link key={index} to={"/events/1"}>
+          <div className="events-info">
+            <div className="events-info__thumbnail">
+              <img
+                className="events-info__thumbnail-img"
+                src={event.eventImage}
+                alt="Events Thumbnail"
+              />
+            </div>
+            <div className="events-info__details">
+              <h2 className="events-info__details-title">{event.title}</h2>
+              <p className="events-info__details-description">
+                {event.description}
+              </p>
+              <p className="events-info__details-datetime">
+                {formatDate(event.startTime)}
+              </p>
+            </div>
+            <button className="events-info__button events-info__button-edit">
+              <img src={EditIcon} alt="Edit button" />
+              Edit Event
+            </button>
           </div>
-          <div className="events-info__details">
-            <h2 className="events-info__details-title">{event.title}</h2>
-            <p className="events-info__details-description">
-              {event.description}
-            </p>
-            <p className="events-info__details-datetime">
-              {formatDate(event.startTime)}
-            </p>
-          </div>
-          <button className="events-info__button events-info__button-edit">
-            <img src={EditIcon} alt="Edit button" />
-            Edit Event
-          </button>
-        </div>
+        </Link>
       ))}
     </>
   );

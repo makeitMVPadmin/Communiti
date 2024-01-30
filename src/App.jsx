@@ -15,6 +15,7 @@ import CommunitiProfile from "./pages/CommunitiProfile/CommunitiProfile";
 import AdminCommunitiProfile from "./pages/Communites/AdminCommunitiProfile/AdminCommunitiProfile";
 import { auth } from "./Firebase/FirebaseConfig";
 import "./styles/_global.scss";
+import EventProfile from "./pages/EventProfile/EventProfile";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -48,6 +49,7 @@ function App() {
         <>
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/events" element={<EventsPage />} />
+          <Route path="/events/:id" element={<EventProfile />} />
           <Route path="/chat" element={<ChatsPage />} />
           <Route path="/communities" element={<Communities />} />
           <Route path="/communities/create" element={<CreateCommunitiPage />} />
