@@ -1,0 +1,290 @@
+@use '../../styles/variables' as *;
+@use '../../styles/typography' as *;
+@use '../../styles/mixins' as *;
+
+$temp-blue: #E1F0FB;
+$temp-pink: #FFF2F2;
+$temp-grey: #828282;
+
+.events-modal {
+    font-family: "Gilroy";
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+
+    &__top {
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+
+        background-color: $temp-blue;
+
+        padding: 3vw 2vw;
+        margin-bottom: 3vw;
+
+        @include Tablet {
+            padding: 1vw 2vw;
+        }
+
+        &-icon {
+            width: 4vw;
+            height: 4vw;
+
+            margin-right: 2vw;
+        }
+
+        &-writing {
+            font-size: 1.3rem;
+        }
+    }
+
+    &__banner {
+        width: 90%;
+        margin-bottom: 2vw;
+
+        @include Tablet {
+            width: 80%;
+        }
+    }
+
+    &__content {
+        width: 90%;
+        margin-bottom: 3vw;
+
+        @include Tablet {
+            width: 80%;
+
+            display: flex;
+        }
+
+        &-one {
+
+            @include Tablet {
+                width: 70%;
+            }
+
+            &-heading {
+                font-size: 2rem;
+                margin-bottom: 2vw;
+
+                @include Tablet {
+                    font-size: 2.5rem;
+                }
+            }
+
+            &-writing {
+                color: rgba(0,0,0,0.7);
+                font-size: 1.6rem;
+                margin-bottom: 2vw;
+
+                @include Tablet {
+                    font-size: 1.4rem;
+                    color: $MVP-black;
+                }
+            }
+
+            &-category {
+                display: flex;
+                
+                font-size: 1.3rem;
+
+                padding: 1vw 2vw;
+                margin-bottom: 1vw;
+            }
+
+            &-icon {
+                width: 6vw;
+                height: 6vw;
+
+                margin-right: 2vw;
+
+                @include Tablet {
+                    width: 2.5vw;
+                    height: 2.5vw;
+
+                    margin-right: 1vw;;
+                }
+            }
+        }
+
+        &-two {
+            display: flex;
+            justify-content: flex-end;
+
+            @include Tablet {
+                width: 30%;
+
+                justify-content: center;
+            }
+
+            &-button {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                padding: 3vw 2vw;
+
+                border: 3px solid $MVP-black;
+                border-radius: 8px;
+
+                width: 50%;
+                background-color: $temp-pink;
+
+                cursor: pointer;
+
+                @include Tablet {
+                    width: 90%;
+                    height: 10%;
+                }
+            }
+
+            &-icon {
+                @extend .events-modal__content-one-icon;
+            }
+
+            &-writing {
+                font-size: 1.5rem;
+                font-weight: 700;
+            }
+        }
+    }
+
+    &__bottom {
+        width: 90%;
+
+        @include Tablet {
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &-ftc {
+            margin-bottom: 4vw;
+
+            &-heading {
+                font-size: 2rem;
+                margin-bottom: 3vw;
+
+                @include Tablet {
+                    font-size: 1.7rem;
+                    margin-bottom: 2vw;
+                }
+            }
+
+            &-container {
+                display: flex;
+
+                border-radius: 1.25rem;
+                box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+
+                @include Tablet {
+                    flex-direction: column;
+                    border-radius: 1.25rem 1.25rem 0rem 0rem;
+                }
+
+                &-image {
+                    border-radius: 1.25rem 0rem 0rem 1.25rem;
+
+                    height: 100%;
+
+                    @include Tablet {
+                        height: 50%;
+                        border-radius: 1.25rem 1.25rem 0rem 0rem;
+                    }
+                }
+
+                &-right {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+
+                    width: 50%;
+                    padding: 2vw 4vw;
+
+                    @include Tablet {
+                        width: 100%;
+                        padding: 1vw 2vw;
+                    }
+
+                    &-heading {
+                        font-size: 1.4rem;
+
+                        @include Tablet {
+                            margin-bottom: 2vw;
+                        }
+                    }
+
+                    &-button {
+                        width: fit-content;
+                        background-color: transparent;
+                        border: none;
+                        cursor: pointer;
+
+                        @include Tablet {
+                            width: 100%;
+
+                            display: flex;
+                            justify-content: flex-end
+                        }
+                    }
+                }
+            }
+        }
+
+        &-ob {
+            @include Tablet {
+                width: 50%;
+            }
+            &-heading {
+                @extend .events-modal__bottom-ftc-heading;
+            }
+
+            &-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                border: 1px solid $MVP-black;
+                border-radius: 16px;
+
+                width: 80%;
+                padding: 2vw 1vw;
+
+                @include Tablet {
+                    height: 7vw;
+                }
+
+                &-pic {
+                    height: 3.2rem;
+                    width: 3.2rem;
+                }
+
+                &-writing {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+
+                    font-size: 1.3rem;
+
+                    @include Tablet {
+                        font-size: 1.1rem;
+                    }
+
+                    &--role {
+                        color: $temp-grey;
+                    }
+                }
+
+                &-icon {
+                    @extend .events-modal__content-one-icon;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

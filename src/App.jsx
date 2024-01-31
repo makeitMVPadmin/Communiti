@@ -15,6 +15,7 @@ import CommunitiProfile from "./pages/CommunitiProfile/CommunitiProfile";
 import AdminCommunitiProfile from "./pages/Communites/AdminCommunitiProfile/AdminCommunitiProfile";
 import { auth } from "./Firebase/FirebaseConfig";
 import "./styles/_global.scss";
+import EventsInfoModal from "./components/EventsInfoModal/EventsInfoModal";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -56,6 +57,7 @@ function App() {
             element={<AdminCommunitiProfile />}
           />
           <Route path="/communities/:id" element={<CommunitiProfile />} />
+          <Route path="/andrea" element={<EventsInfoModal />} />
         </>
       ) : (
         <Route path="*" element={<Navigate to="/login" />} />

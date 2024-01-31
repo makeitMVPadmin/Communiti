@@ -4,9 +4,10 @@ import { useState, useEffect } from "react";
 import { db } from "../../Firebase/FirebaseConfig";
 import { collection, getDocs, doc, query, getDoc } from "firebase/firestore";
 
-function EventsInfo({ communityId }) {
+function EventsInfo({ communityId, setShowEventsDetails }) {
   const [events, setEvents] = useState([]);
   const [communityInfo, setCommunityInfo] = useState(null);
+  
 
   useEffect(() => {
     const fetchCommunityData = async () => {
@@ -98,7 +99,7 @@ function EventsInfo({ communityId }) {
   return (
     <>
       {events.map((event, index) => (
-        <div key={index} className="events-info">
+        <div onClick={ () => setShowEventsDetails(true) } key={index} className="events-info">
           <div className="events-info__thumbnail">
             <img
               className="events-info__thumbnail-img"
