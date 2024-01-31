@@ -3,7 +3,7 @@ import "./ChatsPage.scss";
 import chatPic from "../../assets/images/chatPic.svg";
 import pencil from "../../assets/images/pencil.svg";
 import notification from "../../assets/images/notification.svg";
-import searchIcon from "../../assets/images/SearchIcon.svg";
+import searchIcon from "../../assets/images/searchIcon.svg";
 import ellipsis from "../../assets/images/ellipsis.svg";
 import paperclip from "../../assets/images/paperclip.svg";
 import emoji from "../../assets/images/emoji.svg";

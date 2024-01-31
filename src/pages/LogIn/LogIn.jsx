@@ -19,16 +19,19 @@ function LogIn() {
     setPassword(e.target.value);
   };
 
-  const handleSignInButtonClicked = async () => {
-    try {
-      await handleSignIn(email, password);
-      // Sign-in was successful
-      navigate("/home");
-    } catch (error) {
-      // Handle the error or display an error message to the user.
-      console.error("Sign-in error:", error);
-    }
-  };
+
+ const handleSignInButtonClicked = async (event) => {
+   event.preventDefault();
+   try {
+     await handleSignIn(email, password);
+     navigate("/dashboard");
+   } catch (error) {
+     console.error("Sign-in error:", error);
+   }
+ };
+
+
+
 
   const handleGoogleButtonClicked = async () => {
     try {
