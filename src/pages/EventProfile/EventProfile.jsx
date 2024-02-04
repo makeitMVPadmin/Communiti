@@ -34,53 +34,42 @@ export default function EventProfile() {
           </div>
           <div className="event-profile-content-edit-container">
             <div className="event-profile-content-container">
-              <p
-                style={{
-                  color: "gray",
-                  fontSize: "14px",
-                  marginBottom: "20px",
-                }}
-              >
+              <p className="event-profile-content-text">
                 Come learn about different ways you can meet investors and learn
                 how to pitch to them Come learn about different ways you can
                 meet investors and learn how to pitch to them
               </p>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "1rem",
-                  marginLeft: "15px",
-                }}
-              >
-                <div style={{ display: "flex" }}>
-                  <img src={calendarIcon} style={{ width: "22px" }} />
-                  <p style={{ marginLeft: "10px", fontSize: "18px" }}>
+              <div className="event-profile-content-details-container">
+                <div className="event-profile-content-details-div">
+                  <img
+                    src={calendarIcon}
+                    className="event-profile-content-details-image"
+                  />
+                  <p className="event-profile-content-details-text">
                     WED, NOV 7
                   </p>
                 </div>
-                <div style={{ display: "flex" }}>
-                  <img src={clockIcon} style={{ width: "22px" }} />
-                  <p style={{ marginLeft: "10px", fontSize: "18px" }}>
+                <div className="event-profile-content-details-div">
+                  <img
+                    src={clockIcon}
+                    className="event-profile-content-details-image"
+                  />
+                  <p className="event-profile-content-details-text">
                     4:00 PM - 5:00 PM PST
                   </p>
                 </div>
-                <div style={{ display: "flex" }}>
-                  <img src={location} style={{ width: "22px" }} />
-                  <p style={{ marginLeft: "10px", fontSize: "18px" }}>
-                    213 Seymour st. , Denver
+                <div className="event-profile-content-details-div">
+                  <img
+                    src={location}
+                    className="event-profile-content-details-image"
+                  />
+                  <p className="event-profile-content-details-text">
+                    213 Seymour st., Denver
                   </p>
                 </div>
               </div>
             </div>
-            <div
-              style={{
-                alignSelf: "flex-end",
-                "@media screen and (minWidth: 768px)": {
-                  alignSelf: "flex-start",
-                },
-              }}
-            >
+            <div className="event-profile-edit-container">
               <button
                 style={{
                   margin: "0",
@@ -97,7 +86,7 @@ export default function EventProfile() {
               </button>
             </div>
           </div>
-          <div>
+          <div className="event-profile-communiti">
             <h3>From the community</h3>
             <div className="communiti__card">
               <img
