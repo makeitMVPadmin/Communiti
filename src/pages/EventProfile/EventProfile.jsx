@@ -6,6 +6,8 @@ import calendarIcon from "../../assets/images/calendarIcon.svg";
 import clockIcon from "../../assets/images/clockIcon.svg";
 import location from "../../assets/images/location.svg";
 import rightArrowIcon from "../../assets/images/rightArrowIcon.svg";
+import profilePic from "../../assets/images/profilePic.svg";
+import chatIcon from "../../assets/images/chatIcon.svg";
 
 export default function EventProfile() {
   return (
@@ -17,26 +19,19 @@ export default function EventProfile() {
             style={{
               display: "flex",
               flexDirection: "column",
-              //   alignItems: "center",
-              //   maxWidth: "1500px",
-              //   maxWidth: "800px",
               width: "100%",
             }}
           >
             <div
               style={{
                 width: "100%",
-                //   display: "flex", alignItems: "center"
               }}
             >
               <img
                 src={placeHolderIcon}
                 style={{
                   width: "100%",
-                  //   maxWidth: "400px",
                   maxHeight: "400px",
-
-                  //   height: "500px",
                   objectFit: "cover",
                 }}
               />
@@ -161,7 +156,39 @@ export default function EventProfile() {
             </div>
             <div>
               <h3>Organized By</h3>
-              <>Marina Reese</>
+              <div
+                style={{
+                  display: "flex",
+                  border: "1px solid black",
+                  maxWidth: "300px",
+                  padding: "4px 8px",
+                  borderRadius: "10px",
+                }}
+              >
+                <div style={{ display: "flex" }}>
+                  <img src={profilePic} style={{ width: "40px" }} />
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    marginLeft: "10px",
+                    flexGrow: "1",
+                  }}
+                >
+                  <p style={{ fontSize: "14px" }}>Marina Reese</p>
+                  <p style={{ fontSize: "14px" }}>Product Manager</p>
+                </div>
+                <div style={{ display: "flex" }}>
+                  <img
+                    src={chatIcon}
+                    style={{
+                      width: "25px",
+                      // marginRight: "10px"
+                    }}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
