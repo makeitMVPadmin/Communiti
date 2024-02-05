@@ -2,6 +2,21 @@
 @use "../../../styles/variables" as *;
 @use "../../../styles/typography" as *;
 
+.create-communiti3 {
+  &__custom-file-input {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+
+    img {
+      height: 66px;
+    }
+  }
+}
+
 .create-communiti3__container {
   @include Laptop {
     display: flex;
@@ -131,6 +146,6 @@
   }
 
   &-preview {
-    width: 40%;
+    height: 100%;
   }
 }

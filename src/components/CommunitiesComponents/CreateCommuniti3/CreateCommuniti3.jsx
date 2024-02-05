@@ -70,10 +70,10 @@ function CreateCommuniti3({ image, setImage, handleBack, handleNext }) {
                     className="create-communiti3__custom-file-input"
                   >
                     <img src={chooseFile} alt="Choose File Icon" />
+                    <p className="create-communiti3__container-input-text">
+                      drag and drop file or <span> choose file</span>
+                    </p>
                   </label>
-                  <p className="create-communiti3__container-input-text">
-                    drag and drop file or <span> choose file</span>
-                  </p>
                 </>
               )}
             </div>
