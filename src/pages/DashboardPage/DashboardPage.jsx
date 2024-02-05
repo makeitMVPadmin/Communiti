@@ -6,9 +6,12 @@ import { db, auth } from "../../Firebase/FirebaseConfig";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Announcements from "../../components/AnnouncementsDashboard/Announcements";
+import {useAppContext} from "../../context/appContext";
+
 
 function DashboardPage() {
   const navigate = useNavigate();
+  const { user, isLoading } = useAppContext();
   const [userCommunities, setUserCommunities] = useState([]);
 
   const [userFullName, setUserFullName] = useState(() => {
@@ -16,31 +19,9 @@ function DashboardPage() {
     return storedFullName ? JSON.parse(storedFullName) : null;
   });
 
-  useEffect(() => {
-    const currentUser = auth.currentUser;
+ 
 
-    const fetchUserData = async () => {
-      try {
-        const uid = currentUser.uid;
-
-        if (currentUser) {
-          const userDocRef = doc(collection(db, "Users"), uid);
-          const userDocSnapshot = await getDoc(userDocRef);
-
-          if (userDocSnapshot.exists()) {
-            const fullName = userDocSnapshot.data().fullName;
-            setUserFullName(fullName);
-          } else {
-            console.error("User document does not exist");
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
-
-    fetchUserData();
-  }, []);
+ 
 
   useEffect(() => {
     // Fetch user's communities
@@ -78,7 +59,7 @@ function DashboardPage() {
       <div className="dashboard-page__container">
         <div className="dashboard-page__welcome">
           <h1 className="dashboard-page__header">
-            Welcome back! {userFullName ? `${userFullName} 👋` : "Loading..."}
+            Welcome back! {userCommunities ? `${userFullName} 👋` : "Loading..."}
           </h1>
         </div>
         {userCommunities.length === 0 && (

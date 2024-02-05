@@ -5,16 +5,19 @@ import EventsInfo from "../../components/EventsInfo/EventsInfo";
 import EventsInfoPublic from "../../components/EventsInfoPublic/EventsInfo";
 import { useState, useEffect } from "react";
 import { db, auth } from "../../Firebase/FirebaseConfig";
+import {useAppContext} from "../../context/appContext";
 
 function EventsHomePage() {
+  const { user, isLoading } = useAppContext();
   const [userCommunitiesJoined, setUserCommunitiesJoined] = useState([]);
   const [userCommunitiesManaged, setUserCommunitiesManaged] = useState([]);
   const [selectedOption, setSelectedOption] = useState("option1"); // Default to All Events
-
+console.log(user)
   useEffect(() => {
     // Fetch user's communities
     const fetchUserCommunities = async () => {
       try {
+        console.log("test, eventspage")
         const currentUser = auth.currentUser;
         if (currentUser) {
           const uid = currentUser.uid;

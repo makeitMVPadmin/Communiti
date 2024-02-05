@@ -45,6 +45,7 @@ function DashboardNavbar() {
       // Fetch user data from Firestore based on UID
       const fetchUserData = async () => {
         try {
+          console.log("hello")
           const userDocRef = doc(collection(db, "Users"), uid);
           const userDocSnapshot = await getDoc(userDocRef);
 
