@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import "./EventProfile.scss";
+import { useNavigate } from "react-router-dom";
+
 import DashboardNavbar from "../../components/DashboardNavbar/DashboardNavbar";
 import placeHolderIcon from "../../assets/images/PlaceHolderIcon.png";
 import calendarIcon from "../../assets/images/calendarIcon.svg";
@@ -8,8 +10,17 @@ import location from "../../assets/images/location.svg";
 import rightArrowIcon from "../../assets/images/rightArrowIcon.svg";
 import profilePic from "../../assets/images/profilePic.svg";
 import chatIcon from "../../assets/images/chatIcon.svg";
+import EditEventModal from "../../components/EditEventModal/EditEventModal";
 
 export default function EventProfile() {
+  const [editEvent, setEditEvent] = useState(false);
+  const navigate = useNavigate();
+
+  const handleEditButton = () => {
+    console.log("hi");
+    setEditEvent(!editEvent);
+  };
+
   return (
     <>
       {/* <DashboardNavbar /> */}
@@ -60,7 +71,12 @@ export default function EventProfile() {
               </div>
             </div>
             <div className="event-profile__edit-container">
-              <button className="event-profile__edit-button">Edit Event</button>
+              <button
+                className="event-profile__edit-button"
+                onClick={handleEditButton}
+              >
+                Edit Event
+              </button>
             </div>
           </div>
           <div className="event-profile__communiti-organizer-container">
@@ -68,7 +84,12 @@ export default function EventProfile() {
               <h3 className="event-profile__communiti-header">
                 From the community
               </h3>
-              <div className="event-profile__communiti-card">
+              <div
+                className="event-profile__communiti-card"
+                onClick={() =>
+                  navigate(`/communities/${"iEeWCH0z3B9Pu1zy5gWH"}`)
+                }
+              >
                 <img
                   // src={community?.CommunityImage || placeHolderIcon}
                   src={placeHolderIcon}
@@ -127,6 +148,11 @@ export default function EventProfile() {
           </div>
         </div>
       </main>
+      {editEvent ? (
+        <div className="event-profile__edit-event">
+          <EditEventModal />
+        </div>
+      ) : null}
     </>
   );
 }

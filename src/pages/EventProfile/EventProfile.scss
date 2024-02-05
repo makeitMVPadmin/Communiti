@@ -115,6 +115,12 @@
       border-radius: 7px;
       margin: 1rem 0 2rem;
       max-width: 300px;
+      cursor: pointer;
+      transition: transform 0.3s ease; /* Added transition for smooth movement */
+
+      &:hover {
+        transform: translateY(-5px); /* Adjust the value as needed */
+      }
 
       @include Desktop {
         flex-direction: column;
@@ -248,6 +254,20 @@
           }
         }
       }
+    }
+  }
+  &__edit-event {
+    position: fixed;
+    top: 5%;
+    left: 5%;
+
+    @include Tablet {
+      top: 10%;
+      left: 10%;
+    }
+    @include Laptop {
+      top: 15%;
+      left: 16%;
     }
   }
 }
