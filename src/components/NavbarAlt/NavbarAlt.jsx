@@ -16,7 +16,7 @@ export default function NavbarAlt() {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  });
+  }, []);
 
   return (
     <>
