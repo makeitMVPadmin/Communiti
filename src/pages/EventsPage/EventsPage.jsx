@@ -1,45 +1,36 @@
 import EventsNavbar from "../../components/DashboardNavbar/DashboardNavbar";
 import "./EventsPage.scss";
-import { collection, doc, getDoc } from "firebase/firestore";
 import EventsInfo from "../../components/EventsInfo/EventsInfo";
 import EventsInfoPublic from "../../components/EventsInfoPublic/EventsInfo";
 import { useState, useEffect } from "react";
-import { db, auth } from "../../Firebase/FirebaseConfig";
-import {useAppContext} from "../../context/appContext";
+import { useAppContext } from "../../context/appContext";
 
 function EventsHomePage() {
-  const { user, isLoading } = useAppContext();
+  const { userData } = useAppContext();
   const [userCommunitiesJoined, setUserCommunitiesJoined] = useState([]);
   const [userCommunitiesManaged, setUserCommunitiesManaged] = useState([]);
   const [selectedOption, setSelectedOption] = useState("option1"); // Default to All Events
-console.log(user)
+  
+  console.log(userData)
+  
+  // Fetch user's communities
   useEffect(() => {
-    // Fetch user's communities
-    const fetchUserCommunities = async () => {
-      try {
-        console.log("test, eventspage")
-        const currentUser = auth.currentUser;
-        if (currentUser) {
-          const uid = currentUser.uid;
-          const userDocRef = doc(collection(db, "Users"), uid);
-          const userDocSnapshot = await getDoc(userDocRef);
+    if (userData) { // Ensure userData context is truthy before running
+      const fetchUserCommunities = async () => {
+        try {
+          console.log("test, eventspage")
+          const joinedIds = userData.CommunitiesJoined || [];
+          const managedIds = userData.CommunitiesManage || [];
 
-          if (userDocSnapshot.exists()) {
-            const userData = userDocSnapshot.data();
-            const joinedIds = userData.CommunitiesJoined || [];
-            const managedIds = userData.CommunitiesManage || [];
-
-            setUserCommunitiesJoined(joinedIds);
-            setUserCommunitiesManaged(managedIds);
-          }
+          setUserCommunitiesJoined(joinedIds);
+          setUserCommunitiesManaged(managedIds);
+        } catch (error) {
+          console.error("Error fetching user communities:", error);
         }
-      } catch (error) {
-        console.error("Error fetching user communities:", error);
-      }
-    };
-
-    fetchUserCommunities();
-  }, []);
+      };
+      fetchUserCommunities();
+    }
+  }, [userData]);
 
   const handleDropdownChange = (event) => {
     setSelectedOption(event.target.value);
