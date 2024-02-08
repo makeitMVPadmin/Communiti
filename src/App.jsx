@@ -13,6 +13,7 @@ import CreateCommunitiPage from "./pages/Communites/CreateCommunitiPage/CreateCo
 import Communities from "./pages/Communites/Communities";
 import CommunitiProfile from "./pages/CommunitiProfile/CommunitiProfile";
 import AdminCommunitiProfile from "./pages/Communites/AdminCommunitiProfile/AdminCommunitiProfile";
+import AddToCalendarButton from "./pages/AddToCalendarButton/AddToCalendarButton";
 import { auth } from "./Firebase/FirebaseConfig";
 import "./styles/_global.scss";
 
@@ -43,6 +44,7 @@ function App() {
       <Route path="/login" element={<LogIn />} />
       <Route path="/forgot" element={<ForgotPage />} />
       <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/AddToCal" element={<AddToCalendarButton />} />
 
       {user ? (
         <>
