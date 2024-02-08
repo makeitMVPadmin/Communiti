@@ -1,19 +1,20 @@
-
 import React from "react";
-
-
-
 import "./AddToCalendarButton.scss";
+
+
+
+
+
+
 
 const AddToCalendarButton = () => {
   let events = [
     {
       title: "Test 1",
-      startTime: "20240217T150002",
-      endTime: "20240217T164500",
+      startTime: "2024-02-14T21:38:00.000Z".replace(/[^a-zA-Z0-9]/g, ""),
+      endTime: "2024-02-14T23:38:00.000Z".replace(/[^a-zA-Z0-9]/g, ""),
       description: "Test description",
       locationType: "Zoom",
-    
     },
   ];
   const { title, startTime, endTime, description, locationType } = events[0];
