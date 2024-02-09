@@ -18,7 +18,7 @@ export default function Navbar() {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  },[]);
+  }, []);
 
   return (
     <>
