@@ -1,6 +1,6 @@
 import "./CommunitiProfile.scss";
 import { useState, useEffect } from "react";
-import DashboardNavbar from "../../components/DashboardNavbar/DashboardNavbar";
+// import DashboardNavbar from "../../components/DashboardNavbar/DashboardNavbar";
 import penAndPaper from "../../assets/images/penAndPaper.svg";
 import location from "../../assets/images/location.svg";
 import members from "../../assets/images/members.svg";
@@ -8,15 +8,16 @@ import AnnouncementsTab from "../../components/AnnouncementsTabPublic/Announceme
 import EventsTab from "../../components/EventsTabPublic/EventsTabPublic";
 import MembersTab from "../../components/MembersTab/MembersTab";
 import { useParams } from "react-router-dom";
-import { db, auth } from "../../Firebase/FirebaseConfig";
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  updateDoc,
-  setDoc,
-} from "firebase/firestore";
+// import { db, auth } from "../../Firebase/FirebaseConfig";
+// import {
+//   collection,
+//   doc,
+//   getDoc,
+//   getDocs,
+//   updateDoc,
+//   setDoc,
+// } from "firebase/firestore";
+import data from "../../data.json";
 
 function CommunitiProfile() {
   const { id } = useParams();
@@ -32,60 +33,74 @@ function CommunitiProfile() {
   const [isUserJoined, setIsUserJoined] = useState(false); // Define isUserJoined state
 
   useEffect(() => {
-    const fetchCommunityData = async () => {
-      try {
-        if (id) {
-          const communityRef = doc(collection(db, "Communities"), id);
-          const communityDoc = await getDoc(communityRef);
+    let community = data.communities.filter(c => {return c.id === communityId})[0];
+    setCommunityData(community);
+    setAnnouncements(community.announcements || []);
+    setEvents(community.events || []);
+  },[]);
+  console.log(communityInfo);
 
-          if (communityDoc.exists()) {
-            const community = communityDoc.data();
-            setCommunityData(community);
-            setAnnouncements(community.announcements || []);
-            setEvents(community.events || []);
+  // useEffect(() => {
+  //   const fetchCommunityData = async () => {
+  //     try {
+  //       if (id) {
+  //         const communityRef = doc(collection(db, "Communities"), id);
+  //         const communityDoc = await getDoc(communityRef);
 
-            const membersCollectionRef = collection(
-              db,
-              `Communities/${id}/Members`
-            );
-            const membersSnapshot = await getDocs(membersCollectionRef);
-            const memberIds = membersSnapshot.docs.map((doc) => doc.id);
-            setMemberIds(memberIds);
-            setMemberCount(memberIds.length);
+  //         if (communityDoc.exists()) {
+  //           const community = communityDoc.data();
+  //           setCommunityData(community);
+  //           setAnnouncements(community.announcements || []);
+  //           setEvents(community.events || []);
 
-            const memberRoles = [];
-            for (const memberId of memberIds) {
-              const memberRef = doc(
-                collection(db, `Communities/${id}/Members`),
-                memberId
-              );
-              const memberDoc = await getDoc(memberRef);
-              if (memberDoc.exists()) {
-                const memberData = memberDoc.data();
-                const memberRole = {
-                  memberId,
-                  role: memberData.role || "Default Role",
-                };
-                memberRoles.push(memberRole);
-              }
-            }
-            setMemberRoles(memberRoles);
-          } else {
-            console.log("No such document!");
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching document: ", error);
-      }
-    };
+  //           const membersCollectionRef = collection(
+  //             db,
+  //             `Communities/${id}/Members`
+  //           );
+  //           const membersSnapshot = await getDocs(membersCollectionRef);
+  //           const memberIds = membersSnapshot.docs.map((doc) => doc.id);
+  //           setMemberIds(memberIds);
+  //           setMemberCount(memberIds.length);
 
-    fetchCommunityData();
-  }, [id]);
+  //           const memberRoles = [];
+  //           for (const memberId of memberIds) {
+  //             const memberRef = doc(
+  //               collection(db, `Communities/${id}/Members`),
+  //               memberId
+  //             );
+  //             const memberDoc = await getDoc(memberRef);
+  //             if (memberDoc.exists()) {
+  //               const memberData = memberDoc.data();
+  //               const memberRole = {
+  //                 memberId,
+  //                 role: memberData.role || "Default Role",
+  //               };
+  //               memberRoles.push(memberRole);
+  //             }
+  //           }
+  //           setMemberRoles(memberRoles);
+  //         } else {
+  //           console.log("No such document!");
+  //         }
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching document: ", error);
+  //     }
+  //   };
+
+  //   fetchCommunityData();
+  // }, [id]);
 
   useEffect(() => {
     const currentUser = auth.currentUser;
     if (currentUser) {
       const userId = currentUser.uid;
+
+
+      // Dummy data insert
+      userId = data.users[0].uid;
+
+
       setIsUserJoined(memberIds.includes(userId)); // Set the user's membership status
     }
   }, [memberIds]); // Update isUserJoined when memberIds change
@@ -147,7 +162,7 @@ function CommunitiProfile() {
 
   return (
     <>
-      <DashboardNavbar />
+      {/* <DashboardNavbar /> */}
       <main className="communiti-profile">
         <section className="communiti-profile__hero">
           {!isUserJoined && ( // Render the button only if the user hasn't joined
