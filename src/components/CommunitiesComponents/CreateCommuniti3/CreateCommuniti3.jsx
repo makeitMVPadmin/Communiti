@@ -45,7 +45,7 @@ function CreateCommuniti3({ image, setImage, handleBack, handleNext }) {
               className="create-communiti3__container-label"
               htmlFor="communiti-icon"
             >
-              {image ? "Upload complete!" : "Upload a Communiti image"}
+              {image ? "Upload complete!" : "Upload a Communiti image*"}
             </label>
             <div className="create-communiti3__container-input-container">
               {image ? (
@@ -64,6 +64,7 @@ function CreateCommuniti3({ image, setImage, handleBack, handleNext }) {
                     name="communiti-icon"
                     className="create-communiti3__container-input visually-hidden"
                     onChange={handleFileInputChange}
+                    required
                   />
                   <label
                     htmlFor="communiti-icon"
