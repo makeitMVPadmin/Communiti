@@ -1,0 +1,198 @@
+{
+  "users": [
+    {
+      "id": "user1_uuid",
+      "displayName": "User 1",
+      "email": "user1@example.com",
+      "password": "hellohello",
+      "profilePhoto": "https://images.unsplash.com/photo-1523480717984-24cba35ae1ef?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "createdAt": "2024-02-08T12:00:00Z",
+      "fullName": "User One",
+      "discipline": "Engineering",
+      "expertise": "Software Development",
+      "industry": "Technology",
+      "bio": "Passionate about coding and technology.",
+      "mentor": true,
+      "mentee": false,
+      "location": "City A",
+      "phoneNumber": "+1234567890",
+      "appointments": 0,
+      "chats": 0,
+      "connections": 0,
+      "communitiesJoined": [
+        "community2_uuid"
+      ],
+      "communitiesManaged": [
+        "community1_uuid"
+      ]
+    },
+    {
+      "id": "user2_uuid",
+      "displayName": "User 2",
+      "email": "user2@example.com",
+      "password": "hellohello",
+      "profilePhoto": "https://images.unsplash.com/photo-1559624989-7b9303bd9792?q=80&w=1376&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "createdAt": "2024-02-08T12:30:00Z",
+      "fullName": "User Two",
+      "discipline": "Business",
+      "expertise": "Marketing",
+      "industry": "Sales",
+      "bio": "Driven marketer with a focus on sales strategies.",
+      "mentor": false,
+      "mentee": true,
+      "location": "City B",
+      "phoneNumber": "+9876543210",
+      "appointments": 0,
+      "chats": 0,
+      "connections": 0,
+      "communitiesJoined": [
+        "community1_uuid"
+      ],
+      "communitiesManaged": [
+        "community2_uuid"
+      ]
+    },
+    {
+      "id": "user3_uuid",
+      "displayName": "User 3",
+      "email": "user3@example.com",
+      "password": "hellohello",
+      "profilePhoto": "https://images.unsplash.com/photo-1555169062-013468b47731?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "createdAt": "2024-02-08T12:30:00Z",
+      "fullName": "User Three",
+      "discipline": "Business",
+      "expertise": "Marketing",
+      "industry": "Sales",
+      "bio": "Driven marketer with a focus on sales strategies.",
+      "mentor": false,
+      "mentee": true,
+      "location": "City C",
+      "phoneNumber": "+9876543210",
+      "appointments": 0,
+      "chats": 0,
+      "connections": 0,
+      "communitiesJoined": [
+        "community1_uuid",
+        "community2_uuid"
+      ],
+      "communitiesManaged": []
+    }
+  ],
+  "communityUserRelationships": [
+    {
+      "communityId": "community1_uuid",
+      "userId": "user1_uuid",
+      "managing": true
+    },
+    {
+      "communityId": "community2_uuid",
+      "userId": "user2_uuid",
+      "managing": true
+    },
+    {
+      "communityId": "community1_uuid",
+      "userId": "user2_uuid",
+      "managing": false
+    },
+    {
+      "communityId": "community2_uuid",
+      "userId": "user1_uuid",
+      "managing": false
+    },
+    {
+      "communityId": "community1_uuid",
+      "userId": "user3_uuid",
+      "managing": false
+    },
+        {
+      "communityId": "community2_uuid",
+      "userId": "user3_uuid",
+      "managing": false
+    }
+  ],
+  "communities": [
+    {
+      "id": "community1_uuid",
+      "communityImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/event_thumbnails%2FIMG_1162.jpeg?alt=media&token=c2e2c6c3-ff56-48ad-b6c6-d97b39bbca87",
+      "created": "2024-02-08T12:45:00Z",
+      "createdBy": "user1_uuid",
+      "description": "Community for software developers.",
+      "location": [
+        "City A"
+      ],
+      "name": "DevCommunity",
+      "announcements": [
+        {
+          "id": "announcement1_uuid",
+          "message": "Welcome to DevCommunity!",
+          "posted": "2024-02-08T13:00:00Z",
+          "createdBy": "user1_uuid"
+        }
+      ],
+      "newsLetters": []
+    },
+    {
+      "id": "community2_uuid",
+      "communityImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2FIMG_1113.jpeg?alt=media&token=f047e3f1-ae81-45a5-8e2f-9fe65eee57a3",
+      "created": "2024-02-08T13:30:00Z",
+      "createdBy": "user2_uuid",
+      "description": "Community for sales and marketing professionals.",
+      "location": [
+        "City B"
+      ],
+      "name": "SalesPros",
+      "announcements": [
+        {
+          "id": "announcement2_uuid",
+          "message": "Welcome to SalesPros!",
+          "posted": "2024-02-08T14:00:00Z",
+          "createdBy": "user2_uuid"
+        }
+      ],
+      "newsLetters": []
+    }
+  ],
+  "events": [
+    {
+      "id": "event1_uuid",
+      "date": "2024-02-15",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde perspiciatis eius vero atque beatae eos laudantium quis mollitia ipsam molestiae.",
+      "endTime": "2024-02-14T11:38:30.000Z",
+      "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/event_thumbnails%2FIMG_1162.jpeg?alt=media&token=c2e2c6c3-ff56-48ad-b6c6-d97b39bbca87",
+      "locationType": "Venue",
+      "startTime": "2024-02-14T10:00:00.000Z",
+      "title": "How AI can help in Marketing123",
+      "timestamp": "2024-02-08T15:00:00Z",
+      "timezone": "America/Los_Angeles",
+      "venueAddress": "213 Seymour st., Denver",
+      "requiresApproval": false,
+      "organizedBy": {
+        "name": "Marina Reese",
+        "position": "Product Manager"
+      },
+      "communityInfo": "Communiti Group",
+      "community": "community1_uuid",
+      "venue": "Online"
+    },
+    {
+      "id": "event2_uuid",
+      "date": "2024-02-20",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde perspiciatis eius vero atque beatae eos laudantium quis mollitia ipsam molestiae.",
+      "endTime": "2024-03-22T16:00:00.000Z",
+      "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2FIMG_1113.jpeg?alt=media&token=f047e3f1-ae81-45a5-8e2f-9fe65eee57a3",
+      "locationType": "In Person",
+      "startTime": "2024-03-22T14:30:00.000Z",
+      "title": "SalesPros Workshop",
+      "timestamp": "2024-02-05T14:00:00Z",
+      "timezone": "America/Los_Angeles",
+      "venueAddress": "213 Seymour st., Denver",
+      "requiresApproval": true,
+      "organizedBy": {
+        "name": "Marina Reese",
+        "position": "Product Manager"
+      },
+      "communityInfo": "SuperGroup",
+      "community": "community2_uuid"
+    }
+  ]
+}
