@@ -47,5 +47,19 @@ $mockup-light-blue: #e1f0fb;
         width: 26vw;
       }
     }
+
+
   }
+      &__section {
+      background-color: rgba($MVP-Light-Blue, 0.2);
+      border-radius: 0.5vw;
+      border: 0.2vw solid #000;
+      width: 78.5vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: pink;
+          padding: 4vw 3vw;
+    }
 }

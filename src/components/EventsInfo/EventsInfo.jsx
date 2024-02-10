@@ -36,10 +36,8 @@ function EventsInfo({ communityId }) {
   console.log(communityInfo);
 
   useEffect(() => {
-    let events = data.events;
-    setEvents([events[0]]);
+    setEvents(data.events);
   },[]);
-  console.log(events);
 
   // useEffect(() => {
   //   const fetchCommunityEventsData = async () => {
