@@ -113,15 +113,15 @@
   "communities": [
     {
       "id": "community1_uuid",
-      "communityImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/event_thumbnails%2FIMG_1162.jpeg?alt=media&token=c2e2c6c3-ff56-48ad-b6c6-d97b39bbca87",
-      "created": "2024-02-08T12:45:00Z",
-      "createdBy": "user1_uuid",
-      "description": "Community for software developers.",
-      "location": [
+      "CommunityImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/event_thumbnails%2FIMG_1162.jpeg?alt=media&token=c2e2c6c3-ff56-48ad-b6c6-d97b39bbca87",
+      "Created": "2024-02-08T12:45:00Z",
+      "CreatedBy": "user1_uuid",
+      "Description": "Community for software developers.",
+      "Location": [
         "City A"
       ],
-      "name": "DevCommunity",
-      "announcements": [
+      "Name": "DevCommunity",
+      "Announcements": [
         {
           "id": "announcement1_uuid",
           "message": "Welcome to DevCommunity!",
@@ -129,19 +129,19 @@
           "createdBy": "user1_uuid"
         }
       ],
-      "newsLetters": []
+      "NewsLetters": []
     },
     {
       "id": "community2_uuid",
-      "communityImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2FIMG_1113.jpeg?alt=media&token=f047e3f1-ae81-45a5-8e2f-9fe65eee57a3",
-      "created": "2024-02-08T13:30:00Z",
-      "createdBy": "user2_uuid",
-      "description": "Community for sales and marketing professionals.",
-      "location": [
+      "CommunityImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2FIMG_1113.jpeg?alt=media&token=f047e3f1-ae81-45a5-8e2f-9fe65eee57a3",
+      "Created": "2024-02-08T13:30:00Z",
+      "CreatedBy": "user2_uuid",
+      "Description": "Community for sales and marketing professionals.",
+      "Location": [
         "City B"
       ],
-      "name": "SalesPros",
-      "announcements": [
+      "Name": "SalesPros",
+      "Announcements": [
         {
           "id": "announcement2_uuid",
           "message": "Welcome to SalesPros!",
@@ -149,7 +149,7 @@
           "createdBy": "user2_uuid"
         }
       ],
-      "newsLetters": []
+      "NewsLetters": []
     }
   ],
   "events": [
