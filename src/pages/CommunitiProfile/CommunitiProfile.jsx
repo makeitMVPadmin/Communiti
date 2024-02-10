@@ -6,6 +6,7 @@ import location from "../../assets/images/location.svg";
 import members from "../../assets/images/members.svg";
 import AnnouncementsTab from "../../components/AnnouncementsTabPublic/AnnouncementsTabPublic";
 import EventsTab from "../../components/EventsTabPublic/EventsTabPublic";
+import EventsInfo from "../../components/EventsInfo/EventsInfo";
 import MembersTab from "../../components/MembersTab/MembersTab";
 import { useParams } from "react-router-dom";
 // import { db, auth } from "../../Firebase/FirebaseConfig";
@@ -31,14 +32,17 @@ function CommunitiProfile() {
   const [memberIds, setMemberIds] = useState([]);
   const [memberRoles, setMemberRoles] = useState([]);
   const [isUserJoined, setIsUserJoined] = useState(false); // Define isUserJoined state
+  const [communityId, setCommunityId] = useState(null);
 
+  // DUMMY DATA
   useEffect(() => {
-    let community = data.communities.filter(c => {return c.id === communityId})[0];
+    let community = data.communities[0];
+    setCommunityId(community.id)
     setCommunityData(community);
     setAnnouncements(community.announcements || []);
-    setEvents(community.events || []);
+    setEvents(data.events || []);
   },[]);
-  console.log(communityInfo);
+  console.log(data.communities[0].Name);
 
   // useEffect(() => {
   //   const fetchCommunityData = async () => {
@@ -91,19 +95,19 @@ function CommunitiProfile() {
   //   fetchCommunityData();
   // }, [id]);
 
-  useEffect(() => {
-    const currentUser = auth.currentUser;
-    if (currentUser) {
-      const userId = currentUser.uid;
+  // useEffect(() => {
+  //   const currentUser = auth.currentUser;
+  //   if (currentUser) {
+  //     const userId = currentUser.uid;
+  //     setIsUserJoined(memberIds.includes(userId)); // Set the user's membership status
+  //   }
+  // }, [memberIds]); // Update isUserJoined when memberIds change
 
-
-      // Dummy data insert
-      userId = data.users[0].uid;
-
-
-      setIsUserJoined(memberIds.includes(userId)); // Set the user's membership status
-    }
-  }, [memberIds]); // Update isUserJoined when memberIds change
+  //   useEffect(() => {
+  //     // Dummy data insert
+  //     let userId = data.users[0].uid;
+  //     setIsUserJoined(memberIds.includes(userId)); // Set the user's membership status
+  // }, [memberIds]); // Update isUserJoined when memberIds change
 
   function handleTabChoice(choice) {
     switch (choice) {
@@ -127,38 +131,38 @@ function CommunitiProfile() {
     }
   }
 
-  const handleJoinCommunity = async () => {
-    const currentUser = auth.currentUser;
-    const communityId = id;
+  // const handleJoinCommunity = async () => {
+  //   const currentUser = auth.currentUser;
+  //   const communityId = id;
 
-    if (currentUser) {
-      const userId = currentUser.uid;
+  //   if (currentUser) {
+  //     const userId = currentUser.uid;
 
-      const memberRef = doc(db, `Communities/${communityId}/Members`, userId);
-      await setDoc(memberRef, { userId: userId, role: "Member" });
+  //     const memberRef = doc(db, `Communities/${communityId}/Members`, userId);
+  //     await setDoc(memberRef, { userId: userId, role: "Member" });
 
-      const userRef = doc(db, "Users", userId);
-      const userDoc = await getDoc(userRef);
-      if (userDoc.exists()) {
-        const userData = userDoc.data();
-        const communitiesJoined = userData.CommunitiesJoined || [];
+  //     const userRef = doc(db, "Users", userId);
+  //     const userDoc = await getDoc(userRef);
+  //     if (userDoc.exists()) {
+  //       const userData = userDoc.data();
+  //       const communitiesJoined = userData.CommunitiesJoined || [];
 
-        if (!communitiesJoined.includes(communityId)) {
-          const updatedCommunities = [...communitiesJoined, communityId];
-          await updateDoc(userRef, {
-            CommunitiesJoined: updatedCommunities,
-          });
-          console.log("Joined Community !");
-        } else {
-          console.log("User has already joined this community!");
-        }
-      } else {
-        console.log("User document does not exist.");
-      }
-    } else {
-      console.log("Please Login");
-    }
-  };
+  //       if (!communitiesJoined.includes(communityId)) {
+  //         const updatedCommunities = [...communitiesJoined, communityId];
+  //         await updateDoc(userRef, {
+  //           CommunitiesJoined: updatedCommunities,
+  //         });
+  //         console.log("Joined Community !");
+  //       } else {
+  //         console.log("User has already joined this community!");
+  //       }
+  //     } else {
+  //       console.log("User document does not exist.");
+  //     }
+  //   } else {
+  //     console.log("Please Login");
+  //   }
+  // };
 
   return (
     <>
@@ -169,7 +173,7 @@ function CommunitiProfile() {
             <div className="communiti-profile__button-container">
               <button
                 className="communiti-profile__button"
-                onClick={handleJoinCommunity}
+                // onClick={handleJoinCommunity}
               >
                 Join the Community
               </button>
@@ -263,13 +267,15 @@ function CommunitiProfile() {
                 </p>
               </div>
 
-              {showAnnouncements && (
+              {/* {showAnnouncements && (
                 <AnnouncementsTab
                   announcements={announcements}
                   communityData={communityData}
                 />
-              )}
-              {showEvents && <EventsTab events={events} />}
+              )} */}
+              {showEvents && 
+                <EventsTab events={events} />
+              }
               {showMembers && (
                 <MembersTab memberIds={memberIds} memberRoles={memberRoles} />
               )}
