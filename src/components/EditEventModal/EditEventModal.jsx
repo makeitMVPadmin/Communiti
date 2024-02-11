@@ -8,17 +8,20 @@ import { db, storage } from "../../Firebase/FirebaseConfig";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import moment from "moment-timezone";
 
-function EditEventModal({ setEventsOverlay }) {
-  const [eventTitle, setEventTitle] = useState("");
-  const [titleCharCount, setTitleCharCount] = useState(0);
-  const [description, setDescription] = useState("");
-  const [descriptionCharCount, setDescriptionCharCount] = useState(0);
-  const [locationType, setLocationType] = useState("venue");
-  const [venueAddress, setVenueAddress] = useState("");
-  const [date, setDate] = useState("");
-  const [startTime, setStartTime] = useState("");
-  const [endTime, setEndTime] = useState("");
-  const [timezone, setTimezone] = useState("");
+function EditEventModal({ setEditEvent, eventDetails }) {
+  const [eventTitle, setEventTitle] = useState(eventDetails.title);
+  // here, just do length of the incoming title
+  const [titleCharCount, setTitleCharCount] = useState(eventTitle.length);
+  const [description, setDescription] = useState(eventDetails.description);
+  const [descriptionCharCount, setDescriptionCharCount] = useState(
+    description.length
+  );
+  const [locationType, setLocationType] = useState(eventDetails.locationType);
+  const [venueAddress, setVenueAddress] = useState(eventDetails.venueAddress);
+  const [date, setDate] = useState(eventDetails.date);
+  const [startTime, setStartTime] = useState(eventDetails.startTime);
+  const [endTime, setEndTime] = useState(eventDetails.endTime);
+  const [timezone, setTimezone] = useState(eventDetails.timezone);
   const [image, setImage] = useState(null);
   const [timezoneOptions, setTimezoneOptions] = useState([]);
   const [userTimezone, setUserTimezone] = useState("");
@@ -69,36 +72,173 @@ function EditEventModal({ setEventsOverlay }) {
     detectUserTimezone();
   }, []);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+
+  //   try {
+  //     const imageFileName = image.name || `image_${Date.now()}`;
+  //     const storageRef = ref(storage, `event_thumbnails/${imageFileName}`);
+  //     await uploadBytes(storageRef, image);
+  //     const imageUrl = await getDownloadURL(storageRef);
+
+  //     const eventsRef = collection(db, `Communities/${id}/Events`);
+  //     const eventData = {
+  //       title: eventTitle,
+  //       description,
+  //       date,
+  //       locationType,
+  //       venueAddress: locationType === "venue" ? venueAddress : null,
+  //       startTime: moment(`${date}T${startTime}`).toISOString(),
+  //       endTime: moment(`${date}T${endTime}`).toISOString(),
+  //       timezone,
+  //       eventImage: imageUrl,
+  //     };
+
+  //     await addDoc(eventsRef, {
+  //       ...eventData,
+  //       timestamp: serverTimestamp(),
+  //     });
+
+  //     setEditEvent(false);
+  //   } catch (error) {
+  //     console.error("Error adding event: ", error);
+  //   }
+  // };
+
+  // const handleEditSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     // Create a new event object with updated values
+  //     const updatedEvent = {
+  //       title: eventTitle,
+  //       description,
+  //       venue: locationType === "Venue" ? venueAddress : "Online",
+  //       date,
+  //       startTime,
+  //       endTime,
+  //       timezone,
+  //       // ... (other fields)
+
+  //       // Note: You might want to add logic to update the image if it has changed
+  //     };
+
+  //     // Read the existing JSON file
+  //     const response = await fetch("/DummyData.json");
+  //     if (!response.ok) {
+  //       throw new Error(`HTTP error! Status: ${response.status}`);
+  //     }
+  //     const jsonData = await response.json();
+
+  //     // Find the index of the event to be updated in the JSON data
+  //     const eventIndex = jsonData.events.findIndex(
+  //       (event) => event.id === eventDetails.id
+  //     );
+
+  //     // Check if any fields have changed
+  //     let fieldsChanged = false;
+  //     Object.keys(updatedEvent).forEach((key) => {
+  //       if (updatedEvent[key] !== eventDetails[key]) {
+  //         fieldsChanged = true;
+  //         jsonData.events[eventIndex][key] = updatedEvent[key];
+  //       }
+  //     });
+
+  //     // Save changes back to the JSON file if any fields have changed
+  //     if (fieldsChanged) {
+  //       await fetch("/DummyData.json", {
+  //         method: "PUT", // Use appropriate HTTP method for writing data
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify(jsonData),
+  //       });
+  //       console.log("Event updated successfully in JSON file");
+  //     } else {
+  //       console.log("No changes detected");
+  //     }
+
+  //     // Close the modal
+  //     setEditEvent(false);
+  //   } catch (error) {
+  //     console.error("Error updating event:", error.message);
+  //   }
+  // };
+  // function handleTestEdit(e) {
+  //   e.preventDefault();
+  //   const updatedEvent = {
+  //     title: eventTitle,
+  //     description,
+  //     venue: locationType === "venue" ? venueAddress : "Online",
+  //     date,
+  //     startTime,
+  //     endTime,
+  //     timezone,
+  //     // Add other fields as needed
+  //   };
+  // }
+  const handleTestEdit = (e) => {
+    e.preventDefault();
+    fetch("/DummyData2.json")
+      .then((response) => {
+        // Check if the request was successful (status code 200)
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        // Parse the JSON data
+        return response.json();
+      })
+      .then((jsonData) => {
+        console.log("hello");
+      });
+  };
+  const handleTestEdit2 = async (e) => {
+    e.preventDefault();
 
     try {
-      const imageFileName = image.name || `image_${Date.now()}`;
-      const storageRef = ref(storage, `event_thumbnails/${imageFileName}`);
-      await uploadBytes(storageRef, image);
-      const imageUrl = await getDownloadURL(storageRef);
+      // Fetch the JSON file
+      const response = await fetch("/DummyData2.json");
 
-      const eventsRef = collection(db, `Communities/${id}/Events`);
-      const eventData = {
+      // Check if the request was successful (status code 200)
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      // Parse the JSON data
+      const jsonData = await response.json();
+      const eventID = jsonData.events[0].id;
+
+      // Create an object to store the updated event data
+      const updatedEvent = {
         title: eventTitle,
         description,
+        venue: locationType === "venue" ? venueAddress : "Online",
         date,
-        locationType,
-        venueAddress: locationType === "venue" ? venueAddress : null,
-        startTime: moment(`${date}T${startTime}`).toISOString(),
-        endTime: moment(`${date}T${endTime}`).toISOString(),
+        startTime,
+        endTime,
         timezone,
-        eventImage: imageUrl,
+        // Add other fields as needed
       };
 
-      await addDoc(eventsRef, {
-        ...eventData,
-        timestamp: serverTimestamp(),
+      // Save changes back to the JSON file if any fields have changed
+      // if (true) {
+      // Use the appropriate fetch method for updating data
+      await fetch(`http://localhost:3005/events/${eventID}`, {
+        method: "PATCH", // Use appropriate HTTP method for writing data
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedEvent),
       });
+      console.log("Event updated successfully in JSON file");
+      // } else {
+      //   console.log("No changes detected");
+      // }
 
-      setEventsOverlay(false);
+      // Close the modal or perform any other necessary actions
+      setEditEvent(false);
     } catch (error) {
-      console.error("Error adding event: ", error);
+      console.error("Error updating event:", error.message);
     }
   };
 
@@ -140,12 +280,12 @@ function EditEventModal({ setEventsOverlay }) {
           <h2 className="edit-event-overlay__title">Edit the Event</h2>
           <span
             style={{ cursor: "pointer " }}
-            onClick={() => setEventsOverlay(false)}
+            onClick={() => setEditEvent(false)}
           >
             &#x2715;
           </span>
         </div>
-        <form className="edit-event-overlay__form" onSubmit={handleSubmit}>
+        <form className="edit-event-overlay__form" onSubmit={handleTestEdit}>
           <div className="edit-event-overlay__container">
             <label
               className="edit-event-overlay__input-label"
@@ -217,7 +357,7 @@ function EditEventModal({ setEventsOverlay }) {
                         id="venue"
                         name="locationType"
                         value="venue"
-                        checked={locationType === "venue"}
+                        checked={locationType === "Venue"}
                         onChange={handleLocationChange}
                         className="edit-event-overlay__input-location"
                       />
@@ -228,7 +368,7 @@ function EditEventModal({ setEventsOverlay }) {
                         >
                           Venue
                         </label>
-                        {locationType === "venue" && (
+                        {locationType === "Venue" && (
                           <input
                             type="text"
                             value={venueAddress}
@@ -403,12 +543,12 @@ function EditEventModal({ setEventsOverlay }) {
             <button
               className="edit-event-overlay__button edit-event-overlay__button--alt"
               type="button"
-              onClick={() => setEventsOverlay(false)}
+              onClick={() => setEditEvent(false)}
             >
               Cancel
             </button>
             <button className="edit-event-overlay__button" type="submit">
-              Edit
+              Save
             </button>
           </div>
         </form>

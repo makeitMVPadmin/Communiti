@@ -34,6 +34,7 @@
     margin-left: 10px;
     color: gray;
     font-size: 35px;
+    cursor: pointer;
   }
   &__content {
     &-edit-container {
@@ -96,6 +97,7 @@
       border: none;
       border-radius: 10px;
       font-family: Corben;
+      cursor: pointer;
     }
   }
   &__communiti {

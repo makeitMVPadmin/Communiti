@@ -19,19 +19,15 @@ function LogIn() {
     setPassword(e.target.value);
   };
 
-
- const handleSignInButtonClicked = async (event) => {
-   event.preventDefault();
-   try {
-     await handleSignIn(email, password);
-     navigate("/dashboard");
-   } catch (error) {
-     console.error("Sign-in error:", error);
-   }
- };
-
-
-
+  const handleSignInButtonClicked = async (event) => {
+    event.preventDefault();
+    try {
+      await handleSignIn(email, password);
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("Sign-in error:", error);
+    }
+  };
 
   const handleGoogleButtonClicked = async () => {
     try {

@@ -51,6 +51,7 @@ function EventsInfo({ communityId }) {
               description,
               eventImage,
               startTime,
+              id: doc.id,
             });
           });
 

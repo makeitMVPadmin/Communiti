@@ -30,6 +30,7 @@
     padding: 40px 80px;
     width: 70vw;
     height: 60vh;
+    min-height: 650px;
   }
 
   &__title {
@@ -75,7 +76,6 @@
         border-radius: 7px;
         border: 0.1rem solid #000;
         width: 100%;
-        cursor: pointer;
       }
     }
     &-description {
