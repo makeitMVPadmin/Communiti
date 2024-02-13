@@ -13,7 +13,7 @@ import CreateCommunitiPage from "./pages/Communites/CreateCommunitiPage/CreateCo
 import Communities from "./pages/Communites/Communities";
 import CommunitiProfile from "./pages/CommunitiProfile/CommunitiProfile";
 import AdminCommunitiProfile from "./pages/Communites/AdminCommunitiProfile/AdminCommunitiProfile";
-import AddToCalendarButton from "./pages/AddToCalendarButton/AddToCalendarButton";
+import AddToCalendarButton from "./components/AddToCalendarButton/AddToCalendarButton";
 import { auth } from "./Firebase/FirebaseConfig";
 import "./styles/_global.scss";
 
