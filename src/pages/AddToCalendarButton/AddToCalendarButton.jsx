@@ -2,11 +2,6 @@ import React from "react";
 import "./AddToCalendarButton.scss";
 
 
-
-
-
-
-
 const AddToCalendarButton = () => {
   let events = [
     {
@@ -16,6 +11,7 @@ const AddToCalendarButton = () => {
       description: "Test description",
       locationType: "Zoom",
     },
+    
   ];
   const { title, startTime, endTime, description, locationType } = events[0];
   const eventUrl = encodeURI(
