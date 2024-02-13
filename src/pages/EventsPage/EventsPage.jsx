@@ -1,42 +1,55 @@
-import EventsNavbar from "../../components/DashboardNavbar/DashboardNavbar";
+// import EventsNavbar from "../../components/DashboardNavbar/DashboardNavbar";
 import "./EventsPage.scss";
 import { collection, doc, getDoc } from "firebase/firestore";
 import EventsInfo from "../../components/EventsInfo/EventsInfo";
 import EventsInfoPublic from "../../components/EventsInfoPublic/EventsInfo";
 import { useState, useEffect } from "react";
 import { db, auth } from "../../Firebase/FirebaseConfig";
+import data from "../../data.json";
 
 function EventsHomePage() {
   const [userCommunitiesJoined, setUserCommunitiesJoined] = useState([]);
   const [userCommunitiesManaged, setUserCommunitiesManaged] = useState([]);
   const [selectedOption, setSelectedOption] = useState("option1"); // Default to All Events
 
+  console.log(data.events)
+
+  // useEffect(() => {
+  //   // Fetch user's communities
+  //   const fetchUserCommunities = async () => {
+  //     try {
+  //       const currentUser = auth.currentUser;
+  //       if (currentUser) {
+  //         const uid = currentUser.uid;
+  //         const userDocRef = doc(collection(db, "Users"), uid);
+  //         const userDocSnapshot = await getDoc(userDocRef);
+
+  //         if (userDocSnapshot.exists()) {
+  //           const userData = userDocSnapshot.data();
+  //           const joinedIds = userData.CommunitiesJoined || [];
+  //           const managedIds = userData.CommunitiesManage || [];
+
+  //           setUserCommunitiesJoined(joinedIds);
+  //           setUserCommunitiesManaged(managedIds);
+  //         }
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching user communities:", error);
+  //     }
+  //   };
+
+  //   fetchUserCommunities();
+  // }, []);
+
   useEffect(() => {
-    // Fetch user's communities
-    const fetchUserCommunities = async () => {
-      try {
-        const currentUser = auth.currentUser;
-        if (currentUser) {
-          const uid = currentUser.uid;
-          const userDocRef = doc(collection(db, "Users"), uid);
-          const userDocSnapshot = await getDoc(userDocRef);
-
-          if (userDocSnapshot.exists()) {
-            const userData = userDocSnapshot.data();
-            const joinedIds = userData.CommunitiesJoined || [];
-            const managedIds = userData.CommunitiesManage || [];
-
-            setUserCommunitiesJoined(joinedIds);
-            setUserCommunitiesManaged(managedIds);
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching user communities:", error);
-      }
-    };
-
-    fetchUserCommunities();
+    setUserCommunitiesJoined(data.users[0].communitiesJoined);
   }, []);
+  useEffect(() => {
+    setUserCommunitiesManaged(data.users[0].communitiesManaged);
+  }, []);
+
+  console.log(userCommunitiesJoined);
+  console.log(userCommunitiesManaged);
 
   const handleDropdownChange = (event) => {
     setSelectedOption(event.target.value);
@@ -89,7 +102,8 @@ function EventsHomePage() {
 
   return (
     <div className="event-page">
-      <EventsNavbar />
+      <p>{userCommunitiesJoined}</p>
+      {/* <EventsNavbar /> */}
       <div className="event-page__container">
         <div className="event-page__filters">
           <select

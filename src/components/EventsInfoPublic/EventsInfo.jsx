@@ -4,6 +4,7 @@ import PlusIcon from "../../assets/images/PlusIcon-Black.svg";
 import { useState, useEffect } from "react";
 import { db } from "../../Firebase/FirebaseConfig";
 import { collection, getDocs, doc, query, getDoc } from "firebase/firestore";
+import data from "../../data.json";
 
 function EventsInfo({ communityId }) {
   const [userAttending, setUserAttending] = useState(false);
@@ -11,59 +12,66 @@ function EventsInfo({ communityId }) {
   const [communityInfo, setCommunityInfo] = useState(null);
 
   useEffect(() => {
-    const fetchCommunityData = async () => {
-      try {
-        if (communityId) {
-          const communityRef = doc(collection(db, "Communities"), communityId);
-          const communityDoc = await getDoc(communityRef);
+    let events = data.events;
+    setEvents([events[1]]);
+  },[]);
+  console.log(events);
 
-          if (communityDoc.exists()) {
-            const communityData = communityDoc.data();
-            setCommunityInfo(communityData);
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching community details:", error);
-      }
-    };
 
-    fetchCommunityData();
-  }, [communityId]);
+  // useEffect(() => {
+  //   const fetchCommunityData = async () => {
+  //     try {
+  //       if (communityId) {
+  //         const communityRef = doc(collection(db, "Communities"), communityId);
+  //         const communityDoc = await getDoc(communityRef);
 
-  useEffect(() => {
-    const fetchCommunityEventsData = async () => {
-      try {
-        // Proceed only if communityInfo is available
-        if (communityInfo) {
-          const eventsQuery = query(
-            collection(db, "Communities", communityId, "Events")
-          );
-          const eventsSnapshot = await getDocs(eventsQuery);
-          const eventsData = [];
+  //         if (communityDoc.exists()) {
+  //           const communityData = communityDoc.data();
+  //           setCommunityInfo(communityData);
+  //         }
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching community details:", error);
+  //     }
+  //   };
 
-          eventsSnapshot.forEach((doc) => {
-            const { title } = doc.data();
-            const { description } = doc.data();
-            const { eventImage } = doc.data();
-            const { startTime } = doc.data();
+  //   fetchCommunityData();
+  // }, [communityId]);
 
-            eventsData.push({
-              title,
-              description,
-              eventImage,
-              startTime,
-            });
-          });
+  // useEffect(() => {
+  //   const fetchCommunityEventsData = async () => {
+  //     try {
+  //       // Proceed only if communityInfo is available
+  //       if (communityInfo) {
+  //         const eventsQuery = query(
+  //           collection(db, "Communities", communityId, "Events")
+  //         );
+  //         const eventsSnapshot = await getDocs(eventsQuery);
+  //         const eventsData = [];
 
-          setEvents(eventsData);
-        }
-      } catch (error) {
-        console.error("Error fetching announcements:", error);
-      }
-    };
+  //         eventsSnapshot.forEach((doc) => {
+  //           const { title } = doc.data();
+  //           const { description } = doc.data();
+  //           const { eventImage } = doc.data();
+  //           const { startTime } = doc.data();
 
-    fetchCommunityEventsData();
-  }, [communityInfo, communityId]);
+  //           eventsData.push({
+  //             title,
+  //             description,
+  //             eventImage,
+  //             startTime,
+  //           });
+  //         });
+
+  //         setEvents(eventsData);
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching announcements:", error);
+  //     }
+  //   };
+
+  //   fetchCommunityEventsData();
+  // }, [communityInfo, communityId]);
 
   const formatDate = (timestamp) => {
     const eventDate = new Date(timestamp);
