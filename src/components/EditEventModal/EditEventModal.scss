@@ -18,19 +18,35 @@
   // border: 1px solid red;
   box-shadow: 0px 5px 10px black;
   border-radius: 7px;
-  padding: 10px 20px;
+  // padding: 10px 20px;
+  padding: 10px 0px 10px 20px;
 
   @include Tablet {
-    padding: 20px 40px;
+    // padding: 20px 40px;
+    padding: 20px 0px 20px 40px;
+
     width: 80vw;
     height: 70vh;
   }
 
   @include Laptop {
-    padding: 40px 80px;
+    // padding: 40px 80px;
+    padding: 40px 0px 40px 80px;
+
     width: 70vw;
     height: 60vh;
     min-height: 650px;
+  }
+
+  &__outer-div {
+    overflow: auto;
+    padding-right: 20px;
+    @include Tablet {
+      padding-right: 40px;
+    }
+    @include Laptop {
+      padding-right: 80px;
+    }
   }
 
   &__title {

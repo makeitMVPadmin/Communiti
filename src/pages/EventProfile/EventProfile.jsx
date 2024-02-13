@@ -20,6 +20,7 @@ import {
   updateDoc,
   setDoc,
 } from "firebase/firestore";
+// import data from "../../../public/DummyData2.json";
 export default function EventProfile() {
   const [editEvent, setEditEvent] = useState(false);
   const [editDetails, setEditDetails] = useState({});
@@ -105,7 +106,7 @@ export default function EventProfile() {
 
         // Parse the JSON data
         const jsonData = await response.json();
-        console.log(jsonData[0]);
+        // console.log(jsonData[0]);
 
         // Access the 'events' object
         // const eventsData = jsonData.communities.map(
