@@ -39,7 +39,7 @@ const AddToCalendarButton = ({event}) => {
           alt="add to calendar"
           className="calendar-icon"
         />
-        <span className="calendar-text">Add to Google Calendar</span>
+        <span className="calendar-text">Add to Calendar</span>
       </button>
     </a>
   );
