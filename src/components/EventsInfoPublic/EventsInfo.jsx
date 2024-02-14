@@ -136,14 +136,16 @@ function EventsInfo({ communityId }) {
               {formatDate(event.startTime)}
             </p>
           </div>
-          <button className={attendingClass} onClick={handleAttending}>
-            <img
-              src={userAttending ? CheckMark : PlusIcon}
-              alt={userAttending ? "Attending" : "RSVP"}
-            />
-            {userAttending ? "Attending" : "RSVP"}
-          </button>
-        <AddToCalendarButton event={event}/>
+          <div className="events-info__button-container">
+            <button className={attendingClass} onClick={handleAttending}>
+              <img
+                src={userAttending ? CheckMark : PlusIcon}
+                alt={userAttending ? "Attending" : "RSVP"}
+              />
+              {userAttending ? "Attending" : "RSVP"}
+            </button>
+            <AddToCalendarButton event={event} />
+          </div>
         </div>
       ))}
     </>
