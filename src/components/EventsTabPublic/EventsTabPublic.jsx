@@ -1,11 +1,10 @@
 import "./EventsTabPublic.scss";
 import { useState, useEffect } from "react";
-import { collection, getDocs, doc, query, getDoc } from "firebase/firestore";
-import { db } from "../../Firebase/FirebaseConfig";
+// import { collection, getDocs, doc, query, getDoc } from "firebase/firestore";
+// import { db } from "../../Firebase/FirebaseConfig";
 import { useParams } from "react-router-dom";
 // import Events from "../Events/Event";
-import EventsInfo from "../EventsInfo/EventsInfo";
-import data from "../../data.json";
+import EventsInfo from "../EventsInfoPublic/EventsInfo";
 
 
 function EventsTab({ communityData }) {

@@ -1,8 +1,8 @@
 import "./EventsInfo.scss";
 import EditIcon from "../../assets/images/EditIconWhite.svg";
 import { useState, useEffect } from "react";
-import { db } from "../../Firebase/FirebaseConfig";
-import { collection, getDocs, doc, query, getDoc } from "firebase/firestore";
+// import { db } from "../../Firebase/FirebaseConfig";
+// import { collection, getDocs, doc, query, getDoc } from "firebase/firestore";
 import data from "../../data.json";
 
 function EventsInfo({ communityId }) {

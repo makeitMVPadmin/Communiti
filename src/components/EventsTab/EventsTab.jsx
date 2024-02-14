@@ -1,8 +1,6 @@
 import "./EventsTab.scss";
-// import Events from "../Events/Event";
 import { useParams } from "react-router-dom";
 import EventsInfo from "../EventsInfo/EventsInfo";
-import data from "../../data.json";
 
 function EventsTab({ communityData, setEventsOverlay, events }) {
   const { id } = useParams();
