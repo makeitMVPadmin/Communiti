@@ -10,6 +10,7 @@ import data from "../../data.json";
 function EventsHomePage() {
   const [userCommunitiesJoined, setUserCommunitiesJoined] = useState([]);
   const [userCommunitiesManaged, setUserCommunitiesManaged] = useState([]);
+  const [userCommunities, setUserCommunities] = useState([]);
   const [selectedOption, setSelectedOption] = useState("option1"); // Default to All Events
 
   console.log(data.events)
@@ -41,15 +42,22 @@ function EventsHomePage() {
   //   fetchUserCommunities();
   // }, []);
 
+  // useEffect(() => {
+  //   setUserCommunitiesJoined(data.users[0].communitiesJoined);
+  // }, []);
+  // useEffect(() => {
+  //   setUserCommunitiesManaged(data.users[0].communitiesManaged);
+  // }, []);
+  // useEffect(() => {
+  //   setUserCommunities([...userCommunitiesJoined, ...userCommunitiesManaged]);
+  // }, []);
   useEffect(() => {
-    setUserCommunitiesJoined(data.users[0].communitiesJoined);
-  }, []);
-  useEffect(() => {
-    setUserCommunitiesManaged(data.users[0].communitiesManaged);
+    setUserCommunities([...data.users[0].communitiesJoined, ...data.users[0].communitiesManaged]);
   }, []);
 
   console.log(userCommunitiesJoined);
   console.log(userCommunitiesManaged);
+  console.log(userCommunities);
 
   const handleDropdownChange = (event) => {
     setSelectedOption(event.target.value);
@@ -81,18 +89,11 @@ function EventsHomePage() {
       default: // All Events
         return (
           <>
-            {filteredJoinedCommunities.map((communityId, index) => (
+            {userCommunities.map((communityId, index) => (
               <EventsInfoPublic
                 key={`joined-${index}`}
                 communityId={communityId}
                 joined
-              />
-            ))}
-            {userCommunitiesManaged.map((communityId, index) => (
-              <EventsInfo
-                key={`managed-${index}`}
-                communityId={communityId}
-                managed
               />
             ))}
           </>

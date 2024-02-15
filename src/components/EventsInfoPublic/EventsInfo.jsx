@@ -13,7 +13,7 @@ function EventsInfo({ communityId }) {
 
   useEffect(() => {
     let events = data.events;
-    setEvents([events[1]]);
+    setEvents(events);
   },[]);
   console.log(events);
 
@@ -117,7 +117,7 @@ function EventsInfo({ communityId }) {
 
   return (
     <>
-      {events.map((event, index) => (
+      {events.sort((a, b) => a.startTime > b.startTime ? 1 : -1).map((event, index) => (
         <div key={index} className="events-info">
           <div className="events-info__thumbnail">
             <img
