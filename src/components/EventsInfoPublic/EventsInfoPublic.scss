@@ -1,0 +1,70 @@
+@use "../../styles/typography" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.events-info {
+  margin-top: 4.2vw;
+  display: flex;
+  width: 77.4vw;
+  gap: 0.8vw;
+
+  &__thumbnail {
+    width: 21.2vw;
+    height: 11.1vw;
+    border-radius: 0.5vw;
+
+    &-img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__details {
+    width: 40.4vw;
+    &-title {
+      @include SubHeader;
+    }
+
+    &-description {
+      @include Body;
+      margin-top: 0.8vw;
+    }
+
+    &-datetime {
+      @include Body;
+      margin-top: 1.9vw;
+    }
+  }
+
+  &__button {
+    display: flex;
+    width: 15.1vw;
+    height: 4.4vw;
+    padding: 0.5vw 1.1vw;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 0.5vw;
+    justify-content: space-evenly;
+    @include Buttons;
+    cursor: pointer;
+
+    &-edit {
+      background: $MVP-Dark-Blue;
+      color: $MVP-White;
+    }
+    &-attending {
+      background: #52c059;
+      color: $MVP-black;
+    }
+    &-rsvp {
+      background: #fff2f2;
+      color: $MVP-black;
+    }
+  }
+  .events-info__button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start; 
+  gap: 10px; 
+}
+}
