@@ -13,7 +13,7 @@ function EventsHomePage() {
   const [userCommunities, setUserCommunities] = useState([]);
   const [selectedOption, setSelectedOption] = useState("option1"); // Default to All Events
 
-  console.log(data.events)
+  // console.log(data.events)
 
   // useEffect(() => {
   //   // Fetch user's communities
@@ -52,12 +52,12 @@ function EventsHomePage() {
   //   setUserCommunities([...userCommunitiesJoined, ...userCommunitiesManaged]);
   // }, []);
   useEffect(() => {
-    setUserCommunities([...data.users[0].communitiesJoined, ...data.users[0].communitiesManaged]);
+    setUserCommunities([...data.users[0].communitiesJoined]);
   }, []);
 
-  console.log(userCommunitiesJoined);
-  console.log(userCommunitiesManaged);
-  console.log(userCommunities);
+  // console.log(userCommunitiesJoined);
+  // console.log(userCommunitiesManaged);
+  // console.log(userCommunities);
 
   const handleDropdownChange = (event) => {
     setSelectedOption(event.target.value);
