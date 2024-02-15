@@ -139,13 +139,6 @@ function EventsHomePage() {
           </div>
         </div>
         <div className="event-page__section">
-          <h2 className="event-page__section-text">Today</h2>
-          <div className="event-page__empty-message-container">
-            <h3 className="event-page__empty-message">
-              Your events will appear here when they are available. Get ready
-              for something amazing!
-            </h3>
-          </div>
           {filterEvents()}
         </div>
       </div>

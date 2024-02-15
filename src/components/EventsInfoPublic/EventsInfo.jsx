@@ -152,6 +152,12 @@ function EventsInfo({ communityId }) {
 
   return (
     <>
+      {events.length <= 0 && <div className="event-page__empty-message-container">
+        <h3 className="event-page__empty-message">
+          Your events will appear here when they are available. Get ready
+          for something amazing!
+        </h3>
+      </div>}
       {sortedEvents.map(({ date, events }) => (
         <div key={date}>
           <h2 className="event-page__section-text">{date}</h2> 
