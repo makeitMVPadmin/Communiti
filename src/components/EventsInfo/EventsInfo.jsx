@@ -4,6 +4,10 @@ import { useState, useEffect } from "react";
 // import { db } from "../../Firebase/FirebaseConfig";
 // import { collection, getDocs, doc, query, getDoc } from "firebase/firestore";
 import data from "../../data.json";
+import AddToCalendarButton from "../AddToCalendarButton/AddToCalendarButton";
+
+
+
 
 function EventsInfo({ communityId }) {
   const [events, setEvents] = useState([]);
@@ -126,10 +130,13 @@ function EventsInfo({ communityId }) {
               {formatDate(event.startTime)}
             </p>
           </div>
-          <button className="events-info__button events-info__button-edit">
-            <img src={EditIcon} alt="Edit button" />
-            Edit Event
-          </button>
+          <div className="events-info__button-container">
+            <button className="events-info__button events-info__button-edit">
+              <img src={EditIcon} alt="Edit button" />
+              Edit Event
+            </button>
+            <AddToCalendarButton event={event} />
+          </div>
         </div>
       ))}
     </>
