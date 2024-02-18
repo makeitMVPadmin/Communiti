@@ -1,17 +1,23 @@
-import "./EventsInfo.scss";
-import EditIcon from "../../assets/images/EditIconWhite.svg";
+import "./EventsInfoPublic.scss";
+import CheckMark from "../../assets/images/CheckMark-Black.svg";
+import PlusIcon from "../../assets/images/PlusIcon-Black.svg";
 import { useState, useEffect } from "react";
-// import { db } from "../../Firebase/FirebaseConfig";
-// import { collection, getDocs, doc, query, getDoc } from "firebase/firestore";
+import { db } from "../../Firebase/FirebaseConfig";
+import { collection, getDocs, doc, query, getDoc } from "firebase/firestore";
 import data from "../../data.json";
 import AddToCalendarButton from "../AddToCalendarButton/AddToCalendarButton";
 
-
-
-
 function EventsInfo({ communityId }) {
+  const [userAttending, setUserAttending] = useState(false);
   const [events, setEvents] = useState([]);
   const [communityInfo, setCommunityInfo] = useState(null);
+
+  useEffect(() => {
+    let events = data.events;
+    setEvents([events[1]]);
+  },[]);
+  console.log(events);
+
 
   // useEffect(() => {
   //   const fetchCommunityData = async () => {
@@ -32,16 +38,6 @@ function EventsInfo({ communityId }) {
 
   //   fetchCommunityData();
   // }, [communityId]);
-
-  useEffect(() => {
-    let community = data.communities.filter(c => {return c.id === communityId});
-    setCommunityInfo(community[0]);
-  },[]);
-  console.log(communityInfo);
-
-  useEffect(() => {
-    setEvents(data.events);
-  },[]);
 
   // useEffect(() => {
   //   const fetchCommunityEventsData = async () => {
@@ -110,6 +106,16 @@ function EventsInfo({ communityId }) {
     return formattedDate;
   };
 
+  const handleAttending = () => {
+    // Logic to toggle userAttending state
+    setUserAttending(!userAttending);
+    // Additional logic to update attending status in the backend
+  };
+
+  const attendingClass = userAttending
+    ? "events-info__button events-info__button-attending"
+    : "events-info__button events-info__button-rsvp";
+
   return (
     <>
       {events.map((event, index) => (
@@ -131,9 +137,12 @@ function EventsInfo({ communityId }) {
             </p>
           </div>
           <div className="events-info__button-container">
-            <button className="events-info__button events-info__button-edit">
-              <img src={EditIcon} alt="Edit button" />
-              Edit Event
+            <button className={attendingClass} onClick={handleAttending}>
+              <img
+                src={userAttending ? CheckMark : PlusIcon}
+                alt={userAttending ? "Attending" : "RSVP"}
+              />
+              {userAttending ? "Attending" : "RSVP"}
             </button>
             <AddToCalendarButton event={event} />
           </div>

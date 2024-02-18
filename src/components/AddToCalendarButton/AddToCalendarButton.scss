@@ -1,0 +1,27 @@
+@use "../../styles/typography" as *;
+
+.addToCalendarButton {
+  .calendar-button {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    padding: 10px; 
+    border-radius: 5px; 
+    background-color: transparent; 
+    color: black; 
+    border: none; 
+    cursor: pointer; 
+
+   
+
+    .calendar-icon {
+      margin-right: 10px;
+    }
+
+    .calendar-text {
+      font-family: 'Gilroy';
+      font-size: 1.2vw;
+      font-weight: bolder;
+  }
+}
+}
