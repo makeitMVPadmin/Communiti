@@ -1,22 +1,24 @@
 import "./CommunitiProfile.scss";
 import { useState, useEffect } from "react";
-import DashboardNavbar from "../../components/DashboardNavbar/DashboardNavbar";
+// import DashboardNavbar from "../../components/DashboardNavbar/DashboardNavbar";
 import penAndPaper from "../../assets/images/penAndPaper.svg";
 import location from "../../assets/images/location.svg";
 import members from "../../assets/images/members.svg";
 import AnnouncementsTab from "../../components/AnnouncementsTabPublic/AnnouncementsTabPublic";
 import EventsTab from "../../components/EventsTabPublic/EventsTabPublic";
+import EventsInfo from "../../components/EventsInfo/EventsInfo";
 import MembersTab from "../../components/MembersTab/MembersTab";
 import { useParams } from "react-router-dom";
-import { db, auth } from "../../Firebase/FirebaseConfig";
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  updateDoc,
-  setDoc,
-} from "firebase/firestore";
+// import { db, auth } from "../../Firebase/FirebaseConfig";
+// import {
+//   collection,
+//   doc,
+//   getDoc,
+//   getDocs,
+//   updateDoc,
+//   setDoc,
+// } from "firebase/firestore";
+import data from "../../data.json";
 
 function CommunitiProfile() {
   const { id } = useParams();
@@ -30,65 +32,82 @@ function CommunitiProfile() {
   const [memberIds, setMemberIds] = useState([]);
   const [memberRoles, setMemberRoles] = useState([]);
   const [isUserJoined, setIsUserJoined] = useState(false); // Define isUserJoined state
+  const [communityId, setCommunityId] = useState(null);
 
+  // DUMMY DATA
   useEffect(() => {
-    const fetchCommunityData = async () => {
-      try {
-        if (id) {
-          const communityRef = doc(collection(db, "Communities"), id);
-          const communityDoc = await getDoc(communityRef);
+    let community = data.communities[0];
+    setCommunityId(community.id)
+    setCommunityData(community);
+    setAnnouncements(community.announcements || []);
+    setEvents(data.events || []);
+  },[]);
+  console.log(data.communities[0].Name);
 
-          if (communityDoc.exists()) {
-            const community = communityDoc.data();
-            setCommunityData(community);
-            setAnnouncements(community.announcements || []);
-            setEvents(community.events || []);
+  // useEffect(() => {
+  //   const fetchCommunityData = async () => {
+  //     try {
+  //       if (id) {
+  //         const communityRef = doc(collection(db, "Communities"), id);
+  //         const communityDoc = await getDoc(communityRef);
 
-            const membersCollectionRef = collection(
-              db,
-              `Communities/${id}/Members`
-            );
-            const membersSnapshot = await getDocs(membersCollectionRef);
-            const memberIds = membersSnapshot.docs.map((doc) => doc.id);
-            setMemberIds(memberIds);
-            setMemberCount(memberIds.length);
+  //         if (communityDoc.exists()) {
+  //           const community = communityDoc.data();
+  //           setCommunityData(community);
+  //           setAnnouncements(community.announcements || []);
+  //           setEvents(community.events || []);
 
-            const memberRoles = [];
-            for (const memberId of memberIds) {
-              const memberRef = doc(
-                collection(db, `Communities/${id}/Members`),
-                memberId
-              );
-              const memberDoc = await getDoc(memberRef);
-              if (memberDoc.exists()) {
-                const memberData = memberDoc.data();
-                const memberRole = {
-                  memberId,
-                  role: memberData.role || "Default Role",
-                };
-                memberRoles.push(memberRole);
-              }
-            }
-            setMemberRoles(memberRoles);
-          } else {
-            console.log("No such document!");
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching document: ", error);
-      }
-    };
+  //           const membersCollectionRef = collection(
+  //             db,
+  //             `Communities/${id}/Members`
+  //           );
+  //           const membersSnapshot = await getDocs(membersCollectionRef);
+  //           const memberIds = membersSnapshot.docs.map((doc) => doc.id);
+  //           setMemberIds(memberIds);
+  //           setMemberCount(memberIds.length);
 
-    fetchCommunityData();
-  }, [id]);
+  //           const memberRoles = [];
+  //           for (const memberId of memberIds) {
+  //             const memberRef = doc(
+  //               collection(db, `Communities/${id}/Members`),
+  //               memberId
+  //             );
+  //             const memberDoc = await getDoc(memberRef);
+  //             if (memberDoc.exists()) {
+  //               const memberData = memberDoc.data();
+  //               const memberRole = {
+  //                 memberId,
+  //                 role: memberData.role || "Default Role",
+  //               };
+  //               memberRoles.push(memberRole);
+  //             }
+  //           }
+  //           setMemberRoles(memberRoles);
+  //         } else {
+  //           console.log("No such document!");
+  //         }
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching document: ", error);
+  //     }
+  //   };
 
-  useEffect(() => {
-    const currentUser = auth.currentUser;
-    if (currentUser) {
-      const userId = currentUser.uid;
-      setIsUserJoined(memberIds.includes(userId)); // Set the user's membership status
-    }
-  }, [memberIds]); // Update isUserJoined when memberIds change
+  //   fetchCommunityData();
+  // }, [id]);
+
+  // useEffect(() => {
+  //   const currentUser = auth.currentUser;
+  //   if (currentUser) {
+  //     const userId = currentUser.uid;
+  //     setIsUserJoined(memberIds.includes(userId)); // Set the user's membership status
+  //   }
+  // }, [memberIds]); // Update isUserJoined when memberIds change
+
+  //   useEffect(() => {
+  //     // Dummy data insert
+  //     let userId = data.users[0].uid;
+  //     setIsUserJoined(memberIds.includes(userId)); // Set the user's membership status
+  // }, [memberIds]); // Update isUserJoined when memberIds change
 
   function handleTabChoice(choice) {
     switch (choice) {
@@ -112,49 +131,49 @@ function CommunitiProfile() {
     }
   }
 
-  const handleJoinCommunity = async () => {
-    const currentUser = auth.currentUser;
-    const communityId = id;
+  // const handleJoinCommunity = async () => {
+  //   const currentUser = auth.currentUser;
+  //   const communityId = id;
 
-    if (currentUser) {
-      const userId = currentUser.uid;
+  //   if (currentUser) {
+  //     const userId = currentUser.uid;
 
-      const memberRef = doc(db, `Communities/${communityId}/Members`, userId);
-      await setDoc(memberRef, { userId: userId, role: "Member" });
+  //     const memberRef = doc(db, `Communities/${communityId}/Members`, userId);
+  //     await setDoc(memberRef, { userId: userId, role: "Member" });
 
-      const userRef = doc(db, "Users", userId);
-      const userDoc = await getDoc(userRef);
-      if (userDoc.exists()) {
-        const userData = userDoc.data();
-        const communitiesJoined = userData.CommunitiesJoined || [];
+  //     const userRef = doc(db, "Users", userId);
+  //     const userDoc = await getDoc(userRef);
+  //     if (userDoc.exists()) {
+  //       const userData = userDoc.data();
+  //       const communitiesJoined = userData.CommunitiesJoined || [];
 
-        if (!communitiesJoined.includes(communityId)) {
-          const updatedCommunities = [...communitiesJoined, communityId];
-          await updateDoc(userRef, {
-            CommunitiesJoined: updatedCommunities,
-          });
-          console.log("Joined Community !");
-        } else {
-          console.log("User has already joined this community!");
-        }
-      } else {
-        console.log("User document does not exist.");
-      }
-    } else {
-      console.log("Please Login");
-    }
-  };
+  //       if (!communitiesJoined.includes(communityId)) {
+  //         const updatedCommunities = [...communitiesJoined, communityId];
+  //         await updateDoc(userRef, {
+  //           CommunitiesJoined: updatedCommunities,
+  //         });
+  //         console.log("Joined Community !");
+  //       } else {
+  //         console.log("User has already joined this community!");
+  //       }
+  //     } else {
+  //       console.log("User document does not exist.");
+  //     }
+  //   } else {
+  //     console.log("Please Login");
+  //   }
+  // };
 
   return (
     <>
-      <DashboardNavbar />
+      {/* <DashboardNavbar /> */}
       <main className="communiti-profile">
         <section className="communiti-profile__hero">
           {!isUserJoined && ( // Render the button only if the user hasn't joined
             <div className="communiti-profile__button-container">
               <button
                 className="communiti-profile__button"
-                onClick={handleJoinCommunity}
+                // onClick={handleJoinCommunity}
               >
                 Join the Community
               </button>
@@ -248,13 +267,15 @@ function CommunitiProfile() {
                 </p>
               </div>
 
-              {showAnnouncements && (
+              {/* {showAnnouncements && (
                 <AnnouncementsTab
                   announcements={announcements}
                   communityData={communityData}
                 />
-              )}
-              {showEvents && <EventsTab events={events} />}
+              )} */}
+              {showEvents && 
+                <EventsTab events={events} />
+              }
               {showMembers && (
                 <MembersTab memberIds={memberIds} memberRoles={memberRoles} />
               )}
