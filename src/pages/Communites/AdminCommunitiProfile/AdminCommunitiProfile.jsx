@@ -1,6 +1,6 @@
 import "./AdminCommunitiProfile.scss";
 import { useState, useEffect } from "react";
-import DashboardNavbar from "../../../components/DashboardNavbar/DashboardNavbar";
+// import DashboardNavbar from "../../../components/DashboardNavbar/DashboardNavbar";
 import back from "../../../assets/images/back.svg";
 import penAndPaper from "../../../assets/images/penAndPaper.svg";
 import location from "../../../assets/images/location.svg";
@@ -9,10 +9,11 @@ import AnnouncementsTab from "../../../components/AnnouncementsTab/Announcements
 import EventsTab from "../../../components/EventsTab/EventsTab";
 import MembersTab from "../../../components/MembersTab/MembersTab";
 import { useParams, useNavigate } from "react-router-dom";
-import { db } from "../../../Firebase/FirebaseConfig";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+// import { db } from "../../../Firebase/FirebaseConfig";
+// import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import AnnouncmentsOverlay from "../../../components/AnnouncementsOverlay/AnnouncementsOverlay";
 import EventsOverlay from "../../../components/CreateEventModal/CreateEventModal";
+import data from "../../../data.json";
 
 function AdminCommunitiProfile() {
   const { id } = useParams();
@@ -30,82 +31,91 @@ function AdminCommunitiProfile() {
   const [memberRoles, setMemberRoles] = useState([]);
   const [inviteLink, setInviteLink] = useState("");
 
+  // DUMMY DATA
   useEffect(() => {
-    const fetchCommunityData = async () => {
-      try {
-        if (id) {
-          const communityRef = doc(collection(db, "Communities"), id);
-          const communityDoc = await getDoc(communityRef);
+    let community = data.communities[1];
+    setCommunityData(community);
+    setAnnouncements(community.announcements || []);
+    setEvents(data.events || []);
+  },[]);
+  console.log(data.communities[1].Name);
 
-          if (communityDoc.exists()) {
-            const community = communityDoc.data();
-            setCommunityData(community);
-            setAnnouncements(community.announcements || []);
-            setEvents(community.events || []);
+  // useEffect(() => {
+  //   const fetchCommunityData = async () => {
+  //     try {
+  //       if (id) {
+  //         const communityRef = doc(collection(db, "Communities"), id);
+  //         const communityDoc = await getDoc(communityRef);
 
-            // Fetch the Members subcollection and count its documents
-            const membersCollectionRef = collection(
-              db,
-              `Communities/${id}/Members`
-            );
-            const membersSnapshot = await getDocs(membersCollectionRef);
-            const memberIds = membersSnapshot.docs.map((doc) => doc.id);
-            setMemberIds(memberIds);
-            setMemberCount(memberIds.length);
+  //         if (communityDoc.exists()) {
+  //           const community = communityDoc.data();
+  //           setCommunityData(community);
+  //           setAnnouncements(community.announcements || []);
+  //           setEvents(community.events || []);
 
-            const memberRoles = [];
-            for (const memberId of memberIds) {
-              const memberRef = doc(
-                collection(db, `Communities/${id}/Members`),
-                memberId
-              );
-              const memberDoc = await getDoc(memberRef);
-              if (memberDoc.exists()) {
-                const memberData = memberDoc.data();
-                const memberRole = {
-                  memberId,
-                  role: memberData.role || "New Member",
-                };
-                memberRoles.push(memberRole);
-              }
-            }
-            setMemberRoles(memberRoles);
-          } else {
-            console.log("No such document!");
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching document: ", error);
-      }
-    };
+  //           // Fetch the Members subcollection and count its documents
+  //           const membersCollectionRef = collection(
+  //             db,
+  //             `Communities/${id}/Members`
+  //           );
+  //           const membersSnapshot = await getDocs(membersCollectionRef);
+  //           const memberIds = membersSnapshot.docs.map((doc) => doc.id);
+  //           setMemberIds(memberIds);
+  //           setMemberCount(memberIds.length);
 
-    fetchCommunityData();
-  }, [id]);
+  //           const memberRoles = [];
+  //           for (const memberId of memberIds) {
+  //             const memberRef = doc(
+  //               collection(db, `Communities/${id}/Members`),
+  //               memberId
+  //             );
+  //             const memberDoc = await getDoc(memberRef);
+  //             if (memberDoc.exists()) {
+  //               const memberData = memberDoc.data();
+  //               const memberRole = {
+  //                 memberId,
+  //                 role: memberData.role || "New Member",
+  //               };
+  //               memberRoles.push(memberRole);
+  //             }
+  //           }
+  //           setMemberRoles(memberRoles);
+  //         } else {
+  //           console.log("No such document!");
+  //         }
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching document: ", error);
+  //     }
+  //   };
 
-  useEffect(() => {
-    const fetchCommunityData = async () => {
-      try {
-        if (id) {
-          const communityRef = doc(collection(db, "Communities"), id);
-          const communityDoc = await getDoc(communityRef);
+  //   fetchCommunityData();
+  // }, [id]);
 
-          if (communityDoc.exists()) {
-            const community = communityDoc.data();
+  // useEffect(() => {
+  //   const fetchCommunityData = async () => {
+  //     try {
+  //       if (id) {
+  //         const communityRef = doc(collection(db, "Communities"), id);
+  //         const communityDoc = await getDoc(communityRef);
 
-            // Create the invite link based on the community ID
-            const link = `https://communiti-630fc.web.app/communities/${id}`;
-            setInviteLink(link);
-          } else {
-            console.log("No such document!");
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching document: ", error);
-      }
-    };
+  //         if (communityDoc.exists()) {
+  //           const community = communityDoc.data();
 
-    fetchCommunityData();
-  }, [id]);
+  //           // Create the invite link based on the community ID
+  //           const link = `https://communiti-630fc.web.app/communities/${id}`;
+  //           setInviteLink(link);
+  //         } else {
+  //           console.log("No such document!");
+  //         }
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching document: ", error);
+  //     }
+  //   };
+
+  //   fetchCommunityData();
+  // }, [id]);
 
   const copyToClipboard = async () => {
     try {
@@ -152,7 +162,7 @@ function AdminCommunitiProfile() {
           communityData={communityData}
         />
       )}
-      <DashboardNavbar />
+      {/* <DashboardNavbar /> */}
       <main className="admin-communiti-profile">
         <section className="admin-communiti-profile__hero">
           <div

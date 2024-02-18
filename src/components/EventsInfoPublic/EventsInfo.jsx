@@ -2,8 +2,8 @@ import "./EventsInfo.scss";
 import CheckMark from "../../assets/images/CheckMark-Black.svg";
 import PlusIcon from "../../assets/images/PlusIcon-Black.svg";
 import { useState, useEffect } from "react";
-import { db } from "../../Firebase/FirebaseConfig";
-import { collection, getDocs, doc, query, getDoc } from "firebase/firestore";
+// import { db } from "../../Firebase/FirebaseConfig";
+// import { collection, getDocs, doc, query, getDoc } from "firebase/firestore";
 import data from "../../data.json";
 import AddToCalendarButton from "../AddToCalendarButton/AddToCalendarButton";
 

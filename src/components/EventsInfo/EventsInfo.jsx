@@ -1,8 +1,8 @@
 import "./EventsInfo.scss";
 import EditIcon from "../../assets/images/EditIconWhite.svg";
 import { useState, useEffect } from "react";
-import { db } from "../../Firebase/FirebaseConfig";
-import { collection, getDocs, doc, query, getDoc } from "firebase/firestore";
+// import { db } from "../../Firebase/FirebaseConfig";
+// import { collection, getDocs, doc, query, getDoc } from "firebase/firestore";
 import data from "../../data.json";
 import AddToCalendarButton from "../AddToCalendarButton/AddToCalendarButton";
 
@@ -40,10 +40,8 @@ function EventsInfo({ communityId }) {
   console.log(communityInfo);
 
   useEffect(() => {
-    let events = data.events;
-    setEvents([events[0]]);
+    setEvents(data.events);
   },[]);
-  console.log(events);
 
   // useEffect(() => {
   //   const fetchCommunityEventsData = async () => {
