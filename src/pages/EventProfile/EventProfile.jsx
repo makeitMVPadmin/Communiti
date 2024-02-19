@@ -9,7 +9,7 @@ import clockIcon from "../../assets/images/clockIcon.svg";
 import location from "../../assets/images/location.svg";
 import rightArrowIcon from "../../assets/images/rightArrowIcon.svg";
 import profilePic from "../../assets/images/profilePic.svg";
-import chatIcon from "../../assets/images/chatIcon.svg";
+import editIcon from "../../assets/images/edit.svg";
 import EditEventModal from "../../components/EditEventModal/EditEventModal";
 import { db, auth } from "../../Firebase/FirebaseConfig";
 import {
@@ -175,122 +175,185 @@ export default function EventProfile() {
           <div className="event-profile__container">
             <img className="event-profile__image" src={placeHolderIcon} />
             <div className="event-profile__header-container">
-              <h1 className="event-profile__header">{eventDetails.title}</h1>
-              <span className="event-profile__header-trash-icon">
-                &#128465;
-              </span>
-            </div>
-            <div className="event-profile__content-edit-container">
-              <div className="event-profile__content-container">
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <h1 className="event-profile__header">{eventDetails.title}</h1>
                 <p className="event-profile__content-text">
                   {eventDetails.description}
                 </p>
-                <div className="event-profile__content-details-container">
-                  <div className="event-profile__content-details-div">
-                    <img
-                      src={calendarIcon}
-                      className="event-profile__content-details-image"
-                    />
-                    <p className="event-profile__content-details-text">
-                      {formatDate(eventDetails.date)}
-                    </p>
-                  </div>
-                  <div className="event-profile__content-details-div">
-                    <img
-                      src={clockIcon}
-                      className="event-profile__content-details-image"
-                    />
-                    <p className="event-profile__content-details-text">
-                      {formatTime(eventDetails.startTime)} -{" "}
-                      {formatTime(eventDetails.endTime)}{" "}
-                      {getTimezoneAbbreviation(eventDetails.timezone)}
-                    </p>
-                  </div>
-                  <div className="event-profile__content-details-div">
-                    <img
-                      src={location}
-                      className="event-profile__content-details-image"
-                    />
-                    <p className="event-profile__content-details-text">
-                      {eventDetails.venueAddress}
-                    </p>
-                  </div>
-                </div>
               </div>
-              <div className="event-profile__edit-container">
-                <button
-                  className="event-profile__edit-button"
-                  onClick={handleEditButton}
-                >
-                  Edit Event
-                </button>
+              <div className="event-profile__edit-calendar-container">
+                <div className="event-profile__edit-container">
+                  <button
+                    className="event-profile__edit-button"
+                    onClick={handleEditButton}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        gap: ".5rem",
+                      }}
+                    >
+                      <img src={editIcon} />
+                      <p>Edit Event</p>
+                    </div>
+                  </button>
+                </div>
+                <div>Add to Calendar</div>
               </div>
             </div>
-            <div className="event-profile__communiti-organizer-container">
-              <div className="event-profile__communiti">
-                <h3 className="event-profile__communiti-header">
-                  From the community
-                </h3>
-                <div
-                  className="event-profile__communiti-card"
-                  onClick={() =>
-                    navigate(`/communities/${"iEeWCH0z3B9Pu1zy5gWH"}`)
-                  }
-                >
-                  <img
-                    // src={community?.CommunityImage || placeHolderIcon}
-                    src={placeHolderIcon}
-                    className="event-profile__communiti-card-profile-pic"
-                  />
-                  <div className="event-profile__communiti-card-bottom-container">
-                    <div className="event-profile__communiti-card-bottom-inner-container">
-                      <div>
-                        <h6 className="event-profile__communiti-card-heading">
-                          {eventDetails.communityInfo}
-                        </h6>
-                      </div>
-                      <div className="event-profile__communiti-card-button-div-container">
-                        <button
-                          className="event-profile__communiti-card-arrow-button"
-                          //   onClick={() =>
-                          //     navigate(`/communities/admin/${community?.id}`)
-                          //   }
-                        >
-                          <img
-                            src={rightArrowIcon}
-                            alt="right arrow button"
-                            className="event-profile__communiti-card-arrow-button-img"
-                          />
-                        </button>
+            <div className="event-profile__content-communiti-organizer-container">
+              <div className="event-profile__content-communiti-container">
+                <div className="event-profile__content-container">
+                  <div className="event-profile__content-details-container">
+                    <div className="event-profile__content-details-div">
+                      <img
+                        src={calendarIcon}
+                        className="event-profile__content-details-image"
+                      />
+                      <p className="event-profile__content-details-text">
+                        {formatDate(eventDetails.date)}
+                      </p>
+                    </div>
+                    <div className="event-profile__content-details-div">
+                      <img
+                        src={clockIcon}
+                        className="event-profile__content-details-image"
+                      />
+                      <p className="event-profile__content-details-text">
+                        {formatTime(eventDetails.startTime)} -{" "}
+                        {formatTime(eventDetails.endTime)}{" "}
+                        {getTimezoneAbbreviation(eventDetails.timezone)}
+                      </p>
+                    </div>
+                    <div className="event-profile__content-details-div">
+                      <img
+                        src={location}
+                        className="event-profile__content-details-image"
+                      />
+                      <p className="event-profile__content-details-text">
+                        {eventDetails.venueAddress}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="event-profile__communiti-container">
+                  <h3 className="event-profile__communiti-header">
+                    From the community
+                  </h3>
+                  <div
+                    className="event-profile__communiti-card"
+                    onClick={() =>
+                      navigate(`/communities/${"iEeWCH0z3B9Pu1zy5gWH"}`)
+                    }
+                  >
+                    <img
+                      // src={community?.CommunityImage || placeHolderIcon}
+                      src={placeHolderIcon}
+                      className="event-profile__communiti-card-profile-pic"
+                    />
+                    <div className="event-profile__communiti-card-bottom-container">
+                      <div className="event-profile__communiti-card-bottom-inner-container">
+                        <div>
+                          <h6 className="event-profile__communiti-card-heading">
+                            {eventDetails.communityInfo}
+                          </h6>
+                        </div>
+                        <div className="event-profile__communiti-card-button-div-container">
+                          <button
+                            className="event-profile__communiti-card-arrow-button"
+                            //   onClick={() =>
+                            //     navigate(`/communities/admin/${community?.id}`)
+                            //   }
+                          >
+                            <img
+                              src={rightArrowIcon}
+                              alt="right arrow button"
+                              className="event-profile__communiti-card-arrow-button-img"
+                            />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="event-profile__organizer">
-                <h3 className="event-profile__communiti-header">
-                  Organized By
-                </h3>
-                <div className="event-profile__organizer-card">
-                  <div className="event-profile__organizer-card-profile-pic-container">
-                    <img
-                      className="event-profile__organizer-card-profile-pic"
-                      src={profilePic}
-                    />
+              <div className="event-profile__communiti-organizer-container">
+                <div className="event-profile__organizer">
+                  <h3 className="event-profile__communiti-header">
+                    Organized By
+                  </h3>
+                  <div className="event-profile__organizer-card">
+                    <div className="event-profile__organizer-card-profile-pic-container">
+                      <img
+                        className="event-profile__organizer-card-profile-pic"
+                        src={profilePic}
+                      />
+                    </div>
+                    <div className="event-profile__organizer-card-details">
+                      <p className="event-profile__organizer-card-details-paragraph-name">
+                        {eventDetails.organizedBy.name}
+                      </p>
+                      <p className="event-profile__organizer-card-details-paragraph-title">
+                        {eventDetails.organizedBy.position}
+                      </p>
+                    </div>
+                    {/* <div className="event-profile__organizer-card-details-chat-emoji-container">
+                      <img
+                        className="event-profile__organizer-card-details-chat-emoji"
+                        src={chatIcon}
+                      />
+                    </div> */}
                   </div>
-                  <div className="event-profile__organizer-card-details">
-                    <p className="event-profile__organizer-card-details-paragraph-name">
-                      {eventDetails.organizedBy.name}
-                    </p>
-                    <p className="event-profile__organizer-card-details-paragraph-title">
-                      {eventDetails.organizedBy.position}
+                </div>
+                <div className="event-profile__registrants">
+                  <div
+                    style={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <h3 className="event-profile__registrants-header">
+                      Registrants (21)
+                    </h3>
+                    <p style={{ fontSize: "13px", alignSelf: "flex-end" }}>
+                      View all
                     </p>
                   </div>
-                  <div className="event-profile__organizer-card-details-chat-emoji-container">
-                    <img
-                      className="event-profile__organizer-card-details-chat-emoji"
-                      src={chatIcon}
-                    />
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: ".25rem",
+                    }}
+                  >
+                    {[1, 2, 3, 4].map((registrant) => {
+                      return (
+                        <div className="event-profile__registrants-card">
+                          <div className="event-profile__registrants-card-profile-pic-container">
+                            <img
+                              className="event-profile__registrants-card-profile-pic"
+                              src={profilePic}
+                            />
+                          </div>
+                          <div className="event-profile__registrants-card-details">
+                            <p className="event-profile__registrants-card-details-paragraph-name">
+                              {eventDetails.organizedBy.name}
+                            </p>
+                            <p className="event-profile__registrants-card-details-paragraph-title">
+                              {eventDetails.organizedBy.position}
+                            </p>
+                          </div>
+                          <div className="event-profile__registrants-card-details-going-container">
+                            <p
+                              style={{
+                                fontSize: "16px",
+                                color: "rgba(74, 174, 81, 1)",
+                              }}
+                            >
+                              Going
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>

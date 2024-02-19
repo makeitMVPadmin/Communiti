@@ -11,6 +11,7 @@
   flex-direction: column;
   width: 90vw;
   height: 80vh;
+  font-family: Gilroy;
 
   gap: 2.2vw;
   background: $MVP-White;
@@ -50,10 +51,10 @@
   }
 
   &__title {
-    font-size: 18px;
+    font-size: 24px;
 
     @include Tablet {
-      font-size: 22px;
+      font-size: 30px;
     }
   }
 
@@ -305,7 +306,7 @@
     // @include Body;
 
     &--alt {
-      font-family: "Corben";
+      font-family: Gilroy;
       font-size: 11px;
       font-style: normal;
       line-height: 115.645%;
