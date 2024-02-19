@@ -1,7 +1,10 @@
 import "./EventsTab.scss";
-import Events from "../Events/Event";
+import { useParams } from "react-router-dom";
+import EventsInfo from "../EventsInfo/EventsInfo";
 
 function EventsTab({ communityData, setEventsOverlay, events }) {
+  const { id } = useParams();
+
   function noEvents() {
     return (
       <div className="events-tab__none">
@@ -41,7 +44,7 @@ function EventsTab({ communityData, setEventsOverlay, events }) {
       <div className="events-tab-">
         {events.length === 0 ? noEvents() : someEvents()}
       </div>
-      <Events communityData={communityData} />
+      <EventsInfo communityId={id} />;
     </section>
   );
 }

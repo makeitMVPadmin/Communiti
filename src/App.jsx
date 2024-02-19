@@ -44,6 +44,7 @@ function App() {
       <Route path="/login" element={<LogIn />} />
       <Route path="/forgot" element={<ForgotPage />} />
       <Route path="/profile" element={<ProfilePage />} />
+     
 
       {user ? (
         <>
