@@ -240,20 +240,80 @@ function EditEventModal({ setEditEvent, eventDetails }) {
               </div>
             </div>
             <div className="edit-event-overlay__date-location-venue-timezone-container">
-              <div>
+              <div style={{ display: "flex", gap: "2rem" }}>
+                <div>
+                  <label
+                    className="edit-event-overlay__input-label"
+                    htmlFor="date"
+                  >
+                    Date*
+                  </label>
+                  <input
+                    type="date"
+                    id="date"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                    className="edit-event-overlay__input-date"
+                  />
+                </div>
+                <div className="edit-event-overlay__bottom-container">
+                  <div className="edit-event-overlay__left-container">
+                    <div className="edit-event-overlay__input-time-container">
+                      <div className="edit-event-overlay__input-time-containers">
+                        <label
+                          className="edit-event-overlay__input-label"
+                          htmlFor="startTime"
+                        >
+                          Start Time*
+                        </label>
+                        <input
+                          type="time"
+                          id="startTime"
+                          value={startTime}
+                          onChange={(e) => setStartTime(e.target.value)}
+                          className="edit-event-overlay__input-time"
+                        />
+                      </div>
+                      <div className="edit-event-overlay__input-time-containers">
+                        <label
+                          className="edit-event-overlay__input-label"
+                          htmlFor="endTime"
+                        >
+                          End Time*
+                        </label>
+                        <input
+                          type="time"
+                          id="endTime"
+                          value={endTime}
+                          onChange={(e) => setEndTime(e.target.value)}
+                          className="edit-event-overlay__input-time"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="edit-event-overlay__input-label-container">
                 <label
                   className="edit-event-overlay__input-label"
-                  htmlFor="date"
+                  htmlFor="timezone"
                 >
-                  Date*
+                  Timezone
                 </label>
-                <input
-                  type="date"
-                  id="date"
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
-                  className="edit-event-overlay__input-date"
-                />
+                <br />
+                <select
+                  className="edit-event-overlay__input-select"
+                  id="timezone"
+                  value={timezone}
+                  onChange={handleTimezoneChange}
+                >
+                  <option value="">Select Timezone</option>
+                  {timezoneOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div className="edit-event-overlay__input-location-container">
                 <p className="edit-event-overlay__input-label">Location*</p>
@@ -305,44 +365,9 @@ function EditEventModal({ setEditEvent, eventDetails }) {
                   </div>
                 </div>
               </div>
-              <div className="edit-event-overlay__bottom-container">
-                <div className="edit-event-overlay__left-container">
-                  <div className="edit-event-overlay__input-time-container">
-                    <div className="edit-event-overlay__input-time-containers">
-                      <label
-                        className="edit-event-overlay__input-label"
-                        htmlFor="startTime"
-                      >
-                        Start Time
-                      </label>
-                      <input
-                        type="time"
-                        id="startTime"
-                        value={startTime}
-                        onChange={(e) => setStartTime(e.target.value)}
-                        className="edit-event-overlay__input-time"
-                      />
-                    </div>
-                    <div className="edit-event-overlay__input-time-containers">
-                      <label
-                        className="edit-event-overlay__input-label"
-                        htmlFor="endTime"
-                      >
-                        End Time
-                      </label>
-                      <input
-                        type="time"
-                        id="endTime"
-                        value={endTime}
-                        onChange={(e) => setEndTime(e.target.value)}
-                        className="edit-event-overlay__input-time"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
+
               <div>
-                <label
+                {/* <label
                   className="edit-event-overlay__input-label"
                   htmlFor="timezone"
                 >
@@ -361,7 +386,7 @@ function EditEventModal({ setEditEvent, eventDetails }) {
                       {option.label}
                     </option>
                   ))}
-                </select>
+                </select> */}
                 <div className="edit-event-overlay__image-container">
                   <div>
                     <label

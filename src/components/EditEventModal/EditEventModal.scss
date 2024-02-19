@@ -2,10 +2,6 @@
 @use "../../styles/variables" as *;
 @use "../../styles/typography" as *;
 
-// body {
-//   background-color: #000;
-// }
-
 .edit-event-overlay {
   display: flex;
   flex-direction: column;
@@ -16,14 +12,11 @@
   gap: 2.2vw;
   background: $MVP-White;
   overflow: auto;
-  // border: 1px solid red;
   box-shadow: 0px 5px 10px black;
   border-radius: 7px;
-  // padding: 10px 20px;
   padding: 10px 0px 10px 20px;
 
   @include Tablet {
-    // padding: 20px 40px;
     padding: 20px 0px 20px 40px;
 
     width: 80vw;
@@ -31,7 +24,6 @@
   }
 
   @include Laptop {
-    // padding: 40px 80px;
     padding: 40px 0px 40px 80px;
 
     width: 70vw;
@@ -135,6 +127,7 @@
       font-family: Gilroy;
       font-style: normal;
       font-weight: 800;
+      color: #000;
     }
 
     &-count {
@@ -156,7 +149,6 @@
         margin-left: 5px;
         padding: 0.3rem;
         align-items: center;
-        // gap: 0.5vw;
         border-radius: 7px;
         border: 0.1rem solid #000;
         font-size: 14px;
@@ -172,7 +164,7 @@
         }
       }
       &-container {
-        margin: 30px 0;
+        margin-bottom: 1.5rem;
 
         &-alt {
           display: flex;
@@ -188,6 +180,10 @@
       @include Tablet {
         font-size: 16px;
       }
+
+      &-container {
+        margin: 1.5rem 0;
+      }
     }
 
     &-sub-label {
@@ -198,8 +194,7 @@
 
     &-time-container {
       display: flex;
-      margin-bottom: 3.4vw;
-      gap: 3.8vw;
+      gap: 2rem;
 
       &s {
         display: flex;
@@ -208,7 +203,7 @@
     }
 
     &-select {
-      max-width: 200px;
+      max-width: 300px;
       height: 40px;
       padding: 10px 12px;
       justify-content: center;
@@ -216,21 +211,19 @@
       border-radius: 7px;
       border: 0.1rem solid #000;
       cursor: pointer;
-      color: gray;
+      color: #000;
       font-family: Gilroy;
       font-style: normal;
       font-weight: 800;
 
       /* Mobile - Body */
       font-size: 16px;
-      // line-height: 115.645%;
-      margin-bottom: 2rem;
     }
 
     &-time {
       display: flex;
       flex-direction: row-reverse;
-      padding: 0.8vw 1.1vw;
+      padding: 7px 11px;
       justify-content: center;
       align-items: center;
       gap: 0.7vw;
@@ -239,6 +232,7 @@
       font-family: Gilroy;
       font-style: normal;
       font-weight: 800;
+      color: #000;
 
       border-radius: 7px;
       border: 0.1rem solid #000;
