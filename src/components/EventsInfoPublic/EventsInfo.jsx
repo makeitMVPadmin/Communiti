@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 // import { collection, getDocs, doc, query, getDoc } from "firebase/firestore";
 import data from "../../data.json";
 import AddToCalendarButton from "../AddToCalendarButton/AddToCalendarButton";
+const { DateTime } = require("luxon");
 
 function EventsInfo({ communityId }) {
   const [userAttending, setUserAttending] = useState(false);
@@ -150,6 +151,7 @@ function EventsInfo({ communityId }) {
   useEffect(() => {
     setSortedEvents(sortAndGroupEvents(events));
   }, [events]);
+  
 
   return (
     <>
@@ -161,7 +163,7 @@ function EventsInfo({ communityId }) {
       </div>}
       {sortedEvents.map(({ date, events }) => (
         <div key={date}>
-          <h2 className="event-page__section-text">{date}</h2> 
+          <h2 className="event-page__section-text">{DateTime.fromISO(date).toFormat("cccc, MMMM dd")}</h2> 
           {events.map(event => (
             <div key={event.id} className="events-info">
               <div className="events-info__thumbnail">
