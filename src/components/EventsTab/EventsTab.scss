@@ -6,7 +6,7 @@ $mockup-light-blue: #e1f0fb;
 
 .events-tab {
   @include Laptop {
-    width: 79vw;
+    width: 81.5vw;
     height: 17.7vw;
     padding: 4vw 3vw;
     display: flex;
@@ -20,7 +20,7 @@ $mockup-light-blue: #e1f0fb;
     border-radius: 0.5vw;
     border: 0.2vw solid #000;
     padding: 3vw 3vw;
-    width: 79vw;
+    width: 81.5vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,6 +34,7 @@ $mockup-light-blue: #e1f0fb;
     justify-content: space-between;
     width: 71.8vw;
     padding: 2.3vw 2.8vw;
+    margin-bottom: 30px;
     height: 9.5vw;
 
     &-writing {

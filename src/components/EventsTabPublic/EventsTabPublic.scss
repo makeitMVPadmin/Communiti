@@ -11,7 +11,7 @@ $mockup-light-blue: #e1f0fb;
   background: #e1f0fb;
 
   @include Laptop {
-    width: 79vw;
+    width: 81.5vw;
     height: 17.7vw;
     padding: 4vw 3vw;
     display: flex;
@@ -54,7 +54,7 @@ $mockup-light-blue: #e1f0fb;
       background-color: rgba($MVP-Light-Blue, 0.2);
       border-radius: 0.5vw;
       border: 0.2vw solid #000;
-      width: 78.5vw;
+      width: 81.5vw;
       display: flex;
       flex-direction: column;
       justify-content: center;

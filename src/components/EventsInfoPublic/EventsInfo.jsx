@@ -6,15 +6,17 @@ import { useState, useEffect } from "react";
 // import { collection, getDocs, doc, query, getDoc } from "firebase/firestore";
 import data from "../../data.json";
 import AddToCalendarButton from "../AddToCalendarButton/AddToCalendarButton";
+const { DateTime } = require("luxon");
 
 function EventsInfo({ communityId }) {
   const [userAttending, setUserAttending] = useState(false);
   const [events, setEvents] = useState([]);
   const [communityInfo, setCommunityInfo] = useState(null);
+  const [sortedEvents, setSortedEvents] = useState([]);
 
   useEffect(() => {
     let events = data.events;
-    setEvents([events[1]]);
+    setEvents(events);
   },[]);
   console.log(events);
 
@@ -116,36 +118,82 @@ function EventsInfo({ communityId }) {
     ? "events-info__button events-info__button-attending"
     : "events-info__button events-info__button-rsvp";
 
+
+  // Group events in list by date
+  const sortAndGroupEvents = (events) => {
+    // Create an object and loop through the events list
+    const eventsByDate = events.reduce((acc, event) => {
+      const { date } = event;
+      // If the current event's date does not already exist as a property in the object, 
+      // create a new property for that date with an empty array
+      acc[date] = acc[date] || [];
+      // Push the event to that array
+      acc[date].push(event);
+      return acc;
+    }, {});
+
+    // Sort dates in object
+    const sortedDates = Object.keys(eventsByDate).sort();
+    
+    // Sort events by start time for each date
+    sortedDates.forEach(date => {
+      eventsByDate[date].sort((a, b) => new Date(a.startTime) - new Date(b.startTime));
+    });
+
+    return sortedDates.map(date => (
+      { 
+        date, 
+        events: eventsByDate[date] 
+      }
+    ));
+  };
+
+  useEffect(() => {
+    setSortedEvents(sortAndGroupEvents(events));
+  }, [events]);
+  
+
   return (
     <>
-      {events.map((event, index) => (
-        <div key={index} className="events-info">
-          <div className="events-info__thumbnail">
-            <img
-              className="events-info__thumbnail-img"
-              src={event.eventImage}
-              alt="Events Thumbnail"
-            />
-          </div>
-          <div className="events-info__details">
-            <h2 className="events-info__details-title">{event.title}</h2>
-            <p className="events-info__details-description">
-              {event.description}
-            </p>
-            <p className="events-info__details-datetime">
-              {formatDate(event.startTime)}
-            </p>
-          </div>
-          <div className="events-info__button-container">
-            <button className={attendingClass} onClick={handleAttending}>
-              <img
-                src={userAttending ? CheckMark : PlusIcon}
-                alt={userAttending ? "Attending" : "RSVP"}
-              />
-              {userAttending ? "Attending" : "RSVP"}
-            </button>
-            <AddToCalendarButton event={event} />
-          </div>
+      {events.length <= 0 && <div className="event-page__empty-message-container">
+        <h3 className="event-page__empty-message">
+          Your events will appear here when they are available. Get ready
+          for something amazing!
+        </h3>
+      </div>}
+      {sortedEvents.map(({ date, events }) => (
+        <div key={date}>
+          <h2 className="event-page__section-text">{DateTime.fromISO(date).toFormat("cccc, MMMM dd")}</h2> 
+          {events.map(event => (
+            <div key={event.id} className="events-info">
+              <div className="events-info__thumbnail">
+                <img
+                  className="events-info__thumbnail-img"
+                  src={event.eventImage}
+                  alt="Events Thumbnail"
+                />
+              </div>
+              <div className="events-info__details">
+                <h2 className="events-info__details-title">{event.title}</h2>
+                <p className="events-info__details-description">
+                  {event.description}
+                </p>
+                <p className="events-info__details-datetime">
+                  {formatDate(event.startTime)}
+                </p>
+              </div>
+              <div className="events-info__button-container">
+                <button className={attendingClass} onClick={handleAttending}>
+                  <img
+                    src={userAttending ? CheckMark : PlusIcon}
+                    alt={userAttending ? "Attending" : "RSVP"}
+                  />
+                  {userAttending ? "Attending" : "RSVP"}
+                </button>
+                <AddToCalendarButton event={event} />
+              </div>
+            </div>
+          ))}
         </div>
       ))}
     </>
