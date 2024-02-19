@@ -3,21 +3,20 @@
 @use "../../styles/mixins" as *;
 
 .events-info {
-  margin-top: 4.2vw;
+  margin: 24px 0 70px;
   display: flex;
   width: 77.4vw;
+  height: 15vw;
   gap: 0.8vw;
 
   &__thumbnail {
     width: 21.2vw;
-    height: 11.1vw;
-    width: 38.9vw;
-    height: 160px;
-    border-radius: 0.5vw;
+    height: 100%;
 
     &-img {
       width: 100%;
       height: 100%;
+      border-radius: 8px;
     }
   }
 

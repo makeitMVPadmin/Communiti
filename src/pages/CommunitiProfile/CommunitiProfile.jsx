@@ -267,12 +267,12 @@ function CommunitiProfile() {
                 </p>
               </div>
 
-              {/* {showAnnouncements && (
+              {showAnnouncements && (
                 <AnnouncementsTab
                   announcements={announcements}
                   communityData={communityData}
                 />
-              )} */}
+              )}
               {showEvents && 
                 <EventsTab events={events} />
               }
