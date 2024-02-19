@@ -6,9 +6,12 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { json, useParams } from "react-router-dom";
 import { db, storage } from "../../Firebase/FirebaseConfig";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import data from "../../data.json";
+
 import moment from "moment-timezone";
 
 function EditEventModal({ setEditEvent, eventDetails }) {
+  const [editEventDetails, setEditEventDetails] = useState(null);
   const [eventTitle, setEventTitle] = useState(eventDetails.title);
   // here, just do length of the incoming title
   const [titleCharCount, setTitleCharCount] = useState(eventTitle.length);
@@ -27,6 +30,12 @@ function EditEventModal({ setEditEvent, eventDetails }) {
   const [userTimezone, setUserTimezone] = useState("");
 
   const { id } = useParams();
+
+  useEffect(() => {
+    let events = data.events;
+    setEditEventDetails(events[0]);
+  }, []);
+  // console.log(editEventDetails);
 
   const handleLocationChange = (event) => {
     setLocationType(event.target.value);
@@ -72,148 +81,34 @@ function EditEventModal({ setEditEvent, eventDetails }) {
     detectUserTimezone();
   }, []);
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-
-  //   try {
-  //     const imageFileName = image.name || `image_${Date.now()}`;
-  //     const storageRef = ref(storage, `event_thumbnails/${imageFileName}`);
-  //     await uploadBytes(storageRef, image);
-  //     const imageUrl = await getDownloadURL(storageRef);
-
-  //     const eventsRef = collection(db, `Communities/${id}/Events`);
-  //     const eventData = {
-  //       title: eventTitle,
-  //       description,
-  //       date,
-  //       locationType,
-  //       venueAddress: locationType === "venue" ? venueAddress : null,
-  //       startTime: moment(`${date}T${startTime}`).toISOString(),
-  //       endTime: moment(`${date}T${endTime}`).toISOString(),
-  //       timezone,
-  //       eventImage: imageUrl,
-  //     };
-
-  //     await addDoc(eventsRef, {
-  //       ...eventData,
-  //       timestamp: serverTimestamp(),
-  //     });
-
-  //     setEditEvent(false);
-  //   } catch (error) {
-  //     console.error("Error adding event: ", error);
-  //   }
-  // };
-
-  // const handleEditSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     // Create a new event object with updated values
-  //     const updatedEvent = {
-  //       title: eventTitle,
-  //       description,
-  //       venue: locationType === "Venue" ? venueAddress : "Online",
-  //       date,
-  //       startTime,
-  //       endTime,
-  //       timezone,
-  //       // ... (other fields)
-
-  //       // Note: You might want to add logic to update the image if it has changed
-  //     };
-
-  //     // Read the existing JSON file
-  //     const response = await fetch("/DummyData.json");
-  //     if (!response.ok) {
-  //       throw new Error(`HTTP error! Status: ${response.status}`);
-  //     }
-  //     const jsonData = await response.json();
-
-  //     // Find the index of the event to be updated in the JSON data
-  //     const eventIndex = jsonData.events.findIndex(
-  //       (event) => event.id === eventDetails.id
-  //     );
-
-  //     // Check if any fields have changed
-  //     let fieldsChanged = false;
-  //     Object.keys(updatedEvent).forEach((key) => {
-  //       if (updatedEvent[key] !== eventDetails[key]) {
-  //         fieldsChanged = true;
-  //         jsonData.events[eventIndex][key] = updatedEvent[key];
-  //       }
-  //     });
-
-  //     // Save changes back to the JSON file if any fields have changed
-  //     if (fieldsChanged) {
-  //       await fetch("/DummyData.json", {
-  //         method: "PUT", // Use appropriate HTTP method for writing data
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify(jsonData),
-  //       });
-  //       console.log("Event updated successfully in JSON file");
-  //     } else {
-  //       console.log("No changes detected");
-  //     }
-
-  //     // Close the modal
-  //     setEditEvent(false);
-  //   } catch (error) {
-  //     console.error("Error updating event:", error.message);
-  //   }
-  // };
-  // function handleTestEdit(e) {
-  //   e.preventDefault();
-  //   const updatedEvent = {
-  //     title: eventTitle,
-  //     description,
-  //     venue: locationType === "venue" ? venueAddress : "Online",
-  //     date,
-  //     startTime,
-  //     endTime,
-  //     timezone,
-  //     // Add other fields as needed
-  //   };
-  // }
   const handleTestEdit = (e) => {
     e.preventDefault();
-    fetch("/DummyData2.json")
-      .then((response) => {
-        // Check if the request was successful (status code 200)
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        // Parse the JSON data
-        return response.json();
-      })
-      .then((jsonData) => {
-        const eventID = jsonData.events[0].id;
-        const updatedEvent = {
-          title: eventTitle,
-          description,
-          venue: locationType === "venue" ? venueAddress : "Online",
-          date,
-          startTime,
-          endTime,
-          timezone,
-        };
-        fetch(`http://localhost:3005/events/${eventID}`, {
-          method: "PATCH", // Use appropriate HTTP method for writing data
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(updatedEvent),
-        }).then((r) => {
-          if (!r.ok) {
-            throw new Error(`HTTP error! Status: ${r.status}`);
-          }
 
-          console.log("Event updated successfully in JSON file");
-          setEditEvent(false);
-        });
-      });
+    const eventID = editEventDetails.id;
+    const updatedEvent = {
+      title: eventTitle,
+      description,
+      venue: locationType === "venue" ? venueAddress : "Online",
+      date,
+      startTime,
+      endTime,
+      timezone,
+    };
+    fetch(`http://localhost:3005/events/${eventID}`, {
+      method: "PATCH", // Use appropriate HTTP method for writing data
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedEvent),
+    }).then((r) => {
+      if (!r.ok) {
+        throw new Error(`HTTP error! Status: ${r.status}`);
+      }
+
+      console.log("Event updated successfully in JSON file");
+      setEditEvent(false);
+    });
+    // });
   };
   const handleTestEdit2 = async (e) => {
     e.preventDefault();
@@ -244,7 +139,6 @@ function EditEventModal({ setEditEvent, eventDetails }) {
       };
 
       // Save changes back to the JSON file if any fields have changed
-      // if (true) {
       // Use the appropriate fetch method for updating data
       await fetch(`http://localhost:3005/events/${eventID}`, {
         method: "PATCH", // Use appropriate HTTP method for writing data
@@ -254,9 +148,6 @@ function EditEventModal({ setEditEvent, eventDetails }) {
         body: JSON.stringify(updatedEvent),
       });
       console.log("Event updated successfully in JSON file");
-      // } else {
-      //   console.log("No changes detected");
-      // }
 
       // Close the modal or perform any other necessary actions
       setEditEvent(false);
@@ -293,17 +184,8 @@ function EditEventModal({ setEditEvent, eventDetails }) {
   return (
     <div className="edit-event-overlay-background">
       <div className="edit-event-overlay">
-        <div
-          className="edit-event-overlay__outer-div"
-          // style={{ overflow: "auto" }}
-        >
-          <div
-            style={{
-              display: "flex",
-              width: "100%",
-              justifyContent: "space-between",
-            }}
-          >
+        <div className="edit-event-overlay__outer-div">
+          <div className="edit-event-overlay__title-container">
             <h2 className="edit-event-overlay__title">Edit the Event</h2>
             <span
               style={{ cursor: "pointer " }}
@@ -357,212 +239,177 @@ function EditEventModal({ setEditEvent, eventDetails }) {
                 </span>
               </div>
             </div>
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            <div className="edit-event-overlay__date-location-venue-timezone-container">
               <div>
-                <div style={{ display: "flex", flexDirection: "column" }}>
-                  <div>
-                    <label
-                      className="edit-event-overlay__input-label"
-                      htmlFor="date"
-                    >
-                      Date*
-                    </label>
+                <label
+                  className="edit-event-overlay__input-label"
+                  htmlFor="date"
+                >
+                  Date*
+                </label>
+                <input
+                  type="date"
+                  id="date"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  className="edit-event-overlay__input-date"
+                />
+              </div>
+              <div className="edit-event-overlay__input-location-container">
+                <p className="edit-event-overlay__input-label">Location*</p>
+                <div>
+                  <div className="edit-event-overlay__input-location-container-alt">
                     <input
-                      type="date"
-                      id="date"
-                      value={date}
-                      onChange={(e) => setDate(e.target.value)}
-                      className="edit-event-overlay__input-date"
+                      type="radio"
+                      id="venue"
+                      name="locationType"
+                      value="venue"
+                      checked={locationType === "Venue"}
+                      onChange={handleLocationChange}
+                      className="edit-event-overlay__input-location"
                     />
-                  </div>
-                  <div className="edit-event-overlay__input-location-container">
-                    <p className="edit-event-overlay__input-label">Location*</p>
-                    <div style={{ display: "flex", flexDirection: "column" }}>
-                      <div className="edit-event-overlay__input-location-container-alt">
+                    <div className="edit-event-overlay__input-venue">
+                      <label
+                        className="edit-event-overlay__input-sub-label"
+                        htmlFor="venue"
+                      >
+                        Venue
+                      </label>
+                      {locationType === "Venue" && (
                         <input
-                          type="radio"
-                          id="venue"
-                          name="locationType"
-                          value="venue"
-                          checked={locationType === "Venue"}
-                          onChange={handleLocationChange}
-                          className="edit-event-overlay__input-location"
+                          type="text"
+                          value={venueAddress}
+                          onChange={handleVenueAddressChange}
+                          placeholder="213 Seymour St., Denver"
+                          className="edit-event-overlay__input-location-alt"
                         />
-                        <div className="edit-event-overlay__input-venue">
-                          <label
-                            className="edit-event-overlay__input-sub-label"
-                            htmlFor="venue"
-                          >
-                            Venue
-                          </label>
-                          {locationType === "Venue" && (
-                            <input
-                              type="text"
-                              value={venueAddress}
-                              onChange={handleVenueAddressChange}
-                              placeholder="213 Seymour St., Denver"
-                              className="edit-event-overlay__input-location-alt"
-                            />
-                          )}
-                        </div>
-                      </div>
-                      <div style={{ minHeight: "40px" }}>
-                        <input
-                          type="radio"
-                          id="online"
-                          name="locationType"
-                          value="online"
-                          checked={locationType === "online"}
-                          onChange={handleLocationChange}
-                          className="edit-event-overlay__input-location"
-                        />
-                        <label
-                          className="edit-event-overlay__input-sub-label"
-                          htmlFor="online"
-                        >
-                          Online
-                        </label>
-                      </div>
+                      )}
                     </div>
                   </div>
-                  <div className="edit-event-overlay__bottom-container">
-                    <div className="edit-event-overlay__left-container">
-                      <div className="edit-event-overlay__input-time-container">
-                        <div className="edit-event-overlay__input-time-containers">
-                          <label
-                            className="edit-event-overlay__input-label"
-                            htmlFor="startTime"
-                          >
-                            Start Time
-                          </label>
-                          <input
-                            type="time"
-                            id="startTime"
-                            value={startTime}
-                            onChange={(e) => setStartTime(e.target.value)}
-                            className="edit-event-overlay__input-time"
-                          />
-                        </div>
-                        <div className="edit-event-overlay__input-time-containers">
-                          <label
-                            className="edit-event-overlay__input-label"
-                            htmlFor="endTime"
-                          >
-                            End Time
-                          </label>
-                          <input
-                            type="time"
-                            id="endTime"
-                            value={endTime}
-                            onChange={(e) => setEndTime(e.target.value)}
-                            className="edit-event-overlay__input-time"
-                          />
-                        </div>
-                      </div>
+                  <div className="edit-event-overlay__input-venue-radio">
+                    <input
+                      type="radio"
+                      id="online"
+                      name="locationType"
+                      value="online"
+                      checked={locationType === "online"}
+                      onChange={handleLocationChange}
+                      className="edit-event-overlay__input-location"
+                    />
+                    <label
+                      className="edit-event-overlay__input-sub-label"
+                      htmlFor="online"
+                    >
+                      Online
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div className="edit-event-overlay__bottom-container">
+                <div className="edit-event-overlay__left-container">
+                  <div className="edit-event-overlay__input-time-container">
+                    <div className="edit-event-overlay__input-time-containers">
+                      <label
+                        className="edit-event-overlay__input-label"
+                        htmlFor="startTime"
+                      >
+                        Start Time
+                      </label>
+                      <input
+                        type="time"
+                        id="startTime"
+                        value={startTime}
+                        onChange={(e) => setStartTime(e.target.value)}
+                        className="edit-event-overlay__input-time"
+                      />
+                    </div>
+                    <div className="edit-event-overlay__input-time-containers">
+                      <label
+                        className="edit-event-overlay__input-label"
+                        htmlFor="endTime"
+                      >
+                        End Time
+                      </label>
+                      <input
+                        type="time"
+                        id="endTime"
+                        value={endTime}
+                        onChange={(e) => setEndTime(e.target.value)}
+                        className="edit-event-overlay__input-time"
+                      />
                     </div>
                   </div>
                 </div>
-                <div>
-                  <label
-                    className="edit-event-overlay__input-label"
-                    htmlFor="timezone"
-                  >
-                    Timezone
-                  </label>
-                  <br />
-                  <select
-                    className="edit-event-overlay__input-select"
-                    id="timezone"
-                    value={timezone}
-                    onChange={handleTimezoneChange}
-                  >
-                    <option value="">Select Timezone</option>
-                    {timezoneOptions.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))}
-                  </select>
-                  <div
-                    className="edit-event-overlay__image-container"
-                    style={{ display: "flex" }}
-                  >
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "flex-start",
-                      }}
-                      //  className="create-communiti3__container-form"
+              </div>
+              <div>
+                <label
+                  className="edit-event-overlay__input-label"
+                  htmlFor="timezone"
+                >
+                  Timezone
+                </label>
+                <br />
+                <select
+                  className="edit-event-overlay__input-select"
+                  id="timezone"
+                  value={timezone}
+                  onChange={handleTimezoneChange}
+                >
+                  <option value="">Select Timezone</option>
+                  {timezoneOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+                <div className="edit-event-overlay__image-container">
+                  <div>
+                    <label
+                      className="edit-event-overlay__picture-title edit-event-overlay__input-label"
+                      htmlFor="communiti-icon"
                     >
-                      <label
-                        className="edit-event-overlay__picture-title edit-event-overlay__input-label"
-                        htmlFor="communiti-icon"
-                      >
-                        {image
-                          ? "Upload complete!"
-                          : "Upload a Thumbnail Image"}
-                      </label>
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "column",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          position: "relative",
-                          cursor: "pointer",
-                          padding: "15px 30px",
-                          margin: "20px 0",
-                          border: ".1rem dotted black",
-                          height: "175px",
-                        }}
-                        // className="create-communiti3__container-input-container"
-                      >
-                        {image ? (
-                          <img
-                            style={{ width: "40%" }}
-                            // className="create-communiti3__container-preview"
-                            src={
-                              image instanceof File
-                                ? URL.createObjectURL(image)
-                                : image
-                            }
-                            alt="Preview"
+                      {image ? "Upload complete!" : "Upload a Thumbnail Image"}
+                    </label>
+                    <div className="edit-event-overlay__image-container-outer-div">
+                      {image ? (
+                        <img
+                          style={{ width: "40%" }}
+                          src={
+                            image instanceof File
+                              ? URL.createObjectURL(image)
+                              : image
+                          }
+                          alt="Preview"
+                        />
+                      ) : (
+                        <>
+                          <input
+                            type="file"
+                            id="communiti-icon"
+                            name="communiti-icon"
+                            className="create-communiti3__container-input visually-hidden"
+                            onChange={handleFileInputChange}
+                            style={{ display: "none" }}
                           />
-                        ) : (
-                          <>
-                            <input
-                              type="file"
-                              id="communiti-icon"
-                              name="communiti-icon"
-                              className="create-communiti3__container-input visually-hidden"
-                              onChange={handleFileInputChange}
-                              style={{ display: "none" }}
-                            />
-                            <label
-                              htmlFor="communiti-icon"
-                              className="create-communiti3__custom-file-input"
-                            >
-                              <img src={chooseFile} alt="Choose File Icon" />
-                            </label>
-                            <p
-                              // className="create-communiti3__container-input-text edit-event-overlay__text"
-                              className="edit-event-overlay__text"
-                            >
-                              drag and drop file or <span> choose file</span>
-                            </p>
-                          </>
-                        )}
-                      </div>
-                      {image && <></>}
-                      {!image && (
-                        <p className="edit-event-overlay__text--alt ">
-                          supported formats: JPG, PNG, PDF, SVG
-                          <br /> maximum size: 3MB
-                        </p>
+                          <label
+                            htmlFor="communiti-icon"
+                            className="create-communiti3__custom-file-input"
+                          >
+                            <img src={chooseFile} alt="Choose File Icon" />
+                          </label>
+                          <p className="edit-event-overlay__text">
+                            drag and drop file or <span> choose file</span>
+                          </p>
+                        </>
                       )}
                     </div>
-                    {/* </div> */}
+                    {image && <></>}
+                    {!image && (
+                      <p className="edit-event-overlay__text--alt ">
+                        supported formats: JPG, PNG, PDF, SVG
+                        <br /> maximum size: 3MB
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>

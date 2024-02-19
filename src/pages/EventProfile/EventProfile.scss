@@ -138,6 +138,11 @@
       @include Tablet {
         font-size: 22px;
       }
+      &-inner-div {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+      }
     }
   }
   &__communiti {
@@ -302,12 +307,21 @@
   }
   &__registrants {
     margin-top: 15px;
+    &-outer-div {
+      display: flex;
+      justify-content: space-between;
+    }
     &-header {
       font-size: 18px;
 
       @include Laptop {
         font-size: 23px;
       }
+    }
+    &-inner-div {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
     }
     &-card {
       display: flex;

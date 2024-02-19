@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 // import { collection, getDocs, doc, query, getDoc } from "firebase/firestore";
 import data from "../../data.json";
 import AddToCalendarButton from "../AddToCalendarButton/AddToCalendarButton";
+import { Link } from "react-router-dom";
 
 function EventsInfo({ communityId }) {
   const [userAttending, setUserAttending] = useState(false);
@@ -15,9 +16,8 @@ function EventsInfo({ communityId }) {
   useEffect(() => {
     let events = data.events;
     setEvents([events[1]]);
-  },[]);
+  }, []);
   console.log(events);
-
 
   // useEffect(() => {
   //   const fetchCommunityData = async () => {
@@ -119,34 +119,36 @@ function EventsInfo({ communityId }) {
   return (
     <>
       {events.map((event, index) => (
-        <div key={index} className="events-info">
-          <div className="events-info__thumbnail">
-            <img
-              className="events-info__thumbnail-img"
-              src={event.eventImage}
-              alt="Events Thumbnail"
-            />
-          </div>
-          <div className="events-info__details">
-            <h2 className="events-info__details-title">{event.title}</h2>
-            <p className="events-info__details-description">
-              {event.description}
-            </p>
-            <p className="events-info__details-datetime">
-              {formatDate(event.startTime)}
-            </p>
-          </div>
-          <div className="events-info__button-container">
-            <button className={attendingClass} onClick={handleAttending}>
+        <Link key={index} to={"/events/1"}>
+          <div className="events-info">
+            <div className="events-info__thumbnail">
               <img
-                src={userAttending ? CheckMark : PlusIcon}
-                alt={userAttending ? "Attending" : "RSVP"}
+                className="events-info__thumbnail-img"
+                src={event.eventImage}
+                alt="Events Thumbnail"
               />
-              {userAttending ? "Attending" : "RSVP"}
-            </button>
-            <AddToCalendarButton event={event} />
+            </div>
+            <div className="events-info__details">
+              <h2 className="events-info__details-title">{event.title}</h2>
+              <p className="events-info__details-description">
+                {event.description}
+              </p>
+              <p className="events-info__details-datetime">
+                {formatDate(event.startTime)}
+              </p>
+            </div>
+            <div className="events-info__button-container">
+              <button className={attendingClass} onClick={handleAttending}>
+                <img
+                  src={userAttending ? CheckMark : PlusIcon}
+                  alt={userAttending ? "Attending" : "RSVP"}
+                />
+                {userAttending ? "Attending" : "RSVP"}
+              </button>
+              <AddToCalendarButton event={event} />
+            </div>
           </div>
-        </div>
+        </Link>
       ))}
     </>
   );
