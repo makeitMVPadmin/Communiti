@@ -1,0 +1,336 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/typography" as *;
+
+.edit-event-overlay {
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+  height: 80vh;
+  font-family: Gilroy;
+
+  gap: 2.2vw;
+  background: $MVP-White;
+  overflow: auto;
+  box-shadow: 0px 5px 10px black;
+  border-radius: 7px;
+  padding: 10px 0px 10px 20px;
+
+  @include Tablet {
+    padding: 20px 0px 20px 40px;
+
+    width: 80vw;
+    height: 70vh;
+  }
+
+  @include Laptop {
+    padding: 40px 0px 40px 80px;
+
+    width: 70vw;
+    height: 60vh;
+    min-height: 650px;
+  }
+
+  &__outer-div {
+    overflow: auto;
+    padding-right: 20px;
+    @include Tablet {
+      padding-right: 40px;
+    }
+    @include Laptop {
+      padding-right: 80px;
+    }
+  }
+
+  &__title {
+    font-size: 24px;
+
+    @include Tablet {
+      font-size: 30px;
+    }
+    &-container {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+
+  &-background {
+    width: 100%;
+    position: absolute;
+    background: $MVP-White;
+    z-index: 9;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+  }
+  &__input {
+    &-title {
+      outline: none;
+      height: 100%;
+      width: 75%;
+      border: none;
+      font-size: 16px;
+      font-family: Gilroy;
+      font-style: normal;
+      font-weight: 800;
+      width: 100%;
+      text-align: left;
+
+      &-container {
+        display: flex;
+        flex-direction: column;
+        padding: 0.8vw 1.1vw;
+        justify-content: space-between;
+        align-items: center;
+        align-self: stretch;
+        border-radius: 7px;
+        border: 0.1rem solid #000;
+        width: 100%;
+      }
+    }
+    &-description {
+      font-size: 16px;
+      resize: none;
+      font-family: Gilroy;
+      font-style: normal;
+      font-weight: 800;
+      width: 100%;
+      border: none;
+      outline: none;
+
+      &-container {
+        width: 100%;
+        display: flex;
+        padding: 1.1vw;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        align-self: stretch;
+        border-radius: 7px;
+        border: 0.1rem solid #000;
+      }
+    }
+    &-date {
+      display: flex;
+      padding: 7px 12px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 7px;
+      border: 0.1rem solid #000;
+      width: 150px;
+      cursor: text;
+      color: gray;
+      font-family: Gilroy;
+      font-style: normal;
+      font-weight: 800;
+      color: #000;
+    }
+
+    &-count {
+      font-size: 12px;
+      font-family: Gilroy;
+      font-style: normal;
+      font-weight: 800;
+      width: 100%;
+      text-align: right;
+
+      &--description {
+        width: 100%;
+        text-align: right;
+      }
+    }
+    &-location {
+      cursor: pointer;
+      &-alt {
+        margin-left: 5px;
+        padding: 0.3rem;
+        align-items: center;
+        border-radius: 7px;
+        border: 0.1rem solid #000;
+        font-size: 14px;
+        max-width: 150px;
+
+        line-height: 25px;
+        font-family: Gilroy;
+        font-style: normal;
+        font-weight: 800;
+        @include Tablet {
+          font-size: 16px;
+          max-width: 250px;
+        }
+      }
+      &-container {
+        margin-bottom: 1.5rem;
+
+        &-alt {
+          display: flex;
+          align-items: center;
+          min-height: 40px;
+        }
+      }
+    }
+    &-label {
+      // @include SubHeader;
+      font-size: 14px;
+
+      @include Tablet {
+        font-size: 16px;
+      }
+
+      &-container {
+        margin: 1.5rem 0;
+      }
+    }
+
+    &-sub-label {
+      // @include Body;
+      font-family: Gilroy;
+      margin-left: 0.8vw;
+    }
+
+    &-time-container {
+      display: flex;
+      gap: 2rem;
+
+      &s {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    &-select {
+      max-width: 300px;
+      height: 40px;
+      padding: 10px 12px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 7px;
+      border: 0.1rem solid #000;
+      cursor: pointer;
+      color: #000;
+      font-family: Gilroy;
+      font-style: normal;
+      font-weight: 800;
+
+      /* Mobile - Body */
+      font-size: 16px;
+    }
+
+    &-time {
+      display: flex;
+      flex-direction: row-reverse;
+      padding: 7px 11px;
+      justify-content: center;
+      align-items: center;
+      gap: 0.7vw;
+      cursor: text;
+      color: gray;
+      font-family: Gilroy;
+      font-style: normal;
+      font-weight: 800;
+      color: #000;
+
+      border-radius: 7px;
+      border: 0.1rem solid #000;
+    }
+    &-section {
+    }
+    &-venue {
+      display: flex;
+      flex-direction: column;
+      // margin-left: 20px;
+
+      @media screen and (min-width: 575px) {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      &-radio {
+        min-height: 40px;
+      }
+    }
+  }
+  &__date-location-venue-timezone-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__bottom-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__button {
+    display: flex;
+    padding: 10px 10px;
+    align-items: center;
+    border-radius: 7px;
+    border: 0.1rem solid #000;
+    background: $MVP-Yellow;
+    // @include Buttons;
+    font-family: Gilroy;
+
+    font-size: 16px;
+    @include Tablet {
+      font-size: 20px;
+      padding: 10px 30px;
+    }
+
+    cursor: pointer;
+
+    &--alt {
+      background: $MVP-White;
+      border: none;
+      margin-right: 10px;
+      @include Tablet {
+        margin-right: 35px;
+      }
+
+      font-family: Gilroy;
+    }
+  }
+  &__button-containers {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__img {
+    width: 24.1vw;
+  }
+
+  &__text {
+    text-align: center;
+    font-size: 14px;
+
+    // @include Body;
+
+    &--alt {
+      font-family: Gilroy;
+      font-size: 11px;
+      font-style: normal;
+      line-height: 115.645%;
+      text-align: center;
+      align-self: center;
+    }
+  }
+  &__image-container {
+    display: flex;
+    &-outer-div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      cursor: pointer;
+      padding: 15px 30px;
+      margin: 20px 0;
+      border: 0.1rem dotted black;
+      height: 175px;
+    }
+  }
+}
