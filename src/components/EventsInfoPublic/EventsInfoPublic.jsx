@@ -76,38 +76,6 @@ function EventsInfoPublic({ communityId }) {
   //   fetchCommunityEventsData();
   // }, [communityInfo, communityId]);
 
-  const formatDate = (timestamp) => {
-    const eventDate = new Date(timestamp);
-    const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-    const months = [
-      "JAN",
-      "FEB",
-      "MAR",
-      "APR",
-      "MAY",
-      "JUN",
-      "JUL",
-      "AUG",
-      "SEP",
-      "OCT",
-      "NOV",
-      "DEC",
-    ];
-    const dayOfWeek = days[eventDate.getUTCDay()];
-    const month = months[eventDate.getUTCMonth()];
-    const day = eventDate.getUTCDate();
-    let hours = eventDate.getUTCHours();
-    const minutes = eventDate.getUTCMinutes();
-    const ampm = hours >= 12 ? "PM" : "AM";
-    hours %= 12;
-    hours = hours || 12; // 0 should be converted to 12
-
-    const formattedDate = `${dayOfWeek}, ${month} ${day} ${hours}:${minutes
-      .toString()
-      .padStart(2, "0")} ${ampm} UTC`;
-    return formattedDate;
-  };
-
   const handleAttending = () => {
     // Logic to toggle userAttending state
     setUserAttending(!userAttending);
@@ -186,7 +154,7 @@ function EventsInfoPublic({ communityId }) {
                   {event.title}
                 </h2>
                 <p className="events-info-public__details-datetime">
-                  {formatDate(event.startTime)}
+                  {DateTime.fromISO(event.startTime).toFormat("ccc, MMM dd t ZZZZ").toUpperCase()} 
                 </p>
                 <p className="events-info-public__details-description">
                   {event.description}
