@@ -115,8 +115,8 @@ function EventsInfoPublic({ communityId }) {
   };
 
   const attendingClass = userAttending
-    ? "events-info__button events-info__button-attending"
-    : "events-info__button events-info__button-rsvp";
+    ? "events-info-public__button events-info-public__button-attending"
+    : "events-info-public__button events-info-public__button-rsvp";
 
   // Group events in list by date
   const sortAndGroupEvents = (events) => {
@@ -153,6 +153,7 @@ function EventsInfoPublic({ communityId }) {
 
   return (
     <>
+      {/* Conditionally rendered message for no events*/}
       {events.length <= 0 && (
         <div className="event-page__empty-message-container">
           <h3 className="event-page__empty-message">
@@ -161,50 +162,53 @@ function EventsInfoPublic({ communityId }) {
           </h3>
         </div>
       )}
+
+      {/* Map through each date */}
       {sortedEvents.map(({ date, events }, index) => (
         <div>
-          <Link key={index} to={"/events/1"}>
-            <h2 className="event-page__section-text">
-              {DateTime.fromISO(date).toFormat("cccc, MMMM dd")}
-            </h2>
-            {events.map((event) => (
-              <div key={event.id}>
-                <div className="events-info">
-                  <div className="events-info__thumbnail">
-                    <img
-                      className="events-info__thumbnail-img"
-                      src={event.eventImage}
-                      alt="Events Thumbnail"
-                    />
-                  </div>
-                  <div className="events-info__details">
-                    <h2 className="events-info__details-title">
-                      {event.title}
-                    </h2>
-                    <p className="events-info__details-datetime">
-                      {formatDate(event.startTime)}
-                    </p>
-                    <p className="events-info__details-description">
-                      {event.description}
-                    </p>
-                  </div>
-                  <div className="events-info__button-container">
-                    <button
-                      className={attendingClass}
-                      onClick={handleAttending}
-                    >
-                      <img
-                        src={userAttending ? CheckMark : PlusIcon}
-                        alt={userAttending ? "Attending" : "RSVP"}
-                      />
-                      {userAttending ? "Attending" : "RSVP"}
-                    </button>
-                    <AddToCalendarButton event={event} />
-                  </div>
-                </div>
+          <h2 className="event-page__section-text">
+            {DateTime.fromISO(date).toFormat("cccc, MMMM dd")}
+          </h2>
+
+          {/* Map through each event for that date */}
+          {events.map(event => (
+            <div key={event.id} className="events-info-public">
+              <Link key={index} to={"/events/1"} className="events-info-public">
+              <div className="events-info-public__thumbnail">
+                <img
+                  className="events-info-public__thumbnail-img"
+                  src={event.eventImage}
+                  alt="Events Thumbnail"
+                />
+              </div>
+              <div className="events-info-public__details">
+                <h2 className="events-info-public__details-title">
+                  {event.title}
+                </h2>
+                <p className="events-info-public__details-datetime">
+                  {formatDate(event.startTime)}
+                </p>
+                <p className="events-info-public__details-description">
+                  {event.description}
+                </p>
+              </div>
+              </Link>
+              
+              <div className="events-info-public__button-container">
+                <button
+                  className={attendingClass}
+                  onClick={handleAttending}
+                >
+                  <img
+                    src={userAttending ? CheckMark : PlusIcon}
+                    alt={userAttending ? "Attending" : "RSVP"}
+                  />
+                  {userAttending ? "Attending" : "RSVP"}
+                </button>
+                <AddToCalendarButton event={event} />
+              </div>
               </div>
             ))}
-          </Link>
         </div>
       ))}
     </>

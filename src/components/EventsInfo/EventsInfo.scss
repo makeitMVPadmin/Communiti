@@ -3,15 +3,31 @@
 @use "../../styles/mixins" as *;
 
 .events-info {
-  margin: 24px 0 70px;
+  margin: 10px 0 70px;
   display: flex;
   width: 77.4vw;
   height: 14vw;
-  gap: 0.8vw;
+  gap: 1vw;
+
+  &__section {
+    width: 78.5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &-text {
+      @include SubHeader;
+      width: 73.9vw;
+      padding-bottom: 4px;
+      border-bottom: solid 0.1vw black;
+    }
+  }
 
   &__thumbnail {
-    width: 21.2vw;
+    width: 100%;
     height: 100%;
+    margin-right: 15px;
 
     &-img {
       width: 100%;
@@ -61,10 +77,12 @@
       color: $MVP-black;
     }
   }
-  .events-info__button-container {
-  display: flex;
-  flex-direction: column;
-  align-items: start; 
-  gap: 10px; 
-}
+
+  &__button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start; 
+    gap: 0; 
+    margin-top: 10px;
+  }
 }

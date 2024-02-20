@@ -158,12 +158,12 @@ function EventsInfo({ communityId }) {
       {/* Map through each date */}
       {sortedEvents.map(({ date, events }, index) => (
         <div>
-        <Link key={index} to={"/events/1"}>
           <h2 className="event-page__section-text">{DateTime.fromISO(date).toFormat("cccc, MMMM dd")}</h2> 
           
           {/* Map through each event for that date */}
           {events.map(event => (
             <div key={event.id} className="events-info">
+              <Link key={index} to={"/events/1"} className="events-info">
               <div className="events-info__thumbnail">
                 <img
                   className="events-info__thumbnail-img"
@@ -180,6 +180,8 @@ function EventsInfo({ communityId }) {
                   {event.description}
                 </p>
               </div>
+              </Link>
+              
               <div className="events-info__button-container">
                 <button className="events-info__button events-info__button-edit">
                   <img src={EditIcon} alt="Edit button" />
@@ -189,8 +191,6 @@ function EventsInfo({ communityId }) {
               </div>
             </div>
           ))}
-
-        </Link>
         </div>
       ))}
     </>
