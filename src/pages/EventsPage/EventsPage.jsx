@@ -2,7 +2,7 @@
 import "./EventsPage.scss";
 import { collection, doc, getDoc } from "firebase/firestore";
 import EventsInfo from "../../components/EventsInfo/EventsInfo";
-import EventsInfoPublic from "../../components/EventsInfoPublic/EventsInfo";
+import EventsInfoPublic from "../../components/EventsInfoPublic/EventsInfoPublic";
 import { useState, useEffect } from "react";
 import { db, auth } from "../../Firebase/FirebaseConfig";
 import data from "../../data.json";

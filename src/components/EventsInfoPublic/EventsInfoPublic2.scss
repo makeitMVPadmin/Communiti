@@ -3,20 +3,19 @@
 @use "../../styles/mixins" as *;
 
 .events-info {
-  margin: 24px 0 70px;
+  margin-top: 4.2vw;
   display: flex;
   width: 77.4vw;
-  height: 15vw;
   gap: 0.8vw;
 
   &__thumbnail {
     width: 21.2vw;
-    height: 100%;
+    height: 11.1vw;
+    border-radius: 0.5vw;
 
     &-img {
       width: 100%;
       height: 100%;
-      border-radius: 8px;
     }
   }
 
@@ -62,22 +61,6 @@
       color: $MVP-black;
     }
   }
-
-  &__section {
-    width: 78.5vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    &-text {
-      @include SubHeader;
-      width: 73.9vw;
-      padding-bottom: 4px;
-      border-bottom: solid 0.1vw black;
-    }
-  }
-
   .events-info__button-container {
   display: flex;
   flex-direction: column;
