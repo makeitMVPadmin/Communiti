@@ -6,7 +6,7 @@
   margin: 24px 0 70px;
   display: flex;
   width: 77.4vw;
-  height: 15vw;
+  height: 14vw;
   gap: 0.8vw;
 
   &__thumbnail {
@@ -33,7 +33,8 @@
 
     &-datetime {
       @include Body;
-      margin-top: 1.9vw;
+      // margin-top: 1.9vw;
+      font-size: 20px;
     }
   }
 

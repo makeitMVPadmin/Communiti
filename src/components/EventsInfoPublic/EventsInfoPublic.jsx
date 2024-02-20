@@ -181,11 +181,11 @@ function EventsInfoPublic({ communityId }) {
                     <h2 className="events-info__details-title">
                       {event.title}
                     </h2>
-                    <p className="events-info__details-description">
-                      {event.description}
-                    </p>
                     <p className="events-info__details-datetime">
                       {formatDate(event.startTime)}
+                    </p>
+                    <p className="events-info__details-description">
+                      {event.description}
                     </p>
                   </div>
                   <div className="events-info__button-container">
