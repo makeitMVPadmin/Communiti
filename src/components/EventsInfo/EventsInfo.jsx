@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "./EventsInfo.scss";
 import EditIcon from "../../assets/images/EditIconWhite.svg";
+import EditEventModal from "../../components/EditEventModal/EditEventModal";
 import { useState, useEffect } from "react";
 // import { db } from "../../Firebase/FirebaseConfig";
 // import { collection, getDocs, doc, query, getDoc } from "firebase/firestore";
@@ -12,6 +13,8 @@ function EventsInfo({ communityId }) {
   const [events, setEvents] = useState([]);
   const [communityInfo, setCommunityInfo] = useState(null);
   const [sortedEvents, setSortedEvents] = useState([]);
+  const [editEvent, setEditEvent] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   // useEffect(() => {
   //   const fetchCommunityData = async () => {
@@ -112,6 +115,11 @@ function EventsInfo({ communityId }) {
     setSortedEvents(sortAndGroupEvents(events));
   }, [events]);
 
+  const handleEditButton = (event) => {
+    setEditEvent(!editEvent);
+    setSelectedEvent(event)
+  };
+
   return (
     <>
       {/* Conditionally rendered message for no events*/}
@@ -152,7 +160,10 @@ function EventsInfo({ communityId }) {
               </Link>
               
               <div className="events-info__button-container">
-                <button className="events-info__button events-info__button-edit">
+                <button 
+                  className="events-info__button events-info__button-edit"
+                  onClick={() => handleEditButton(event)}
+                >
                   <img src={EditIcon} alt="Edit button" />
                   Edit Event
                 </button>
@@ -162,6 +173,14 @@ function EventsInfo({ communityId }) {
           ))}
         </div>
       ))}
+      {editEvent ? (
+        <div className="event-profile__edit-event">
+          <EditEventModal
+            setEditEvent={setEditEvent}
+            eventDetails={selectedEvent}
+          />
+        </div>
+      ) : null}
     </>
   );
 }

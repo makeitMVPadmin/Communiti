@@ -29,6 +29,8 @@ export default function EventProfile() {
   const [editDetails, setEditDetails] = useState({});
   const [eventData, setEventData] = useState(null);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     let events = data.events;
     setEventData(events[0]);
@@ -87,7 +89,7 @@ export default function EventProfile() {
 
   const eventDetails = eventData;
 
-  const navigate = useNavigate();
+
 
   const handleEditButton = () => {
     setEditEvent(!editEvent);
@@ -114,7 +116,7 @@ export default function EventProfile() {
                     onClick={handleEditButton}
                   >
                     <div className="event-profile__edit-button-inner-div">
-                      <img src={editIcon} />
+                      <img src={editIcon} alt="Edit button"/>
                       <p>Edit Event</p>
                     </div>
                   </button>
