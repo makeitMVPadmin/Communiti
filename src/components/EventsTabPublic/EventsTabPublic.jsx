@@ -4,8 +4,7 @@ import { useState, useEffect } from "react";
 // import { db } from "../../Firebase/FirebaseConfig";
 import { useParams } from "react-router-dom";
 // import Events from "../Events/Event";
-import EventsInfo from "../EventsInfoPublic/EventsInfo";
-
+import EventsInfo from "../EventsInfoPublic/EventsInfoPublic";
 
 function EventsTab({ communityData }) {
   const [events, setEvents] = useState([]);
@@ -33,13 +32,12 @@ function EventsTab({ communityData }) {
   //   fetchCommunityEventsData();
   // }, [id]);
 
-
   function noEvents() {
     return (
       <div className="events-tab-public__none">
         <p className="events-tab-public__none-writing">
-          Oops! No events found for this community. Events will appear here when they are available. Get
-          ready for something amazing!
+          Oops! No events found for this community. Events will appear here when
+          they are available. Get ready for something amazing!
         </p>
       </div>
     );
@@ -57,9 +55,7 @@ function EventsTab({ communityData }) {
 
   return (
     // <section className="events-tab-public-background">
-    <section className="events-tab-public__section">
-      {renderEvents()}
-    </section>
+    <section className="events-tab-public__section">{renderEvents()}</section>
   );
 }
 

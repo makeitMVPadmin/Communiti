@@ -6,7 +6,7 @@ $mockup-light-blue: #e1f0fb;
 
 .announcements-tab {
   @include Laptop {
-    width: 79vw;
+    width: 81.5vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,6 +20,7 @@ $mockup-light-blue: #e1f0fb;
     flex-direction: column;
     align-items: center;
     padding: 4vw 3vw;
+    width: 81.5vw;
   }
   &__none {
     background-color: rgba($MVP-Light-Blue, 0.2);

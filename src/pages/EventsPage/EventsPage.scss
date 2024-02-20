@@ -90,7 +90,6 @@
   }
 
   &__section {
-    width: 78.5vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -98,7 +97,6 @@
 
     &-text {
       @include SubHeader;
-      width: 73.9vw;
       border-bottom: solid 0.1vw black;
     }
   }
