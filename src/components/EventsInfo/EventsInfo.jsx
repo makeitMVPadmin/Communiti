@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./EventsInfo.scss";
 import EditIcon from "../../assets/images/EditIconWhite.svg";
 import { useState, useEffect } from "react";
@@ -33,16 +34,14 @@ function EventsInfo({ communityId }) {
   // }, [communityId]);
 
   useEffect(() => {
-    let community = data.communities.filter((c) => {
-      return c.id === communityId;
-    });
+    let community = data.communities.filter(c => {return c.id === communityId});
     setCommunityInfo(community[0]);
-  }, []);
+  },[]);
   console.log(communityInfo);
 
   useEffect(() => {
     setEvents(data.events);
-  }, []);
+  },[]);
 
   // useEffect(() => {
   //   const fetchCommunityEventsData = async () => {
@@ -116,7 +115,7 @@ function EventsInfo({ communityId }) {
     // Create an object and loop through the events list
     const eventsByDate = events.reduce((acc, event) => {
       const { date } = event;
-      // If the current event's date does not already exist as a property in the object,
+      // If the current event's date does not already exist as a property in the object, 
       // create a new property for that date with an empty array
       acc[date] = acc[date] || [];
       // Push the event to that array
@@ -126,18 +125,18 @@ function EventsInfo({ communityId }) {
 
     // Sort dates in object
     const sortedDates = Object.keys(eventsByDate).sort();
-
+    
     // Sort events by start time for each date
-    sortedDates.forEach((date) => {
-      eventsByDate[date].sort(
-        (a, b) => new Date(a.startTime) - new Date(b.startTime)
-      );
+    sortedDates.forEach(date => {
+      eventsByDate[date].sort((a, b) => new Date(a.startTime) - new Date(b.startTime));
     });
 
-    return sortedDates.map((date) => ({
-      date,
-      events: eventsByDate[date],
-    }));
+    return sortedDates.map(date => (
+      { 
+        date, 
+        events: eventsByDate[date] 
+      }
+    ));
   };
 
   useEffect(() => {
@@ -146,6 +145,7 @@ function EventsInfo({ communityId }) {
 
   return (
     <>
+      {/* Conditionally rendered message for no events*/}
       {events.length <= 0 && (
         <div className="event-page__empty-message-container">
           <h3 className="event-page__empty-message">
@@ -154,12 +154,15 @@ function EventsInfo({ communityId }) {
           </h3>
         </div>
       )}
-      {sortedEvents.map(({ date, events }) => (
-        <div key={date}>
-          <h2 className="event-page__section-text">
-            {DateTime.fromISO(date).toFormat("cccc, MMMM dd")}
-          </h2>
-          {events.map((event) => (
+
+      {/* Map through each date */}
+      {sortedEvents.map(({ date, events }, index) => (
+        <div>
+        <Link key={index} to={"/events/1"}>
+          <h2 className="event-page__section-text">{DateTime.fromISO(date).toFormat("cccc, MMMM dd")}</h2> 
+          
+          {/* Map through each event for that date */}
+          {events.map(event => (
             <div key={event.id} className="events-info">
               <div className="events-info__thumbnail">
                 <img
@@ -186,6 +189,8 @@ function EventsInfo({ communityId }) {
               </div>
             </div>
           ))}
+          
+        </Link>
         </div>
       ))}
     </>
