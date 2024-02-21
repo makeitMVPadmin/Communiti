@@ -278,7 +278,7 @@ function CreateEventModal({ setEventsOverlay }) {
                     className="create-communiti3__container-label event-overlay__picture-title"
                     htmlFor="communiti-icon"
                   >
-                    {image ? "Upload complete!" : "Upload a Thumbnail Image*"}
+                    {image ? "Upload complete!" : "Upload an event image"}
                   </label>
                   <div className="create-communiti3__container-input-container">
                     {image ? (
@@ -299,7 +299,6 @@ function CreateEventModal({ setEventsOverlay }) {
                           name="communiti-icon"
                           className="create-communiti3__container-input visually-hidden"
                           onChange={handleFileInputChange}
-                          required
                         />
                         <label
                           htmlFor="communiti-icon"
