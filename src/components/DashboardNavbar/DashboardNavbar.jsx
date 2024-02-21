@@ -3,6 +3,7 @@ import homeIcon from "../../assets/images/homeIcon.svg";
 import chatIcon from "../../assets/images/chatIcon.svg";
 import calendarIcon from "../../assets/images/calendarIcon.svg";
 import communitiesIcon from "../../assets/images/communitiesIcon.svg";
+import coffeeChatIcon from "../../assets/images/coffeeChatIcon.svg";
 import LogoIcon from "../../assets/logos/communiti2.svg";
 import profilePic from "../../assets/images/profilePic.svg";
 import DropDownArrow from "../../assets/images/drop-down-arrow.svg";
@@ -126,6 +127,21 @@ function DashboardNavbar() {
           <p className="dashboard-navbar__text">Events</p>
         </NavLink>
         <NavLink
+          to="/coffeechat"
+          className={(navData) =>
+            navData.isActive
+              ? "dashboard-navbar__link active"
+              : "dashboard-navbar__link"
+          }
+        >
+          <img
+            src={coffeeChatIcon}
+            alt="coffee chat icon"
+            className="dashboard-navbar__img dashboard-navbar__img--chat"
+          />
+          <p className="dashboard-navbar__text">Coffee Chat</p>
+        </NavLink>
+        {/* <NavLink
           to="/chat"
           className={(navData) =>
             navData.isActive
@@ -139,7 +155,7 @@ function DashboardNavbar() {
             className="dashboard-navbar__img dashboard-navbar__img--chat"
           />
           <p className="dashboard-navbar__text">Chat</p>
-        </NavLink>
+        </NavLink> */}
       </div>
       <div className="dashboard-navbar__right">
         <Link to="/profile" className="dashboard-navbar__link">
