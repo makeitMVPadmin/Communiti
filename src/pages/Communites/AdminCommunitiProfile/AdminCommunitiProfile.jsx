@@ -5,6 +5,8 @@ import back from "../../../assets/images/back.svg";
 import penAndPaper from "../../../assets/images/penAndPaper.svg";
 import location from "../../../assets/images/location.svg";
 import members from "../../../assets/images/members.svg";
+import edit from "../../../assets/images/edit.svg";
+import trash from "../../../assets/images/trash.svg";
 import AnnouncementsTab from "../../../components/AnnouncementsTab/AnnouncementsTab";
 import EventsTab from "../../../components/EventsTab/EventsTab";
 import MembersTab from "../../../components/MembersTab/MembersTab";
@@ -205,6 +207,10 @@ function AdminCommunitiProfile() {
               <div className="admin-communiti-profile__card-writing">
                 <h1 className="admin-communiti-profile__card-writing-top">
                   {communityData.Name}
+                  <div className="admin-communiti-profile__card-writing-top-icons">
+                    <img src={edit} alt="edit icon"></img>
+                    <img src={trash} alt="trash icon"></img>
+                  </div>
                 </h1>
                 <div className="admin-communiti-profile__card-writing-bottom">
                   <div className="admin-communiti-profile__card-writing-bottom-left">
