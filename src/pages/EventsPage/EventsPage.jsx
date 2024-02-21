@@ -90,7 +90,7 @@ function EventsHomePage() {
         return (
           <>
             {userCommunities.map((communityId, index) => (
-              <EventsInfoPublic
+              <EventsInfo
                 key={`joined-${index}`}
                 communityId={communityId}
                 joined
