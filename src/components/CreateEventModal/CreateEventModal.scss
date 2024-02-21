@@ -8,12 +8,17 @@
   height: 100%;
   flex-direction: column;
   gap: 2.2vw;
+  background: $MVP-White;
+    overflow: auto;
+  box-shadow: 0px 5px 10px black;
+  border-radius: 7px;
+  padding: 10px 0px 10px 20px;
 
   &-background {
     width: 100%;
     padding: 10.5vw 10.5vw 10.5vw 10.5vw;
     position: absolute;
-    background: $MVP-White;
+    background: transparent;
     z-index: 9;
   }
   &__title {
