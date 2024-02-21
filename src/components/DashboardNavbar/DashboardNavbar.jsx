@@ -10,8 +10,8 @@ import DropDownArrow from "../../assets/images/drop-down-arrow.svg";
 import { useNavigate } from "react-router-dom";
 import { NavLink, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { collection, doc, getDoc } from "firebase/firestore";
-import { db, auth } from "../../Firebase/FirebaseConfig";
+// import { collection, doc, getDoc } from "firebase/firestore";
+// import { db, auth } from "../../Firebase/FirebaseConfig";
 
 function DashboardNavbar() {
   const navigate = useNavigate();
@@ -22,54 +22,54 @@ function DashboardNavbar() {
     return storedProfilePhoto ? JSON.parse(storedProfilePhoto) : null;
   });
 
-  const handleLogout = async () => {
-    try {
-      await auth.signOut();
-      navigate("/");
-    } catch (error) {
-      console.error("Error logging out: ", error);
-    }
-  };
+  // const handleLogout = async () => {
+  //   try {
+  //     await auth.signOut();
+  //     navigate("/");
+  //   } catch (error) {
+  //     console.error("Error logging out: ", error);
+  //   }
+  // };
 
   const handleDropdown = () => {
     setDropdownButton(!dropdownButton); // Toggle the dropdownButton state
   };
 
-  useEffect(() => {
-    // Get the current user from Firebase Authentication
-    const currentUser = auth.currentUser;
+  // useEffect(() => {
+  //   // Get the current user from Firebase Authentication
+  //   const currentUser = auth.currentUser;
 
-    // Check if a user is signed in
-    if (currentUser && !profilePhoto) {
-      const uid = currentUser.uid;
+  //   // Check if a user is signed in
+  //   if (currentUser && !profilePhoto) {
+  //     const uid = currentUser.uid;
 
-      // Fetch user data from Firestore based on UID
-      const fetchUserData = async () => {
-        try {
-          const userDocRef = doc(collection(db, "Users"), uid);
-          const userDocSnapshot = await getDoc(userDocRef);
+  //     // Fetch user data from Firestore based on UID
+  //     const fetchUserData = async () => {
+  //       try {
+  //         const userDocRef = doc(collection(db, "Users"), uid);
+  //         const userDocSnapshot = await getDoc(userDocRef);
 
-          if (userDocSnapshot.exists()) {
-            const userData = userDocSnapshot.data();
-            if (userData && userData.profilePhoto) {
-              setProfilePhoto(userData.profilePhoto);
+  //         if (userDocSnapshot.exists()) {
+  //           const userData = userDocSnapshot.data();
+  //           if (userData && userData.profilePhoto) {
+  //             setProfilePhoto(userData.profilePhoto);
 
-              // Store profile photo in session storage
-              sessionStorage.setItem(
-                "profilePhoto",
-                JSON.stringify(userData.profilePhoto)
-              );
-            }
-          }
-        } catch (error) {
-          console.error("Error fetching user data:", error.message);
-        }
-      };
+  //             // Store profile photo in session storage
+  //             sessionStorage.setItem(
+  //               "profilePhoto",
+  //               JSON.stringify(userData.profilePhoto)
+  //             );
+  //           }
+  //         }
+  //       } catch (error) {
+  //         console.error("Error fetching user data:", error.message);
+  //       }
+  //     };
 
-      // Call the fetchUserData function
-      fetchUserData();
-    }
-  }, [profilePhoto]);
+  //     // Call the fetchUserData function
+  //     fetchUserData();
+  //   }
+  // }, [profilePhoto]);
 
   return (
     <div className="dashboard-navbar">
@@ -169,7 +169,10 @@ function DashboardNavbar() {
           <img src={DropDownArrow} alt="DropDownArrow icon" />
         </button>
         {dropdownButton && ( // Render logout button if dropdownButton is true
-          <button className="log-out" onClick={handleLogout}>
+          <button 
+            className="log-out" 
+            // onClick={handleLogout}
+          >
             Logout
           </button>
         )}

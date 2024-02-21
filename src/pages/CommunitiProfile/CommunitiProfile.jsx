@@ -1,6 +1,6 @@
 import "./CommunitiProfile.scss";
 import { useState, useEffect } from "react";
-// import DashboardNavbar from "../../components/DashboardNavbar/DashboardNavbar";
+import DashboardNavbar from "../../components/DashboardNavbar/DashboardNavbar";
 import penAndPaper from "../../assets/images/penAndPaper.svg";
 import location from "../../assets/images/location.svg";
 import members from "../../assets/images/members.svg";
@@ -176,7 +176,7 @@ function CommunitiProfile() {
 
   return (
     <>
-      {/* <DashboardNavbar /> */}
+      <DashboardNavbar />
       <main className="communiti-profile">
         <section className="communiti-profile__hero">
           {!isUserJoined && ( // Render the button only if the user hasn't joined

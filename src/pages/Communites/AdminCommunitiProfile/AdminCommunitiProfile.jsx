@@ -1,6 +1,6 @@
 import "./AdminCommunitiProfile.scss";
 import { useState, useEffect } from "react";
-// import DashboardNavbar from "../../../components/DashboardNavbar/DashboardNavbar";
+import DashboardNavbar from "../../../components/DashboardNavbar/DashboardNavbar";
 import back from "../../../assets/images/back.svg";
 import penAndPaper from "../../../assets/images/penAndPaper.svg";
 import location from "../../../assets/images/location.svg";
@@ -172,7 +172,7 @@ function AdminCommunitiProfile() {
           communityData={communityData}
         />
       )}
-      {/* <DashboardNavbar /> */}
+      <DashboardNavbar />
       <main className="admin-communiti-profile">
         <section className="admin-communiti-profile__hero">
           <div

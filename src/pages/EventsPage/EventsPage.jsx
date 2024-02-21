@@ -1,4 +1,4 @@
-// import EventsNavbar from "../../components/DashboardNavbar/DashboardNavbar";
+import EventsNavbar from "../../components/DashboardNavbar/DashboardNavbar";
 import "./EventsPage.scss";
 import { collection, doc, getDoc } from "firebase/firestore";
 import EventsInfo from "../../components/EventsInfo/EventsInfo";
@@ -103,8 +103,7 @@ function EventsHomePage() {
 
   return (
     <div className="event-page">
-      <p>{userCommunitiesJoined}</p>
-      {/* <EventsNavbar /> */}
+      <EventsNavbar />
       <div className="event-page__container">
         <div className="event-page__filters">
           <select

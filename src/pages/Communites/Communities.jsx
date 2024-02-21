@@ -6,8 +6,8 @@ import plusIcon from "../../assets/images/plusIcon.svg";
 import placeHolderIcon from "../../assets/images/PlaceHolderIcon.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db, auth } from "../../Firebase/FirebaseConfig";
+// import { collection, getDocs } from "firebase/firestore";
+// import { db, auth } from "../../Firebase/FirebaseConfig";
 
 function Communities() {
   const [userCommunitiesManage, setUserCommunitiesManage] = useState([]);
@@ -19,48 +19,48 @@ function Communities() {
     useState(false);
   const navigate = useNavigate();
 
-  // Fetch user data and all communities from Firestore
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Get the current user from Firebase Authentication
-        const currentUser = auth.currentUser;
+  // // Fetch user data and all communities from Firestore
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       // Get the current user from Firebase Authentication
+  //       const currentUser = auth.currentUser;
 
-        if (currentUser) {
-          const uid = currentUser.uid;
+  //       if (currentUser) {
+  //         const uid = currentUser.uid;
 
-          // Fetch user data
-          const userSnapshot = await getDocs(collection(db, "Users"));
-          const users = [];
-          userSnapshot.forEach((doc) => {
-            users.push({ id: doc.id, ...doc.data() });
-          });
+  //         // Fetch user data
+  //         const userSnapshot = await getDocs(collection(db, "Users"));
+  //         const users = [];
+  //         userSnapshot.forEach((doc) => {
+  //           users.push({ id: doc.id, ...doc.data() });
+  //         });
 
-          // Find the user by ID (replace 'uid' with the actual user ID)
-          const currentUserData = users.find((user) => user.id === uid);
+  //         // Find the user by ID (replace 'uid' with the actual user ID)
+  //         const currentUserData = users.find((user) => user.id === uid);
 
-          if (currentUserData) {
-            setUserCommunitiesManage(currentUserData["CommunitiesManage"]);
-            setUserCommunitiesJoined(currentUserData["CommunitiesJoined"]);
-          }
+  //         if (currentUserData) {
+  //           setUserCommunitiesManage(currentUserData["CommunitiesManage"]);
+  //           setUserCommunitiesJoined(currentUserData["CommunitiesJoined"]);
+  //         }
 
-          // Fetch all communities
-          const communitiesSnapshot = await getDocs(
-            collection(db, "Communities")
-          );
-          const communities = [];
-          communitiesSnapshot.forEach((doc) => {
-            communities.push({ id: doc.id, ...doc.data() });
-          });
-          setAllCommunities(communities);
-        }
-      } catch (error) {
-        console.error("Error fetching data: ", error);
-      }
-    };
+  //         // Fetch all communities
+  //         const communitiesSnapshot = await getDocs(
+  //           collection(db, "Communities")
+  //         );
+  //         const communities = [];
+  //         communitiesSnapshot.forEach((doc) => {
+  //           communities.push({ id: doc.id, ...doc.data() });
+  //         });
+  //         setAllCommunities(communities);
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching data: ", error);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   const handleCreateCommunity = () => {
     navigate("/communities/create");
