@@ -25,6 +25,7 @@ function CommunitiProfile() {
   const [showAnnouncements, setShowAnnouncements] = useState(true);
   const [showEvents, setShowEvents] = useState(false);
   const [showMembers, setShowMembers] = useState(false);
+  const [showNewsletter, setShowNewsletter] = useState(false);
   const [communityData, setCommunityData] = useState(null);
   const [announcements, setAnnouncements] = useState([]);
   const [events, setEvents] = useState([]);
@@ -115,16 +116,25 @@ function CommunitiProfile() {
         setShowAnnouncements(true);
         setShowEvents(false);
         setShowMembers(false);
+        setShowNewsletter(false);
         break;
       case "E":
         setShowAnnouncements(false);
         setShowEvents(true);
         setShowMembers(false);
+        setShowNewsletter(false);
         break;
       case "M":
         setShowAnnouncements(false);
         setShowEvents(false);
         setShowMembers(true);
+        setShowNewsletter(false);
+        break;
+      case "N":
+        setShowAnnouncements(false);
+        setShowEvents(false);
+        setShowMembers(false);
+        setShowNewsletter(true);
         break;
       default:
         break;
@@ -265,6 +275,16 @@ function CommunitiProfile() {
                 >
                   Members
                 </p>
+                <p
+                  onClick={() => handleTabChoice("N")}
+                  className={
+                    showNewsletter
+                      ? "admin-communiti-profile__aem-tabs-tab admin-communiti-profile__aem-tabs-tab--active"
+                      : "admin-communiti-profile__aem-tabs-tab"
+                  }
+                >
+                  Newsletter
+                </p>
               </div>
 
               {showAnnouncements && (
@@ -278,6 +298,13 @@ function CommunitiProfile() {
               }
               {showMembers && (
                 <MembersTab memberIds={memberIds} memberRoles={memberRoles} />
+              )}
+              {showNewsletter && (
+                // Placeholder for newsletter UI from Team Supergroup
+                <AnnouncementsTab
+                  announcements={announcements}
+                  communityData={communityData}
+                />
               )}
             </section>
           </section>
