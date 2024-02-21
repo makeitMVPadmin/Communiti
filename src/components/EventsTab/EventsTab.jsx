@@ -24,11 +24,27 @@ function EventsTab({ communityData, setEventsOverlay, events }) {
 
   function someEvents() {
     return (
-      <div className="events-tab__none">
-        <p className="events-tab__none-writing">
-          Bring your community to life!
-          <br /> Create events to connect and engage
-        </p>
+      <div className="events-tab__some">
+        <div className="events-tab__date-container">
+          <label className="events-tab__date-text">Date Range</label>
+          <div className="events-tab__dates-container">
+            <input
+              type="date"
+              id="startDate"
+              name="startDate"
+              className="events-tab__date-input"
+            />
+            <p className="events-tab__date-text events-tab__date-text--alt">
+              -
+            </p>
+            <input
+              type="date"
+              id="endDate"
+              name="endDate"
+              className="events-tab__date-input"
+            />
+          </div>
+        </div>
         <button
           className="events-tab__none-button"
           onClick={() => setEventsOverlay(true)}
