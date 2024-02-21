@@ -8,6 +8,7 @@ import members from "../../../assets/images/members.svg";
 import AnnouncementsTab from "../../../components/AnnouncementsTab/AnnouncementsTab";
 import EventsTab from "../../../components/EventsTab/EventsTab";
 import MembersTab from "../../../components/MembersTab/MembersTab";
+import NewsletterTab from "../../../components/NewsletterTab/NewsletterTab";
 import { useParams, useNavigate } from "react-router-dom";
 // import { db } from "../../../Firebase/FirebaseConfig";
 // import { collection, doc, getDoc, getDocs } from "firebase/firestore";
@@ -308,7 +309,7 @@ function AdminCommunitiProfile() {
               )}
               {showNewsletter && (
                 // Placeholder for newsletter UI from Team Supergroup
-                <AnnouncementsTab
+                <NewsletterTab
                   announcements={announcements}
                   setAnnouncementsOverlay={setAnnouncementsOverlay}
                   communityData={communityData}
