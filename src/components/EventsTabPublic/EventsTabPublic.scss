@@ -51,7 +51,7 @@ $mockup-light-blue: #e1f0fb;
 
   }
       &__section {
-      background-color: rgba($MVP-Light-Blue, 0.2);
+      background-color: $mockup-light-blue;
       border-radius: 0.5vw;
       border: 0.2vw solid #000;
       width: 81.5vw;

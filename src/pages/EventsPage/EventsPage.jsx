@@ -2,7 +2,7 @@
 import "./EventsPage.scss";
 import { collection, doc, getDoc } from "firebase/firestore";
 import EventsInfo from "../../components/EventsInfo/EventsInfo";
-import EventsInfoPublic from "../../components/EventsInfoPublic/EventsInfo";
+import EventsInfoPublic from "../../components/EventsInfoPublic/EventsInfoPublic";
 import { useState, useEffect } from "react";
 import { db, auth } from "../../Firebase/FirebaseConfig";
 import data from "../../data.json";
@@ -51,22 +51,21 @@ function EventsHomePage() {
   // useEffect(() => {
   //   setUserCommunities([...userCommunitiesJoined, ...userCommunitiesManaged]);
   // }, []);
-  useEffect(() => {
-    setUserCommunities([...data.users[0].communitiesJoined]);
-  }, []);
 
-  // console.log(userCommunitiesJoined);
-  // console.log(userCommunitiesManaged);
-  // console.log(userCommunities);
+  useEffect(() => {
+    setUserCommunities([1]);
+    setUserCommunitiesJoined([1]);
+    setUserCommunitiesManaged([1]);
+  }, []);
 
   const handleDropdownChange = (event) => {
     setSelectedOption(event.target.value);
   };
-
-  // Filter out joined communities that are also managed
-  const filteredJoinedCommunities = userCommunitiesJoined.filter(
-    (joinedId) => !userCommunitiesManaged.includes(joinedId)
-  );
+ 
+  // // Filter out joined communities that are also managed
+  // const filteredJoinedCommunities = userCommunitiesJoined.filter(
+  //   (joinedId) => !userCommunitiesManaged.includes(joinedId)
+  // );
 
   const filterEvents = () => {
     switch (selectedOption) {
@@ -79,7 +78,8 @@ function EventsHomePage() {
           />
         ));
       case "option3": // Communities Joined
-        return filteredJoinedCommunities.map((communityId, index) => (
+        // return filteredJoinedCommunities.map((communityId, index) => (
+        return userCommunitiesJoined.map((communityId, index) => (
           <EventsInfoPublic
             key={`joined-${index}`}
             communityId={communityId}

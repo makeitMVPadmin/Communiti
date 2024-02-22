@@ -22,11 +22,14 @@ import {
   setDoc,
 } from "firebase/firestore";
 import data from "../../data.json";
+const { DateTime } = require("luxon");
 
 export default function EventProfile() {
   const [editEvent, setEditEvent] = useState(false);
   const [editDetails, setEditDetails] = useState({});
   const [eventData, setEventData] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     let events = data.events;
@@ -86,7 +89,7 @@ export default function EventProfile() {
 
   const eventDetails = eventData;
 
-  const navigate = useNavigate();
+
 
   const handleEditButton = () => {
     setEditEvent(!editEvent);
@@ -113,7 +116,7 @@ export default function EventProfile() {
                     onClick={handleEditButton}
                   >
                     <div className="event-profile__edit-button-inner-div">
-                      <img src={editIcon} />
+                      <img src={editIcon} alt="Edit button"/>
                       <p>Edit Event</p>
                     </div>
                   </button>
@@ -133,8 +136,7 @@ export default function EventProfile() {
                         className="event-profile__content-details-image"
                       />
                       <p className="event-profile__content-details-text">
-                        {/* {formatDate(eventDetails.date)} */}
-                        {eventDetails.date}
+                        {DateTime.fromISO(eventDetails.date).toFormat("ccc, MMM dd, yyyy").toUpperCase()}
                       </p>
                     </div>
                     <div className="event-profile__content-details-div">
@@ -143,8 +145,8 @@ export default function EventProfile() {
                         className="event-profile__content-details-image"
                       />
                       <p className="event-profile__content-details-text">
-                        {eventDetails.startTime} - {eventDetails.endTime}{" "}
-                        {eventDetails.timeZone}
+                        {DateTime.fromISO(eventDetails.startTime).toFormat("t")} 
+                        - {DateTime.fromISO(eventDetails.endTime).toFormat("t ZZZZ")}
                       </p>
                     </div>
                     <div className="event-profile__content-details-div">
