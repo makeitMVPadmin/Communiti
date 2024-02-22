@@ -446,7 +446,7 @@ function EditEventModal({ setEditEvent, eventDetails }) {
                 type="button"
                 onClick={() => setEditEvent(false)}
               >
-                Cancel
+                Delete Event
               </button>
               <button className="edit-event-overlay__button" type="submit">
                 Save
