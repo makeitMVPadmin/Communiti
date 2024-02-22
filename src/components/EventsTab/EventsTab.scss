@@ -55,4 +55,57 @@ $mockup-light-blue: #e1f0fb;
       }
     }
   }
+
+  &__some {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 77.4vw;
+    margin-bottom: 30px;
+    height: 9.5vw;
+  }
+
+  &__date {
+    &-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5vw;
+    }
+    &-input {
+      display: flex;
+      padding: 0.8vw 0.5vw;
+      justify-content: center;
+      align-items: center;
+      margin: 0 5px;
+      border-radius: 0.5vw;
+      border: 0.1vw solid #000;
+      cursor:text;
+
+      /* Mobile - Body */
+      font-family: Gilroy;
+      font-size: 1.5vw;
+      font-style: normal;
+      font-weight: 800;
+      line-height: 115.645%;
+
+      &::-webkit-calendar-picker-indicator {
+        display: none;
+        -webkit-appearance: none;
+      }
+
+      &::-webkit-datetime-edit {
+        text-transform: uppercase;
+      }
+    }
+
+    &-text {
+      @include Body;
+    }
+
+    &s-container {
+      display: flex;
+      align-items: center;
+    }
+  }
 }

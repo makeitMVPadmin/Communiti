@@ -31,12 +31,15 @@ function CreateCommunitiPage() {
       setCurrentStep(currentStep + 1);
     } else if (currentStep === 2 && communitiDescription) {
       setCurrentStep(currentStep + 1);
-    } else if (currentStep === 3 && image) {
+    } else if (currentStep === 3) {
       try {
-        const imageFilename = image.name || `image_${Date.now()}`;
-        const storageRef = ref(storage, `community_images/${imageFilename}`);
-        await uploadBytes(storageRef, image);
-        const imageUrl = await getDownloadURL(storageRef);
+        let imageUrl = null
+        if (image) {
+          const imageFilename = image.name || `image_${Date.now()}`;
+          const storageRef = ref(storage, `community_images/${imageFilename}`);
+          await uploadBytes(storageRef, image);
+          imageUrl = await getDownloadURL(storageRef);
+        }
 
         // Use the actual user ID when user authentication is implemented
         const createdBy = auth.currentUser.uid;

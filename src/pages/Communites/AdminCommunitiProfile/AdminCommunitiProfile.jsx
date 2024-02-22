@@ -1,13 +1,16 @@
 import "./AdminCommunitiProfile.scss";
 import { useState, useEffect } from "react";
-// import DashboardNavbar from "../../../components/DashboardNavbar/DashboardNavbar";
+import DashboardNavbar from "../../../components/DashboardNavbar/DashboardNavbar";
 import back from "../../../assets/images/back.svg";
 import penAndPaper from "../../../assets/images/penAndPaper.svg";
 import location from "../../../assets/images/location.svg";
 import members from "../../../assets/images/members.svg";
+import edit from "../../../assets/images/edit.svg";
+import trash from "../../../assets/images/trash.svg";
 import AnnouncementsTab from "../../../components/AnnouncementsTab/AnnouncementsTab";
 import EventsTab from "../../../components/EventsTab/EventsTab";
 import MembersTab from "../../../components/MembersTab/MembersTab";
+import NewsletterTab from "../../../components/NewsletterTab/NewsletterTab";
 import { useParams, useNavigate } from "react-router-dom";
 // import { db } from "../../../Firebase/FirebaseConfig";
 // import { collection, doc, getDoc, getDocs } from "firebase/firestore";
@@ -23,6 +26,7 @@ function AdminCommunitiProfile() {
   const [showEvents, setShowEvents] = useState(false);
   const [showEventsOverlay, setEventsOverlay] = useState(false);
   const [showMembers, setShowMembers] = useState(false);
+  const [showNewsletter, setShowNewsletter] = useState(false);
   const [communityData, setCommunityData] = useState(null);
   const [announcements, setAnnouncements] = useState([]);
   const [events, setEvents] = useState([]);
@@ -132,16 +136,25 @@ function AdminCommunitiProfile() {
         setShowAnnouncements(true);
         setShowEvents(false);
         setShowMembers(false);
+        setShowNewsletter(false);
         break;
       case "E":
         setShowAnnouncements(false);
         setShowEvents(true);
         setShowMembers(false);
+        setShowNewsletter(false);
         break;
       case "M":
         setShowAnnouncements(false);
         setShowEvents(false);
         setShowMembers(true);
+        setShowNewsletter(false);
+        break;
+      case "N":
+        setShowAnnouncements(false);
+        setShowEvents(false);
+        setShowMembers(false);
+        setShowNewsletter(true);
         break;
       default:
         break;
@@ -162,7 +175,7 @@ function AdminCommunitiProfile() {
           communityData={communityData}
         />
       )}
-      {/* <DashboardNavbar /> */}
+      <DashboardNavbar />
       <main className="admin-communiti-profile">
         <section className="admin-communiti-profile__hero">
           <div
@@ -194,6 +207,10 @@ function AdminCommunitiProfile() {
               <div className="admin-communiti-profile__card-writing">
                 <h1 className="admin-communiti-profile__card-writing-top">
                   {communityData.Name}
+                  <div className="admin-communiti-profile__card-writing-top-icons">
+                    <img src={edit} alt="edit icon"></img>
+                    <img src={trash} alt="trash icon"></img>
+                  </div>
                 </h1>
                 <div className="admin-communiti-profile__card-writing-bottom">
                   <div className="admin-communiti-profile__card-writing-bottom-left">
@@ -268,6 +285,16 @@ function AdminCommunitiProfile() {
                 >
                   Members
                 </p>
+                <p
+                  onClick={() => handleTabChoice("N")}
+                  className={
+                    showNewsletter
+                      ? "admin-communiti-profile__aem-tabs-tab admin-communiti-profile__aem-tabs-tab--active"
+                      : "admin-communiti-profile__aem-tabs-tab"
+                  }
+                >
+                  Newsletter
+                </p>
               </div>
               {showAnnouncements && (
                 <AnnouncementsTab
@@ -285,6 +312,14 @@ function AdminCommunitiProfile() {
               )}
               {showMembers && (
                 <MembersTab memberIds={memberIds} memberRoles={memberRoles} />
+              )}
+              {showNewsletter && (
+                // Placeholder for newsletter UI from Team Supergroup
+                <NewsletterTab
+                  announcements={announcements}
+                  setAnnouncementsOverlay={setAnnouncementsOverlay}
+                  communityData={communityData}
+                />
               )}
             </section>
           </section>

@@ -59,13 +59,12 @@
 
   &__sub-header {
     @include LandingPage-Sub-Titles;
-    text-decoration: underline;
     margin: 1rem 0;
   }
 
   &__paragraph {
     @include LandingPage-Text;
     margin-bottom: 4rem;
-    width: 100%;
+    width: 90%;
   }
 }

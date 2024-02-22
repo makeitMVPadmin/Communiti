@@ -80,7 +80,7 @@
 
 .announcements-overlay-background {
   background: rgba(0, 0, 0, 0.7);
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

@@ -125,11 +125,10 @@
     }
     &-button {
       margin: 0;
-      background-color: rgba(0, 153, 255, 1);
-      color: black;
-      width: 170px;
-      height: 44px;
-      border: 3px solid black;
+      background: $MVP-Dark-Blue;
+      color: $MVP-White;
+      width: 15.1vw;
+      height: 4.4vw;
       border-radius: 8px;
       font-family: Gilroy;
       cursor: pointer;

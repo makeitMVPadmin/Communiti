@@ -9,7 +9,7 @@ import clockIcon from "../../assets/images/clockIcon.svg";
 import location from "../../assets/images/location.svg";
 import rightArrowIcon from "../../assets/images/rightArrowIcon.svg";
 import profilePic from "../../assets/images/profilePic.svg";
-import editIcon from "../../assets/images/edit.svg";
+import EditIcon from "../../assets/images/EditIconWhite.svg";
 import EditEventModal from "../../components/EditEventModal/EditEventModal";
 import AddToCalendarButton from "../../components/AddToCalendarButton/AddToCalendarButton";
 import { db, auth } from "../../Firebase/FirebaseConfig";
@@ -116,7 +116,7 @@ export default function EventProfile() {
                     onClick={handleEditButton}
                   >
                     <div className="event-profile__edit-button-inner-div">
-                      <img src={editIcon} alt="Edit button"/>
+                      <img src={EditIcon} alt="Edit button"/>
                       <p>Edit Event</p>
                     </div>
                   </button>
