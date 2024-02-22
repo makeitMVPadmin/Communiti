@@ -44,7 +44,7 @@ function DashboardPage() {
       <div className="dashboard-page__container">
         <div className="dashboard-page__welcome">
           <h1 className="dashboard-page__header">
-            Welcome back 👋`
+            Welcome! 👋
           </h1>
         </div>
         {userCommunities.length === 0 && (
