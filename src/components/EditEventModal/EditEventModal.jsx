@@ -182,7 +182,9 @@ function EditEventModal({ setEditEvent, eventDetails }) {
     }
   };
   return (
-    <div className="edit-event-overlay-background">
+    <div
+      className={`edit-event-overlay-background ${setEditEvent ? "open" : ""}`}
+    >
       <div className="edit-event-overlay">
         <div className="edit-event-overlay__outer-div">
           <div className="edit-event-overlay__title-container">

@@ -134,7 +134,7 @@ function EventsInfo({ communityId }) {
 
       {/* Map through each date */}
       {sortedEvents.map(({ date, events }, index) => (
-        <div>
+        <div key={date}>
           <h2 className="event-page__section-text">{DateTime.fromISO(date).toFormat("cccc, MMMM dd")}</h2> 
           
           {/* Map through each event for that date */}
