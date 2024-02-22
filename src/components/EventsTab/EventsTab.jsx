@@ -60,7 +60,7 @@ function EventsTab({ communityData, setEventsOverlay, events }) {
       <div className="events-tab-">
         {events.length === 0 ? noEvents() : someEvents()}
       </div>
-      <EventsInfo communityId={id} />;
+      <EventsInfo communityId={id} />
     </section>
   );
 }
