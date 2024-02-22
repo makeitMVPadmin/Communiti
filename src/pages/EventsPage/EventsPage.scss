@@ -26,10 +26,14 @@
   }
   &__dropdown {
     display: flex;
-    padding: 0.5vw 1.1vw;
+    // padding: 0.5vw 1.1vw;
+    padding-left: .5vw;
     align-items: center;
     gap: 0.7vw;
+    width: 9vw;
+    height: 3vw;
     border-radius: 0.5vw;
+    border: none;
     background: #85bbfb;
     cursor: pointer;
     @include Body;
