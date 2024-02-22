@@ -39,7 +39,7 @@
 
 // Text
 @mixin Heading {
-  font-family: Corben;
+  font-family: Gilroy;
   font-style: normal;
   font-weight: 700;
   line-height: 140%;
@@ -59,16 +59,16 @@
   font-family: Gilroy;
   font-style: normal;
   font-weight: 800;
-  line-height: 115.645%;
-  font-size: 7.2vw;
+  line-height: 150%;
+  font-size: 20pt;
 
   @include Laptop {
     font-size: 4vw;
-    font-size: 2.1vw;
+    font-size: 20pt;
   }
 
   @include Designers {
-    font-size: 1.875rem; //30px
+    font-size: 20pt; //30px
   }
 }
 
@@ -78,13 +78,13 @@
   font-style: normal;
   font-weight: 800;
   line-height: 115.645%; /* 28.911px */
-  font-size: 5.6vw;
+  font-size: 16pt;
 
   @include Laptop {
-    font-size: 1.7vw;
+    font-size: 16pt;
   }
   @include Designers {
-    font-size: 1.5625rem; //25px
+    font-size: 16pt;
   }
 }
 @mixin Buttons {
