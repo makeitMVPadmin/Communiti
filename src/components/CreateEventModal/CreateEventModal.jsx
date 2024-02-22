@@ -132,6 +132,8 @@ function CreateEventModal({ setEventsOverlay }) {
       <div className="event-overlay">
         <h2 className="event-overlay__title">Create an Event</h2>
         <form className="event-overlay__form" onSubmit={handleSubmit}>
+
+          {/* TITLE */}
           <div className="event-overlay__container">
             <label className="event-overlay__input-label" htmlFor="eventTitle">
               Event Title*
@@ -151,6 +153,8 @@ function CreateEventModal({ setEventsOverlay }) {
               </span>
             </div>
           </div>
+
+          {/* DESCRIPTION */}
           <div className="event-overlay__input-container">
             <label className="event-overlay__input-label" htmlFor="description">
               Description*
@@ -170,18 +174,77 @@ function CreateEventModal({ setEventsOverlay }) {
               </span>
             </div>
           </div>
-          <div>
-            <label className="event-overlay__input-label" htmlFor="date">
-              Date*
-            </label>
-            <input
-              type="date"
-              id="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              className="event-overlay__input-date"
-            />
+
+          <div className="event-overlay__input-time-container">
+            {/* DATE */}
+            <div className="event-overlay__input-time-containers">
+              <label className="event-overlay__input-label" htmlFor="date">
+                Date*
+              </label>
+              <input
+                type="date"
+                id="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                className="event-overlay__input-date"
+              />
+            </div>
+
+            {/* START TIME */}
+            <div className="event-overlay__input-time-containers">
+              <label
+                className="event-overlay__input-label"
+                htmlFor="startTime"
+              >
+                Start Time
+              </label>
+              <input
+                type="time"
+                id="startTime"
+                value={startTime}
+                onChange={(e) => setStartTime(e.target.value)}
+                className="event-overlay__input-time"
+              />
+            </div>
+
+            {/* END TIME */}
+            <div className="event-overlay__input-time-containers">
+              <label
+                className="event-overlay__input-label"
+                htmlFor="endTime"
+              >
+                End Time
+              </label>
+              <input
+                type="time"
+                id="endTime"
+                value={endTime}
+                onChange={(e) => setEndTime(e.target.value)}
+                className="event-overlay__input-time"
+              />
+            </div>
+
+            {/* TIMEZONE */}
+            <div className="event-overlay__input-time-containers">
+              <label className="event-overlay__input-label" htmlFor="timezone">
+                Timezone
+              </label>
+              <select
+                className="event-overlay__input-select"
+                id="timezone"
+                value={timezone}
+                onChange={handleTimezoneChange}
+              >
+                <option value="">Select Timezone</option>
+                {timezoneOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
+
           <div className="event-overlay__input-location-container">
             <p className="event-overlay__input-label">Location*</p>
             <div className="event-overlay__input-location-container-alt">
@@ -222,63 +285,14 @@ function CreateEventModal({ setEventsOverlay }) {
           </div>
           <div className="event-overlay__bottom-container">
             <div className="event-overlay__left-container">
-              <div className="event-overlay__input-time-container">
-                <div className="event-overlay__input-time-containers">
-                  <label
-                    className="event-overlay__input-label"
-                    htmlFor="startTime"
-                  >
-                    Start Time
-                  </label>
-                  <input
-                    type="time"
-                    id="startTime"
-                    value={startTime}
-                    onChange={(e) => setStartTime(e.target.value)}
-                    className="event-overlay__input-time"
-                  />
-                </div>
-                <div className="event-overlay__input-time-containers">
-                  <label
-                    className="event-overlay__input-label"
-                    htmlFor="endTime"
-                  >
-                    End Time
-                  </label>
-                  <input
-                    type="time"
-                    id="endTime"
-                    value={endTime}
-                    onChange={(e) => setEndTime(e.target.value)}
-                    className="event-overlay__input-time"
-                  />
-                </div>
-              </div>
-              <label className="event-overlay__input-label" htmlFor="timezone">
-                Timezone
-              </label>
-              <br />
-              <select
-                className="event-overlay__input-select"
-                id="timezone"
-                value={timezone}
-                onChange={handleTimezoneChange}
-              >
-                <option value="">Select Timezone</option>
-                {timezoneOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-
+              
               <div className="event-overlay__image-container">
                 <div className="create-communiti3__container-form">
                   <label
                     className="create-communiti3__container-label event-overlay__picture-title"
                     htmlFor="communiti-icon"
                   >
-                    {image ? "Upload complete!" : "Upload a Thumbnail Image*"}
+                    {image ? "Upload complete!" : "Upload an event image"}
                   </label>
                   <div className="create-communiti3__container-input-container">
                     {image ? (
@@ -299,7 +313,6 @@ function CreateEventModal({ setEventsOverlay }) {
                           name="communiti-icon"
                           className="create-communiti3__container-input visually-hidden"
                           onChange={handleFileInputChange}
-                          required
                         />
                         <label
                           htmlFor="communiti-icon"

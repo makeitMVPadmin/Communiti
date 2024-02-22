@@ -1,0 +1,55 @@
+@use "../../styles/typography" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+$mockup-light-blue: #e1f0fb;
+
+.announcements-tab {
+  position: relative;
+  z-index: 0;
+  @include Laptop {
+    width: 81.5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &-background {
+    background-color: $mockup-light-blue;
+    background: #e1f0fb;
+    border-radius: 0.5vw;
+    border: 0.2vw solid #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4vw 3vw;
+    width: 81.5vw;
+  }
+  &__none {
+    background-color: rgba($MVP-Light-Blue, 0.2);
+    border-radius: 0.5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 71.8vw;
+    padding: 2.3vw 2.8vw;
+    height: 9.5vw;
+
+    &-writing {
+      @include Body;
+      width: 38.1vw;
+    }
+
+    &-button {
+      @include Buttons;
+      border: 0.2vw solid $MVP-black;
+      border-radius: 0.5vw;
+      padding: 1vw;
+      background-color: $MVP-Yellow;
+      cursor: pointer;
+
+      @include Laptop {
+        width: 26vw;
+      }
+    }
+  }
+}

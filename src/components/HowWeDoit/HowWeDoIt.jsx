@@ -15,30 +15,27 @@ const HowWeDoIt = () => {
         <div className="how__container">
           <img className="how__image" src={calendar} alt="events" />
           <div className="how__containers">
-            <h3 className="how__sub-header">Events</h3>
+            <h3 className="how__sub-header">Calendar Integration</h3>
             <p className="how__paragraph">
-              Stop forgetting your upcoming events. Track them all with your
-              Communiti calendar.
+              Stop forgetting your upcoming events. Integrate Communiti events into your Google calendar!
             </p>
           </div>
         </div>
         <div className="how__container">
           <img className="how__image" src={inbox} alt="inbox" />
           <div className="how__containers">
-            <h3 className="how__sub-header ">Inbox</h3>
+            <h3 className="how__sub-header ">Event Discussions</h3>
             <p className="how__paragraph">
-              Keep in touch with new connections and nurture existing ones with
-              your Communiti inbox.
+              Communicate and organize event logistics with ease with the event's discussion forum.
             </p>
           </div>
         </div>
         <div className="how__container">
           <img className="how__image" src={update} alt="update" />
           <div className="how__containers">
-            <h3 className="how__sub-header">Updates</h3>
+            <h3 className="how__sub-header">Attendee Management</h3>
             <p className="how__paragraph">
-              Subscribe for newsletters and announcements from the organizations
-              you're a part of so you can keep up with the latest info.
+              Effortlessly organize, track, and engage with event participants for enhanced attendee experience.
             </p>
           </div>
         </div>

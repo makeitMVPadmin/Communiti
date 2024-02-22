@@ -76,16 +76,25 @@ $mockup-light-blue: #e1f0fb;
       &-top {
         @include Heading;
         font-family: Gilroy;
+        display: flex;
+        justify-content: space-between;
         @include Laptop {
           margin: 0 0 1.1vw 0;
+        }
+
+        &-icons {
+          display: flex;
+          justify-content: space-between;
+
+          * {
+            margin-left: 10px;
+          }
         }
       }
 
       &-bottom {
         display: flex;
         justify-content: space-between;
-
-        // border: 2px solid blue;
         padding-right: 1vw;
 
         &-left {
