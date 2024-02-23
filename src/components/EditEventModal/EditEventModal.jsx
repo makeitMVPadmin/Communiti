@@ -28,6 +28,7 @@ function EditEventModal({ setEditEvent, eventDetails }) {
   const [image, setImage] = useState(null);
   const [timezoneOptions, setTimezoneOptions] = useState([]);
   const [userTimezone, setUserTimezone] = useState("");
+  
 
   const { id } = useParams();
 
@@ -94,7 +95,7 @@ function EditEventModal({ setEditEvent, eventDetails }) {
       endTime,
       timezone,
     };
-    fetch(`http://localhost:3005/events/${eventID}`, {
+    fetch(`http://localhost:3001/events/${eventID}`, {
       method: "PATCH", // Use appropriate HTTP method for writing data
       headers: {
         "Content-Type": "application/json",
@@ -108,54 +109,9 @@ function EditEventModal({ setEditEvent, eventDetails }) {
       console.log("Event updated successfully in JSON file");
       setEditEvent(false);
     });
-    // });
+
   };
-  const handleTestEdit2 = async (e) => {
-    e.preventDefault();
-
-    try {
-      // Fetch the JSON file
-      const response = await fetch("/DummyData2.json");
-
-      // Check if the request was successful (status code 200)
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      // Parse the JSON data
-      const jsonData = await response.json();
-      const eventID = jsonData.events[0].id;
-
-      // Create an object to store the updated event data
-      const updatedEvent = {
-        title: eventTitle,
-        description,
-        venue: locationType === "venue" ? venueAddress : "Online",
-        date,
-        startTime,
-        endTime,
-        timezone,
-        // Add other fields as needed
-      };
-
-      // Save changes back to the JSON file if any fields have changed
-      // Use the appropriate fetch method for updating data
-      await fetch(`http://localhost:3005/events/${eventID}`, {
-        method: "PATCH", // Use appropriate HTTP method for writing data
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedEvent),
-      });
-      console.log("Event updated successfully in JSON file");
-
-      // Close the modal or perform any other necessary actions
-      setEditEvent(false);
-    } catch (error) {
-      console.error("Error updating event:", error.message);
-    }
-  };
-
+ 
   const handleFileInputChange = async (e) => {
     const file = e.target.files[0];
 
