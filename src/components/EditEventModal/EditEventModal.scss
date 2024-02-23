@@ -6,9 +6,8 @@
   display: flex;
   flex-direction: column;
   width: 90vw;
-  height: 80vh;
+  height: 90%;
   font-family: Gilroy;
-
   gap: 2.2vw;
   background: $MVP-White;
   overflow: auto;
@@ -18,36 +17,25 @@
 
   @include Tablet {
     padding: 20px 0px 20px 40px;
-
     width: 80vw;
-    height: 70vh;
+    height: 90%;
   }
 
   @include Laptop {
-    padding: 40px 0px 40px 80px;
-
+    padding: 40px 0px 40px 50px;
     width: 70vw;
-    height: 60vh;
+    height: 90%;
     min-height: 650px;
   }
 
   &__outer-div {
     overflow: auto;
-    padding-right: 20px;
-    @include Tablet {
-      padding-right: 40px;
-    }
-    @include Laptop {
-      padding-right: 80px;
-    }
+    padding-right: 40px;
   }
 
   &__title {
-    font-size: 24px;
+    @include Heading;
 
-    @include Tablet {
-      font-size: 30px;
-    }
     &-container {
       display: flex;
       width: 100%;
@@ -61,22 +49,21 @@
     background: $MVP-White;
     z-index: 9;
   }
+
   &__form {
     display: flex;
     flex-direction: column;
     gap: 2rem;
     width: 100%;
+    margin-top: 20px;
   }
+
   &__input {
     &-title {
+      @include Body;
       outline: none;
       height: 100%;
-      width: 75%;
       border: none;
-      font-size: 16px;
-      font-family: Gilroy;
-      font-style: normal;
-      font-weight: 800;
       width: 100%;
       text-align: left;
 
@@ -93,11 +80,7 @@
       }
     }
     &-description {
-      font-size: 16px;
-      resize: none;
-      font-family: Gilroy;
-      font-style: normal;
-      font-weight: 800;
+      @include Body;
       width: 100%;
       border: none;
       outline: none;
@@ -115,23 +98,19 @@
       }
     }
     &-date {
+      @include Body;
       display: flex;
       padding: 7px 12px;
       justify-content: center;
       align-items: center;
       border-radius: 7px;
       border: 0.1rem solid #000;
-      width: 150px;
+      width: 210px;
       cursor: text;
-      color: gray;
-      font-family: Gilroy;
-      font-style: normal;
-      font-weight: 800;
-      color: #000;
     }
 
     &-count {
-      font-size: 12px;
+      font-size: 11pt;
       font-family: Gilroy;
       font-style: normal;
       font-weight: 800;
@@ -145,24 +124,21 @@
     }
     &-location {
       cursor: pointer;
+
       &-alt {
-        margin-left: 5px;
+        @include Body;
+        margin-left: 10px;
         padding: 0.3rem;
         align-items: center;
         border-radius: 7px;
         border: 0.1rem solid #000;
-        font-size: 14px;
-        max-width: 150px;
-
+        width: 450px;
         line-height: 25px;
         font-family: Gilroy;
         font-style: normal;
         font-weight: 800;
-        @include Tablet {
-          font-size: 16px;
-          max-width: 250px;
-        }
       }
+
       &-container {
         margin-bottom: 1.5rem;
 
@@ -170,16 +146,13 @@
           display: flex;
           align-items: center;
           min-height: 40px;
+          margin: 10px 0;
         }
       }
     }
-    &-label {
-      // @include SubHeader;
-      font-size: 14px;
 
-      @include Tablet {
-        font-size: 16px;
-      }
+    &-label {
+      @include SubHeader;
 
       &-container {
         margin: 1.5rem 0;
@@ -187,9 +160,8 @@
     }
 
     &-sub-label {
-      // @include Body;
-      font-family: Gilroy;
-      margin-left: 0.8vw;
+      @include Body;
+      margin-left: 10px;
     }
 
     &-time-container {
@@ -203,8 +175,8 @@
     }
 
     &-select {
-      max-width: 300px;
-      height: 40px;
+      @include Body;
+      height: 50px;
       padding: 10px 12px;
       justify-content: center;
       align-items: center;
@@ -212,15 +184,13 @@
       border: 0.1rem solid #000;
       cursor: pointer;
       color: #000;
-      font-family: Gilroy;
-      font-style: normal;
-      font-weight: 800;
 
       /* Mobile - Body */
       font-size: 16px;
     }
 
     &-time {
+      @include Body;
       display: flex;
       flex-direction: row-reverse;
       padding: 7px 11px;
@@ -228,17 +198,11 @@
       align-items: center;
       gap: 0.7vw;
       cursor: text;
-      color: gray;
-      font-family: Gilroy;
-      font-style: normal;
-      font-weight: 800;
       color: #000;
-
       border-radius: 7px;
       border: 0.1rem solid #000;
     }
-    &-section {
-    }
+
     &-venue {
       display: flex;
       flex-direction: column;
@@ -272,10 +236,8 @@
     border-radius: 7px;
     border: 0.1rem solid #000;
     background: $MVP-Yellow;
-    // @include Buttons;
-    font-family: Gilroy;
+    @include Buttons;
 
-    font-size: 16px;
     @include Tablet {
       font-size: 20px;
       padding: 10px 30px;
@@ -286,13 +248,7 @@
     &--alt {
       background: $MVP-White;
       border: none;
-      margin-right: 10px;
       color: $MVP-Red;
-      @include Tablet {
-        margin-right: 35px;
-      }
-
-      font-family: Gilroy;
     }
   }
   &__button-containers {
@@ -306,13 +262,11 @@
 
   &__text {
     text-align: center;
-    font-size: 14px;
-
-    // @include Body;
+    @include Body;
 
     &--alt {
       font-family: Gilroy;
-      font-size: 11px;
+      font-size: 12pt;
       font-style: normal;
       line-height: 115.645%;
       text-align: center;
@@ -334,4 +288,17 @@
       height: 175px;
     }
   }
+}
+
+.edit-event-overlay-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Adjust the alpha value for transparency */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Adjust the z-index to make sure it's above other elements */
 }

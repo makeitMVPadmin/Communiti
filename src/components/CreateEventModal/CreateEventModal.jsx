@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { db, storage } from "../../Firebase/FirebaseConfig";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import moment from "moment-timezone";
+import exitIcon from "../../assets/images/exit.svg";
 
 function CreateEventModal({ setEventsOverlay }) {
   const [eventTitle, setEventTitle] = useState("");
@@ -130,227 +131,245 @@ function CreateEventModal({ setEventsOverlay }) {
   return (
     <div className="event-overlay-background">
       <div className="event-overlay">
-        <h2 className="event-overlay__title">Create an Event</h2>
-        <form className="event-overlay__form" onSubmit={handleSubmit}>
-
-          {/* TITLE */}
-          <div className="event-overlay__container">
-            <label className="event-overlay__input-label" htmlFor="eventTitle">
-              Event Title*
-            </label>
-            <div className="event-overlay__input-title-container">
-              <input
-                className="event-overlay__input-title"
-                type="text"
-                id="eventTitle"
-                value={eventTitle}
-                onChange={handleEventTitleChange}
-                maxLength="80"
-                placeholder="How AI can help us in Marketing"
-              />
-              <span className="event-overlay__input-count">
-                {titleCharCount}/80 characters
-              </span>
-            </div>
+        <div className="event-overlay__main">
+          <div className="event-overlay__title-container">
+            <h2 className="event-overlay__title">Create an Event</h2>
+            <img src={exitIcon} onClick={() => setEventsOverlay(false)} alt="exit form"></img>
           </div>
 
-          {/* DESCRIPTION */}
-          <div className="event-overlay__input-container">
-            <label className="event-overlay__input-label" htmlFor="description">
-              Description*
-            </label>
-            <div className="event-overlay__input-description-container">
-              <textarea
-                className="event-overlay__input-description"
-                id="description"
-                value={description}
-                onChange={handleDescriptionChange}
-                maxLength="250"
-                rows={3}
-                placeholder="Come learn about different ways you can meet investors and learn how to pitch to them. Join us and please come learn about different ways you can meet investors and learn how to pitch to them."
-              ></textarea>
-              <span className="event-overlay__input-count event-overlay__input-count--description">
-                {descriptionCharCount}/250 characters
-              </span>
-            </div>
-          </div>
+          <form className="event-overlay__form" onSubmit={handleSubmit}>
 
-          <div className="event-overlay__input-time-container">
-            {/* DATE */}
-            <div className="event-overlay__input-time-containers">
-              <label className="event-overlay__input-label" htmlFor="date">
-                Date*
+            {/* TITLE */}
+            <div className="event-overlay__container">
+              <label className="event-overlay__input-label" htmlFor="eventTitle">
+                Event Title&#42;
               </label>
-              <input
-                type="date"
-                id="date"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                className="event-overlay__input-date"
-              />
+              <div className="event-overlay__input-title-container">
+                <input
+                  className="event-overlay__input-title"
+                  type="text"
+                  id="eventTitle"
+                  value={eventTitle}
+                  onChange={handleEventTitleChange}
+                  maxLength="80"
+                  placeholder="How AI can help us in Marketing"
+                  required
+                />
+                <span className="event-overlay__input-count">
+                  {titleCharCount}/80 characters
+                </span>
+              </div>
             </div>
 
-            {/* START TIME */}
-            <div className="event-overlay__input-time-containers">
-              <label
-                className="event-overlay__input-label"
-                htmlFor="startTime"
-              >
-                Start Time
+            {/* DESCRIPTION */}
+            <div className="event-overlay__input-container">
+              <label className="event-overlay__input-label" htmlFor="description">
+                Description&#42;
               </label>
-              <input
-                type="time"
-                id="startTime"
-                value={startTime}
-                onChange={(e) => setStartTime(e.target.value)}
-                className="event-overlay__input-time"
-              />
+              <div className="event-overlay__input-description-container">
+                <textarea
+                  className="event-overlay__input-description"
+                  id="description"
+                  value={description}
+                  onChange={handleDescriptionChange}
+                  maxLength="250"
+                  rows={3}
+                  placeholder="Come learn about different ways you can meet investors and learn how to pitch to them. Join us and please come learn about different ways you can meet investors and learn how to pitch to them."
+                  required
+                ></textarea>
+                <span className="event-overlay__input-count event-overlay__input-count--description">
+                  {descriptionCharCount}/250 characters
+                </span>
+              </div>
             </div>
 
-            {/* END TIME */}
-            <div className="event-overlay__input-time-containers">
-              <label
-                className="event-overlay__input-label"
-                htmlFor="endTime"
-              >
-                End Time
-              </label>
-              <input
-                type="time"
-                id="endTime"
-                value={endTime}
-                onChange={(e) => setEndTime(e.target.value)}
-                className="event-overlay__input-time"
-              />
+            <div className="event-overlay__input-time-container">
+              {/* DATE */}
+              <div className="event-overlay__input-time-containers">
+                <label className="event-overlay__input-label" htmlFor="date">
+                  Date&#42;
+                </label>
+                <input
+                  type="date"
+                  id="date"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  className="event-overlay__input-date"
+                  required
+                />
+              </div>
+
+              {/* START TIME */}
+              <div className="event-overlay__input-time-containers">
+                <label
+                  className="event-overlay__input-label"
+                  htmlFor="startTime"
+                >
+                  Start Time&#42;
+                </label>
+                <input
+                  type="time"
+                  id="startTime"
+                  value={startTime}
+                  onChange={(e) => setStartTime(e.target.value)}
+                  className="event-overlay__input-time"
+                />
+              </div>
+
+              {/* END TIME */}
+              <div className="event-overlay__input-time-containers">
+                <label
+                  className="event-overlay__input-label"
+                  htmlFor="endTime"
+                >
+                  End Time&#42;
+                </label>
+                <input
+                  type="time"
+                  id="endTime"
+                  value={endTime}
+                  onChange={(e) => setEndTime(e.target.value)}
+                  className="event-overlay__input-time"
+                  required
+                />
+              </div>
+
+              {/* TIMEZONE */}
+              <div className="event-overlay__input-time-containers">
+                <label className="event-overlay__input-label" htmlFor="timezone">
+                  Timezone&#42;
+                </label>
+                <select
+                  className="event-overlay__input-select"
+                  id="timezone"
+                  value={timezone}
+                  onChange={handleTimezoneChange}
+                  required
+                >
+                  <option value="">Select Timezone</option>
+                  {timezoneOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
 
-            {/* TIMEZONE */}
-            <div className="event-overlay__input-time-containers">
-              <label className="event-overlay__input-label" htmlFor="timezone">
-                Timezone
-              </label>
-              <select
-                className="event-overlay__input-select"
-                id="timezone"
-                value={timezone}
-                onChange={handleTimezoneChange}
-              >
-                <option value="">Select Timezone</option>
-                {timezoneOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          <div className="event-overlay__input-location-container">
-            <p className="event-overlay__input-label">Location*</p>
-            <div className="event-overlay__input-location-container-alt">
+            {/* LOCATION */}
+            <div className="event-overlay__input-location-container">
+              <p className="event-overlay__input-label">
+                Location&#42;
+              </p>
+              <div className="event-overlay__input-location-container-alt">
+                <input
+                  type="radio"
+                  id="venue"
+                  name="locationType"
+                  value="venue"
+                  checked={locationType === "venue"}
+                  onChange={handleLocationChange}
+                  className="event-overlay__input-location"
+                  required
+                />
+                <label className="event-overlay__input-sub-label" htmlFor="venue">
+                  Venue
+                </label>
+                {locationType === "venue" && (
+                  <input
+                    type="text"
+                    value={venueAddress}
+                    onChange={handleVenueAddressChange}
+                    placeholder="213 Seymour St, Denver, CO"
+                    className="event-overlay__input-location-alt"
+                  />
+                )}
+              </div>
               <input
                 type="radio"
-                id="venue"
+                id="online"
                 name="locationType"
-                value="venue"
-                checked={locationType === "venue"}
+                value="online"
+                checked={locationType === "online"}
                 onChange={handleLocationChange}
                 className="event-overlay__input-location"
               />
-              <label className="event-overlay__input-sub-label" htmlFor="venue">
-                Venue
+              <label className="event-overlay__input-sub-label" htmlFor="online">
+                Online
               </label>
-              {locationType === "venue" && (
-                <input
-                  type="text"
-                  value={venueAddress}
-                  onChange={handleVenueAddressChange}
-                  placeholder="213 Seymour St., Denver"
-                  className="event-overlay__input-location-alt"
-                />
-              )}
             </div>
-            <input
-              type="radio"
-              id="online"
-              name="locationType"
-              value="online"
-              checked={locationType === "online"}
-              onChange={handleLocationChange}
-              className="event-overlay__input-location"
-            />
-            <label className="event-overlay__input-sub-label" htmlFor="online">
-              Online
-            </label>
-          </div>
-          <div className="event-overlay__bottom-container">
-            <div className="event-overlay__left-container">
-              
-              <div className="event-overlay__image-container">
-                <div className="create-communiti3__container-form">
-                  <label
-                    className="create-communiti3__container-label event-overlay__picture-title"
-                    htmlFor="communiti-icon"
-                  >
-                    {image ? "Upload complete!" : "Upload an event image"}
-                  </label>
-                  <div className="create-communiti3__container-input-container">
-                    {image ? (
-                      <img
-                        className="create-communiti3__container-preview"
-                        src={
-                          image instanceof File
-                            ? URL.createObjectURL(image)
-                            : image
-                        }
-                        alt="Preview"
-                      />
-                    ) : (
-                      <>
-                        <input
-                          type="file"
-                          id="communiti-icon"
-                          name="communiti-icon"
-                          className="create-communiti3__container-input visually-hidden"
-                          onChange={handleFileInputChange}
+
+            {/* UPLOAD IMAGE */}
+            <div className="event-overlay__bottom-container">
+              <div className="event-overlay__left-container">
+                
+                <div className="event-overlay__image-container">
+                  <div className="create-communiti3__container-form">
+                    <label
+                      className="create-communiti3__container-label event-overlay__picture-title"
+                      htmlFor="communiti-icon"
+                    >
+                      {image ? "Upload complete!" : "Upload an event image"}
+                    </label>
+                    <div className="create-communiti3__container-input-container">
+                      {image ? (
+                        <img
+                          className="create-communiti3__container-preview"
+                          src={
+                            image instanceof File
+                              ? URL.createObjectURL(image)
+                              : image
+                          }
+                          alt="Preview"
                         />
-                        <label
-                          htmlFor="communiti-icon"
-                          className="create-communiti3__custom-file-input"
-                        >
-                          <img src={chooseFile} alt="Choose File Icon" />
-                          <p className="create-communiti3__container-input-text event-overlay__text ">
-                            drag and drop file or <span> choose file</span>
-                          </p>
-                        </label>
-                      </>
+                      ) : (
+                        <>
+                          <input
+                            type="file"
+                            id="communiti-icon"
+                            name="communiti-icon"
+                            className="create-communiti3__container-input visually-hidden"
+                            onChange={handleFileInputChange}
+                          />
+                          <label
+                            htmlFor="communiti-icon"
+                            className="create-communiti3__custom-file-input"
+                          >
+                            <img src={chooseFile} alt="Choose File Icon" />
+                            <p className="create-communiti3__container-input-text event-overlay__text ">
+                              drag and drop file or <span> choose file</span>
+                            </p>
+                          </label>
+                        </>
+                      )}
+                    </div>
+                    {image && <></>}
+                    {!image && (
+                      <p className="create-communiti3__container-input-text--alt event-overlay__text--alt ">
+                        supported formats: JPG, PNG, PDF, SVG
+                        <br /> maximum size: 3MB
+                      </p>
                     )}
                   </div>
-                  {image && <></>}
-                  {!image && (
-                    <p className="create-communiti3__container-input-text--alt event-overlay__text--alt ">
-                      supported formats: JPG, PNG, PDF, SVG
-                      <br /> maximum size: 3MB
-                    </p>
-                  )}
                 </div>
               </div>
+              <img className="event-overlay__img" src={calendar} alt="calendar" />
             </div>
-            <img className="event-overlay__img" src={calendar} alt="calendar" />
-          </div>
-          <div className="event-overlay__button-containers">
-            <button
-              className="event-overlay__button event-overlay__button--alt"
-              type="button"
-              onClick={() => setEventsOverlay(false)}
-            >
-              Cancel
-            </button>
-            <button className="event-overlay__button" type="submit">
-              Create
-            </button>
-          </div>
-        </form>
+            
+            <div className="event-overlay__button-containers">
+              <button
+                className="event-overlay__button event-overlay__button--alt"
+                type="button"
+                onClick={() => setEventsOverlay(false)}
+              >
+                Cancel
+              </button>
+              <button className="event-overlay__button" type="submit">
+                Create
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

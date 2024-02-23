@@ -7,7 +7,7 @@ import { json, useParams } from "react-router-dom";
 import { db, storage } from "../../Firebase/FirebaseConfig";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import data from "../../data.json";
-
+import exitIcon from "../../assets/images/exit.svg";
 import moment from "moment-timezone";
 
 function EditEventModal({ setEditEvent, eventDetails }) {
@@ -189,12 +189,7 @@ function EditEventModal({ setEditEvent, eventDetails }) {
         <div className="edit-event-overlay__outer-div">
           <div className="edit-event-overlay__title-container">
             <h2 className="edit-event-overlay__title">Edit the Event</h2>
-            <span
-              style={{ cursor: "pointer " }}
-              onClick={() => setEditEvent(false)}
-            >
-              &#x2715;
-            </span>
+            <img src={exitIcon} onClick={() => setEditEvent(false)} alt="exit form"></img>
           </div>
           <form className="edit-event-overlay__form" onSubmit={handleTestEdit}>
             <div className="edit-event-overlay__container">
@@ -202,7 +197,7 @@ function EditEventModal({ setEditEvent, eventDetails }) {
                 className="edit-event-overlay__input-label"
                 htmlFor="eventTitle"
               >
-                Event Title*
+                Event Title&#42;
               </label>
               <div className="edit-event-overlay__input-title-container">
                 <input
@@ -224,7 +219,7 @@ function EditEventModal({ setEditEvent, eventDetails }) {
                 className="edit-event-overlay__input-label"
                 htmlFor="description"
               >
-                Description*
+                Description&#42;
               </label>
               <div className="edit-event-overlay__input-description-container">
                 <textarea
@@ -248,7 +243,7 @@ function EditEventModal({ setEditEvent, eventDetails }) {
                     className="edit-event-overlay__input-label"
                     htmlFor="date"
                   >
-                    Date*
+                    Date&#42;
                   </label>
                   <input
                     type="date"
@@ -266,7 +261,7 @@ function EditEventModal({ setEditEvent, eventDetails }) {
                           className="edit-event-overlay__input-label"
                           htmlFor="startTime"
                         >
-                          Start Time*
+                          Start Time&#42;
                         </label>
                         <input
                           type="time"
@@ -281,7 +276,7 @@ function EditEventModal({ setEditEvent, eventDetails }) {
                           className="edit-event-overlay__input-label"
                           htmlFor="endTime"
                         >
-                          End Time*
+                          End Time&#42;
                         </label>
                         <input
                           type="time"
@@ -300,7 +295,7 @@ function EditEventModal({ setEditEvent, eventDetails }) {
                   className="edit-event-overlay__input-label"
                   htmlFor="timezone"
                 >
-                  Timezone
+                  Timezone&#42;
                 </label>
                 <br />
                 <select
@@ -318,7 +313,9 @@ function EditEventModal({ setEditEvent, eventDetails }) {
                 </select>
               </div>
               <div className="edit-event-overlay__input-location-container">
-                <p className="edit-event-overlay__input-label">Location*</p>
+                <p className="edit-event-overlay__input-label">
+                  Location&#42;
+                </p>
                 <div>
                   <div className="edit-event-overlay__input-location-container-alt">
                     <input
@@ -369,26 +366,6 @@ function EditEventModal({ setEditEvent, eventDetails }) {
               </div>
 
               <div>
-                {/* <label
-                  className="edit-event-overlay__input-label"
-                  htmlFor="timezone"
-                >
-                  Timezone
-                </label>
-                <br />
-                <select
-                  className="edit-event-overlay__input-select"
-                  id="timezone"
-                  value={timezone}
-                  onChange={handleTimezoneChange}
-                >
-                  <option value="">Select Timezone</option>
-                  {timezoneOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select> */}
                 <div className="edit-event-overlay__image-container">
                   <div>
                     <label
