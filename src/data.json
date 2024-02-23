@@ -160,27 +160,6 @@
   ],
   "events": [
     {
-      "id": "event1_uuid",
-      "date": "2024-03-05",
-      "description": "fdafda",
-      "endTime": "2024-03-06T02:19:00.000Z",
-      "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/event_thumbnails%2FIMG_1162.jpeg?alt=media&token=c2e2c6c3-ff56-48ad-b6c6-d97b39bbca87",
-      "locationType": "Venue",
-      "startTime": "2024-03-06T00:19:00.000Z",
-      "title": "fdafdafda",
-      "timestamp": "2024-02-08T15:00:00Z",
-      "timezone": "Africa/Asmera",
-      "venueAddress": "213 Seymour St, Denver, CO",
-      "requiresApproval": false,
-      "organizedBy": {
-        "name": "Marina Reese",
-        "position": "Product Manager"
-      },
-      "communityInfo": "Communiti Group",
-      "community": "community1_uuid",
-      "venue": "Online"
-    },
-    {
       "id": "event2_uuid",
       "date": "2024-03-22",
       "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde perspiciatis eius vero atque beatae eos laudantium quis mollitia ipsam molestiae.",
@@ -240,51 +219,19 @@
       "communityInfo": "SuperGroup",
       "community": "community2_uuid"
     },
+   
+    
+    
     {
-      "id": "1ad3",
-      "title": "fda",
-      "description": "fda",
-      "date": "2024-03-05",
+      "id": "4a24",
+      "title": "alalal",
+      "description": "fjdklsa",
+      "date": "2024-03-13",
       "locationType": "online",
       "venueAddress": null,
-      "startTime": "2024-03-06T00:19:00.000Z",
-      "endTime": "2024-03-06T02:19:00.000Z",
-      "timezone": "Africa/Asmera"
-    },
-    {
-      "id": "0ab0",
-      "title": "fda",
-      "description": "fda",
-      "date": "2024-02-28",
-      "locationType": "online",
-      "venueAddress": null,
-      "startTime": "2024-02-28T22:25:00.000Z",
-      "endTime": "2024-02-29T00:25:00.000Z",
-      "timezone": "Africa/Abidjan",
-      "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2Fjakob-dalbjorn-cuKJre3nyYc-unsplash.jpg?alt=media&token=645f3683-9bda-4f8a-b2ef-a3b4fcbecf30"
-    },
-    {
-      "id": "efb1",
-      "title": "fdafd",
-      "description": "fdafda",
-      "date": "2024-03-10",
-      "locationType": "online",
-      "venueAddress": null,
-      "startTime": "2024-03-10T23:38:00.000Z",
-      "endTime": "2024-03-11T01:38:00.000Z",
-      "timezone": "",
-      "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2Fjakob-dalbjorn-cuKJre3nyYc-unsplash.jpg?alt=media&token=645f3683-9bda-4f8a-b2ef-a3b4fcbecf30"
-    },
-    {
-      "id": "eaff",
-      "title": "Test Event",
-      "description": "Test event description",
-      "date": "2024-03-26",
-      "locationType": "online",
-      "venueAddress": null,
-      "startTime": "2024-03-27T02:16:00.000Z",
-      "endTime": "2024-03-26T23:16:00.000Z",
-      "timezone": "Africa/Accra",
+      "startTime": "2024-03-14T02:04:00.000Z",
+      "endTime": "2024-03-14T03:04:00.000Z",
+      "timezone": "Africa/Bamako",
       "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2Fjakob-dalbjorn-cuKJre3nyYc-unsplash.jpg?alt=media&token=645f3683-9bda-4f8a-b2ef-a3b4fcbecf30"
     }
   ]

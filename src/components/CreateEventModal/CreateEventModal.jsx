@@ -172,7 +172,7 @@ function CreateEventModal({ setEventsOverlay }) {
     <div className="event-overlay-background">
       <div className="event-overlay">
         <h2 className="event-overlay__title">Create an Event</h2>
-        <form className="event-overlay__form" onSubmit={handleSubmit}>
+        <form className="event-overlay__form" onSubmit={handleSubmit} encType="multipart/form-data">
 
           {/* TITLE */}
           <div className="event-overlay__container">
