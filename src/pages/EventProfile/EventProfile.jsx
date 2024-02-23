@@ -109,6 +109,8 @@ export default function EventProfile() {
                   {eventDetails.description}
                 </p>
               </div>
+
+              {/* EDIT EVENT & ADD TO CALENDAR BUTTONS */}
               <div className="event-profile__edit-calendar-container">
                 <div className="event-profile__edit-container">
                   <button
@@ -126,8 +128,11 @@ export default function EventProfile() {
                 </div>
               </div>
             </div>
+
             <div className="event-profile__content-communiti-organizer-container">
               <div className="event-profile__content-communiti-container">
+
+                {/* DATE, TIME, & LOCATION */}
                 <div className="event-profile__content-container">
                   <div className="event-profile__content-details-container">
                     <div className="event-profile__content-details-div">
@@ -160,48 +165,38 @@ export default function EventProfile() {
                     </div>
                   </div>
                 </div>
-                <div className="event-profile__communiti-container">
-                  <h3 className="event-profile__communiti-header">
-                    From the community
-                  </h3>
-                  <div
-                    className="event-profile__communiti-card"
-                    onClick={() =>
-                      navigate(`/communities/${"iEeWCH0z3B9Pu1zy5gWH"}`)
-                    }
-                  >
+
+                {/* COMMUNITY */}
+                <div className="communities__cards">
+                  <div className="communities__card">
                     <img
                       // src={community?.CommunityImage || placeHolderIcon}
                       src={placeHolderIcon}
-                      className="event-profile__communiti-card-profile-pic"
+                      className="communities__communiti-card-profile-pic"
                     />
-                    <div className="event-profile__communiti-card-bottom-container">
-                      <div className="event-profile__communiti-card-bottom-inner-container">
-                        <div>
-                          <h6 className="event-profile__communiti-card-heading">
-                            {eventDetails.communityInfo}
-                          </h6>
-                        </div>
-                        <div className="event-profile__communiti-card-button-div-container">
-                          <button
-                            className="event-profile__communiti-card-arrow-button"
-                            //   onClick={() =>
-                            //     navigate(`/communities/admin/${community?.id}`)
-                            //   }
-                          >
-                            <img
-                              src={rightArrowIcon}
-                              alt="right arrow button"
-                              className="event-profile__communiti-card-arrow-button-img"
-                            />
-                          </button>
-                        </div>
-                      </div>
+                    <div className="communities__card-bottom-container">
+                      <h4 className="communities__card-heading">
+                        {eventDetails.communityInfo}
+                      </h4>
+                      <button
+                        className="event-profile__communiti-card-arrow-button"
+                        //   onClick={() =>
+                        //     navigate(`/communities/admin/${community?.id}`)
+                        //   }
+                      >
+                        <img
+                          src={rightArrowIcon}
+                          alt="right arrow button"
+                          className="communities__card-arrow-button-img"
+                        />
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
+
               <div className="event-profile__communiti-organizer-container">
+                {/* ORGANIZED BY */}
                 <div className="event-profile__organizer">
                   <h3 className="event-profile__communiti-header">
                     Organized By
@@ -223,6 +218,8 @@ export default function EventProfile() {
                     </div>
                   </div>
                 </div>
+
+                {/* REGISTRANTS */}
                 <div className="event-profile__registrants">
                   <div className="event-profile__registrants-outer-div">
                     <h3 className="event-profile__registrants-header">
@@ -272,6 +269,7 @@ export default function EventProfile() {
             </div>
           </div>
         </main>
+
         {editEvent ? (
           <div className="event-profile__edit-event">
             <EditEventModal

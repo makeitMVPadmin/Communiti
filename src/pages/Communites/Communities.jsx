@@ -21,8 +21,8 @@ function Communities() {
   const navigate = useNavigate();
 
    useEffect(() => {
-    setUserCommunitiesManage(data.communities);
-    setUserCommunitiesJoined(data.communities)
+    setUserCommunitiesManage(data.communities.slice(0,1));
+    setUserCommunitiesJoined(data.communities.slice(1))
   },[]);
 
   // // Fetch user data and all communities from Firestore
@@ -79,10 +79,10 @@ function Communities() {
         <div className="communities__create-container">
           <div className="communities__subheading-container">
             <h3 className="communities__subheading">
-              Fuel your passion with a community
+              Fuel your passion with a community.
             </h3>
             <h3 className="communities__subheading">
-              Create and Manage it with ease right here.
+              Create and manage it with ease right here.
             </h3>
           </div>
           <button
@@ -97,41 +97,44 @@ function Communities() {
             <p className="communities__button-text">Create Community</p>
           </button>
         </div>
-        {userCommunitiesManage.length > 0 &&
-          // userCommunitiesManage[0].trim() !== "" && (
-            (
-            <section className="communities__managed-section">
-              <div className="communities__joined">
-                <div className="communities__joined-heading-container">
-                  <h2 className="communities__joined-heading">
-                    Communities you manage
-                  </h2>
-                </div>
-                <button
-                  className="communities__joined-text"
-                  onClick={() =>
-                    setShowAllManagedCommunities(!showAllManagedCommunities)
-                  }
-                >
-                  {showAllManagedCommunities ? "View Less" : "View All"}
-                </button>
+
+        {userCommunitiesManage.length > 0 && (
+          <section className="communities__managed-section">
+            <div className="communities__joined">
+              <div className="communities__joined-heading-container">
+                <h2 className="communities__joined-heading">
+                  Communities you manage
+                </h2>
               </div>
-              {/* COMMUNITY MANAGED DUMMY DATA PLACEHOLDER */}
-              <div className="communities__cards">
-                <div className="communities__card">
+              <button
+                className="communities__joined-text"
+                onClick={() =>
+                  setShowAllManagedCommunities(!showAllManagedCommunities)
+                }
+              >
+                {showAllManagedCommunities ? "View Less" : "View All"}
+              </button>
+            </div>
+
+            <div className="communities__cards">
+              {/* COMMUNITIES MANAGED DUMMY DATA PLACEHOLDER */}
+              {userCommunitiesManage
+                .slice(0, showAllManagedCommunities ? undefined : 3)
+                .map(community => (
+                <div key={community.id} className="communities__card">
                   <img
-                    src={userCommunitiesManage.CommunityImage || placeHolderIcon}
-                    alt={`${userCommunitiesManage[0].Name} Icon `}
+                    src={community.CommunityImage || placeHolderIcon}
+                    alt={`${community.Name} Icon `}
                     className="communities__card-profile-pic"
                   />
                   <div className="communities__card-bottom-container">
                     <h4 className="communities__card-heading">
-                      {userCommunitiesManage[0].Name}
+                      {community.Name}
                     </h4>
                     <button
                       className="communities__card-arrow-button"
                       onClick={() =>
-                        navigate(`/communities/admin/${userCommunitiesManage[0].id}`)
+                        navigate(`/communities/admin/${community.id}`)
                       }
                     >
                       <img
@@ -142,78 +145,119 @@ function Communities() {
                     </button>
                   </div>
                 </div>
-                {/* {userCommunitiesManage
-                  .slice(0, showAllManagedCommunities ? undefined : 3)
-                  .map((communityId, index) => {
-                    const community = allCommunities.find(
-                      (c) => c.id === communityId
-                    );
-                    return (
-                      <div key={index} className="communities__card">
-                        <img
-                          src={community?.CommunityImage || placeHolderIcon}
-                          alt={`${community?.Name} Icon `}
-                          className="communities__card-profile-pic"
-                        />
-                        <div className="communities__card-bottom-container">
-                          <h4 className="communities__card-heading">
-                            {community?.Name}
-                          </h4>
-                          <button
-                            className="communities__card-arrow-button"
-                            onClick={() =>
-                              navigate(`/communities/admin/${community?.id}`)
-                            }
-                          >
-                            <img
-                              src={rightArrowIcon}
-                              alt="right arrow button"
-                              className="communities__card-arrow-button-img"
-                            />
-                          </button>
-                        </div>
+              ))}
+
+              {/* COMMUNITIES MANAGED FROM DB */}
+              {/* {userCommunitiesManage
+                .slice(0, showAllManagedCommunities ? undefined : 3)
+                .map((communityId, index) => {
+                  const community = allCommunities.find(
+                    (c) => c.id === communityId
+                  );
+                  return (
+                    <div key={index} className="communities__card">
+                      <img
+                        src={community?.CommunityImage || placeHolderIcon}
+                        alt={`${community?.Name} Icon `}
+                        className="communities__card-profile-pic"
+                      />
+                      <div className="communities__card-bottom-container">
+                        <h4 className="communities__card-heading">
+                          {community?.Name}
+                        </h4>
+                        <button
+                          className="communities__card-arrow-button"
+                          onClick={() =>
+                            navigate(`/communities/admin/${community?.id}`)
+                          }
+                        >
+                          <img
+                            src={rightArrowIcon}
+                            alt="right arrow button"
+                            className="communities__card-arrow-button-img"
+                          />
+                        </button>
                       </div>
-                    );
-                  })} */}
+                    </div>
+                  );
+                })} */}
+            </div>
+          </section>
+        )}
+
+        {userCommunitiesJoined.length > 0 && (
+          <section className="communities__joined-section">
+            <div className="communities__joined">
+              <div className="communities__joined-heading-container">
+                <h2 className="communities__joined-heading">
+                  Communities you joined
+                </h2>
               </div>
-            </section>)
-          }
-        {userCommunitiesJoined.length > 0 &&
-          // userCommunitiesJoined[0].trim() !== "" && (
-          (
-            <section className="communities__joined-section">
-              <div className="communities__joined">
-                <div className="communities__joined-heading-container">
-                  <h2 className="communities__joined-heading">
-                    Communities you joined
-                  </h2>
+              <button
+                className="communities__joined-text"
+                onClick={() =>
+                  setShowAllJoinedCommunities(!showAllJoinedCommunities)
+                }
+              >
+                {showAllJoinedCommunities ? "View Less" : "View All"}
+              </button>
+            </div>
+
+            <div className="communities__cards">
+            {/* COMMUNITIES JOINED DUMMY DATA PLACEHOLDERS */}
+            <div className="communities__cards">
+              {userCommunitiesJoined
+                .slice(0, userCommunitiesJoined ? undefined : 3)
+                .map(community => (
+                <div key={community.id} className="communities__card">
+                  <img
+                    src={community.CommunityImage || placeHolderIcon}
+                    alt={`${community.Name} Icon `}
+                    className="communities__card-profile-pic"
+                  />
+                  <div className="communities__card-bottom-container">
+                    <h4 className="communities__card-heading">
+                      {community.Name}
+                    </h4>
+                    <button
+                      className="communities__card-arrow-button"
+                      onClick={() =>
+                        navigate(`/communities/admin/${community.id}`)
+                      }
+                    >
+                      <img
+                        src={rightArrowIcon}
+                        alt="right arrow button"
+                        className="communities__card-arrow-button-img"
+                      />
+                    </button>
+                  </div>
                 </div>
-                <button
-                  className="communities__joined-text"
-                  onClick={() =>
-                    setShowAllJoinedCommunities(!showAllJoinedCommunities)
-                  }
-                >
-                  {showAllJoinedCommunities ? "View Less" : "View All"}
-                </button>
-              </div>
-              <div className="communities__cards">
-              {/* COMMUNITIES JOINED DUMMY DATA PLACEHOLDERS */}
-              <div className="communities__cards">
-                  <div className="communities__card">
+              ))}
+            </div>
+
+            {/* COMMUNITIES JOINED FROM DB */}
+            {/* {userCommunitiesJoined
+              .slice(0, showAllJoinedCommunities ? undefined : 3)
+              .map((communityId, index) => {
+                const community = allCommunities.find(
+                  (c) => c.id === communityId
+                );
+                return (
+                  <div key={index} className="communities__card">
                     <img
-                      src={userCommunitiesManage[1].CommunityImage || placeHolderIcon}
-                      alt={`${userCommunitiesManage[1].Name} Icon `}
+                      src={community?.CommunityImage || placeHolderIcon}
+                      alt={`${community?.Name} Icon `}
                       className="communities__card-profile-pic"
                     />
                     <div className="communities__card-bottom-container">
                       <h4 className="communities__card-heading">
-                        {userCommunitiesManage[1].Name}
+                        {community?.Name}
                       </h4>
                       <button
                         className="communities__card-arrow-button"
                         onClick={() =>
-                          navigate(`/communities/admin/${userCommunitiesManage[1].id}`)
+                          navigate(`/communities/${community?.id}`)
                         }
                       >
                         <img
@@ -224,43 +268,11 @@ function Communities() {
                       </button>
                     </div>
                   </div>
-                </div>
-                {/* {userCommunitiesJoined
-                  .slice(0, showAllJoinedCommunities ? undefined : 3)
-                  .map((communityId, index) => {
-                    const community = allCommunities.find(
-                      (c) => c.id === communityId
-                    );
-                    return (
-                      <div key={index} className="communities__card">
-                        <img
-                          src={community?.CommunityImage || placeHolderIcon}
-                          alt={`${community?.Name} Icon `}
-                          className="communities__card-profile-pic"
-                        />
-                        <div className="communities__card-bottom-container">
-                          <h4 className="communities__card-heading">
-                            {community?.Name}
-                          </h4>
-                          <button
-                            className="communities__card-arrow-button"
-                            onClick={() =>
-                              navigate(`/communities/${community?.id}`)
-                            }
-                          >
-                            <img
-                              src={rightArrowIcon}
-                              alt="right arrow button"
-                              className="communities__card-arrow-button-img"
-                            />
-                          </button>
-                        </div>
-                      </div>
-                    );
-                  })} */}
-              </div>
-            </section>
-          )}
+                );
+              })} */}
+            </div>
+          </section>
+        )}
       </div>
       <Footer />
     </div>

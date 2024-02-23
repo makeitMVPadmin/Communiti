@@ -150,6 +150,46 @@
         }
       ],
       "NewsLetters": []
+    },
+    {
+      "id": "community3_uuid",
+      "CommunityImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2FIMG_1113.jpeg?alt=media&token=f047e3f1-ae81-45a5-8e2f-9fe65eee57a3",
+      "Created": "2024-02-08T13:30:00Z",
+      "CreatedBy": "user2_uuid",
+      "Description": "Community for sales and marketing professionals.",
+      "Location": [
+        "City B"
+      ],
+      "Name": "Bake Club",
+      "Announcements": [
+        {
+          "id": "announcement3_uuid",
+          "message": "Welcome to SalesPros!",
+          "posted": "2024-02-08T14:00:00Z",
+          "createdBy": "user2_uuid"
+        }
+      ],
+      "NewsLetters": []
+    },
+    {
+      "id": "community4_uuid",
+      "CommunityImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2FIMG_1113.jpeg?alt=media&token=f047e3f1-ae81-45a5-8e2f-9fe65eee57a3",
+      "Created": "2024-02-08T13:30:00Z",
+      "CreatedBy": "user2_uuid",
+      "Description": "Community for sales and marketing professionals.",
+      "Location": [
+        "City B"
+      ],
+      "Name": "Soccer Meetup",
+      "Announcements": [
+        {
+          "id": "announcement4_uuid",
+          "message": "Welcome to SalesPros!",
+          "posted": "2024-02-08T14:00:00Z",
+          "createdBy": "user2_uuid"
+        }
+      ],
+      "NewsLetters": []
     }
   ],
   "events": [

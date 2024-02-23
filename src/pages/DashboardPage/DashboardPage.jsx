@@ -51,10 +51,10 @@ function DashboardPage() {
           <div className="communities__create-container">
             <div className="communities__subheading-container">
               <h3 className="communities__subheading">
-                Fuel your passion with a community
+                Fuel your passion with a community.
               </h3>
               <h3 className="communities__subheading">
-                Create and Manage it with ease right here.
+                Create and manage it with ease right here.
               </h3>
             </div>
 
