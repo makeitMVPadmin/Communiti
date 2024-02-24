@@ -197,7 +197,7 @@ function EventsInfo({ eventList }) {
           {/* Map through each event for that date */}
           {events.map(event => (
             <div key={event.id} className="events-info">
-              <Link key={index} to={"/events/1"} className="events-info">
+              <Link key={index} to={"/events/1"} className="events-info__container">
               <div className="events-info__thumbnail">
                 <img
                   className="events-info__thumbnail-img"
@@ -208,10 +208,10 @@ function EventsInfo({ eventList }) {
               <div className="events-info__details">
                 <h2 className="events-info__details-title">{event.title}</h2>
                 <p className="events-info__details-datetime">
-                  {DateTime.fromISO(event.startTime).toFormat("ccc, MMM dd t ZZZZ").toUpperCase()} 
+                  {DateTime.fromISO(event.startTime).toFormat("ccc, MMM d - t ZZZZ").toUpperCase()} 
                 </p>
                 <p className="events-info__details-description">
-                  {event.description}
+                  {event.description.trim()}
                 </p>
               </div>
               </Link>
