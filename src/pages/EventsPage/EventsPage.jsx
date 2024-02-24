@@ -1,18 +1,15 @@
-import EventsNavbar from "../../components/DashboardNavbar/DashboardNavbar";
 import "./EventsPage.scss";
-import { collection, doc, getDoc } from "firebase/firestore";
+import EventsNavbar from "../../components/DashboardNavbar/DashboardNavbar";
 import EventsInfo from "../../components/EventsInfo/EventsInfo";
-import EventsInfoPublic from "../../components/EventsInfoPublic/EventsInfoPublic";
 import { useState, useEffect } from "react";
-import { db, auth } from "../../Firebase/FirebaseConfig";
-import data from "../../data.json";
+// import { collection, doc, getDoc } from "firebase/firestore";
+// import { db, auth } from "../../Firebase/FirebaseConfig";
 
 function EventsHomePage() {
-  const [userCommunitiesJoined, setUserCommunitiesJoined] = useState([]);
-  const [userCommunitiesManaged, setUserCommunitiesManaged] = useState([]);
-  const [userCommunities, setUserCommunities] = useState([]);
-  const [selectedOption, setSelectedOption] = useState("option1"); // Default to All Events
+  const [joinedCommunityEvents, setJoinedCommunityEvents] = useState([]);
+  const [managedCommunityEvents, setManagedCommunityEvents] = useState([]);
   const [allEvents, setAllEvents] = useState([])
+  const [selectedOption, setSelectedOption] = useState("option1"); // Default to All Events
 
   // // FIREBASE DATA
   // useEffect(() => {
@@ -58,21 +55,6 @@ function EventsHomePage() {
   //   setUserCommunitiesManaged([1]);
   // }, []);
 
-  const handleDropdownChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
-
-  const user = {
-    "communitiesJoined": [
-      "community1_uuid",
-      "community2_uuid",
-      "community3_uuid"
-    ],
-    "communitiesManaged": [
-      "community4_uuid",
-      "community5_uuid"
-    ]
-  }
 
   //  DATA.JSON
   useEffect(() => {
@@ -83,65 +65,52 @@ function EventsHomePage() {
           throw new Error('Network response was not ok');
         }
         const jsonData = await response.json();
-        let allEvents = []
-        let managed = user.communitiesManaged
+
+        // Temporary hard-coded data
+        let managed = ["community4_uuid", "community5_uuid"]
+
+        let eventsData = []
         jsonData.forEach((event) => {
-          allEvents.push({
+          eventsData.push({
             id: event.id,
             type: managed.includes(event.community) ? "managed" : "joined"
           })
         })
-        setAllEvents(allEvents)
-        // console.log(allEvents)
-        // setUserCommunitiesManaged(jsonData.filter(event => ["community4_uuid", "community5_uuid"].includes(event.community)))
-        // setUserCommunitiesJoined(jsonData.filter(event => ["community1_uuid", "community2_uuid", "community3_uuid"].includes(event.community)))
-        // setUserCommunities(jsonData)
+        setAllEvents(eventsData)
+        setManagedCommunityEvents(eventsData.filter(event => event.type === "managed"))
+        setJoinedCommunityEvents(eventsData.filter(event => event.type === "joined"))
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
-
     fetchData();
   }, []);
-
-  // // Filter out joined communities that are also managed
-  // const filteredJoinedCommunities = userCommunitiesJoined.filter(
-  //   (joinedId) => !userCommunitiesManaged.includes(joinedId)
-  // );
 
   const filterEvents = () => {
     switch (selectedOption) {
       case "option2": // Communities Managed
-        return userCommunitiesManaged.map((community, index) => (
-          <EventsInfo
-            key={`managed-${index}`}
-            communityData={community}
-            managed
-          />
-        ));
+        return (
+          <>
+            <EventsInfo eventList={managedCommunityEvents} />
+          </>
+        );
       case "option3": // Communities Joined
-        // return filteredJoinedCommunities.map((communityId, index) => (
-        return userCommunitiesJoined.map((community, index) => (
-          <EventsInfo
-            key={`joined-${index}`}
-            communityData={community}
-            joined
-          />
-        ));
+        return (
+          <>
+            <EventsInfo eventList={joinedCommunityEvents} />
+          </>
+        );
       default: // All Events
         return (
           <>
-            {/* {userCommunities.map((community, index) => (
-              <EventsInfo
-                key={`joined-${index}`}
-                communityData={community}
-                type={user.communitiesJoined.includes(community.id) ? "joined" : "managed"}
-              />
-            ))} */}
-            <EventsInfo eventIds={allEvents} />
+            <EventsInfo eventList={allEvents} />
           </>
         );
     }
+  };
+
+  const handleDropdownChange = (event) => {
+    setSelectedOption(event.target.value);
   };
 
   return (

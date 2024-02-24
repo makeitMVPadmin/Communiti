@@ -1,7 +1,7 @@
 import "./EventsTab.scss";
 import EventsInfo from "../EventsInfo/EventsInfo";
 
-function EventsTab({ communityData, setEventsOverlay, eventIds }) {
+function EventsTab({ setEventsOverlay, eventList }) {
 
   function noEvents() {
     return (
@@ -56,9 +56,9 @@ function EventsTab({ communityData, setEventsOverlay, eventIds }) {
   return (
     <section className="events-tab-background">
       <div className="events-tab-">
-        {eventIds.length === 0 ? noEvents() : someEvents()}
+        {eventList.length === 0 ? noEvents() : someEvents()}
       </div>
-      <EventsInfo communityData={communityData} eventIds={eventIds}/>
+      <EventsInfo eventList={eventList}/>
     </section>
   );
 }

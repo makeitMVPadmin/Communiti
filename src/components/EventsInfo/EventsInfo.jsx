@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "./EventsInfo.scss";
 import EditIcon from "../../assets/images/EditIconWhite.svg";
+import PlusIcon from "../../assets/images/PlusIcon-Black.svg";
 import EditEventModal from "../../components/EditEventModal/EditEventModal";
 import { useState, useEffect } from "react";
 // import { db } from "../../Firebase/FirebaseConfig";
@@ -8,14 +9,13 @@ import { useState, useEffect } from "react";
 import AddToCalendarButton from "../AddToCalendarButton/AddToCalendarButton";
 const { DateTime } = require("luxon");
 
-function EventsInfo({ communityData, type, eventIds }) {
+function EventsInfo({ eventList }) {
   const [events, setEvents] = useState([]);
-  const [communityInfo, setCommunityInfo] = useState(null);
   const [sortedEvents, setSortedEvents] = useState([]);
   const [editEvent, setEditEvent] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
 
-  //  DATA.JSON
+  // DATA.JSON
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -24,50 +24,29 @@ function EventsInfo({ communityData, type, eventIds }) {
           throw new Error('Network response was not ok');
         }
         const jsonData = await response.json();
-        const ids = eventIds.map(event => event.id);
-        const eventsData = jsonData.filter(event => ids.includes(event.id));
-        const data = [];
-        eventIds.forEach(event => {
-          eventsData.forEach(e => {
-            if (e.id === event.id) {
-              data.push({...e, type: event.type})
-            }
-          })
-        });
-        // console.log(data);
-
-
+        
         const eventsMap = new Map();
-        eventIds.forEach(event => {
+        eventList.forEach(event => {
           eventsMap.set(event.id, event.type)
         });
-
-        const data2 = jsonData
+        
+        // Filter JSON data for events from eventList
+        // Add each event's community type (managed or joined) from eventList
+        const ids = eventList.map(event => event.id);
+        const eventsData = jsonData
           .filter(event => ids.includes(event.id))
           .map(event => ({
             ...event,
             type: eventsMap.get(event.id)
           }));
 
-          console.log(data2);
-
-        // const eventsData = [];
-        // jsonData.forEach(event => {
-        //   if (ids.includes(event.id)) {
-        //     eventsData.push([
-        //       ...event,
-        //       type: 
-        //     ])
-        //   }
-        // });
         setEvents(eventsData);
-
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
     fetchData();
-  }, []);
+  }, [eventList]);
 
   // // FIREBASE DATA
   // useEffect(() => {
@@ -169,9 +148,33 @@ function EventsInfo({ communityData, type, eventIds }) {
     setSortedEvents(sortAndGroupEvents(events));
   }, [events]);
 
+  const editButton = (event) => {
+    return (
+      <button 
+        className="events-info__button events-info__button-edit"
+        onClick={() => handleEditButton(event)}
+      >
+      <img src={EditIcon} alt="Edit button" />
+      Edit Event
+    </button>
+    )
+  };
+
   const handleEditButton = (event) => {
     setEditEvent(!editEvent);
-    setSelectedEvent(event)
+    setSelectedEvent(event);
+  };
+
+  const rsvpButton = (event) => {
+    return (
+      <button 
+        className="events-info__button events-info__button-rsvp"
+        // onClick={() => handleEditButton(event)}
+      >
+      <img src={PlusIcon} alt="RSVP icon" />
+      RSVP
+    </button>
+    )
   };
 
   return (
@@ -214,13 +217,7 @@ function EventsInfo({ communityData, type, eventIds }) {
               </Link>
               
               <div className="events-info__button-container">
-                <button 
-                  className="events-info__button events-info__button-edit"
-                  onClick={() => handleEditButton(event)}
-                >
-                  <img src={EditIcon} alt="Edit button" />
-                  Edit Event
-                </button>
+                {event.type === "managed" ? editButton(event) : rsvpButton(event)}
                 <AddToCalendarButton event={event} />
               </div>
             </div>
@@ -237,6 +234,6 @@ function EventsInfo({ communityData, type, eventIds }) {
       ) : null}
     </>
   );
-}
+};
 
 export default EventsInfo;

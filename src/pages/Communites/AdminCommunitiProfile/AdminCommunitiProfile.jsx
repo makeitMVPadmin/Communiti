@@ -28,7 +28,7 @@ function AdminCommunitiProfile() {
   const [showNewsletter, setShowNewsletter] = useState(false);
   const [communityData, setCommunityData] = useState(null);
   const [announcements, setAnnouncements] = useState([]);
-  const [eventIds, setEventIds] = useState([]);
+  const [eventList, setEventList] = useState([]);
   const [memberIds, setMemberIds] = useState([]);
   const [inviteLink, setInviteLink] = useState("");
 
@@ -43,8 +43,16 @@ function AdminCommunitiProfile() {
         const jsonData = await response.json();
         setCommunityData(jsonData);
         setAnnouncements(jsonData.announcements || []);
-        setEventIds(jsonData.events || []);
         setMemberIds(jsonData.members || []);
+
+        const eventData = []
+        jsonData.events.forEach(event => {
+          eventData.push({
+            id: event,
+            type: "managed"
+          })
+        })
+        setEventList(eventData || []);
 
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -316,7 +324,7 @@ function AdminCommunitiProfile() {
               )}
               {showEvents && (
                 <EventsTab
-                  eventIds={eventIds}
+                  eventList={eventList}
                   setEventsOverlay={setEventsOverlay}
                   communityData={communityData}
                 />
