@@ -9,13 +9,34 @@ import data from "../../data.json";
 import AddToCalendarButton from "../AddToCalendarButton/AddToCalendarButton";
 const { DateTime } = require("luxon");
 
-function EventsInfo({ communityId }) {
+function EventsInfo({ communityData }) {
   const [events, setEvents] = useState([]);
   const [communityInfo, setCommunityInfo] = useState(null);
   const [sortedEvents, setSortedEvents] = useState([]);
   const [editEvent, setEditEvent] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
 
+  //  DATA.JSON
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/events`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const jsonData = await response.json();
+        const communityEvents = communityData.events
+        const events = jsonData.filter(event => communityEvents.includes(event.id));
+        setEvents(events);
+
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  // // FIREBASE DATA
   // useEffect(() => {
   //   const fetchCommunityData = async () => {
   //     try {
@@ -36,15 +57,15 @@ function EventsInfo({ communityId }) {
   //   fetchCommunityData();
   // }, [communityId]);
 
-  useEffect(() => {
-    let community = data.communities.filter(c => {return c.id === communityId});
-    setCommunityInfo(community[0]);
-  },[]);
-  console.log(communityInfo);
+  // useEffect(() => {
+  //   let community = data.communities.filter(c => {return c.id === communityId});
+  //   setCommunityInfo(community[0]);
+  // },[]);
+  // console.log(communityInfo);
 
-  useEffect(() => {
-    setEvents(data.events);
-  },[]);
+  // useEffect(() => {
+  //   setEvents(data.events);
+  // },[]);
 
   // useEffect(() => {
   //   const fetchCommunityEventsData = async () => {

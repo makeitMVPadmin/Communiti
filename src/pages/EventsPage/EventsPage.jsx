@@ -13,8 +13,7 @@ function EventsHomePage() {
   const [userCommunities, setUserCommunities] = useState([]);
   const [selectedOption, setSelectedOption] = useState("option1"); // Default to All Events
 
-  // console.log(data.events)
-
+  // // FIREBASE DATA
   // useEffect(() => {
   //   // Fetch user's communities
   //   const fetchUserCommunities = async () => {
@@ -61,28 +60,49 @@ function EventsHomePage() {
   const handleDropdownChange = (event) => {
     setSelectedOption(event.target.value);
   };
- 
-  // // Filter out joined communities that are also managed
-  // const filteredJoinedCommunities = userCommunitiesJoined.filter(
-  //   (joinedId) => !userCommunitiesManaged.includes(joinedId)
-  // );
+
+  //  DATA.JSON
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/communities');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const jsonData = await response.json();
+        setUserCommunitiesManaged(jsonData.filter(community => ["community4_uuid", "community5_uuid"].includes(community.id)))
+        setUserCommunitiesJoined(jsonData.filter(community => ["community1_uuid", "community2_uuid", "community3_uuid"].includes(community.id)))
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // Filter out joined communities that are also managed
+  const filteredJoinedCommunities = userCommunitiesJoined.filter(
+    (joinedId) => !userCommunitiesManaged.includes(joinedId)
+  );
 
   const filterEvents = () => {
     switch (selectedOption) {
       case "option2": // Communities Managed
-        return userCommunitiesManaged.map((communityId, index) => (
+        return userCommunitiesManaged.map((community, index) => (
           <EventsInfo
             key={`managed-${index}`}
-            communityId={communityId}
+            communityData={community}
+            // communityId={communityId}
             managed
           />
         ));
       case "option3": // Communities Joined
         // return filteredJoinedCommunities.map((communityId, index) => (
-        return userCommunitiesJoined.map((communityId, index) => (
-          <EventsInfoPublic
+        return userCommunitiesJoined.map((community, index) => (
+          <EventsInfo
             key={`joined-${index}`}
-            communityId={communityId}
+            // communityId={communityId}
+            communityData={community}
             joined
           />
         ));

@@ -108,10 +108,11 @@
     @include Body;
 
     &-container {
-      margin-top: 4.2vw;
-      width: 78.5vw;
+      margin-top: 5px;
+      width: 650px;
       padding: 2.2vw 3.5vw;
-      background: rgba(0, 153, 255, 0.2);
+      border-radius: 7px;
+      text-align: center;
     }
   }
 }

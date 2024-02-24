@@ -210,10 +210,12 @@ export default function EventProfile() {
                     </div>
                     <div className="event-profile__organizer-card-details">
                       <p className="event-profile__organizer-card-details-paragraph-name">
-                        {eventDetails.organizedBy.name}
+                        {/* {eventDetails.organizedBy.name} */}
+                        Name
                       </p>
                       <p className="event-profile__organizer-card-details-paragraph-title">
-                        {eventDetails.organizedBy.position}
+                        {/* {eventDetails.organizedBy.position} */}
+                        Position
                       </p>
                     </div>
                   </div>
@@ -244,10 +246,12 @@ export default function EventProfile() {
                           </div>
                           <div className="event-profile__registrants-card-details">
                             <p className="event-profile__registrants-card-details-paragraph-name">
-                              {eventDetails.organizedBy.name}
+                              {/* {eventDetails.organizedBy.name} */}
+                              Name
                             </p>
                             <p className="event-profile__registrants-card-details-paragraph-title">
-                              {eventDetails.organizedBy.position}
+                              {/* {eventDetails.organizedBy.position} */}
+                              Position
                             </p>
                           </div>
                           <div className="event-profile__registrants-card-details-going-container">
