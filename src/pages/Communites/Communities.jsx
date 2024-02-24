@@ -23,7 +23,7 @@ function Communities() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/communities');
+        const response = await fetch('http://localhost:3001/communities');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

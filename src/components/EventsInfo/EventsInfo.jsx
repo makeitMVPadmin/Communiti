@@ -19,7 +19,7 @@ function EventsInfo({ eventList }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/events`);
+        const response = await fetch(`http://localhost:3001/events`);
         if (!response.ok) {
           throw new Error('Network response was not okay');
         }

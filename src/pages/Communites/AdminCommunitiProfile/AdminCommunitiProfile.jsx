@@ -36,7 +36,7 @@ function AdminCommunitiProfile() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/communities/${id}`);
+        const response = await fetch(`http://localhost:3001/communities/${id}`);
         if (!response.ok) {
           throw new Error("Network response was not okay");
         }

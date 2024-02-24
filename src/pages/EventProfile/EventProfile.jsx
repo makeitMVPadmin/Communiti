@@ -39,21 +39,21 @@ export default function EventProfile() {
     const fetchData = async () => {
       try {
         // Get event
-        const response1 = await fetch(`http://localhost:3000/events/${id}`);
+        const response1 = await fetch(`http://localhost:3001/events/${id}`);
         if (!response1.ok) {
           throw new Error("Network response for events was not okay");
         } 
         const eventData = await response1.json();
 
         // Get event's community data
-        const response2 = await fetch(`http://localhost:3000/communities/${eventData.community}`);
+        const response2 = await fetch(`http://localhost:3001/communities/${eventData.community}`);
         if (!response2.ok) {
           throw new Error("Network response for community was not okay");
         } 
         const communityData = await response2.json();
 
         // Get user data for event's RSVP list
-        const response3 = await fetch(`http://localhost:3000/users`);
+        const response3 = await fetch(`http://localhost:3001/users`);
         if (!response3.ok) {
           throw new Error("Network response for users was not okay");
         } 
