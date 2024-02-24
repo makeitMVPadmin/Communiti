@@ -38,7 +38,7 @@ function AdminCommunitiProfile() {
       try {
         const response = await fetch(`http://localhost:3000/communities/${id}`);
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not okay");
         }
         const jsonData = await response.json();
         setCommunityData(jsonData);

@@ -21,7 +21,7 @@ function EventsInfo({ eventList }) {
       try {
         const response = await fetch(`http://localhost:3000/events`);
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error('Network response was not okay');
         }
         const jsonData = await response.json();
         
@@ -42,7 +42,7 @@ function EventsInfo({ eventList }) {
 
         setEvents(eventsData);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
     fetchData();
@@ -197,7 +197,7 @@ function EventsInfo({ eventList }) {
           {/* Map through each event for that date */}
           {events.map(event => (
             <div key={event.id} className="events-info">
-              <Link key={index} to={"/events/1"} className="events-info__container">
+              <Link key={index} to={`/events/${event.id}`} className="events-info__container">
               <div className="events-info__thumbnail">
                 <img
                   className="events-info__thumbnail-img"

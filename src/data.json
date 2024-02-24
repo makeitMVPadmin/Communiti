@@ -309,7 +309,14 @@
       "timezone": "America/Los_Angeles",
       "venueAddress": "Fox Theater, Oakland, CA",
       "requiresApproval": false,
-      "community": "community4_uuid"
+      "community": "community4_uuid",
+      "rsvpList": [
+        "user1_uuid",
+        "user2_uuid",
+        "user3_uuid",
+        "user4_uuid",
+        "user5_uuid"
+      ]
     },
     {
       "id": "event2_uuid",
@@ -324,7 +331,14 @@
       "timezone": "America/Los_Angeles",
       "venueAddress": "Fox Theater, Oakland, CA",
       "requiresApproval": false,
-      "community": "community4_uuid"
+      "community": "community4_uuid",
+      "rsvpList": [
+        "user1_uuid",
+        "user2_uuid",
+        "user3_uuid",
+        "user4_uuid",
+        "user5_uuid"
+      ]
     },
     {
       "id": "event3_uuid",
@@ -339,7 +353,14 @@
       "timezone": "America/Los_Angeles",
       "venueAddress": "Fox Theater, Oakland, CA",
       "requiresApproval": false,
-      "community": "community4_uuid"
+      "community": "community4_uuid",
+      "rsvpList": [
+        "user1_uuid",
+        "user2_uuid",
+        "user3_uuid",
+        "user4_uuid",
+        "user5_uuid"
+      ]
     },
     {
       "id": "event4_uuid",
@@ -354,7 +375,15 @@
       "timezone": "America/New_York",
       "venueAddress": "",
       "requiresApproval": false,
-      "community": "community1_uuid"
+      "community": "community1_uuid",
+      "rsvpList": [
+        "user1_uuid",
+        "user2_uuid",
+        "user3_uuid",
+        "user4_uuid",
+        "user5_uuid",
+        "user6_uuid"
+      ]
     },
     {
       "id": "event5_uuid",
@@ -369,7 +398,12 @@
       "timezone": "America/Austin",
       "venueAddress": "389 N Euclid Ave, St. Louis, MO 63108",
       "requiresApproval": false,
-      "community": "community2_uuid"
+      "community": "community2_uuid",
+      "rsvpList": [
+        "user1_uuid",
+        "user2_uuid",
+        "user3_uuid"
+      ]
     },
     {
       "id": "event6_uuid",
@@ -384,7 +418,11 @@
       "timezone": "America/Los_Angeles",
       "venueAddress": "",
       "requiresApproval": false,
-      "community": "community3_uuid"
+      "community": "community3_uuid",
+      "rsvpList": [
+        "user1_uuid",
+        "user4_uuid"
+      ]
     }
   ]
 }
