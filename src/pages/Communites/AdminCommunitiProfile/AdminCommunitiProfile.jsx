@@ -28,7 +28,7 @@ function AdminCommunitiProfile() {
   const [showNewsletter, setShowNewsletter] = useState(false);
   const [communityData, setCommunityData] = useState(null);
   const [announcements, setAnnouncements] = useState([]);
-  const [events, setEvents] = useState([]);
+  const [eventIds, setEventIds] = useState([]);
   const [memberIds, setMemberIds] = useState([]);
   const [inviteLink, setInviteLink] = useState("");
 
@@ -43,7 +43,7 @@ function AdminCommunitiProfile() {
         const jsonData = await response.json();
         setCommunityData(jsonData);
         setAnnouncements(jsonData.announcements || []);
-        setEvents(jsonData.events || []);
+        setEventIds(jsonData.events || []);
         setMemberIds(jsonData.members || []);
 
       } catch (error) {
@@ -169,8 +169,8 @@ function AdminCommunitiProfile() {
         break;
       default:
         break;
-    }
-  }
+    };
+  };
 
   return (
     <>
@@ -316,7 +316,7 @@ function AdminCommunitiProfile() {
               )}
               {showEvents && (
                 <EventsTab
-                  events={events}
+                  eventIds={eventIds}
                   setEventsOverlay={setEventsOverlay}
                   communityData={communityData}
                 />

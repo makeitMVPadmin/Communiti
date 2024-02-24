@@ -12,6 +12,7 @@ function EventsHomePage() {
   const [userCommunitiesManaged, setUserCommunitiesManaged] = useState([]);
   const [userCommunities, setUserCommunities] = useState([]);
   const [selectedOption, setSelectedOption] = useState("option1"); // Default to All Events
+  const [allEvents, setAllEvents] = useState([])
 
   // // FIREBASE DATA
   // useEffect(() => {
@@ -51,27 +52,50 @@ function EventsHomePage() {
   //   setUserCommunities([...userCommunitiesJoined, ...userCommunitiesManaged]);
   // }, []);
 
-  useEffect(() => {
-    setUserCommunities([1]);
-    setUserCommunitiesJoined([1]);
-    setUserCommunitiesManaged([1]);
-  }, []);
+  // useEffect(() => {
+  //   setUserCommunities([1]);
+  //   setUserCommunitiesJoined([1]);
+  //   setUserCommunitiesManaged([1]);
+  // }, []);
 
   const handleDropdownChange = (event) => {
     setSelectedOption(event.target.value);
   };
 
+  const user = {
+    "communitiesJoined": [
+      "community1_uuid",
+      "community2_uuid",
+      "community3_uuid"
+    ],
+    "communitiesManaged": [
+      "community4_uuid",
+      "community5_uuid"
+    ]
+  }
+
   //  DATA.JSON
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/communities');
+        const response = await fetch('http://localhost:3000/events');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         const jsonData = await response.json();
-        setUserCommunitiesManaged(jsonData.filter(community => ["community4_uuid", "community5_uuid"].includes(community.id)))
-        setUserCommunitiesJoined(jsonData.filter(community => ["community1_uuid", "community2_uuid", "community3_uuid"].includes(community.id)))
+        let allEvents = []
+        let managed = user.communitiesManaged
+        jsonData.forEach((event) => {
+          allEvents.push({
+            id: event.id,
+            type: managed.includes(event.community) ? "managed" : "joined"
+          })
+        })
+        setAllEvents(allEvents)
+        // console.log(allEvents)
+        // setUserCommunitiesManaged(jsonData.filter(event => ["community4_uuid", "community5_uuid"].includes(event.community)))
+        // setUserCommunitiesJoined(jsonData.filter(event => ["community1_uuid", "community2_uuid", "community3_uuid"].includes(event.community)))
+        // setUserCommunities(jsonData)
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -80,10 +104,10 @@ function EventsHomePage() {
     fetchData();
   }, []);
 
-  // Filter out joined communities that are also managed
-  const filteredJoinedCommunities = userCommunitiesJoined.filter(
-    (joinedId) => !userCommunitiesManaged.includes(joinedId)
-  );
+  // // Filter out joined communities that are also managed
+  // const filteredJoinedCommunities = userCommunitiesJoined.filter(
+  //   (joinedId) => !userCommunitiesManaged.includes(joinedId)
+  // );
 
   const filterEvents = () => {
     switch (selectedOption) {
@@ -92,7 +116,6 @@ function EventsHomePage() {
           <EventsInfo
             key={`managed-${index}`}
             communityData={community}
-            // communityId={communityId}
             managed
           />
         ));
@@ -101,7 +124,6 @@ function EventsHomePage() {
         return userCommunitiesJoined.map((community, index) => (
           <EventsInfo
             key={`joined-${index}`}
-            // communityId={communityId}
             communityData={community}
             joined
           />
@@ -109,13 +131,14 @@ function EventsHomePage() {
       default: // All Events
         return (
           <>
-            {userCommunities.map((communityId, index) => (
+            {/* {userCommunities.map((community, index) => (
               <EventsInfo
                 key={`joined-${index}`}
-                communityId={communityId}
-                joined
+                communityData={community}
+                type={user.communitiesJoined.includes(community.id) ? "joined" : "managed"}
               />
-            ))}
+            ))} */}
+            <EventsInfo eventIds={allEvents} />
           </>
         );
     }

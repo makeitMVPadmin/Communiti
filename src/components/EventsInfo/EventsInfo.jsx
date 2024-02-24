@@ -5,11 +5,10 @@ import EditEventModal from "../../components/EditEventModal/EditEventModal";
 import { useState, useEffect } from "react";
 // import { db } from "../../Firebase/FirebaseConfig";
 // import { collection, getDocs, doc, query, getDoc } from "firebase/firestore";
-import data from "../../data.json";
 import AddToCalendarButton from "../AddToCalendarButton/AddToCalendarButton";
 const { DateTime } = require("luxon");
 
-function EventsInfo({ communityData }) {
+function EventsInfo({ communityData, type, eventIds }) {
   const [events, setEvents] = useState([]);
   const [communityInfo, setCommunityInfo] = useState(null);
   const [sortedEvents, setSortedEvents] = useState([]);
@@ -25,9 +24,43 @@ function EventsInfo({ communityData }) {
           throw new Error('Network response was not ok');
         }
         const jsonData = await response.json();
-        const communityEvents = communityData.events
-        const events = jsonData.filter(event => communityEvents.includes(event.id));
-        setEvents(events);
+        const ids = eventIds.map(event => event.id);
+        const eventsData = jsonData.filter(event => ids.includes(event.id));
+        const data = [];
+        eventIds.forEach(event => {
+          eventsData.forEach(e => {
+            if (e.id === event.id) {
+              data.push({...e, type: event.type})
+            }
+          })
+        });
+        // console.log(data);
+
+
+        const eventsMap = new Map();
+        eventIds.forEach(event => {
+          eventsMap.set(event.id, event.type)
+        });
+
+        const data2 = jsonData
+          .filter(event => ids.includes(event.id))
+          .map(event => ({
+            ...event,
+            type: eventsMap.get(event.id)
+          }));
+
+          console.log(data2);
+
+        // const eventsData = [];
+        // jsonData.forEach(event => {
+        //   if (ids.includes(event.id)) {
+        //     eventsData.push([
+        //       ...event,
+        //       type: 
+        //     ])
+        //   }
+        // });
+        setEvents(eventsData);
 
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -143,8 +176,8 @@ function EventsInfo({ communityData }) {
 
   return (
     <>
-      {/* Conditionally rendered message for no events*/}
-      {events.length <= 0 && (
+      {/* Conditionally rendered message for no events */}
+      {events.length < 1 && (
         <div className="event-page__empty-message-container">
           <h3 className="event-page__empty-message">
             Your events will appear here when they are available. Get ready for
