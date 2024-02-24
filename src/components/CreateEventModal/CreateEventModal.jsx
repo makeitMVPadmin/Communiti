@@ -6,6 +6,7 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 import { db, storage } from "../../Firebase/FirebaseConfig";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import data from "../../data.json";
 import moment from "moment-timezone";
 
 function CreateEventModal({ setEventsOverlay }) {
@@ -71,14 +72,15 @@ function CreateEventModal({ setEventsOverlay }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    
 
     try {
-      const imageFileName = image.name || `image_${Date.now()}`;
-      const storageRef = ref(storage, `event_thumbnails/${imageFileName}`);
-      await uploadBytes(storageRef, image);
-      const imageUrl = await getDownloadURL(storageRef);
+      // const imageFileName = image.name || `image_${Date.now()}`;
 
-      const eventsRef = collection(db, `Communities/${id}/Events`);
+      // // Assuming imageUrl is still part of the data.json structure
+      // const imageUrl = `event_thumbnails/${imageFileName}`;
+
+      // Construct the event data
       const eventData = {
         title: eventTitle,
         description,
@@ -88,19 +90,58 @@ function CreateEventModal({ setEventsOverlay }) {
         startTime: moment(`${date}T${startTime}`).toISOString(),
         endTime: moment(`${date}T${endTime}`).toISOString(),
         timezone,
-        eventImage: imageUrl,
+        eventImage:
+          "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2Fjakob-dalbjorn-cuKJre3nyYc-unsplash.jpg?alt=media&token=645f3683-9bda-4f8a-b2ef-a3b4fcbecf30",
       };
 
-      await addDoc(eventsRef, {
-        ...eventData,
-        timestamp: serverTimestamp(),
+      // Make a POST request to the server
+      const response = await fetch("http://localhost:3001/events", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(eventData),
       });
 
-      setEventsOverlay(false);
+      if (response.ok) {
+        console.log("Event created successfully");
+        setEventsOverlay(false);
+      } else {
+        console.error("Failed to create event");
+      }
     } catch (error) {
       console.error("Error adding event: ", error);
     }
   };
+  //   try {
+  //     const imageFileName = image.name || `image_${Date.now()}`;
+  //     const storageRef = ref(storage, `event_thumbnails/${imageFileName}`);
+  //     await uploadBytes(storageRef, image);
+  //     const imageUrl = await getDownloadURL(storageRef);
+
+  //     const eventsRef = collection(db, `Communities/${id}/Events`);
+  //     const eventData = {
+  //       title: eventTitle,
+  //       description,
+  //       date,
+  //       locationType,
+  //       venueAddress: locationType === "venue" ? venueAddress : null,
+  //       startTime: moment(`${date}T${startTime}`).toISOString(),
+  //       endTime: moment(`${date}T${endTime}`).toISOString(),
+  //       timezone,
+  //       eventImage: imageUrl,
+  //     };
+
+  //     await addDoc(eventsRef, {
+  //       ...eventData,
+  //       timestamp: serverTimestamp(),
+  //     });
+
+  //     setEventsOverlay(false);
+  //   } catch (error) {
+  //     console.error("Error adding event: ", error);
+  //   }
+  // };
 
   const handleFileInputChange = async (e) => {
     const file = e.target.files[0];
@@ -131,7 +172,7 @@ function CreateEventModal({ setEventsOverlay }) {
     <div className="event-overlay-background">
       <div className="event-overlay">
         <h2 className="event-overlay__title">Create an Event</h2>
-        <form className="event-overlay__form" onSubmit={handleSubmit}>
+        <form className="event-overlay__form" onSubmit={handleSubmit} encType="multipart/form-data">
 
           {/* TITLE */}
           <div className="event-overlay__container">

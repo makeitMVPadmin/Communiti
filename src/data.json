@@ -82,32 +82,38 @@
     {
       "communityId": "community1_uuid",
       "userId": "user1_uuid",
-      "managing": true
+      "managing": true,
+      "id": "978e"
     },
     {
       "communityId": "community2_uuid",
       "userId": "user2_uuid",
-      "managing": true
+      "managing": true,
+      "id": "61b2"
     },
     {
       "communityId": "community1_uuid",
       "userId": "user2_uuid",
-      "managing": false
+      "managing": false,
+      "id": "667d"
     },
     {
       "communityId": "community2_uuid",
       "userId": "user1_uuid",
-      "managing": false
+      "managing": false,
+      "id": "80a3"
     },
     {
       "communityId": "community1_uuid",
       "userId": "user3_uuid",
-      "managing": false
+      "managing": false,
+      "id": "ceb7"
     },
     {
       "communityId": "community2_uuid",
       "userId": "user3_uuid",
-      "managing": false
+      "managing": false,
+      "id": "cf05"
     }
   ],
   "communities": [
@@ -153,27 +159,6 @@
     }
   ],
   "events": [
-    {
-      "id": "event1_uuid",
-      "date": "2024-02-14",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde perspiciatis eius vero atque beatae eos laudantium quis mollitia ipsam molestiae.",
-      "endTime": "2024-02-14T11:30:00-08:00",
-      "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/event_thumbnails%2FIMG_1162.jpeg?alt=media&token=c2e2c6c3-ff56-48ad-b6c6-d97b39bbca87",
-      "locationType": "Venue",
-      "startTime": "2024-02-14T10:00:00-08:00",
-      "title": "How AI can help in Marketing123",
-      "timestamp": "2024-02-08T15:00:00Z",
-      "timezone": "America/Los_Angeles",
-      "venueAddress": "213 Seymour St, Denver, CO",
-      "requiresApproval": false,
-      "organizedBy": {
-        "name": "Marina Reese",
-        "position": "Product Manager"
-      },
-      "communityInfo": "Communiti Group",
-      "community": "community1_uuid",
-      "venue": "Online"
-    },
     {
       "id": "event2_uuid",
       "date": "2024-03-22",
@@ -233,6 +218,21 @@
       },
       "communityInfo": "SuperGroup",
       "community": "community2_uuid"
+    },
+   
+    
+    
+    {
+      "id": "4a24",
+      "title": "alalal",
+      "description": "fjdklsa",
+      "date": "2024-03-13",
+      "locationType": "online",
+      "venueAddress": null,
+      "startTime": "2024-03-14T02:04:00.000Z",
+      "endTime": "2024-03-14T03:04:00.000Z",
+      "timezone": "Africa/Bamako",
+      "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2Fjakob-dalbjorn-cuKJre3nyYc-unsplash.jpg?alt=media&token=645f3683-9bda-4f8a-b2ef-a3b4fcbecf30"
     }
   ]
 }
