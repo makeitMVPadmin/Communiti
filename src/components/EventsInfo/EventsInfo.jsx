@@ -192,7 +192,7 @@ function EventsInfo({ eventList }) {
       {/* Map through each date */}
       {sortedEvents.map(({ date, events }, index) => (
         <div key={date}>
-          <h2 className="event-page__section-text">{DateTime.fromISO(date).toFormat("cccc, MMMM dd")}</h2> 
+          <h2 className="event-page__section-text">{DateTime.fromISO(date).toFormat("cccc, MMMM d")}</h2> 
           
           {/* Map through each event for that date */}
           {events.map(event => (

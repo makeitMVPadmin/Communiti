@@ -21,7 +21,6 @@ import AddToCalendarButton from "../../components/AddToCalendarButton/AddToCalen
 //   updateDoc,
 //   setDoc,
 // } from "firebase/firestore";
-import data from "../../data.json";
 const { DateTime } = require("luxon");
 
 export default function EventProfile() {
@@ -246,7 +245,7 @@ export default function EventProfile() {
                     <div className="event-profile__people-card-profile-pic-container">
                       <img
                         className="event-profile__people-card-profile-pic"
-                        src={rsvpList[0].profilePhoto}
+                        src={rsvpList[0].profilePhoto || profilePic}
                         alt=""
                       />
                     </div>
@@ -263,7 +262,7 @@ export default function EventProfile() {
 
                 {/* REGISTRANTS */}
                 <div className="event-profile__people-header">
-                  <h2>Registrants (21)</h2>
+                  <h2>Registrants ({rsvpList.length - 1})</h2>
                   <p style={{ fontSize: "13px", alignSelf: "flex-end" }}>
                     View all
                   </p>
@@ -278,7 +277,7 @@ export default function EventProfile() {
                         <div className="event-profile__people-card-profile-pic-container">
                           <img
                             className="event-profile__people-card-profile-pic"
-                            src={user.profilePhoto}
+                            src={user.profilePhoto || profilePic}
                             alt=""
                           />
                         </div>

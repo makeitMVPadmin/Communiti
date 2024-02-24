@@ -125,8 +125,7 @@
         "community1_uuid",
         "community4_uuid"
       ],
-      "communitiesManaged": [
-      ]
+      "communitiesManaged": []
     },
     {
       "id": "user6_uuid",
@@ -316,13 +315,14 @@
         "user3_uuid",
         "user4_uuid",
         "user5_uuid"
-      ]
+      ],
+      "venue": "Online"
     },
     {
       "id": "event2_uuid",
       "title": "April Movie Meet-up",
       "description": "Join us for our monthly meet-up! Grab your popcorn and join fellow film lovers for a fun and casual discussion about all things cinema. Share your favorite picks, recent discoveries, and movie-related anecdotes.",
-      "date": "2024-04-06",
+      "date": "2024-04-07",
       "startTime": "2024-04-06T14:00:00-08:00",
       "endTime": "2024-04-06T16:30:00-08:00",
       "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/event_thumbnails%2Fjon-tyson-A-obUh61bKw-unsplash.jpg?alt=media&token=93a7ffb4-97c6-4273-bcd5-69b517e6ccd6",
@@ -338,7 +338,8 @@
         "user3_uuid",
         "user4_uuid",
         "user5_uuid"
-      ]
+      ],
+      "venue": "Online"
     },
     {
       "id": "event3_uuid",
@@ -423,6 +424,18 @@
         "user1_uuid",
         "user4_uuid"
       ]
+    },
+    {
+      "id": "b58e",
+      "title": "Test Event 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiu",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure do",
+      "date": "2024-02-26",
+      "locationType": "venue",
+      "venueAddress": "",
+      "startTime": "2024-02-26T21:00:00.000Z",
+      "endTime": "2024-02-26T22:00:00.000Z",
+      "timezone": "Africa/Accra",
+      "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2Fjakob-dalbjorn-cuKJre3nyYc-unsplash.jpg?alt=media&token=645f3683-9bda-4f8a-b2ef-a3b4fcbecf30"
     }
   ]
 }

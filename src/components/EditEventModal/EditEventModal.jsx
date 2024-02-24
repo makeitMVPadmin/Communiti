@@ -1,17 +1,15 @@
-import { useState, useEffect } from "react";
 import "./EditEventModal.scss";
-import calendar from "../../assets/images/calendar.svg";
+import { useState, useEffect } from "react";
+// import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+// import { db, storage } from "../../Firebase/FirebaseConfig";
+// import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import chooseFile from "../../assets/images/choose-file.svg";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { json, useParams } from "react-router-dom";
-import { db, storage } from "../../Firebase/FirebaseConfig";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import data from "../../data.json";
 import exitIcon from "../../assets/images/exit.svg";
 import moment from "moment-timezone";
+const { DateTime } = require("luxon");
+
 
 function EditEventModal({ setEditEvent, eventDetails }) {
-  const [editEventDetails, setEditEventDetails] = useState(null);
   const [eventTitle, setEventTitle] = useState(eventDetails.title);
   // here, just do length of the incoming title
   const [titleCharCount, setTitleCharCount] = useState(eventTitle.length);
@@ -22,22 +20,13 @@ function EditEventModal({ setEditEvent, eventDetails }) {
   const [locationType, setLocationType] = useState(eventDetails.locationType);
   const [venueAddress, setVenueAddress] = useState(eventDetails.venueAddress);
   const [date, setDate] = useState(eventDetails.date);
-  const [startTime, setStartTime] = useState(eventDetails.startTime);
-  const [endTime, setEndTime] = useState(eventDetails.endTime);
+  const [startTime, setStartTime] = useState(DateTime.fromISO(eventDetails.startTime).toFormat("HH:mm"));
+  const [endTime, setEndTime] = useState(DateTime.fromISO(eventDetails.endTime).toFormat("HH:mm"));
   const [timezone, setTimezone] = useState(eventDetails.timezone);
   const [image, setImage] = useState(null);
   const [timezoneOptions, setTimezoneOptions] = useState([]);
   const [userTimezone, setUserTimezone] = useState("");
   
-
-  const { id } = useParams();
-
-  useEffect(() => {
-    let events = data.events;
-    setEditEventDetails(events[0]);
-  }, []);
-  // console.log(editEventDetails);
-
   const handleLocationChange = (event) => {
     setLocationType(event.target.value);
   };
@@ -76,16 +65,17 @@ function EditEventModal({ setEditEvent, eventDetails }) {
     const detectUserTimezone = () => {
       const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
       setUserTimezone(userTimeZone);
+      console.log(eventDetails.startTime)
     };
 
     // Call the function to detect user's time zone
     detectUserTimezone();
   }, []);
 
-  const handleTestEdit = (e) => {
+  const handleEdit = (e) => {
     e.preventDefault();
 
-    const eventID = editEventDetails.id;
+    const eventID = eventDetails.id;
     const updatedEvent = {
       title: eventTitle,
       description,
@@ -137,6 +127,7 @@ function EditEventModal({ setEditEvent, eventDetails }) {
       setImage(file);
     }
   };
+
   return (
     <div
       className={`edit-event-overlay-background ${setEditEvent ? "open" : ""}`}
@@ -147,7 +138,7 @@ function EditEventModal({ setEditEvent, eventDetails }) {
             <h2 className="edit-event-overlay__title">Edit the Event</h2>
             <img src={exitIcon} onClick={() => setEditEvent(false)} alt="exit form"></img>
           </div>
-          <form className="edit-event-overlay__form" onSubmit={handleTestEdit}>
+          <form className="edit-event-overlay__form" onSubmit={handleEdit}>
             <div className="edit-event-overlay__container">
               <label
                 className="edit-event-overlay__input-label"

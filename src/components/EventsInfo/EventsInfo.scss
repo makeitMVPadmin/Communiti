@@ -55,6 +55,8 @@
     &-description {
       @include Body;
       margin-top: 0.8vw;
+
+      // TODO: Fix overflow cut-off issue when title is multiple lines
       display: inline-block;
       overflow: hidden;
       text-overflow: ellipsis;
