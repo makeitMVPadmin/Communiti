@@ -29,7 +29,7 @@ $mockup-light-blue: #e1f0fb;
         @include Laptop {
           width: 2.3vw;
           height: 2vw;
-          margin-right: 3.6vw;
+          margin-right: 10px;
         }
         cursor: pointer;
       }
@@ -139,8 +139,9 @@ $mockup-light-blue: #e1f0fb;
 
     &-text {
       @include Body;
-      margin-left: 1.3vw;
+      margin-left: 10px;
     }
+    
     &-description {
       width: 85%;
       margin: 1vw 0vw;

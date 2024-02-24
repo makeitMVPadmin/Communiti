@@ -8,23 +8,37 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 // import { collection, getDocs } from "firebase/firestore";
 // import { db, auth } from "../../Firebase/FirebaseConfig";
-import data from "../../data.json"
 
 function Communities() {
-  const [userCommunitiesManage, setUserCommunitiesManage] = useState([]);
+  const [userCommunitiesManaged, setUserCommunitiesManaged] = useState([]);
   const [userCommunitiesJoined, setUserCommunitiesJoined] = useState([]);
-  const [allCommunities, setAllCommunities] = useState([]);
   const [showAllManagedCommunities, setShowAllManagedCommunities] =
     useState(false);
   const [showAllJoinedCommunities, setShowAllJoinedCommunities] =
     useState(false);
   const navigate = useNavigate();
 
-   useEffect(() => {
-    setUserCommunitiesManage(data.communities.slice(0,1));
-    setUserCommunitiesJoined(data.communities.slice(1))
-  },[]);
 
+  //  DATA.JSON
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/communities');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const jsonData = await response.json();
+        setUserCommunitiesManaged(jsonData.slice(-2))
+        setUserCommunitiesJoined(jsonData.slice(0,3));
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // // FIREBASE DATA
   // // Fetch user data and all communities from Firestore
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -98,7 +112,7 @@ function Communities() {
           </button>
         </div>
 
-        {userCommunitiesManage.length > 0 && (
+        {userCommunitiesManaged.length > 0 && (
           <section className="communities__managed-section">
             <div className="communities__joined">
               <div className="communities__joined-heading-container">
@@ -117,19 +131,19 @@ function Communities() {
             </div>
 
             <div className="communities__cards">
-              {/* COMMUNITIES MANAGED DUMMY DATA PLACEHOLDER */}
-              {userCommunitiesManage
+              {/* COMMUNITIES MANAGED  - FROM DATA.JSON */}
+              {userCommunitiesManaged
                 .slice(0, showAllManagedCommunities ? undefined : 3)
                 .map(community => (
                 <div key={community.id} className="communities__card">
                   <img
-                    src={community.CommunityImage || placeHolderIcon}
-                    alt={`${community.Name} Icon `}
+                    src={community.communityImage || placeHolderIcon}
+                    alt={`${community.name} Icon `}
                     className="communities__card-profile-pic"
                   />
                   <div className="communities__card-bottom-container">
                     <h4 className="communities__card-heading">
-                      {community.Name}
+                      {community.name}
                     </h4>
                     <button
                       className="communities__card-arrow-button"
@@ -147,8 +161,8 @@ function Communities() {
                 </div>
               ))}
 
-              {/* COMMUNITIES MANAGED FROM DB */}
-              {/* {userCommunitiesManage
+              {/* COMMUNITIES MANAGED - FROM FIREBASE */}
+              {/* {userCommunitiesManaged
                 .slice(0, showAllManagedCommunities ? undefined : 3)
                 .map((communityId, index) => {
                   const community = allCommunities.find(
@@ -204,60 +218,26 @@ function Communities() {
             </div>
 
             <div className="communities__cards">
-            {/* COMMUNITIES JOINED DUMMY DATA PLACEHOLDERS */}
-            <div className="communities__cards">
-              {userCommunitiesJoined
-                .slice(0, userCommunitiesJoined ? undefined : 3)
-                .map(community => (
-                <div key={community.id} className="communities__card">
-                  <img
-                    src={community.CommunityImage || placeHolderIcon}
-                    alt={`${community.Name} Icon `}
-                    className="communities__card-profile-pic"
-                  />
-                  <div className="communities__card-bottom-container">
-                    <h4 className="communities__card-heading">
-                      {community.Name}
-                    </h4>
-                    <button
-                      className="communities__card-arrow-button"
-                      onClick={() =>
-                        navigate(`/communities/admin/${community.id}`)
-                      }
-                    >
-                      <img
-                        src={rightArrowIcon}
-                        alt="right arrow button"
-                        className="communities__card-arrow-button-img"
-                      />
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* COMMUNITIES JOINED FROM DB */}
-            {/* {userCommunitiesJoined
-              .slice(0, showAllJoinedCommunities ? undefined : 3)
-              .map((communityId, index) => {
-                const community = allCommunities.find(
-                  (c) => c.id === communityId
-                );
-                return (
-                  <div key={index} className="communities__card">
+            
+              {/* COMMUNITIES JOINED - FROM DATA.JSON */}
+              <div className="communities__cards">
+                {userCommunitiesJoined
+                  .slice(0, userCommunitiesJoined ? undefined : 3)
+                  .map(community => (
+                  <div key={community.id} className="communities__card">
                     <img
-                      src={community?.CommunityImage || placeHolderIcon}
-                      alt={`${community?.Name} Icon `}
+                      src={community.communityImage || placeHolderIcon}
+                      alt={`${community.name} Icon `}
                       className="communities__card-profile-pic"
                     />
                     <div className="communities__card-bottom-container">
                       <h4 className="communities__card-heading">
-                        {community?.Name}
+                        {community.name}
                       </h4>
                       <button
                         className="communities__card-arrow-button"
                         onClick={() =>
-                          navigate(`/communities/${community?.id}`)
+                          navigate(`/communities/admin/${community.id}`)
                         }
                       >
                         <img
@@ -268,8 +248,43 @@ function Communities() {
                       </button>
                     </div>
                   </div>
-                );
-              })} */}
+                ))}
+              </div>
+
+              {/* COMMUNITIES JOINED - FROM FIREBASE */}
+              {/* {userCommunitiesJoined
+                .slice(0, showAllJoinedCommunities ? undefined : 3)
+                .map((communityId, index) => {
+                  const community = allCommunities.find(
+                    (c) => c.id === communityId
+                  );
+                  return (
+                    <div key={index} className="communities__card">
+                      <img
+                        src={community?.CommunityImage || placeHolderIcon}
+                        alt={`${community?.Name} Icon `}
+                        className="communities__card-profile-pic"
+                      />
+                      <div className="communities__card-bottom-container">
+                        <h4 className="communities__card-heading">
+                          {community?.Name}
+                        </h4>
+                        <button
+                          className="communities__card-arrow-button"
+                          onClick={() =>
+                            navigate(`/communities/${community?.id}`)
+                          }
+                        >
+                          <img
+                            src={rightArrowIcon}
+                            alt="right arrow button"
+                            className="communities__card-arrow-button-img"
+                          />
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })} */}
             </div>
           </section>
         )}
