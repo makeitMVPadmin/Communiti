@@ -20,8 +20,10 @@ function EditEventModal({ setEditEvent, eventDetails }) {
   const [locationType, setLocationType] = useState(eventDetails.locationType);
   const [venueAddress, setVenueAddress] = useState(eventDetails.venueAddress);
   const [date, setDate] = useState(eventDetails.date);
-  const [startTime, setStartTime] = useState(DateTime.fromISO(eventDetails.startTime).toFormat("HH:mm"));
-  const [endTime, setEndTime] = useState(DateTime.fromISO(eventDetails.endTime).toFormat("HH:mm"));
+  const [startTime, setStartTime] = useState(DateTime.fromISO(eventDetails.startTime));
+  const [startTimeDisplay, setStartTimeDisplay] = useState(DateTime.fromISO(eventDetails.startTime).toFormat("HH:mm"));
+  const [endTime, setEndTime] = useState(DateTime.fromISO(eventDetails.endTime));
+  const [endTimeDisplay, setEndTimeDisplay] = useState(DateTime.fromISO(eventDetails.endTime).toFormat("HH:mm"));
   const [timezone, setTimezone] = useState(eventDetails.timezone);
   const [image, setImage] = useState(null);
   const [timezoneOptions, setTimezoneOptions] = useState([]);
@@ -42,9 +44,22 @@ function EditEventModal({ setEditEvent, eventDetails }) {
     setEventTitle(e.target.value);
     setTitleCharCount(e.target.value.length); // Update character count
   };
+
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value);
     setDescriptionCharCount(e.target.value.length); // Update character count for description
+  };
+
+  const handleStartTimeChange = (e) => {
+    let time = `${date}T${e.target.value}`
+    setStartTime(DateTime.fromISO(time));
+    setStartTimeDisplay(DateTime.fromISO(time).toFormat("HH:mm"))
+  };
+
+  const handleEndTimeChange = (e) => {
+    let time = `${date}T${e.target.value}`
+    setEndTime(DateTime.fromISO(time));
+    setEndTimeDisplay(DateTime.fromISO(time).toFormat("HH:mm"))
   };
 
   useEffect(() => {
@@ -213,8 +228,11 @@ function EditEventModal({ setEditEvent, eventDetails }) {
                         <input
                           type="time"
                           id="startTime"
-                          value={startTime}
-                          onChange={(e) => setStartTime(e.target.value)}
+                          value={startTimeDisplay}
+
+                          // TODO: input value is not in ISO format
+                          // onChange={(e) => setStartTime(e.target.value)}
+                          onChange={handleStartTimeChange}
                           className="edit-event-overlay__input-time"
                         />
                       </div>
@@ -228,8 +246,11 @@ function EditEventModal({ setEditEvent, eventDetails }) {
                         <input
                           type="time"
                           id="endTime"
-                          value={endTime}
-                          onChange={(e) => setEndTime(e.target.value)}
+                          value={endTimeDisplay}
+
+                          // TODO: input value is not in ISO format
+                          // onChange={(e) => setEndTime(e.target.value)}
+                          onChange={handleEndTimeChange}
                           className="edit-event-overlay__input-time"
                         />
                       </div>

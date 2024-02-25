@@ -2,15 +2,14 @@ import { useState, useEffect } from "react";
 import "./CreateEventModal.scss";
 import calendar from "../../assets/images/calendar.svg";
 import chooseFile from "../../assets/images/choose-file.svg";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { useParams } from "react-router-dom";
-import { db, storage } from "../../Firebase/FirebaseConfig";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import data from "../../data.json";
-import moment from "moment-timezone";
 import exitIcon from "../../assets/images/exit.svg";
+import { useParams } from "react-router-dom";
+// import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+// import { db, storage } from "../../Firebase/FirebaseConfig";
+// import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import moment from "moment-timezone";
 
-function CreateEventModal({ setEventsOverlay }) {
+function CreateEventModal({ setEventsOverlay, communityData }) {
   const [eventTitle, setEventTitle] = useState("");
   const [titleCharCount, setTitleCharCount] = useState(0);
   const [description, setDescription] = useState("");
@@ -23,6 +22,7 @@ function CreateEventModal({ setEventsOverlay }) {
   const [timezone, setTimezone] = useState("");
   const [image, setImage] = useState(null);
   const [timezoneOptions, setTimezoneOptions] = useState([]);
+  
   const [userTimezone, setUserTimezone] = useState("");
 
   const { id } = useParams();
@@ -86,13 +86,16 @@ function CreateEventModal({ setEventsOverlay }) {
         title: eventTitle,
         description,
         date,
-        locationType,
-        venueAddress: locationType === "venue" ? venueAddress : null,
         startTime: moment(`${date}T${startTime}`).toISOString(),
         endTime: moment(`${date}T${endTime}`).toISOString(),
+        eventImage: "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2Fjakob-dalbjorn-cuKJre3nyYc-unsplash.jpg?alt=media&token=645f3683-9bda-4f8a-b2ef-a3b4fcbecf30",
+        locationType,
+        timestamp: Date.now(),
         timezone,
-        eventImage:
-          "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2Fjakob-dalbjorn-cuKJre3nyYc-unsplash.jpg?alt=media&token=645f3683-9bda-4f8a-b2ef-a3b4fcbecf30",
+        venueAddress: locationType === "venue" ? venueAddress : null,
+        requiresApproval: "false",
+        community: communityData.id,
+        rsvpList: [communityData.createdBy]
       };
 
       // Make a POST request to the server
@@ -330,13 +333,13 @@ function CreateEventModal({ setEventsOverlay }) {
                 type="radio"
                 id="online"
                 name="locationType"
-                value="online"
-                checked={locationType === "online"}
+                value="Virtual"
+                checked={locationType === "Virtual"}
                 onChange={handleLocationChange}
                 className="event-overlay__input-location"
               />
               <label className="event-overlay__input-sub-label" htmlFor="online">
-                Online
+                Virtual
               </label>
             </div>
 

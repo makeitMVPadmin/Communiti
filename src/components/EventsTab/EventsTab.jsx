@@ -1,7 +1,7 @@
 import "./EventsTab.scss";
 import EventsInfo from "../EventsInfo/EventsInfo";
 
-function EventsTab({ setEventsOverlay, eventList }) {
+function EventsTab({ setEventsOverlay, eventList, communityData }) {
 
   function noEvents() {
     return (

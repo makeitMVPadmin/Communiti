@@ -26,7 +26,6 @@ const { DateTime } = require("luxon");
 export default function EventProfile() {
   const { id } = useParams();
   const [editEvent, setEditEvent] = useState(false);
-  const [editDetails, setEditDetails] = useState({});
   const [eventData, setEventData] = useState(null);
   const [community, setCommunity] = useState(null);
   const [rsvpList, setRsvpList] = useState(null);
@@ -263,12 +262,12 @@ export default function EventProfile() {
                 {/* REGISTRANTS */}
                 <div className="event-profile__people-header">
                   <h2>Registrants ({rsvpList.length - 1})</h2>
-                  <p style={{ fontSize: "13px", alignSelf: "flex-end" }}>
+                  {rsvpList.length > 4 && <p style={{ fontSize: "13px", alignSelf: "flex-end" }}>
                     View all
-                  </p>
+                  </p>}
                 </div>
-                <div className="event-profile__people-inner-div">
-                  {rsvpList.slice(1).map((user, index) => {
+                {rsvpList.length - 1 > 0 && <div className="event-profile__people-inner-div">
+                  {rsvpList.slice(1,5).map((user, index) => {
                     return (
                       <div
                         key={index}
@@ -302,7 +301,7 @@ export default function EventProfile() {
                       </div>
                     );
                   })}
-                </div>
+                </div>}
               </div>
             </div>
           </div>

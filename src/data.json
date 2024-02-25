@@ -300,8 +300,8 @@
       "title": "March Movie Meet-up",
       "description": "Join us for our monthly meet-up! Grab your popcorn and join fellow film lovers for a fun and casual discussion about all things cinema. Share your favorite picks, recent discoveries, and movie-related anecdotes.",
       "date": "2024-03-02",
-      "startTime": "2024-03-02T14:00:00-08:00",
-      "endTime": "2024-03-02T16:30:00-08:00",
+      "startTime": "2024-03-02T13:00:00.000-08:00",
+      "endTime": "2024-03-02T17:30:00.000-08:00",
       "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/event_thumbnails%2Fjon-tyson-A-obUh61bKw-unsplash.jpg?alt=media&token=93a7ffb4-97c6-4273-bcd5-69b517e6ccd6",
       "locationType": "Venue",
       "timestamp": "2024-02-08T15:00:00Z",
@@ -323,8 +323,8 @@
       "title": "April Movie Meet-up",
       "description": "Join us for our monthly meet-up! Grab your popcorn and join fellow film lovers for a fun and casual discussion about all things cinema. Share your favorite picks, recent discoveries, and movie-related anecdotes.",
       "date": "2024-04-07",
-      "startTime": "2024-04-06T14:00:00-08:00",
-      "endTime": "2024-04-06T16:30:00-08:00",
+      "startTime": "2024-04-07T14:00:00-08:00",
+      "endTime": "2024-04-07T16:30:00-08:00",
       "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/event_thumbnails%2Fjon-tyson-A-obUh61bKw-unsplash.jpg?alt=media&token=93a7ffb4-97c6-4273-bcd5-69b517e6ccd6",
       "locationType": "Venue",
       "timestamp": "2024-02-08T15:00:00Z",
@@ -426,15 +426,70 @@
       ]
     },
     {
-      "id": "b58e",
-      "title": "Test Event 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiu",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure do",
+      "id": "85a7",
+      "title": "Test Event 2",
+      "description": "description",
+      "date": "2024-02-25",
+      "startTime": "2024-02-25T17:00:00.000Z",
+      "endTime": "2024-02-25T18:00:00.000Z",
+      "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2Fjakob-dalbjorn-cuKJre3nyYc-unsplash.jpg?alt=media&token=645f3683-9bda-4f8a-b2ef-a3b4fcbecf30",
+      "locationType": "online",
+      "timestamp": 1708804732346,
+      "timezone": "America/Chicago",
+      "venueAddress": null,
+      "requiresApproval": "false",
+      "community": "community4_uuid",
+      "rsvpList": [
+        "user1_uuid"
+      ]
+    },
+    {
+      "id": "5aeb",
+      "title": "Test Event 3.1",
+      "description": "description",
+      "date": "2024-02-25",
+      "startTime": "08:00",
+      "endTime": "09:00",
+      "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2Fjakob-dalbjorn-cuKJre3nyYc-unsplash.jpg?alt=media&token=645f3683-9bda-4f8a-b2ef-a3b4fcbecf30",
+      "locationType": "Virtual",
+      "timestamp": 1708805754713,
+      "timezone": "Africa/Bissau",
+      "venueAddress": null,
+      "requiresApproval": "false",
+      "community": "community4_uuid",
+      "rsvpList": [
+        "user1_uuid"
+      ],
+      "venue": "Online"
+    },
+    {
+      "id": "89c2",
+      "title": "Test Event 1",
+      "description": "description",
+      "date": "2024-02-25",
+      "startTime": "2024-02-25T17:00:00.000Z",
+      "endTime": "2024-02-25T18:00:00.000Z",
+      "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2Fjakob-dalbjorn-cuKJre3nyYc-unsplash.jpg?alt=media&token=645f3683-9bda-4f8a-b2ef-a3b4fcbecf30",
+      "locationType": "Virtual",
+      "timestamp": 1708806833879,
+      "timezone": "America/Chicago",
+      "venueAddress": null,
+      "requiresApproval": "false",
+      "community": "community4_uuid",
+      "rsvpList": [
+        "user1_uuid"
+      ]
+    },
+    {
+      "id": "9665",
+      "title": "Test Event IDK",
+      "description": "description",
       "date": "2024-02-26",
       "locationType": "venue",
-      "venueAddress": "",
-      "startTime": "2024-02-26T21:00:00.000Z",
-      "endTime": "2024-02-26T22:00:00.000Z",
-      "timezone": "Africa/Accra",
+      "venueAddress": "213 Seymour Dr",
+      "startTime": "2024-02-27T01:00:00.000Z",
+      "endTime": "2024-02-27T02:00:00.000Z",
+      "timezone": "America/North_Dakota/Beulah",
       "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2Fjakob-dalbjorn-cuKJre3nyYc-unsplash.jpg?alt=media&token=645f3683-9bda-4f8a-b2ef-a3b4fcbecf30"
     }
   ]
