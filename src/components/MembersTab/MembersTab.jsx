@@ -10,6 +10,27 @@ import data from "../../data.json";
 function MembersTab({ memberIds, memberRoles }) {
   const [membersData, setMembersData] = useState([]);
 
+  //  DATA.JSON
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:3001/users`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const jsonData = await response.json();
+        const members = jsonData.filter(user => memberIds.includes(user.id))
+        setMembersData(members)
+
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // // FIREBASE DATA
   // useEffect(() => {
   //   const fetchMemberDetails = async () => {
   //     if (memberIds && memberIds.length > 0) {
@@ -47,10 +68,6 @@ function MembersTab({ memberIds, memberRoles }) {
   //   fetchMemberDetails();
   // }, [memberIds, memberRoles]);
 
-  useEffect(() => {
-    setMembersData(data.users)
-  }, [])
-
   return (
     <section className="members-tab">
       <div className="members-tab__header">
@@ -68,7 +85,7 @@ function MembersTab({ memberIds, memberRoles }) {
             <div className="members-tab__members-member-left">
               <img
                 className="members-tab__members-member-profile-pic"
-                src={member.photo || profilePic}
+                src={member.profilePhoto || profilePic}
                 alt={`${member.fullName} profile`}
               ></img>
 
@@ -77,7 +94,7 @@ function MembersTab({ memberIds, memberRoles }) {
                   {member.fullName}
                 </p>
                 <p className="members-tab__members-member-writing-role">
-                  {member.role}
+                  {member.discipline}
                 </p>
               </div>
             </div>

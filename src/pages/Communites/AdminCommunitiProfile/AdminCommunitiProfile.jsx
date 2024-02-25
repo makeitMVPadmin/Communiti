@@ -16,7 +16,6 @@ import { useParams, useNavigate } from "react-router-dom";
 // import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import AnnouncmentsOverlay from "../../../components/AnnouncementsOverlay/AnnouncementsOverlay";
 import EventsOverlay from "../../../components/CreateEventModal/CreateEventModal";
-import data from "../../../data.json";
 
 function AdminCommunitiProfile() {
   const { id } = useParams();
@@ -29,21 +28,42 @@ function AdminCommunitiProfile() {
   const [showNewsletter, setShowNewsletter] = useState(false);
   const [communityData, setCommunityData] = useState(null);
   const [announcements, setAnnouncements] = useState([]);
-  const [events, setEvents] = useState([]);
-  const [memberCount, setMemberCount] = useState(0);
+  const [eventList, setEventList] = useState([]);
   const [memberIds, setMemberIds] = useState([]);
-  const [memberRoles, setMemberRoles] = useState([]);
   const [inviteLink, setInviteLink] = useState("");
 
-  // DUMMY DATA
+  //  DATA.JSON
   useEffect(() => {
-    let community = data.communities[1];
-    setCommunityData(community);
-    setAnnouncements(community.announcements || []);
-    setEvents(data.events || []);
-  },[]);
-  console.log(data.communities[1].Name);
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:3001/communities/${id}`);
+        if (!response.ok) {
+          throw new Error("Network response was not okay");
+        }
+        const jsonData = await response.json();
+        setCommunityData(jsonData);
+        setAnnouncements(jsonData.announcements || []);
+        setMemberIds(jsonData.members || []);
 
+        const eventData = []
+        jsonData.events.forEach(event => {
+          eventData.push({
+            id: event,
+            type: "managed"
+          })
+        })
+        setEventList(eventData || []);
+
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
+  // // FIREBASE DATA
   // useEffect(() => {
   //   const fetchCommunityData = async () => {
   //     try {
@@ -65,7 +85,6 @@ function AdminCommunitiProfile() {
   //           const membersSnapshot = await getDocs(membersCollectionRef);
   //           const memberIds = membersSnapshot.docs.map((doc) => doc.id);
   //           setMemberIds(memberIds);
-  //           setMemberCount(memberIds.length);
 
   //           const memberRoles = [];
   //           for (const memberId of memberIds) {
@@ -158,8 +177,8 @@ function AdminCommunitiProfile() {
         break;
       default:
         break;
-    }
-  }
+    };
+  };
 
   return (
     <>
@@ -201,12 +220,12 @@ function AdminCommunitiProfile() {
             <div className="admin-communiti-profile__card-top">
               <img
                 className="admin-communiti-profile__card-top-pic"
-                src={communityData.CommunityImage || penAndPaper}
+                src={communityData.communityImage || penAndPaper}
                 alt="a pencil atop notebook with imaginative notes taken on it"
               ></img>
               <div className="admin-communiti-profile__card-writing">
                 <h1 className="admin-communiti-profile__card-writing-top">
-                  {communityData.Name}
+                  {communityData.name}
                   <div className="admin-communiti-profile__card-writing-top-icons">
                     <img src={edit} alt="edit icon"></img>
                     <img src={trash} alt="trash icon"></img>
@@ -214,8 +233,8 @@ function AdminCommunitiProfile() {
                 </h1>
                 <div className="admin-communiti-profile__card-writing-bottom">
                   <div className="admin-communiti-profile__card-writing-bottom-left">
-                    {communityData.Location &&
-                      communityData.Location.map((locationItem, index) => (
+                    {communityData.location &&
+                      communityData.location.map((locationItem, index) => (
                         <div
                           key={index}
                           className="admin-communiti-profile__card-card"
@@ -234,10 +253,10 @@ function AdminCommunitiProfile() {
                   <div className="admin-communiti-profile__card-writing-bottom-right">
                     <img
                       src={members}
-                      alt="the silouhette of two people, one standing directly behind the other"
+                      alt="the silhouette of two people, one standing directly behind the other"
                     ></img>
                     <p className="admin-communiti-profile__card-text">
-                      {memberCount !== null ? `${memberCount} members` : "0"}
+                      {memberIds.length !== 1 ? `${memberIds.length} members` : "1 member"}
                     </p>
                   </div>
                 </div>
@@ -249,7 +268,7 @@ function AdminCommunitiProfile() {
                 Description
               </h2>
               <p className="admin-communiti-profile__card-description-description">
-                {communityData.Description}
+                {communityData.description}
               </p>
             </section>
 
@@ -305,13 +324,15 @@ function AdminCommunitiProfile() {
               )}
               {showEvents && (
                 <EventsTab
-                  events={events}
+                  eventList={eventList}
                   setEventsOverlay={setEventsOverlay}
                   communityData={communityData}
                 />
               )}
               {showMembers && (
-                <MembersTab memberIds={memberIds} memberRoles={memberRoles} />
+                <MembersTab 
+                  memberIds={memberIds} 
+                />
               )}
               {showNewsletter && (
                 // Placeholder for newsletter UI from Team Supergroup

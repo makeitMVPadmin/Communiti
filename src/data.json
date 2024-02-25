@@ -2,236 +2,494 @@
   "users": [
     {
       "id": "user1_uuid",
-      "displayName": "User 1",
-      "email": "user1@example.com",
-      "password": "hellohello",
-      "profilePhoto": "https://images.unsplash.com/photo-1523480717984-24cba35ae1ef?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "createdAt": "2024-02-08T12:00:00Z",
-      "fullName": "User One",
-      "discipline": "Engineering",
+      "fullName": "Leila Khan",
+      "email": "leila@mail.com",
+      "profilePhoto": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/profile_thumbnails%2FLeila%20Khan.png?alt=media&token=4ddf3cd9-a093-4f64-b821-77431c5738ca",
+      "displayName": "Leila Khan",
+      "discipline": "Software Engineer",
       "expertise": "Software Development",
       "industry": "Technology",
       "bio": "Passionate about coding and technology.",
       "mentor": true,
       "mentee": false,
-      "location": "City A",
+      "location": "Oakland, CA",
       "phoneNumber": "+1234567890",
       "appointments": 0,
       "chats": 0,
       "connections": 0,
       "communitiesJoined": [
-        "community2_uuid"
+        "community1_uuid",
+        "community2_uuid",
+        "community3_uuid"
       ],
       "communitiesManaged": [
-        "community1_uuid"
+        "community4_uuid",
+        "community5_uuid"
       ]
     },
     {
       "id": "user2_uuid",
-      "displayName": "User 2",
-      "email": "user2@example.com",
-      "password": "hellohello",
-      "profilePhoto": "https://images.unsplash.com/photo-1559624989-7b9303bd9792?q=80&w=1376&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "createdAt": "2024-02-08T12:30:00Z",
-      "fullName": "User Two",
-      "discipline": "Business",
-      "expertise": "Marketing",
-      "industry": "Sales",
-      "bio": "Driven marketer with a focus on sales strategies.",
+      "fullName": "Dan Lee",
+      "email": "dan@mail.com",
+      "profilePhoto": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/profile_thumbnails%2FDan%20Lee.png?alt=media&token=b5243c7d-cc52-4f3f-8a1d-35465da25d42",
+      "displayName": "Dan Lee",
+      "discipline": "Software Developer",
+      "expertise": "Software Development",
+      "industry": "Technology",
+      "bio": "",
       "mentor": false,
       "mentee": true,
-      "location": "City B",
+      "location": "Wilmington, NC",
       "phoneNumber": "+9876543210",
       "appointments": 0,
       "chats": 0,
       "connections": 0,
       "communitiesJoined": [
-        "community1_uuid"
+        "community2_uuid",
+        "community4_uuid"
       ],
       "communitiesManaged": [
-        "community2_uuid"
+        "community1_uuid"
       ]
     },
     {
       "id": "user3_uuid",
-      "displayName": "User 3",
-      "email": "user3@example.com",
-      "password": "hellohello",
-      "profilePhoto": "https://images.unsplash.com/photo-1555169062-013468b47731?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "email": "chloe@mail.com",
+      "profilePhoto": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/profile_thumbnails%2FChloe%20Garcia.png?alt=media&token=2cf7e8ad-d52e-404d-8498-0a08b07a6d31",
       "createdAt": "2024-02-08T12:30:00Z",
-      "fullName": "User Three",
-      "discipline": "Business",
-      "expertise": "Marketing",
-      "industry": "Sales",
-      "bio": "Driven marketer with a focus on sales strategies.",
+      "fullName": "Chloe Garcia",
+      "discipline": "Web Developer",
+      "expertise": "Software Development",
+      "industry": "Technology",
+      "bio": "",
       "mentor": false,
       "mentee": true,
-      "location": "City C",
+      "location": "St. Louis, MO",
       "phoneNumber": "+9876543210",
       "appointments": 0,
       "chats": 0,
       "connections": 0,
       "communitiesJoined": [
         "community1_uuid",
+        "community4_uuid"
+      ],
+      "communitiesManaged": [
         "community2_uuid"
+      ]
+    },
+    {
+      "id": "user4_uuid",
+      "email": "alex@mail.com",
+      "profilePhoto": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/profile_thumbnails%2FAlex%20Wilson.png?alt=media&token=d24d91f4-3979-4a18-b20d-221607273b16",
+      "createdAt": "2024-02-08T12:30:00Z",
+      "fullName": "Alex Wilson",
+      "discipline": "Product Manager",
+      "expertise": "Product Management",
+      "industry": "Technology",
+      "bio": "",
+      "mentor": true,
+      "mentee": false,
+      "location": "Boston, MA",
+      "phoneNumber": "+9876543210",
+      "appointments": 0,
+      "chats": 0,
+      "connections": 0,
+      "communitiesJoined": [
+        "community1_uuid",
+        "community4_uuid"
+      ],
+      "communitiesManaged": [
+        "community3_uuid"
+      ]
+    },
+    {
+      "id": "user5_uuid",
+      "email": "john@mail.com",
+      "profilePhoto": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/profile_thumbnails%2FJohn%20Patel.png?alt=media&token=d6a2418a-43b3-4b08-b5af-740ae67fa9cd",
+      "createdAt": "2024-02-08T12:30:00Z",
+      "fullName": "John Patel",
+      "discipline": "Software Engineer",
+      "expertise": "Software Development",
+      "industry": "Technology",
+      "bio": "",
+      "mentor": true,
+      "mentee": false,
+      "location": "New Orleans, LA",
+      "phoneNumber": "+9876543210",
+      "appointments": 0,
+      "chats": 0,
+      "connections": 0,
+      "communitiesJoined": [
+        "community1_uuid",
+        "community4_uuid"
       ],
       "communitiesManaged": []
-    }
-  ],
-  "communityUserRelationships": [
-    {
-      "communityId": "community1_uuid",
-      "userId": "user1_uuid",
-      "managing": true,
-      "id": "978e"
     },
     {
-      "communityId": "community2_uuid",
-      "userId": "user2_uuid",
-      "managing": true,
-      "id": "61b2"
-    },
-    {
-      "communityId": "community1_uuid",
-      "userId": "user2_uuid",
-      "managing": false,
-      "id": "667d"
-    },
-    {
-      "communityId": "community2_uuid",
-      "userId": "user1_uuid",
-      "managing": false,
-      "id": "80a3"
-    },
-    {
-      "communityId": "community1_uuid",
-      "userId": "user3_uuid",
-      "managing": false,
-      "id": "ceb7"
-    },
-    {
-      "communityId": "community2_uuid",
-      "userId": "user3_uuid",
-      "managing": false,
-      "id": "cf05"
+      "id": "user6_uuid",
+      "email": "liam@mail.com",
+      "profilePhoto": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/profile_thumbnails%2FLiam%20Rodriguez.png?alt=media&token=a2529f53-2c36-45c6-a143-ad452d671cf9",
+      "createdAt": "2024-02-08T12:30:00Z",
+      "fullName": "Liam Rodriguez",
+      "discipline": "Software Engineer",
+      "expertise": "Software Development",
+      "industry": "Technology",
+      "bio": "",
+      "mentor": true,
+      "mentee": false,
+      "location": "Miami, FL",
+      "phoneNumber": "+9876543210",
+      "appointments": 0,
+      "chats": 0,
+      "connections": 0,
+      "communitiesJoined": [
+        "community1_uuid"
+      ],
+      "communitiesManaged": []
     }
   ],
   "communities": [
     {
       "id": "community1_uuid",
-      "CommunityImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/event_thumbnails%2FIMG_1162.jpeg?alt=media&token=c2e2c6c3-ff56-48ad-b6c6-d97b39bbca87",
-      "Created": "2024-02-08T12:45:00Z",
-      "CreatedBy": "user1_uuid",
-      "Description": "Community for software developers.",
-      "Location": [
-        "City A"
+      "communityImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2Fcarlos-muza-hpjSkU2UYSU-unsplash.jpg?alt=media&token=1410778c-37e4-4a83-8279-2e2e64189a1b",
+      "created": "2024-02-08T13:30:00Z",
+      "createdBy": "user2_uuid",
+      "description": " A dynamic community of sales professionals sharing insights, strategies, and success stories to elevate each other's sales game.",
+      "location": [
+        "Virtual"
       ],
-      "Name": "DevCommunity",
-      "Announcements": [
+      "name": "SalesPros",
+      "announcements": [
         {
           "id": "announcement1_uuid",
-          "message": "Welcome to DevCommunity!",
-          "posted": "2024-02-08T13:00:00Z",
-          "createdBy": "user1_uuid"
-        }
-      ],
-      "NewsLetters": []
-    },
-    {
-      "id": "community2_uuid",
-      "CommunityImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2FIMG_1113.jpeg?alt=media&token=f047e3f1-ae81-45a5-8e2f-9fe65eee57a3",
-      "Created": "2024-02-08T13:30:00Z",
-      "CreatedBy": "user2_uuid",
-      "Description": "Community for sales and marketing professionals.",
-      "Location": [
-        "City B"
-      ],
-      "Name": "SalesPros",
-      "Announcements": [
-        {
-          "id": "announcement2_uuid",
           "message": "Welcome to SalesPros!",
           "posted": "2024-02-08T14:00:00Z",
           "createdBy": "user2_uuid"
         }
       ],
-      "NewsLetters": []
+      "newsletters": [],
+      "events": [
+        "event4_uuid"
+      ],
+      "members": [
+        "user1_uuid",
+        "user2_uuid",
+        "user3_uuid",
+        "user4_uuid",
+        "user5_uuid",
+        "user6_uuid"
+      ]
+    },
+    {
+      "id": "community2_uuid",
+      "communityImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2Fjesus-arango-ohpdSLGHhPU-unsplash.jpg?alt=media&token=7acddc31-295a-417d-8d73-82c27b2340a1",
+      "created": "2024-02-08T12:45:00Z",
+      "createdBy": "user3_uuid",
+      "description": "Welcome to Dessert Club: a haven for dessert enthusiasts! Join us to swap recipes, share baking tips, and indulge in all things sweet. From decadent cakes to comforting cookies, let's explore the world of desserts together. It's a treat for the taste buds and a delight for the soul.",
+      "location": [
+        "St. Louis, MO"
+      ],
+      "name": "Dessert Club",
+      "announcements": [
+        {
+          "id": "announcement4_uuid",
+          "message": "Welcome to Dessert Club!",
+          "posted": "2024-02-08T13:00:00Z",
+          "createdBy": "user3_uuid"
+        }
+      ],
+      "newsletters": [],
+      "events": [
+        "event5_uuid"
+      ],
+      "members": [
+        "user1_uuid",
+        "user2_uuid",
+        "user3_uuid"
+      ]
+    },
+    {
+      "id": "community3_uuid",
+      "communityImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2Ffotis-fotopoulos-DuHKoV44prg-unsplash.jpg?alt=media&token=950a2e5e-3343-4f49-8b8b-7839eb382685",
+      "created": "2024-02-08T12:45:00Z",
+      "createdBy": "user4_uuid",
+      "description": "Connect with coders worldwide, share tips, and collaborate on projects.  From coding challenges to networking events, we've got your tech journey covered. Let's build the future together!",
+      "location": [
+        "Virtual"
+      ],
+      "name": "DevCommunity",
+      "announcements": [
+        {
+          "id": "announcement3_uuid",
+          "message": "Welcome to DevCommunity!",
+          "posted": "2024-02-08T13:00:00Z",
+          "createdBy": "user4_uuid"
+        }
+      ],
+      "newsletters": [],
+      "events": [
+        "event6_uuid"
+      ],
+      "members": [
+        "user1_uuid",
+        "user4_uuid"
+      ]
+    },
+    {
+      "id": "community4_uuid",
+      "communityImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/event_thumbnails%2Fjon-tyson-A-obUh61bKw-unsplash.jpg?alt=media&token=93a7ffb4-97c6-4273-bcd5-69b517e6ccd6",
+      "created": "2024-02-08T12:45:00Z",
+      "createdBy": "user1_uuid",
+      "description": "Where movie buffs come together for a dose of cinematic magic! Our group is all about sharing the love for films, from old-school classics to indie wonders. Whether you're a film fanatic or just enjoy a good flick, you're welcome to join our monthly gatherings. We chat about movies, swap recommendations, and dive into lively debates.",
+      "location": [
+        "Oakland, CA"
+      ],
+      "name": "Leila's Movie Group",
+      "announcements": [
+        {
+          "id": "announcement4_uuid",
+          "message": "Welcome to Leila's Movie Group!",
+          "posted": "2024-02-08T13:00:00Z",
+          "createdBy": "user1_uuid"
+        }
+      ],
+      "newsletters": [],
+      "events": [
+        "event1_uuid",
+        "event2_uuid",
+        "event3_uuid"
+      ],
+      "members": [
+        "user1_uuid",
+        "user2_uuid",
+        "user3_uuid",
+        "user4_uuid",
+        "user5_uuid"
+      ]
+    },
+    {
+      "id": "community5_uuid",
+      "communityImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2Fbrooke-cagle-g1Kr4Ozfoac-unsplash%20(1).jpg?alt=media&token=be08da4f-c636-4a42-a13b-613aa25f4605",
+      "created": "2024-02-08T12:45:00Z",
+      "createdBy": "user1_uuid",
+      "description": "A group of tech enthusiasts honing their skills in pitching innovative products. From sleek apps to groundbreaking software, we refine our pitches, share insights, and network to drive tech innovation forward.",
+      "location": [
+        "Virtual"
+      ],
+      "name": "Product Pitchers",
+      "announcements": [
+        {
+          "id": "announcement5_uuid",
+          "message": "Welcome to Product Pitchers!",
+          "posted": "2024-02-08T13:00:00Z",
+          "createdBy": "user1_uuid"
+        }
+      ],
+      "newsletters": [],
+      "events": [],
+      "members": [
+        "user1_uuid"
+      ]
     }
   ],
   "events": [
     {
-      "id": "event2_uuid",
-      "date": "2024-03-22",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde perspiciatis eius vero atque beatae eos laudantium quis mollitia ipsam molestiae.",
-      "endTime": "2024-03-22T16:00:00.000Z",
-      "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2FIMG_1113.jpeg?alt=media&token=f047e3f1-ae81-45a5-8e2f-9fe65eee57a3",
-      "locationType": "In Person",
-      "startTime": "2024-03-22T09:30:00.000Z",
-      "title": "SalesPros Workshop",
-      "timestamp": "2024-02-05T11:00:00Z",
+      "id": "event1_uuid",
+      "title": "March Movie Meet-up",
+      "description": "Join us for our monthly meet-up! Grab your popcorn and join fellow film lovers for a fun and casual discussion about all things cinema. Share your favorite picks, recent discoveries, and movie-related anecdotes.",
+      "date": "2024-03-02",
+      "startTime": "2024-03-02T13:00:00.000-08:00",
+      "endTime": "2024-03-02T17:30:00.000-08:00",
+      "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/event_thumbnails%2Fjon-tyson-A-obUh61bKw-unsplash.jpg?alt=media&token=93a7ffb4-97c6-4273-bcd5-69b517e6ccd6",
+      "locationType": "Venue",
+      "timestamp": "2024-02-08T15:00:00Z",
       "timezone": "America/Los_Angeles",
-      "venueAddress": "213 Seymour st., Denver",
-      "requiresApproval": true,
-      "organizedBy": {
-        "name": "Marina Reese",
-        "position": "Product Manager"
-      },
-      "communityInfo": "SuperGroup",
-      "community": "community2_uuid"
+      "venueAddress": "Fox Theater, Oakland, CA",
+      "requiresApproval": false,
+      "community": "community4_uuid",
+      "rsvpList": [
+        "user1_uuid",
+        "user2_uuid",
+        "user3_uuid",
+        "user4_uuid",
+        "user5_uuid"
+      ],
+      "venue": "Online"
+    },
+    {
+      "id": "event2_uuid",
+      "title": "April Movie Meet-up",
+      "description": "Join us for our monthly meet-up! Grab your popcorn and join fellow film lovers for a fun and casual discussion about all things cinema. Share your favorite picks, recent discoveries, and movie-related anecdotes.",
+      "date": "2024-04-07",
+      "startTime": "2024-04-07T14:00:00-08:00",
+      "endTime": "2024-04-07T16:30:00-08:00",
+      "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/event_thumbnails%2Fjon-tyson-A-obUh61bKw-unsplash.jpg?alt=media&token=93a7ffb4-97c6-4273-bcd5-69b517e6ccd6",
+      "locationType": "Venue",
+      "timestamp": "2024-02-08T15:00:00Z",
+      "timezone": "America/Los_Angeles",
+      "venueAddress": "Fox Theater, Oakland, CA",
+      "requiresApproval": false,
+      "community": "community4_uuid",
+      "rsvpList": [
+        "user1_uuid",
+        "user2_uuid",
+        "user3_uuid",
+        "user4_uuid",
+        "user5_uuid"
+      ],
+      "venue": "Online"
     },
     {
       "id": "event3_uuid",
-      "date": "2024-03-22",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde perspiciatis eius vero atque beatae eos laudantium quis mollitia ipsam molestiae.",
-      "endTime": "2024-03-22T06:00:00.000Z",
-      "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/event_thumbnails%2FIMG_1162.jpeg?alt=media&token=c2e2c6c3-ff56-48ad-b6c6-d97b39bbca87",
-      "locationType": "In Person",
-      "startTime": "2024-03-22T05:30:00.000Z",
-      "title": "Dog Meet-up",
-      "timestamp": "2024-02-05T06:00:00Z",
+      "title": "Howl's Moving Castle Screening",
+      "description": "Have a magical evening at our Howl's Moving Castle screening event! Immerse yourself in Hayao Miyazaki's enchanting world as we follow Sophie and Howl on their whimsical journey.",
+      "date": "2024-03-14",
+      "startTime": "2024-03-14T19:00:00-08:00",
+      "endTime": "2024-03-14T20:30:00-08:00",
+      "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2Fkrists-luhaers-AtPWnYNDJnM-unsplash.jpg?alt=media&token=ea10b639-6db6-4c39-9b22-f16498d5f9e4",
+      "locationType": "Venue",
+      "timestamp": "2024-02-08T15:00:00Z",
       "timezone": "America/Los_Angeles",
-      "venueAddress": "213 Seymour st., Denver",
-      "requiresApproval": true,
-      "organizedBy": {
-        "name": "Marina Reese",
-        "position": "Product Manager"
-      },
-      "communityInfo": "SuperGroup",
-      "community": "community2_uuid"
+      "venueAddress": "Fox Theater, Oakland, CA",
+      "requiresApproval": false,
+      "community": "community4_uuid",
+      "rsvpList": [
+        "user1_uuid",
+        "user2_uuid",
+        "user3_uuid",
+        "user4_uuid",
+        "user5_uuid"
+      ]
     },
     {
       "id": "event4_uuid",
-      "date": "2024-04-09",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde perspiciatis eius vero atque beatae eos laudantium quis mollitia ipsam molestiae.",
-      "endTime": "2024-04-09T16:00:00.000Z",
-      "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2FIMG_1113.jpeg?alt=media&token=f047e3f1-ae81-45a5-8e2f-9fe65eee57a3",
-      "locationType": "In Person",
-      "startTime": "2024-04-09T05:30:00.000Z",
-      "title": "Plant Exchange",
-      "timestamp": "2024-02-20T06:00:00Z",
-      "timezone": "America/Los_Angeles",
-      "venueAddress": "213 Seymour st., Denver",
-      "requiresApproval": true,
-      "organizedBy": {
-        "name": "Marina Reese",
-        "position": "Product Manager"
-      },
-      "communityInfo": "SuperGroup",
-      "community": "community2_uuid"
+      "title": "SalesPros Workshop",
+      "description": "Expert-led sessions on prospecting strategies, negotiation techniques, and closing tactics.",
+      "date": "2024-02-29",
+      "startTime": "2024-02-29T09:00:00-05:00",
+      "endTime": "2024-02-29T10:30:00-05:00",
+      "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2Fcarlos-muza-hpjSkU2UYSU-unsplash.jpg?alt=media&token=1410778c-37e4-4a83-8279-2e2e64189a1b",
+      "locationType": "Virtual",
+      "timestamp": "2024-02-08T15:00:00Z",
+      "timezone": "America/New_York",
+      "venueAddress": "",
+      "requiresApproval": false,
+      "community": "community1_uuid",
+      "rsvpList": [
+        "user1_uuid",
+        "user2_uuid",
+        "user3_uuid",
+        "user4_uuid",
+        "user5_uuid",
+        "user6_uuid"
+      ]
     },
-   
-    
-    
     {
-      "id": "4a24",
-      "title": "alalal",
-      "description": "fjdklsa",
-      "date": "2024-03-13",
+      "id": "event5_uuid",
+      "title": "Sundae Social",
+      "description": "Expert-led sessions on prospecting strategies, negotiation techniques, and closing tactics.",
+      "date": "2024-03-14",
+      "startTime": "2024-03-14T15:00:00-06:00",
+      "endTime": "2024-03-14T16:00:00-06:00",
+      "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2Fjesus-arango-ohpdSLGHhPU-unsplash.jpg?alt=media&token=7acddc31-295a-417d-8d73-82c27b2340a1",
+      "locationType": "Venue",
+      "timestamp": "2024-02-08T15:00:00Z",
+      "timezone": "America/Austin",
+      "venueAddress": "389 N Euclid Ave, St. Louis, MO 63108",
+      "requiresApproval": false,
+      "community": "community2_uuid",
+      "rsvpList": [
+        "user1_uuid",
+        "user2_uuid",
+        "user3_uuid"
+      ]
+    },
+    {
+      "id": "event6_uuid",
+      "title": "Hack Night",
+      "description": "Dive into coding challenges, collaborate on projects, and network with fellow developers. Whether you're a seasoned pro or just starting out, come sharpen your skills and unleash your creativity in a fun and supportive environment.",
+      "date": "2024-02-29",
+      "startTime": "2024-02-29T18:00:00-08:00",
+      "endTime": "2024-02-29T19:00:00-08:00",
+      "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2Ffotis-fotopoulos-DuHKoV44prg-unsplash.jpg?alt=media&token=950a2e5e-3343-4f49-8b8b-7839eb382685",
+      "locationType": "Virtual",
+      "timestamp": "2024-02-08T15:00:00Z",
+      "timezone": "America/Los_Angeles",
+      "venueAddress": "",
+      "requiresApproval": false,
+      "community": "community3_uuid",
+      "rsvpList": [
+        "user1_uuid",
+        "user4_uuid"
+      ]
+    },
+    {
+      "id": "85a7",
+      "title": "Test Event 2",
+      "description": "description",
+      "date": "2024-02-25",
+      "startTime": "2024-02-25T17:00:00.000Z",
+      "endTime": "2024-02-25T18:00:00.000Z",
+      "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2Fjakob-dalbjorn-cuKJre3nyYc-unsplash.jpg?alt=media&token=645f3683-9bda-4f8a-b2ef-a3b4fcbecf30",
       "locationType": "online",
+      "timestamp": 1708804732346,
+      "timezone": "America/Chicago",
       "venueAddress": null,
-      "startTime": "2024-03-14T02:04:00.000Z",
-      "endTime": "2024-03-14T03:04:00.000Z",
-      "timezone": "Africa/Bamako",
+      "requiresApproval": "false",
+      "community": "community4_uuid",
+      "rsvpList": [
+        "user1_uuid"
+      ]
+    },
+    {
+      "id": "5aeb",
+      "title": "Test Event 3.1",
+      "description": "description",
+      "date": "2024-02-25",
+      "startTime": "08:00",
+      "endTime": "09:00",
+      "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2Fjakob-dalbjorn-cuKJre3nyYc-unsplash.jpg?alt=media&token=645f3683-9bda-4f8a-b2ef-a3b4fcbecf30",
+      "locationType": "Virtual",
+      "timestamp": 1708805754713,
+      "timezone": "Africa/Bissau",
+      "venueAddress": null,
+      "requiresApproval": "false",
+      "community": "community4_uuid",
+      "rsvpList": [
+        "user1_uuid"
+      ],
+      "venue": "Online"
+    },
+    {
+      "id": "89c2",
+      "title": "Test Event 1",
+      "description": "description",
+      "date": "2024-02-25",
+      "startTime": "2024-02-25T17:00:00.000Z",
+      "endTime": "2024-02-25T18:00:00.000Z",
+      "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2Fjakob-dalbjorn-cuKJre3nyYc-unsplash.jpg?alt=media&token=645f3683-9bda-4f8a-b2ef-a3b4fcbecf30",
+      "locationType": "Virtual",
+      "timestamp": 1708806833879,
+      "timezone": "America/Chicago",
+      "venueAddress": null,
+      "requiresApproval": "false",
+      "community": "community4_uuid",
+      "rsvpList": [
+        "user1_uuid"
+      ]
+    },
+    {
+      "id": "9665",
+      "title": "Test Event IDK",
+      "description": "description",
+      "date": "2024-02-26",
+      "locationType": "venue",
+      "venueAddress": "213 Seymour Dr",
+      "startTime": "2024-02-27T01:00:00.000Z",
+      "endTime": "2024-02-27T02:00:00.000Z",
+      "timezone": "America/North_Dakota/Beulah",
       "eventImage": "https://firebasestorage.googleapis.com/v0/b/communiti-630fc.appspot.com/o/community_images%2Fjakob-dalbjorn-cuKJre3nyYc-unsplash.jpg?alt=media&token=645f3683-9bda-4f8a-b2ef-a3b4fcbecf30"
     }
   ]

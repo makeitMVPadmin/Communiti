@@ -91,12 +91,8 @@
     }
 
     &--profile {
-      width: 6vw;
+      width: 50px;
       border-radius: 50%;
-
-      @include Desktop {
-        width: 4vw;
-      }
     }
   }
 

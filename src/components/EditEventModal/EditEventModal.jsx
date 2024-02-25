@@ -1,17 +1,15 @@
-import { useState, useEffect } from "react";
 import "./EditEventModal.scss";
-import calendar from "../../assets/images/calendar.svg";
+import { useState, useEffect } from "react";
+// import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+// import { db, storage } from "../../Firebase/FirebaseConfig";
+// import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import chooseFile from "../../assets/images/choose-file.svg";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { json, useParams } from "react-router-dom";
-import { db, storage } from "../../Firebase/FirebaseConfig";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import data from "../../data.json";
-
+import exitIcon from "../../assets/images/exit.svg";
 import moment from "moment-timezone";
+const { DateTime } = require("luxon");
+
 
 function EditEventModal({ setEditEvent, eventDetails }) {
-  const [editEventDetails, setEditEventDetails] = useState(null);
   const [eventTitle, setEventTitle] = useState(eventDetails.title);
   // here, just do length of the incoming title
   const [titleCharCount, setTitleCharCount] = useState(eventTitle.length);
@@ -22,22 +20,15 @@ function EditEventModal({ setEditEvent, eventDetails }) {
   const [locationType, setLocationType] = useState(eventDetails.locationType);
   const [venueAddress, setVenueAddress] = useState(eventDetails.venueAddress);
   const [date, setDate] = useState(eventDetails.date);
-  const [startTime, setStartTime] = useState(eventDetails.startTime);
-  const [endTime, setEndTime] = useState(eventDetails.endTime);
+  const [startTime, setStartTime] = useState(DateTime.fromISO(eventDetails.startTime));
+  const [startTimeDisplay, setStartTimeDisplay] = useState(DateTime.fromISO(eventDetails.startTime).toFormat("HH:mm"));
+  const [endTime, setEndTime] = useState(DateTime.fromISO(eventDetails.endTime));
+  const [endTimeDisplay, setEndTimeDisplay] = useState(DateTime.fromISO(eventDetails.endTime).toFormat("HH:mm"));
   const [timezone, setTimezone] = useState(eventDetails.timezone);
   const [image, setImage] = useState(null);
   const [timezoneOptions, setTimezoneOptions] = useState([]);
   const [userTimezone, setUserTimezone] = useState("");
   
-
-  const { id } = useParams();
-
-  useEffect(() => {
-    let events = data.events;
-    setEditEventDetails(events[0]);
-  }, []);
-  // console.log(editEventDetails);
-
   const handleLocationChange = (event) => {
     setLocationType(event.target.value);
   };
@@ -53,9 +44,22 @@ function EditEventModal({ setEditEvent, eventDetails }) {
     setEventTitle(e.target.value);
     setTitleCharCount(e.target.value.length); // Update character count
   };
+
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value);
     setDescriptionCharCount(e.target.value.length); // Update character count for description
+  };
+
+  const handleStartTimeChange = (e) => {
+    let time = `${date}T${e.target.value}`
+    setStartTime(DateTime.fromISO(time));
+    setStartTimeDisplay(DateTime.fromISO(time).toFormat("HH:mm"))
+  };
+
+  const handleEndTimeChange = (e) => {
+    let time = `${date}T${e.target.value}`
+    setEndTime(DateTime.fromISO(time));
+    setEndTimeDisplay(DateTime.fromISO(time).toFormat("HH:mm"))
   };
 
   useEffect(() => {
@@ -76,16 +80,17 @@ function EditEventModal({ setEditEvent, eventDetails }) {
     const detectUserTimezone = () => {
       const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
       setUserTimezone(userTimeZone);
+      console.log(eventDetails.startTime)
     };
 
     // Call the function to detect user's time zone
     detectUserTimezone();
   }, []);
 
-  const handleTestEdit = (e) => {
+  const handleEdit = (e) => {
     e.preventDefault();
 
-    const eventID = editEventDetails.id;
+    const eventID = eventDetails.id;
     const updatedEvent = {
       title: eventTitle,
       description,
@@ -137,6 +142,7 @@ function EditEventModal({ setEditEvent, eventDetails }) {
       setImage(file);
     }
   };
+
   return (
     <div
       className={`edit-event-overlay-background ${setEditEvent ? "open" : ""}`}
@@ -145,20 +151,15 @@ function EditEventModal({ setEditEvent, eventDetails }) {
         <div className="edit-event-overlay__outer-div">
           <div className="edit-event-overlay__title-container">
             <h2 className="edit-event-overlay__title">Edit the Event</h2>
-            <span
-              style={{ cursor: "pointer " }}
-              onClick={() => setEditEvent(false)}
-            >
-              &#x2715;
-            </span>
+            <img src={exitIcon} onClick={() => setEditEvent(false)} alt="exit form"></img>
           </div>
-          <form className="edit-event-overlay__form" onSubmit={handleTestEdit}>
+          <form className="edit-event-overlay__form" onSubmit={handleEdit}>
             <div className="edit-event-overlay__container">
               <label
                 className="edit-event-overlay__input-label"
                 htmlFor="eventTitle"
               >
-                Event Title*
+                Event Title&#42;
               </label>
               <div className="edit-event-overlay__input-title-container">
                 <input
@@ -180,7 +181,7 @@ function EditEventModal({ setEditEvent, eventDetails }) {
                 className="edit-event-overlay__input-label"
                 htmlFor="description"
               >
-                Description*
+                Description&#42;
               </label>
               <div className="edit-event-overlay__input-description-container">
                 <textarea
@@ -204,7 +205,7 @@ function EditEventModal({ setEditEvent, eventDetails }) {
                     className="edit-event-overlay__input-label"
                     htmlFor="date"
                   >
-                    Date*
+                    Date&#42;
                   </label>
                   <input
                     type="date"
@@ -222,13 +223,16 @@ function EditEventModal({ setEditEvent, eventDetails }) {
                           className="edit-event-overlay__input-label"
                           htmlFor="startTime"
                         >
-                          Start Time*
+                          Start Time&#42;
                         </label>
                         <input
                           type="time"
                           id="startTime"
-                          value={startTime}
-                          onChange={(e) => setStartTime(e.target.value)}
+                          value={startTimeDisplay}
+
+                          // TODO: input value is not in ISO format
+                          // onChange={(e) => setStartTime(e.target.value)}
+                          onChange={handleStartTimeChange}
                           className="edit-event-overlay__input-time"
                         />
                       </div>
@@ -237,13 +241,16 @@ function EditEventModal({ setEditEvent, eventDetails }) {
                           className="edit-event-overlay__input-label"
                           htmlFor="endTime"
                         >
-                          End Time*
+                          End Time&#42;
                         </label>
                         <input
                           type="time"
                           id="endTime"
-                          value={endTime}
-                          onChange={(e) => setEndTime(e.target.value)}
+                          value={endTimeDisplay}
+
+                          // TODO: input value is not in ISO format
+                          // onChange={(e) => setEndTime(e.target.value)}
+                          onChange={handleEndTimeChange}
                           className="edit-event-overlay__input-time"
                         />
                       </div>
@@ -256,7 +263,7 @@ function EditEventModal({ setEditEvent, eventDetails }) {
                   className="edit-event-overlay__input-label"
                   htmlFor="timezone"
                 >
-                  Timezone
+                  Timezone&#42;
                 </label>
                 <br />
                 <select
@@ -274,7 +281,9 @@ function EditEventModal({ setEditEvent, eventDetails }) {
                 </select>
               </div>
               <div className="edit-event-overlay__input-location-container">
-                <p className="edit-event-overlay__input-label">Location*</p>
+                <p className="edit-event-overlay__input-label">
+                  Location&#42;
+                </p>
                 <div>
                   <div className="edit-event-overlay__input-location-container-alt">
                     <input
@@ -325,26 +334,6 @@ function EditEventModal({ setEditEvent, eventDetails }) {
               </div>
 
               <div>
-                {/* <label
-                  className="edit-event-overlay__input-label"
-                  htmlFor="timezone"
-                >
-                  Timezone
-                </label>
-                <br />
-                <select
-                  className="edit-event-overlay__input-select"
-                  id="timezone"
-                  value={timezone}
-                  onChange={handleTimezoneChange}
-                >
-                  <option value="">Select Timezone</option>
-                  {timezoneOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select> */}
                 <div className="edit-event-overlay__image-container">
                   <div>
                     <label

@@ -1,20 +1,17 @@
-import EventsNavbar from "../../components/DashboardNavbar/DashboardNavbar";
 import "./EventsPage.scss";
-import { collection, doc, getDoc } from "firebase/firestore";
+import EventsNavbar from "../../components/DashboardNavbar/DashboardNavbar";
 import EventsInfo from "../../components/EventsInfo/EventsInfo";
-import EventsInfoPublic from "../../components/EventsInfoPublic/EventsInfoPublic";
 import { useState, useEffect } from "react";
-import { db, auth } from "../../Firebase/FirebaseConfig";
-import data from "../../data.json";
+// import { collection, doc, getDoc } from "firebase/firestore";
+// import { db, auth } from "../../Firebase/FirebaseConfig";
 
 function EventsHomePage() {
-  const [userCommunitiesJoined, setUserCommunitiesJoined] = useState([]);
-  const [userCommunitiesManaged, setUserCommunitiesManaged] = useState([]);
-  const [userCommunities, setUserCommunities] = useState([]);
+  const [joinedCommunityEvents, setJoinedCommunityEvents] = useState([]);
+  const [managedCommunityEvents, setManagedCommunityEvents] = useState([]);
+  const [allEvents, setAllEvents] = useState([])
   const [selectedOption, setSelectedOption] = useState("option1"); // Default to All Events
 
-  // console.log(data.events)
-
+  // // FIREBASE DATA
   // useEffect(() => {
   //   // Fetch user's communities
   //   const fetchUserCommunities = async () => {
@@ -52,53 +49,68 @@ function EventsHomePage() {
   //   setUserCommunities([...userCommunitiesJoined, ...userCommunitiesManaged]);
   // }, []);
 
-  useEffect(() => {
-    setUserCommunities([1]);
-    setUserCommunitiesJoined([1]);
-    setUserCommunitiesManaged([1]);
-  }, []);
+  // useEffect(() => {
+  //   setUserCommunities([1]);
+  //   setUserCommunitiesJoined([1]);
+  //   setUserCommunitiesManaged([1]);
+  // }, []);
 
-  const handleDropdownChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
- 
-  // // Filter out joined communities that are also managed
-  // const filteredJoinedCommunities = userCommunitiesJoined.filter(
-  //   (joinedId) => !userCommunitiesManaged.includes(joinedId)
-  // );
+
+  //  DATA.JSON
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/events');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const jsonData = await response.json();
+
+        // Temporary hard-coded data
+        let managed = ["community4_uuid", "community5_uuid"]
+
+        let eventsData = []
+        jsonData.forEach((event) => {
+          eventsData.push({
+            id: event.id,
+            type: managed.includes(event.community) ? "managed" : "joined"
+          })
+        })
+        setAllEvents(eventsData)
+        setManagedCommunityEvents(eventsData.filter(event => event.type === "managed"))
+        setJoinedCommunityEvents(eventsData.filter(event => event.type === "joined"))
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, []);
 
   const filterEvents = () => {
     switch (selectedOption) {
       case "option2": // Communities Managed
-        return userCommunitiesManaged.map((communityId, index) => (
-          <EventsInfo
-            key={`managed-${index}`}
-            communityId={communityId}
-            managed
-          />
-        ));
+        return (
+          <>
+            <EventsInfo eventList={managedCommunityEvents} />
+          </>
+        );
       case "option3": // Communities Joined
-        // return filteredJoinedCommunities.map((communityId, index) => (
-        return userCommunitiesJoined.map((communityId, index) => (
-          <EventsInfoPublic
-            key={`joined-${index}`}
-            communityId={communityId}
-            joined
-          />
-        ));
+        return (
+          <>
+            <EventsInfo eventList={joinedCommunityEvents} />
+          </>
+        );
       default: // All Events
         return (
           <>
-            {userCommunities.map((communityId, index) => (
-              <EventsInfo
-                key={`joined-${index}`}
-                communityId={communityId}
-                joined
-              />
-            ))}
+            <EventsInfo eventList={allEvents} />
           </>
         );
     }
+  };
+
+  const handleDropdownChange = (event) => {
+    setSelectedOption(event.target.value);
   };
 
   return (

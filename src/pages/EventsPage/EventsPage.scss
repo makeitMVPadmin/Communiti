@@ -15,7 +15,7 @@
   font-family: Gilroy;
 
   &__container {
-    padding: 15.14vw 10.8vw 0 10.8vw;
+    padding: 7vw 10.8vw 0 10.8vw;
     height: 100%;
   }
 
@@ -24,14 +24,13 @@
     justify-content: space-between;
     margin-bottom: 3.8vw;
   }
+
   &__dropdown {
     display: flex;
-    // padding: 0.5vw 1.1vw;
-    padding-left: .5vw;
+    padding: 5px 15px;
     align-items: center;
     gap: 0.7vw;
-    width: 18vw;
-    height: 3vw;
+    height: 60px;
     border-radius: 0.5vw;
     border: none;
     background: #85bbfb;
@@ -109,10 +108,11 @@
     @include Body;
 
     &-container {
-      margin-top: 4.2vw;
-      width: 78.5vw;
+      margin-top: 5px;
+      width: 650px;
       padding: 2.2vw 3.5vw;
-      background: rgba(0, 153, 255, 0.2);
+      border-radius: 7px;
+      text-align: center;
     }
   }
 }

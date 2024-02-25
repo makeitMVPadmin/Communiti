@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./EventProfile.scss";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import DashboardNavbar from "../../components/DashboardNavbar/DashboardNavbar";
 import placeHolderIcon from "../../assets/images/PlaceHolderIcon.png";
@@ -12,30 +12,65 @@ import profilePic from "../../assets/images/profilePic.svg";
 import EditIcon from "../../assets/images/EditIconWhite.svg";
 import EditEventModal from "../../components/EditEventModal/EditEventModal";
 import AddToCalendarButton from "../../components/AddToCalendarButton/AddToCalendarButton";
-import { db, auth } from "../../Firebase/FirebaseConfig";
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  updateDoc,
-  setDoc,
-} from "firebase/firestore";
-import data from "../../data.json";
+// import { db, auth } from "../../Firebase/FirebaseConfig";
+// import {
+//   collection,
+//   doc,
+//   getDoc,
+//   getDocs,
+//   updateDoc,
+//   setDoc,
+// } from "firebase/firestore";
 const { DateTime } = require("luxon");
 
 export default function EventProfile() {
+  const { id } = useParams();
   const [editEvent, setEditEvent] = useState(false);
-  const [editDetails, setEditDetails] = useState({});
   const [eventData, setEventData] = useState(null);
+  const [community, setCommunity] = useState(null);
+  const [rsvpList, setRsvpList] = useState(null);
 
   const navigate = useNavigate();
 
+  // JSON DATA
   useEffect(() => {
-    let events = data.events;
-    setEventData(events[0]);
-  }, []);
+    const fetchData = async () => {
+      try {
+        // Get event
+        const response1 = await fetch(`http://localhost:3001/events/${id}`);
+        if (!response1.ok) {
+          throw new Error("Network response for events was not okay");
+        } 
+        const eventData = await response1.json();
 
+        // Get event's community data
+        const response2 = await fetch(`http://localhost:3001/communities/${eventData.community}`);
+        if (!response2.ok) {
+          throw new Error("Network response for community was not okay");
+        } 
+        const communityData = await response2.json();
+
+        // Get user data for event's RSVP list
+        const response3 = await fetch(`http://localhost:3001/users`);
+        if (!response3.ok) {
+          throw new Error("Network response for users was not okay");
+        } 
+        const userData = await response3.json();
+        const list = eventData.rsvpList;
+        const filteredUsers = userData.filter(user => list.includes(user.id));
+
+        setEventData(eventData);
+        setCommunity(communityData);
+        setRsvpList(filteredUsers);
+
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  },[]);
+
+  // FIREBASE DATA
   //   useEffect(() => {
   //     const fetchEventDetails = async (eventId) => {
   //       try {
@@ -101,14 +136,16 @@ export default function EventProfile() {
         <DashboardNavbar />
         <main className="event-profile">
           <div className="event-profile__container">
-            <img className="event-profile__image" src={placeHolderIcon} />
+            <img className="event-profile__image" src={eventData.eventImage || placeHolderIcon} alt=""/>
             <div className="event-profile__header-container">
               <div>
-                <h1 className="event-profile__header">{eventDetails.title}</h1>
+                <h1 className="event-profile__header">{eventData.title}</h1>
                 <p className="event-profile__content-text">
                   {eventDetails.description}
                 </p>
               </div>
+
+              {/* EDIT EVENT & ADD TO CALENDAR BUTTONS */}
               <div className="event-profile__edit-calendar-container">
                 <div className="event-profile__edit-container">
                   <button
@@ -126,13 +163,17 @@ export default function EventProfile() {
                 </div>
               </div>
             </div>
-            <div className="event-profile__content-communiti-organizer-container">
+
+            <div className="event-profile__content-container">
               <div className="event-profile__content-communiti-container">
-                <div className="event-profile__content-container">
+
+                {/* DATE, TIME, & LOCATION */}
+                {/* <div className="event-profile__content-subcontainer"> */}
                   <div className="event-profile__content-details-container">
                     <div className="event-profile__content-details-div">
                       <img
                         src={calendarIcon}
+                        alt="calendar icon"
                         className="event-profile__content-details-image"
                       />
                       <p className="event-profile__content-details-text">
@@ -142,136 +183,130 @@ export default function EventProfile() {
                     <div className="event-profile__content-details-div">
                       <img
                         src={clockIcon}
+                        alt="clock icon"
                         className="event-profile__content-details-image"
                       />
                       <p className="event-profile__content-details-text">
-                        {DateTime.fromISO(eventDetails.startTime).toFormat("t")} 
-                        - {DateTime.fromISO(eventDetails.endTime).toFormat("t ZZZZ")}
+                        {DateTime.fromISO(eventDetails.startTime).toFormat("t")}
+                        &nbsp;- {DateTime.fromISO(eventDetails.endTime).toFormat("t ZZZZ")}
                       </p>
                     </div>
                     <div className="event-profile__content-details-div">
                       <img
                         src={location}
+                        alt="location pin icon"
                         className="event-profile__content-details-image"
                       />
                       <p className="event-profile__content-details-text">
-                        {eventDetails.venueAddress}
+                        {eventDetails.locationType === "Virtual" ? 
+                          "Virtual" : 
+                          eventDetails.venueAddress
+                        }
                       </p>
                     </div>
                   </div>
-                </div>
-                <div className="event-profile__communiti-container">
-                  <h3 className="event-profile__communiti-header">
-                    From the community
-                  </h3>
-                  <div
-                    className="event-profile__communiti-card"
-                    onClick={() =>
-                      navigate(`/communities/${"iEeWCH0z3B9Pu1zy5gWH"}`)
-                    }
-                  >
+                {/* </div> */}
+
+                {/* COMMUNITY */}
+                <div className="event-profile__community-container">
+                  <div className="event-profile__community-card">
                     <img
-                      // src={community?.CommunityImage || placeHolderIcon}
-                      src={placeHolderIcon}
-                      className="event-profile__communiti-card-profile-pic"
+                      src={community.communityImage || placeHolderIcon}
+                      alt=""
+                      className="event-profile__community-card-image"
                     />
-                    <div className="event-profile__communiti-card-bottom-container">
-                      <div className="event-profile__communiti-card-bottom-inner-container">
-                        <div>
-                          <h6 className="event-profile__communiti-card-heading">
-                            {eventDetails.communityInfo}
-                          </h6>
-                        </div>
-                        <div className="event-profile__communiti-card-button-div-container">
-                          <button
-                            className="event-profile__communiti-card-arrow-button"
-                            //   onClick={() =>
-                            //     navigate(`/communities/admin/${community?.id}`)
-                            //   }
-                          >
-                            <img
-                              src={rightArrowIcon}
-                              alt="right arrow button"
-                              className="event-profile__communiti-card-arrow-button-img"
-                            />
-                          </button>
-                        </div>
-                      </div>
+                    <div className="event-profile__community-card-bottom">
+                      <h4 className="event-profile__community-card-heading">
+                        {community.name}
+                      </h4>
+                      <button
+                        className="event-profile__community-card-arrow-button"
+                          onClick={() =>
+                            navigate(`/communities/admin/${eventDetails.community}`)
+                          }
+                      >
+                        <img
+                          src={rightArrowIcon}
+                          alt="right arrow button"
+                          className="communities__card-arrow-button-img"
+                        />
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="event-profile__communiti-organizer-container">
-                <div className="event-profile__organizer">
-                  <h3 className="event-profile__communiti-header">
-                    Organized By
-                  </h3>
-                  <div className="event-profile__organizer-card">
-                    <div className="event-profile__organizer-card-profile-pic-container">
+
+              <div className="event-profile__people">
+                {/* ORGANIZED BY */}
+                <div className="event-profile__people-inner-div">
+                  <h2>Organized by</h2>
+                  <div className="event-profile__people-card">
+                    <div className="event-profile__people-card-profile-pic-container">
                       <img
-                        className="event-profile__organizer-card-profile-pic"
-                        src={profilePic}
+                        className="event-profile__people-card-profile-pic"
+                        src={rsvpList[0].profilePhoto || profilePic}
+                        alt=""
                       />
                     </div>
-                    <div className="event-profile__organizer-card-details">
-                      <p className="event-profile__organizer-card-details-paragraph-name">
-                        {eventDetails.organizedBy.name}
+                    <div className="event-profile__people-card-details">
+                      <p className="event-profile__people-card-details-paragraph-name">
+                        {rsvpList[0].fullName}
                       </p>
-                      <p className="event-profile__organizer-card-details-paragraph-title">
-                        {eventDetails.organizedBy.position}
+                      <p className="event-profile__people-card-details-paragraph-title">
+                        {rsvpList[0].discipline}
                       </p>
                     </div>
                   </div>
-                </div>
-                <div className="event-profile__registrants">
-                  <div className="event-profile__registrants-outer-div">
-                    <h3 className="event-profile__registrants-header">
-                      Registrants (21)
-                    </h3>
-                    <p style={{ fontSize: "13px", alignSelf: "flex-end" }}>
-                      View all
-                    </p>
                   </div>
-                  <div className="event-profile__registrants-inner-div">
-                    {[1, 2, 3, 4].map((registrant, index) => {
-                      return (
-                        <div
-                          key={index}
-                          className="event-profile__registrants-card"
-                        >
-                          <div className="event-profile__registrants-card-profile-pic-container">
-                            <img
-                              className="event-profile__registrants-card-profile-pic"
-                              src={profilePic}
-                            />
-                          </div>
-                          <div className="event-profile__registrants-card-details">
-                            <p className="event-profile__registrants-card-details-paragraph-name">
-                              {eventDetails.organizedBy.name}
-                            </p>
-                            <p className="event-profile__registrants-card-details-paragraph-title">
-                              {eventDetails.organizedBy.position}
-                            </p>
-                          </div>
-                          <div className="event-profile__registrants-card-details-going-container">
-                            <p
-                              style={{
-                                fontSize: "16px",
-                                color: "rgba(74, 174, 81, 1)",
-                              }}
-                            >
-                              Going
-                            </p>
-                          </div>
+
+                {/* REGISTRANTS */}
+                <div className="event-profile__people-header">
+                  <h2>Registrants ({rsvpList.length - 1})</h2>
+                  {rsvpList.length > 4 && <p style={{ fontSize: "13px", alignSelf: "flex-end" }}>
+                    View all
+                  </p>}
+                </div>
+                {rsvpList.length - 1 > 0 && <div className="event-profile__people-inner-div">
+                  {rsvpList.slice(1,5).map((user, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="event-profile__people-card"
+                      >
+                        <div className="event-profile__people-card-profile-pic-container">
+                          <img
+                            className="event-profile__people-card-profile-pic"
+                            src={user.profilePhoto || profilePic}
+                            alt=""
+                          />
                         </div>
-                      );
-                    })}
-                  </div>
-                </div>
+                        <div className="event-profile__people-card-details">
+                          <p className="event-profile__people-card-details-paragraph-name">
+                            {user.fullName}
+                          </p>
+                          <p className="event-profile__people-card-details-paragraph-title">
+                            {user.discipline}
+                          </p>
+                        </div>
+                        <div className="event-profile__people-card-details-going-container">
+                          <p
+                            style={{
+                              fontSize: "16px",
+                              color: "rgba(74, 174, 81, 1)",
+                            }}
+                          >
+                            Going
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>}
               </div>
             </div>
           </div>
         </main>
+
         {editEvent ? (
           <div className="event-profile__edit-event">
             <EditEventModal
