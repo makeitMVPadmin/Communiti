@@ -49,14 +49,21 @@ function CreateEventModal({ setEventsOverlay, communityData }) {
 
   useEffect(() => {
     // Generate time zone options dynamically
-    const generateTimeZoneOptions = () => {
-      const timeZones = moment.tz.names();
-      const timeZoneOptions = timeZones.map((tz) => ({
-        value: tz,
-        label: `${tz} (UTC${moment.tz(tz).format("Z")})`,
-      }));
-      return timeZoneOptions;
-    };
+ const generateTimeZoneOptions = () => {
+   const majorAmericanTimeZones = [
+     "America/New_York", // Eastern Time
+     "America/Chicago", // Central Time
+     "America/Denver", // Mountain Time
+     "America/Los_Angeles", // Pacific Time
+   ];
+
+   const timeZoneOptions = majorAmericanTimeZones.map((tz) => ({
+     value: tz,
+     label: `${tz} (UTC${moment.tz(tz).format("Z")})`,
+   }));
+
+   return timeZoneOptions;
+ };
 
     // Set the time zone options in state
     setTimezoneOptions(generateTimeZoneOptions());
